@@ -1,4 +1,4 @@
-package com.pearl.aenaturals.WelcomeUI.Activity
+package com.aenatural.aenaturals.common
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +13,7 @@ class Splash : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         window.statusBarColor = ContextCompat.getColor(this, R.color.lightgreen)
         Handler().postDelayed({
-            val mIntent = Intent(this@Splash, Login::class.java)
+            val mIntent = Intent(this@Splash, WelcomeScreen::class.java)
             startActivity(mIntent)
             finish()
         }, 2000)

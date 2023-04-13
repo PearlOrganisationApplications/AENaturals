@@ -1,4 +1,4 @@
-package com.pearl.aenaturals
+package com.aenatural.aenaturals
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

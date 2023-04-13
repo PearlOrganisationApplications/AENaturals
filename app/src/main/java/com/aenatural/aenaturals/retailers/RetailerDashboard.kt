@@ -1,4 +1,4 @@
-package com.pearl.aenaturals.retailer.UI.Activity
+package com.aenatural.aenaturals.retailers
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

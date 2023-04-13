@@ -1,4 +1,4 @@
-package com.pearl.aenaturals
+package com.aenatural.aenaturals
 
 import org.junit.Test
 

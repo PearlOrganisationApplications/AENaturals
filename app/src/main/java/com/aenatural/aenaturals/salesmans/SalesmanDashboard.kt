@@ -1,12 +1,12 @@
-package com.pearl.aenaturals.distributor.UI.Activity
+package com.aenatural.aenaturals.salesmans
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.pearl.aenaturals.R
 
-class DistributorDashboard : AppCompatActivity() {
+class SalesmanDashboard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_distributor_dashboard)
+        setContentView(R.layout.activity_salesman_dashboard)
     }
 }
