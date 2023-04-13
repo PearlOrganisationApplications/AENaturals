@@ -15,10 +15,10 @@
         <TextView
             android:layout_width="match_parent"
             android:gravity="center"
-            android:padding="@dimen/sd14"
+            android:padding="@dimen/sd16"
             android:layout_height="wrap_content"
             android:textSize="@dimen/sd14"
-            android:text="Continue as Salesman"
+            android:text="continue as Salesman"
             android:textColor="@color/white"
             android:textStyle="bold"
             />
@@ -28,30 +28,30 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/sd10"
         android:layout_marginVertical="@dimen/sd10"
-        app:cardBackgroundColor="@color/darkgreen">
+        app:cardBackgroundColor="#109C74">
+
         <TextView
             android:layout_width="match_parent"
-            android:gravity="center"
-            android:padding="@dimen/sd12"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/sd14"
-            android:text="Continue as Retailer"
+            android:gravity="center"
+            android:padding="@dimen/sd16"
+            android:text="continue as Retailer"
             android:textColor="@color/white"
-            android:textStyle="bold"
-            />
+            android:textSize="@dimen/sd14"
+            android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/sd10"
-        app:cardBackgroundColor="@color/darkgreen">
+        app:cardBackgroundColor="#10AC80">
         <TextView
             android:layout_width="match_parent"
             android:gravity="center"
-            android:padding="@dimen/sd14"
+            android:padding="@dimen/sd16"
             android:layout_height="wrap_content"
             android:textSize="@dimen/sd14"
-            android:text="Continue as Distributor"
+            android:text="continue as Distributor"
             android:textColor="@color/white"
             android:textStyle="bold"
             />

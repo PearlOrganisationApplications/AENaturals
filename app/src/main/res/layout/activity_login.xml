@@ -48,9 +48,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="LOGIN to your Account"
-                android:textColor="@color/darkgreen"
-                android:textSize="@dimen/sd14"
+                android:text="Login to your Account"
+                android:textColor="#109770"
+                android:textSize="@dimen/sd12"
                 android:textStyle="bold" />
 
 
@@ -78,8 +78,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="email-id"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sd12" />
+            android:textColor="@color/gray"
+            android:textSize="@dimen/sd10" />
 
         <EditText
             android:layout_width="match_parent"
@@ -96,8 +96,8 @@
             android:layout_height="wrap_content"
             android:text="password"
             android:layout_marginTop="@dimen/sd20"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sd12" />
+            android:textColor="@color/gray"
+            android:textSize="@dimen/sd10" />
 
         <EditText
             android:layout_width="match_parent"
@@ -123,9 +123,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="@dimen/sd20"
-            android:text="Select what you are"
+            android:text="select what you are"
             android:textColor="@color/black"
-            android:textSize="@dimen/sd14"
+            android:textSize="@dimen/sd12"
              />
 
         <include layout="@layout/layout_prelogin" />
