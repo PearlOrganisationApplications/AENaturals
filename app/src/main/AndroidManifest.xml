@@ -13,11 +13,33 @@
         android:theme="@style/Theme.AENaturals"
         tools:targetApi="31">
         <activity
-            android:name=".UI.Activity.Splash"
+            android:name=".salesman.UI.Activity.SalesmanDashboard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".retailer.UI.Activity.RetailerDashboard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".distributor.UI.Activity.DistributorDashboard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".WelcomeUI.Activity.Splash"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,10 +47,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UI.Activity.Login"
+            android:name=".WelcomeUI.Activity.Login"
             android:exported="true">
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

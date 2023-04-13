@@ -1,4 +1,4 @@
-package com.pearl.aenaturals.UI.Activity
+package com.pearl.aenaturals.WelcomeUI.Activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

@@ -10,6 +10,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/salesmanButton"
         app:cardCornerRadius="@dimen/sd10"
         app:cardBackgroundColor="@color/darkgreen">
         <TextView
@@ -27,6 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/sd10"
+        android:id="@+id/retailerButton"
         android:layout_marginVertical="@dimen/sd10"
         app:cardBackgroundColor="#109C74">
 
@@ -44,6 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/sd10"
+        android:id="@+id/distributorButton"
         app:cardBackgroundColor="#10AC80">
         <TextView
             android:layout_width="match_parent"

@@ -13,4 +13,6 @@
     <dimen name="sd22">22dp</dimen>
     <dimen name="sd24">24dp</dimen>
     <dimen name="sd26">26dp</dimen>
+    <dimen name="sd28">28dp</dimen>
+    <dimen name="sd30">30dp</dimen>
 </resources>
