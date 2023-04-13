@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginVertical="@dimen/sd10"
+    android:gravity="center"
+    android:padding="@dimen/sd10"
+    android:layout_height="wrap_content">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/sd10"
+        app:cardBackgroundColor="@color/darkgreen">
+        <TextView
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:padding="@dimen/sd14"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sd14"
+            android:text="Continue as Salesman"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            />
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/sd10"
+        android:layout_marginVertical="@dimen/sd10"
+        app:cardBackgroundColor="@color/darkgreen">
+        <TextView
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:padding="@dimen/sd12"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sd14"
+            android:text="Continue as Retailer"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            />
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/sd10"
+        app:cardBackgroundColor="@color/darkgreen">
+        <TextView
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:padding="@dimen/sd14"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sd14"
+            android:text="Continue as Distributor"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            />
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
