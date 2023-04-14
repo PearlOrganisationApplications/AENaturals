@@ -12,6 +12,7 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         android:paddingVertical="6dp"
+        android:drawableEnd="@drawable/ic_plus2_24"
         android:paddingHorizontal="@dimen/sd10"
         android:textSize="@dimen/sd12"
         />

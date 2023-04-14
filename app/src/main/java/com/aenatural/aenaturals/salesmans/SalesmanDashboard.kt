@@ -38,13 +38,13 @@ class SalesmanDashboard : AppCompatActivity() {
                 R.id.saleHome->{
                     supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,HomeFragment()).commit()
                 }
-                R.id.saleOrders->{
+                R.id.saleItems->{
                     supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,HomeFragment()).commit()
                 }
                 R.id.saleProducts->{
                     supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,HomeFragment()).commit()
                 }
-                R.id.saleReturn->{
+                R.id.saleCart->{
                     supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,HomeFragment()).commit()
                 }
             }

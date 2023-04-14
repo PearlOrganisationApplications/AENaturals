@@ -6,9 +6,9 @@
     android:id="@+id/saleHome"
     />
     <item
-        android:icon="@drawable/ic_retailer"
-        android:title="Orders"
-        android:id="@+id/saleOrders"
+        android:icon="@drawable/ic_label"
+        android:title="Sell"
+        android:id="@+id/saleItems"
 
         />
     <item
@@ -17,8 +17,8 @@
         android:id="@+id/saleProducts"
         />
     <item
-        android:icon="@drawable/ic_return"
-        android:title="Return"
-        android:id="@+id/saleReturn"
+        android:icon="@drawable/ic_cartblack"
+        android:title="Cart"
+        android:id="@+id/saleCart"
         />
 </menu>
