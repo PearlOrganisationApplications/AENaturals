@@ -2,14 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 <item
     android:icon="@drawable/ic_home"
+    android:title="Home"
     />
     <item
         android:icon="@drawable/ic_retailer"
+        android:title="Retailer"
         />
     <item
         android:icon="@drawable/ic_products"
+        android:title="Products"
         />
     <item
         android:icon="@drawable/ic_return"
+        android:title="Return"
         />
 </menu>
