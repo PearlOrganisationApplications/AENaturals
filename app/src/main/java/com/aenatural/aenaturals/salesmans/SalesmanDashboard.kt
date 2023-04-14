@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.salesmans.fragments.HomeFragment
+import com.aenatural.aenaturals.salesmans.fragments.ProductsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pearl.aenaturals.R
 import java.util.*
@@ -39,10 +40,10 @@ class SalesmanDashboard : AppCompatActivity() {
                     supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,HomeFragment()).commit()
                 }
                 R.id.saleItems->{
-                    supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,HomeFragment()).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,ProductsFragment()).commit()
                 }
                 R.id.saleProducts->{
-                    supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,HomeFragment()).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,ProductsFragment()).commit()
                 }
                 R.id.saleCart->{
                     supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,HomeFragment()).commit()

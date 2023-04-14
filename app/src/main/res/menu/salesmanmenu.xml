@@ -9,7 +9,6 @@
         android:icon="@drawable/ic_label"
         android:title="Sell"
         android:id="@+id/saleItems"
-
         />
     <item
         android:icon="@drawable/ic_products"
