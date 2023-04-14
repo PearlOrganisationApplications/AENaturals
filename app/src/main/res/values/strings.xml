@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AE Naturals</string>
+    <string name="login_pagetext">By clicking "'Login'" above, you agree to our terms &amp; conditiions and\n privacy policy.</string>
 </resources>

@@ -10,7 +10,7 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/white"
+        android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,14 +38,16 @@
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="20dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="130dp"
         android:elevation="20dp"
-        android:layout_margin="10dp"
+        app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <LinearLayout
@@ -62,13 +64,42 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Login"
-                android:textColor="@color/darkgreen"
-                android:textSize="@dimen/sd30"
+                android:gravity="start"
+                android:text="Hello again,"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/sd16"
                 android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Welcome"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sd20"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginVertical="10dp"
+                android:orientation="vertical">
 
-           <!-- <TextView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Login"
+                    android:textColor="@color/darkgreen"
+                    android:textSize="@dimen/sd30"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/darkgreen" />
+            </LinearLayout>
+
+            <!-- <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -80,7 +111,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="email-id"
+                android:layout_marginTop="5dp"
+                android:text="Email"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/sd10" />
 
@@ -91,7 +123,7 @@
                 android:layout_marginTop="@dimen/sd4"
                 android:background="@drawable/loginedittextbg"
                 android:drawableEnd="@drawable/ic_mail"
-                android:hint="Email Address"
+                android:hint="abc@gmail.com"
                 android:padding="@dimen/sd12"
                 android:paddingVertical="@dimen/sd4" />
 
@@ -99,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/sd20"
-                android:text="password"
+                android:text="Password"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/sd10" />
 
@@ -113,22 +145,32 @@
                 android:hint="***********"
                 android:padding="@dimen/sd12" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="end"
+                android:text="Forgot Password?"
+                android:textColor="@color/lightblue"
+                android:textSize="@dimen/sd14"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_login"
-                android:layout_width="wrap_content"
-                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/button_round_bg_darkgreen"
+                android:drawableRight="@drawable/ic_arrow_forward_white"
+                android:gravity="center"
                 android:paddingHorizontal="35dp"
                 android:paddingVertical="10dp"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/sd14"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/button_round_bg_darkgreen"
                 android:text="Login"
+                android:textAllCaps="true"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                />
+                android:textSize="@dimen/sd16"
+                android:textStyle="bold" />
 
 
             <!--   <TextView
@@ -154,4 +196,18 @@
         <include layout="@layout/layout_prelogin" />-->
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/sd12"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
