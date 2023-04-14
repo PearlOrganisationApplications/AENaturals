@@ -20,7 +20,7 @@ class WelcomeScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome_screen)
-
+        window.statusBarColor = ContextCompat.getColor(this, R.color.darkgreen)
         setOnboardingItem()
         setUpIndicator()
         setCurrenIndicator(0)
@@ -32,23 +32,23 @@ class WelcomeScreen : AppCompatActivity() {
             listOf(
                 OnboardingItem(
                     onboardingImage = R.drawable.ic_logo_aen,
-                    title = "Rent Bikes",
-                    discription = "We are a highly acknowledged name for Bike Rental in Dehradun, Providing Bikes, Activa Scooty Bullets on Rent in Dehradun at an affordable price near ISBT"
+                    title = "About Application",
+                    discription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
                 ),
                 OnboardingItem(
                     onboardingImage = R.drawable.ic_logo_aen,
-                    title = "Rent Bikes",
-                    discription = "We are a highly acknowledged name for Bike Rental in Dehradun, Providing Bikes, Activa Scooty Bullets on Rent in Dehradun at an affordable price near ISBT"
+                    title = "About Application",
+                    discription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
                 ),
                 OnboardingItem(
                     onboardingImage = R.drawable.ic_logo_aen,
-                    title = "Rent Bikes",
-                    discription = "We are a highly acknowledged name for Bike Rental in Dehradun, Providing Bikes, Activa Scooty Bullets on Rent in Dehradun at an affordable price near ISBT"
+                    title = "About Application",
+                    discription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
                 ),
                 OnboardingItem(
                     onboardingImage = R.drawable.ic_logo_aen,
-                    title = "Rent Bikes",
-                    discription = "We are a highly acknowledged name for Bike Rental in Dehradun, Providing Bikes, Activa Scooty Bullets on Rent in Dehradun at an affordable price near ISBT"
+                    title = "About Application",
+                    discription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
                 )
             )
         )
