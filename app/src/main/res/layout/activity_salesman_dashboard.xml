@@ -9,18 +9,34 @@
     tools:context="com.aenatural.aenaturals.salesmans.SalesmanDashboard">
 
     <include
+        android:id="@+id/include"
         layout="@layout/topbar_salesmandashboard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/salesDashboardFrameLayout"
+        app:layout_constraintBottom_toTopOf="@+id/salesmanBottomNav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/salesmanBottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/sd20"
         android:layout_marginVertical="@dimen/sd12"
         android:background="@drawable/bottomnavbg"
+        app:itemIconTint="@color/gray"
+        app:itemRippleColor="@color/darkgreen"
+        app:itemTextColor="@drawable/bottomnavcolor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

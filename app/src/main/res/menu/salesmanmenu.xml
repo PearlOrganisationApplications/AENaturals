@@ -3,17 +3,22 @@
 <item
     android:icon="@drawable/ic_home"
     android:title="Home"
+    android:id="@+id/saleHome"
     />
     <item
         android:icon="@drawable/ic_retailer"
-        android:title="Retailer"
+        android:title="Orders"
+        android:id="@+id/saleOrders"
+
         />
     <item
         android:icon="@drawable/ic_products"
         android:title="Products"
+        android:id="@+id/saleProducts"
         />
     <item
         android:icon="@drawable/ic_return"
         android:title="Return"
+        android:id="@+id/saleReturn"
         />
 </menu>

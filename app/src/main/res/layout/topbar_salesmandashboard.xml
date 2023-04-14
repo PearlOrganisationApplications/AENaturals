@@ -15,7 +15,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:gravity="center"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -26,6 +27,13 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:src="@drawable/ic_account_placeholder"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rajesh G"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/sd10"
                 />
 
         </LinearLayout>
@@ -44,15 +52,16 @@
 
             <ImageView
                 android:layout_width="40dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_logout" />
+                android:layout_height="40dp"
+                android:src="@drawable/ic_briefcase" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/gray"
                 android:textSize="@dimen/sd10"
-                android:text="logout" />
+android:padding="@dimen/sd4"
+                android:text="Salesman \nDashboard" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -65,6 +74,6 @@
         android:background="@drawable/searchbg"
         android:hint="search in products,orders"
         android:drawableEnd="@drawable/ic_searchglossy"
-        android:padding="@dimen/sd10"
+        android:padding="@dimen/sd8"
         tools:ignore="TouchTargetSizeCheck" />
 </LinearLayout>
