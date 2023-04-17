@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/lightgreen"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="com.aenatural.aenaturals.salesmans.fragments.RequestProducts">
+
+<ImageView
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:src="@drawable/ic_logo_aen"
+    android:layout_margin="@dimen/sd14"
+    />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Request Products"
+        android:background="@color/midgreen"
+        android:textColor="@color/darkgreen"
+        android:textStyle="bold"
+        android:padding="@dimen/sd10"
+        />
+<androidx.recyclerview.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:layout_margin="@dimen/sd6"
+    android:layout_height="match_parent"
+    android:id="@+id/recyclerViewRequestProducts"
+    />
+</LinearLayout>

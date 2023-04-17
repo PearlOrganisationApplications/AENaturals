@@ -1,14 +1,17 @@
 package com.aenatural.aenaturals.salesmans.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.salesmans.BottomSectionAdapter
+import com.aenatural.aenaturals.salesmans.CustomerRegistrationActivity
 import com.aenatural.aenaturals.salesmans.MidSectionAdapter
 import com.aenatural.aenaturals.salesmans.SecondBottomSectionAdapter
 import com.pearl.aenaturals.R
@@ -29,6 +32,7 @@ class HomeFragment : Fragment() {
     lateinit var salesBottomRecylerView:RecyclerView
     lateinit var salessecondBottomRecylerView:RecyclerView
     lateinit var retailerList:ArrayList<RetailerDataModel>
+    lateinit var addCustomers:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +55,15 @@ class HomeFragment : Fragment() {
         
         initializeViews(view)
         initDataModels(view)
+        initClickListeners(view)
         initrecyclerViews(view)
+    }
+
+    private fun initClickListeners(view: View) {
+        addCustomers.setOnClickListener {
+startActivity(Intent(requireContext(),CustomerRegistrationActivity::class.java))
+        }
+
     }
 
     private fun initDataModels(view:View) {
@@ -96,6 +108,7 @@ class HomeFragment : Fragment() {
         salesMidsectionRecylerView = view.findViewById(R.id.salesMidsectionRecylerView)
         salesBottomRecylerView = view.findViewById(R.id.salesBottomRecylerView)
         salessecondBottomRecylerView = view.findViewById(R.id.salessecondBottomRecylerView)
+        addCustomers = view.findViewById(R.id.addCustomers)
     }
 
 

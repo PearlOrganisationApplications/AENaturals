@@ -12,7 +12,7 @@
         />
     <item
         android:icon="@drawable/ic_products"
-        android:title="Products"
+        android:title="Request"
         android:id="@+id/saleProducts"
         />
     <item
