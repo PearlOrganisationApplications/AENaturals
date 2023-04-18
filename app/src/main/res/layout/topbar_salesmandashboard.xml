@@ -10,9 +10,21 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:padding="@dimen/sd6"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/sd6">
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/ic_logo_aen"
+            android:layout_marginRight="@dimen/sd14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout8"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+
         <LinearLayout
+            android:id="@+id/linearLayout8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -20,34 +32,32 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5"
-            >
+            app:layout_constraintVertical_bias="0.5">
 
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:src="@drawable/ic_account_placeholder"
-                />
+                android:src="@drawable/ic_account_placeholder" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rajesh G"
                 android:textColor="@color/gray"
-                android:textSize="@dimen/sd10"
-                />
+                android:textSize="@dimen/sd10" />
 
         </LinearLayout>
 
 
-
         <LinearLayout
+            android:id="@+id/linearLayout7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:gravity="center"
             app:layout_constraintVertical_bias="0.5">
 
             <ImageView
@@ -58,22 +68,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/sd4"
+                android:text="Salesman \nDashboard"
                 android:textColor="@color/gray"
-                android:textSize="@dimen/sd10"
-android:padding="@dimen/sd4"
-                android:text="Salesman \nDashboard" />
+                android:textSize="@dimen/sd10" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/sd10"
-        android:layout_marginVertical="@dimen/sd8"
-        android:background="@drawable/searchbg"
-        android:hint="search in products,orders"
-        android:drawableEnd="@drawable/ic_searchglossy"
-        android:padding="@dimen/sd8"
-        tools:ignore="TouchTargetSizeCheck" />
+
 </LinearLayout>

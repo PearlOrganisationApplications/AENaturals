@@ -111,5 +111,4 @@ startActivity(Intent(requireContext(),CustomerRegistrationActivity::class.java))
         addCustomers = view.findViewById(R.id.addCustomers)
     }
 
-
 }

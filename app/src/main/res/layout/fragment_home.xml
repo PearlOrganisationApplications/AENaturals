@@ -11,6 +11,16 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="wrap_content">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/sd10"
+            android:layout_marginVertical="@dimen/sd8"
+            android:background="@drawable/searchbg"
+            android:hint="search in products,orders"
+            android:drawableEnd="@drawable/ic_searchglossy"
+            android:padding="@dimen/sd8"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <LinearLayout
             android:id="@+id/linearLayout3"

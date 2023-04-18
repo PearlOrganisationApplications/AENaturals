@@ -8,13 +8,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:padding="@dimen/sd8"
+        android:padding="@dimen/sd4"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="100dp"
-            android:layout_height="90dp"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
             android:layout_marginBottom="7dp"
             android:src="@drawable/ic_natureproduct"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -56,13 +56,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/sd10" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/sd6"
-                android:text="Quantity"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sd10" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
