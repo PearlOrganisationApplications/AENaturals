@@ -16,6 +16,7 @@
         <ImageView
             android:layout_width="45dp"
             android:layout_height="45dp"
+
             android:src="@drawable/ic_logo_aen"
             android:layout_marginRight="@dimen/sd14"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -37,6 +38,7 @@
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="45dp"
+                android:id="@+id/driverProfileIcon"
                 android:src="@drawable/ic_account_placeholder" />
 
             <TextView

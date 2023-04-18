@@ -1,12 +1,15 @@
 package com.aenatural.aenaturals.salesmans
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.salesmans.fragments.Cart
 import com.aenatural.aenaturals.salesmans.fragments.HomeFragment
@@ -17,22 +20,30 @@ import com.pearl.aenaturals.R
 import java.util.*
 import kotlin.collections.ArrayList
 
-class SalesmanDashboard : AppCompatActivity() {
+class SalesmanDashboard : BaseClass() {
 
 
     lateinit var salesDashboardFrameLayout:FrameLayout
     lateinit var salesmanBottomNav:BottomNavigationView
+    lateinit var driverProfileIcon:ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.lightgreen)
-        window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        setContentView(R.layout.activity_salesman_dashboard)
-        supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,HomeFragment()).commit()
 
+        setLayoutXml()
         initializeViews()
-        bottomNavigationControl()
+        initializeClickListners()
+        initializeInputs()
+        initializeLabels()
 
+        bottomNavigationControl()
+    }
+
+    override fun setLayoutXml() {
+
+        setContentView(R.layout.activity_salesman_dashboard)
+        getLightGreentheme()
+        supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,HomeFragment()).commit()
     }
 
     private fun bottomNavigationControl() {
@@ -56,9 +67,24 @@ class SalesmanDashboard : AppCompatActivity() {
     }
 
 
-    private fun initializeViews() {
+    override fun initializeViews() {
         salesDashboardFrameLayout = findViewById(R.id.salesDashboardFrameLayout)
         salesmanBottomNav = findViewById(R.id.salesmanBottomNav)
+        driverProfileIcon = findViewById(R.id.driverProfileIcon)
+
+    }
+
+    override fun initializeClickListners() {
+        driverProfileIcon.setOnClickListener {
+            startActivity(Intent(this,SalesmanProfileActivity::class.java))
+        }
+    }
+
+    override fun initializeInputs() {
+
+    }
+
+    override fun initializeLabels() {
 
     }
 }

@@ -67,10 +67,11 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/ic_removegreen"
+                    android:id="@+id/requestProductsMinusItem"
                     />
                 <TextView
                     android:layout_width="wrap_content"
-
+android:id="@+id/requestProductsItemQuantityTV"
                     android:gravity="center"
                     android:paddingVertical="@dimen/sd10"
                     android:paddingHorizontal="@dimen/sd14"
@@ -84,6 +85,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/ic_plus"
+                    android:id="@+id/requestProductsAddItem"
                     />
             </LinearLayout>
         </LinearLayout>
