@@ -10,12 +10,13 @@ import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.pearl.aenaturals.R
 
 class CartListAdapter(var data:ArrayList<RetailerDataModel>):RecyclerView.Adapter<CartListViewHolder>() {
-    var quantity:Int = 0
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartListViewHolder {
         return CartListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.adaptercartitems,parent,false))
     }
 
     override fun onBindViewHolder(holder: CartListViewHolder, position: Int) {
+        var quantity:Int = 0
         holder.minusitemcart.setOnClickListener {
             if(quantity>0)
                 quantity-=1

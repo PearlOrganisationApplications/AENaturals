@@ -10,15 +10,16 @@ import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.pearl.aenaturals.R
 
 class AllProductsAdapter(var data:List<RetailerDataModel>): RecyclerView.Adapter<AllProductsViewHolder>() {
-    var quantity:Int = 0
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllProductsViewHolder {
         return AllProductsViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.adapterallproductsdesign,parent,false))
     }
 
     override fun onBindViewHolder(holder: AllProductsViewHolder, position: Int) {
+        var quantity:Int = 0
         holder.minusItem.setOnClickListener {
             if(quantity>0)
-            quantity-=1
+                quantity-=1
             holder.allproductsquantity.text="quantity : "+quantity.toString()
         }
         holder.addallproducts.setOnClickListener {

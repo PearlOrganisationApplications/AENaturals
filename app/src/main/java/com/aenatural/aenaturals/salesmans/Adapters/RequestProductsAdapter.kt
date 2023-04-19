@@ -11,12 +11,13 @@ import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.pearl.aenaturals.R
 
 class RequestProductsAdapter(var data:ArrayList<RetailerDataModel>,var context:Context):RecyclerView.Adapter<RequestViewHolder>() {
-    var quantity:Int = 0
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RequestViewHolder {
         return RequestViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.adapterrequestproductsalesman,parent,false))
     }
 
     override fun onBindViewHolder(holder: RequestViewHolder, position: Int) {
+        var quantity:Int = 0
         holder.requestProductsMinusItem.setOnClickListener {
             if(quantity>0)
                 quantity-=1
