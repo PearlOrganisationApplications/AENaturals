@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AE Naturals</string>
+    <string name="app_name">AE Naturals Parlor Connect</string>
     <string name="login_pagetext">By clicking "'Login'" above, you agree to our terms &amp; conditiions and\n privacy policy.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -14,5 +14,12 @@ This document is published and shall be construed in accordance with the provisi
 Please read this Privacy Policy carefully by using the Website, you indicate that you understand, agree and consent to this Privacy Policy. If you do not agree with the terms of this Privacy Policy, please do not use this Website.
 
 By providing us your Information or by making use of the facilities provided by the Website, You hereby consent to the collection, storage, processing and transfer of any or all of Your Personal Information and Non-Personal Information by us as specified under this Privacy Policy. You further agree that such collection, use, storage and transfer of Your Information shall not cause any loss or wrongful gain to you or any other person.</string>
+
+    <string name="user_info">To avail certain services on our Websites, users are required to provide certain information for the registration process namely: – a) your name, b) email address, c) sex, d) age, e) PIN code, f) credit card or debit card details g) medical records and history h) sexual orientation, i) biometric information, j) password etc., and / or your occupation, interests, and the like. The Information as supplied by the users enables us to improve our sites and provide you the most user-friendly experience.
+
+All required information is service dependent and we may use the above said user information to, maintain, protect, and improve its services (including advertising services) and for developing new services
+
+Such information will not be considered as sensitive if it is freely available and accessible in the public domain or is furnished under the Right to Information Act, 2005 or any other law for the time being in force.</string>
+<string name="address">#1253, Amazing Villa, 8th Cross, Gokhale Road, Rajarajeswari Nagar, Opp. New Horizon Public School, Near Rangamandira, Bangalore 560 098 Karnataka.</string>
 
 </resources>

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<LinearLayout
     android:layout_width="match_parent"
     android:background="@color/lightgreen"
     android:padding="@dimen/sd4"
@@ -20,12 +24,6 @@
         android:textColor="@color/midgreen"
         android:textSize="@dimen/sd14"
         />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="USER INFORMATION "
-        android:textStyle="bold"
-        android:textColor="@color/darkgreen"
-        android:textSize="@dimen/sd14"
-        />
+
 </LinearLayout>
+</ScrollView>

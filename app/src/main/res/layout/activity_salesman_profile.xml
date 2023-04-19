@@ -263,6 +263,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/customercarebutton"
             android:backgroundTint="@color/midgreen"
             android:layout_marginVertical="@dimen/sd8"
             android:layout_marginHorizontal="@dimen/sd14"
@@ -280,10 +281,16 @@
                 android:padding="@dimen/sd8"
                 />
         </androidx.cardview.widget.CardView>
+        <include
+            layout="@layout/customercarelayout"
+            android:id="@+id/customercareLayout"
+            android:visibility="gone"
+            />
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/midgreen"
+            android:id="@+id/privacypolicyButton"
             android:layout_marginVertical="@dimen/sd8"
             android:layout_marginHorizontal="@dimen/sd14"
             app:cardCornerRadius="@dimen/sd12"
@@ -300,7 +307,11 @@
                 android:textSize="@dimen/sd12"
                 android:textStyle="bold" />
         </androidx.cardview.widget.CardView>
-
+        <include
+            layout="@layout/privacypolicylayout"
+            android:id="@+id/privacypolicylayout"
+            android:visibility="gone"
+            />
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
