@@ -8,10 +8,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/sd6"
+        android:layout_marginTop="@dimen/sd4"
         android:orientation="horizontal"
         android:background="@color/midgreen"
-        android:padding="@dimen/sd10"
+        android:padding="@dimen/sd8"
         >
         <TextView
             android:layout_width="match_parent"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@color/midgreen"
-        android:padding="@dimen/sd10"
+        android:padding="@dimen/sd8"
         >
         <TextView
             android:layout_width="match_parent"
@@ -65,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/sd20"
-        android:layout_marginVertical="@dimen/sd12"
+        android:layout_marginVertical="@dimen/sd8"
         android:background="@drawable/bottomnavbg"
         app:itemIconTint="@color/gray"
         app:itemRippleColor="@color/darkgreen"
