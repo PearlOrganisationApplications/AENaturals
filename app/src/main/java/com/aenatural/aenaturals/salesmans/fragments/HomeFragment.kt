@@ -14,7 +14,7 @@ import com.aenatural.aenaturals.salesmans.BottomSectionAdapter
 import com.aenatural.aenaturals.salesmans.CustomerRegistrationActivity
 import com.aenatural.aenaturals.salesmans.MidSectionAdapter
 import com.aenatural.aenaturals.salesmans.SecondBottomSectionAdapter
-import com.pearl.aenaturals.R
+import com.aenatural.aenaturals.R
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -52,7 +52,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
         initializeViews(view)
         initDataModels(view)
         initClickListeners(view)
@@ -60,8 +60,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initClickListeners(view: View) {
-        addCustomers.setOnClickListener {
-startActivity(Intent(requireContext(),CustomerRegistrationActivity::class.java))
+        addCustomers.setOnClickListener { startActivity(Intent(requireContext(),CustomerRegistrationActivity::class.java))
         }
 
     }
@@ -75,6 +74,7 @@ startActivity(Intent(requireContext(),CustomerRegistrationActivity::class.java))
     private fun initrecyclerViews(view:View) {
 
         salesMidsectionRecylerView.adapter = MidSectionAdapter(retailerList)
+
         salesMidsectionRecylerView.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.HORIZONTAL,false)
 

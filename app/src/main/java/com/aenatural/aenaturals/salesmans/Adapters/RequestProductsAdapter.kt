@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
-import com.pearl.aenaturals.R
+import com.aenatural.aenaturals.R
 
 class RequestProductsAdapter(var data:ArrayList<RetailerDataModel>,var context:Context):RecyclerView.Adapter<RequestViewHolder>() {
 

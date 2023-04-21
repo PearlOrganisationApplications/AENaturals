@@ -14,7 +14,7 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.pearl.aenaturals.R;
+import com.aenatural.aenaturals.R;
 
 public abstract class BaseClass extends AppCompatActivity {
     protected String versionNew;
@@ -48,6 +48,11 @@ public abstract class BaseClass extends AppCompatActivity {
     public void getLightGreentheme(){
         Window window = getWindow();
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.lightgreen));
+        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+    }
+    public void getMidGreentheme(){
+        Window window = getWindow();
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.midgreen));
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
     @SuppressLint("ObsoleteSdkInt")

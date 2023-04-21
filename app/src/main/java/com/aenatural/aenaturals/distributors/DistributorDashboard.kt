@@ -2,7 +2,7 @@ package com.aenatural.aenaturals.distributors
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.pearl.aenaturals.R
+import com.aenatural.aenaturals.R
 
 class DistributorDashboard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

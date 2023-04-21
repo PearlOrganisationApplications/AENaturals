@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
-import com.pearl.aenaturals.R
+import com.aenatural.aenaturals.R
 
 class SecondBottomSectionAdapter(var data:List<RetailerDataModel>): RecyclerView.Adapter<SecondBottomSectionViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SecondBottomSectionViewHolder {

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.pearl.aenaturals.R
+import com.aenatural.aenaturals.R
 
 class OnboardingItemAdapter(private  val  onboardingItem: List<OnboardingItem>):
 RecyclerView.Adapter<OnboardingItemAdapter.OnboardingItemViewHolder>()

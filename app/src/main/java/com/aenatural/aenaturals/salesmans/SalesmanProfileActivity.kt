@@ -19,7 +19,8 @@ import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.aenatural.aenaturals.baseframework.BaseClass
-import com.pearl.aenaturals.R
+import com.aenatural.aenaturals.R
+import com.aenatural.aenaturals.common.Login
 
 
 class SalesmanProfileActivity : BaseClass() {
@@ -67,7 +68,7 @@ class SalesmanProfileActivity : BaseClass() {
         alertDialog.setMessage("Do you want to Logout?")
         alertDialog.setPositiveButton("Yes"){dialogInterface,_ ->
             run{
-                startActivity(Intent(this, SalesmanDashboard::class.java))
+                startActivity(Intent(this, Login::class.java))
                 dialogInterface.dismiss()
             }
         }

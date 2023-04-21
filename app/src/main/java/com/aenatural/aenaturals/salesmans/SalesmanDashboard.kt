@@ -1,31 +1,25 @@
 package com.aenatural.aenaturals.salesmans
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
-import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.baseframework.BaseClass
-import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.salesmans.fragments.Cart
 import com.aenatural.aenaturals.salesmans.fragments.HomeFragment
 import com.aenatural.aenaturals.salesmans.fragments.ProductsFragment
 import com.aenatural.aenaturals.salesmans.fragments.RequestProducts
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.pearl.aenaturals.R
-import java.util.*
-import kotlin.collections.ArrayList
+
+
 
 class SalesmanDashboard : BaseClass() {
 
 
     lateinit var salesDashboardFrameLayout:FrameLayout
     lateinit var salesmanBottomNav:BottomNavigationView
-    lateinit var driverProfileIcon:ImageView
+    lateinit var salesmanProfileIcon:ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,12 +64,12 @@ class SalesmanDashboard : BaseClass() {
     override fun initializeViews() {
         salesDashboardFrameLayout = findViewById(R.id.salesDashboardFrameLayout)
         salesmanBottomNav = findViewById(R.id.salesmanBottomNav)
-        driverProfileIcon = findViewById(R.id.driverProfileIcon)
+        salesmanProfileIcon = findViewById(R.id.profileicon)
 
     }
 
     override fun initializeClickListners() {
-        driverProfileIcon.setOnClickListener {
+        salesmanProfileIcon.setOnClickListener {
             startActivity(Intent(this,SalesmanProfileActivity::class.java))
         }
     }

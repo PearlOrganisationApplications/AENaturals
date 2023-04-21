@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.salesmans.Adapters.CartListAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.pearl.aenaturals.R
+import com.aenatural.aenaturals.R
 
 
 class Cart : Fragment() {

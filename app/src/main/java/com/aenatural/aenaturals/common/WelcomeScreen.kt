@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.pearl.aenaturals.R
+import com.aenatural.aenaturals.R
 
 class WelcomeScreen : AppCompatActivity() {
     private  lateinit var onboardingItemAdapter: OnboardingItemAdapter

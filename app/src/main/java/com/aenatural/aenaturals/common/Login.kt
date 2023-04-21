@@ -10,7 +10,7 @@ import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.distributors.DistributorDashboard
 import com.aenatural.aenaturals.customers.CustomerDashboard
 import com.aenatural.aenaturals.salesmans.SalesmanDashboard
-import com.pearl.aenaturals.R
+import com.aenatural.aenaturals.R
 
 
 class Login : BaseClass() {
@@ -22,7 +22,7 @@ class Login : BaseClass() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getgreenTheme()
+        getMidGreentheme()
         setLayoutXml()
 
 
@@ -55,7 +55,7 @@ class Login : BaseClass() {
         tv_login.setOnClickListener {
             buttonEffect(tv_login)
 
-            if(emailEditText.text.toString().equals("salesman") && passwordEditText.text.toString().equals("123")){
+            if((emailEditText.text.toString().equals("salesman") && passwordEditText.text.toString().equals("123"))||(emailEditText.text.toString().equals("salesman ") && passwordEditText.text.toString().equals("123"))){
                 startActivity(Intent(this, SalesmanDashboard::class.java))
             }else if(emailEditText.text.toString().equals("distributor") && passwordEditText.text.toString().equals("123")){
                 startActivity(Intent(this, DistributorDashboard::class.java))
@@ -70,11 +70,11 @@ class Login : BaseClass() {
     }
 
     override fun initializeInputs() {
-        TODO("Not yet implemented")
+
     }
 
     override fun initializeLabels() {
-        TODO("Not yet implemented")
+
     }
 
 

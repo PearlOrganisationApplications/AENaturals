@@ -5,10 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.common.Models.SliderModel
-import com.aenatural.aenaturals.salesmans.AllProductsViewHolder
-import com.pearl.aenaturals.R
+import com.aenatural.aenaturals.R
 import com.squareup.picasso.Picasso
 
 class SliderAdapter (var data:List<SliderModel>): RecyclerView.Adapter<SliderViewholder>()  {

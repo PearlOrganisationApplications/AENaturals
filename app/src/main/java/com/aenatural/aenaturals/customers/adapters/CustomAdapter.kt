@@ -4,10 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.common.Models.SliderModel
-import com.pearl.aenaturals.R
+import com.aenatural.aenaturals.R
 
 class CustomAdapter(private val mList: List<SliderModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 

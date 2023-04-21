@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.salesmans.Adapters.RequestProductsAdapter
-import com.pearl.aenaturals.R
+import com.aenatural.aenaturals.R
 
 
 class RequestProducts : Fragment() {

@@ -3,16 +3,14 @@ package com.aenatural.aenaturals.customers
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.common.Models.SliderModel
-import com.aenatural.aenaturals.customers.adapters.CustomAdapter
 import com.aenatural.aenaturals.customers.adapters.SliderAdapter
-import com.pearl.aenaturals.R
+import com.aenatural.aenaturals.R
 import org.eazegraph.lib.charts.PieChart
 import org.eazegraph.lib.models.PieModel
 import java.util.*
