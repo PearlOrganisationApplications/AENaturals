@@ -9,22 +9,36 @@
     tools:context="com.aenatural.aenaturals.salesmans.SalesmanDashboard">
 
     <include
-        android:id="@+id/include"
-        layout="@layout/topbar_salesmandashboard"
+        android:id="@+id/include2"
+        layout="@layout/header_layout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/sd10"
+        android:layout_marginVertical="@dimen/sd8"
+        android:background="@drawable/searchbg"
+        android:drawableEnd="@drawable/ic_searchglossy"
+        android:hint="search in products,orders"
+        android:padding="@dimen/sd8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include2"
+        tools:ignore="TouchTargetSizeCheck" />
+
     <FrameLayout
+        android:id="@+id/salesDashboardFrameLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:id="@+id/salesDashboardFrameLayout"
         app:layout_constraintBottom_toTopOf="@+id/salesmanBottomNav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
