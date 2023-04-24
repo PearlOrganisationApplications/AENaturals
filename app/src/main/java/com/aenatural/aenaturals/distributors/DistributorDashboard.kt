@@ -1,5 +1,6 @@
 package com.aenatural.aenaturals.distributors
 
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,14 +11,16 @@ import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.salesmans.BottomSectionAdapter
 import com.aenatural.aenaturals.salesmans.MidSectionAdapter
 import com.aenatural.aenaturals.salesmans.SecondBottomSectionAdapter
+import org.eazegraph.lib.charts.PieChart
+import org.eazegraph.lib.models.PieModel
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 class DistributorDashboard : BaseClass() {
     lateinit var profile:LinearLayout
     lateinit var recyclerView1: RecyclerView
     lateinit var recyclerView2: RecyclerView
-    lateinit var recyclerView3: RecyclerView
+    lateinit var pieChart: PieChart
     lateinit var sellerList:ArrayList<RetailerDataModel>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +39,36 @@ class DistributorDashboard : BaseClass() {
     override fun initializeViews() {
         profile = findViewById(R.id.headerdistributor)
         recyclerView1 = findViewById(R.id.distributorTopRecycler)
+        pieChart = findViewById(R.id.distibutorpiechart)
+        setPieChart()
         recyclerView2 = findViewById(R.id.distributorMidRecycler)
 
+    }
+    private fun setPieChart(){
+        pieChart.addPieSlice(
+            PieModel(
+                "R", 40F,
+                Color.parseColor("#004D40")
+            )
+        )
+        pieChart.addPieSlice(
+            PieModel(
+                "Python", 30F,
+                Color.parseColor("#00BFA5")
+            )
+        )
+        pieChart.addPieSlice(
+            PieModel(
+                "C++", 5F,
+                Color.parseColor("#1DE9B6")
+            )
+        )
+        pieChart.addPieSlice(
+            PieModel(
+                "Java", 25F,
+                Color.parseColor("#81D4FA")
+            )
+        )
     }
 
     override fun initializeClickListners() {
