@@ -1,0 +1,88 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".distributors.DistributorRequestActiivty">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal"
+        android:background="@color/midgreen"
+        android:padding="@dimen/sd8"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Requested Items : "
+            android:layout_weight="1"
+            android:textSize="@dimen/sd12"
+            android:textColor="@color/darkgreen"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="@dimen/sd14"
+            android:layout_marginHorizontal="6dp"
+            android:textColor="@color/darkgreen"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/midgreen"
+        android:padding="@dimen/sd8"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ordered : "
+            android:layout_weight="1"
+            android:textSize="@dimen/sd12"
+            android:textColor="@color/darkgreen"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textSize="@dimen/sd14"
+            android:layout_marginHorizontal="6dp"
+            android:textColor="@color/darkgreen"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/distnavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/sd20"
+        android:layout_marginVertical="@dimen/sd8"
+        android:background="@drawable/bottomnavbg"
+        app:itemIconTint="@color/gray"
+        app:itemRippleColor="@color/darkgreen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/distributor_req_menu" />
+    <include
+        android:id="@+id/distrequestLayout"
+        layout="@layout/dist_req_items_layout"
+
+        />
+    <include
+        android:id="@+id/distorderLayout"
+        layout="@layout/dist_order_item_layout"
+        android:visibility="visible"
+        />
+
+</LinearLayout>

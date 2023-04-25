@@ -9,21 +9,26 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
+import com.aenatural.aenaturals.common.Models.SellerDataModel
 import com.aenatural.aenaturals.salesmans.BottomSectionAdapter
 import com.aenatural.aenaturals.salesmans.MidSectionAdapter
 import com.aenatural.aenaturals.salesmans.SecondBottomSectionAdapter
 import org.eazegraph.lib.charts.PieChart
 import org.eazegraph.lib.models.PieModel
+
+
 import java.util.*
 
 
 class DistributorDashboard : BaseClass() {
     lateinit var profile:LinearLayout
     lateinit var addSellers:LinearLayout
+    lateinit var itemRequest:LinearLayout
     lateinit var recyclerView1: RecyclerView
     lateinit var recyclerView2: RecyclerView
     lateinit var pieChart: PieChart
-    lateinit var sellerList:ArrayList<RetailerDataModel>
+    lateinit var sellerList:ArrayList<SellerDataModel>
+    lateinit var itemList:ArrayList<RetailerDataModel>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setLayoutXml()
@@ -45,6 +50,7 @@ class DistributorDashboard : BaseClass() {
         pieChart = findViewById(R.id.distibutorpiechart)
         setPieChart()
         recyclerView2 = findViewById(R.id.distributorMidRecycler)
+        itemRequest = findViewById(R.id.itemRequest)
 
     }
     private fun setPieChart(){
@@ -72,6 +78,10 @@ class DistributorDashboard : BaseClass() {
                 Color.parseColor("#64FFDA")
             )
         )
+        pieChart.startAnimation();
+
+
+
     }
 
     override fun initializeClickListners() {
@@ -81,6 +91,9 @@ class DistributorDashboard : BaseClass() {
         addSellers.setOnClickListener {
             startActivity(Intent(this,AddSalesmanActivity::class.java))
         }
+        itemRequest.setOnClickListener {
+            startActivity(Intent(this,DistributorRequestActiivty::class.java))
+        }
     }
 
     override fun initializeInputs() {
@@ -89,7 +102,7 @@ class DistributorDashboard : BaseClass() {
 
     override fun initializeLabels() {
         initData()
-        recyclerView1.adapter = MidSectionAdapter(sellerList)
+        recyclerView1.adapter = SellerAdapter(sellerList)
 
         recyclerView1.layoutManager = LinearLayoutManager(this,
             LinearLayoutManager.HORIZONTAL,false)
@@ -110,18 +123,21 @@ class DistributorDashboard : BaseClass() {
             }
         },0, 1500)
 
-        recyclerView2.adapter = BottomSectionAdapter(sellerList)
+        recyclerView2.adapter = BottomSectionAdapter(itemList)
         recyclerView2.layoutManager = LinearLayoutManager(this,
             LinearLayoutManager.HORIZONTAL,false)
 
-        recyclerView2.adapter = SecondBottomSectionAdapter(sellerList)
+        recyclerView2.adapter = SecondBottomSectionAdapter(itemList)
         recyclerView2.layoutManager = LinearLayoutManager(this,
             LinearLayoutManager.VERTICAL,false)
 
     }
     private fun initData(){
         sellerList= ArrayList()
+        itemList= ArrayList()
         for(i in 0..5)
-            sellerList.add(RetailerDataModel("Rajesh K","rajeshisamazing@gmail.com","RR Nagar Banglore","+9182384898"))
+            sellerList.add(SellerDataModel("Rajesh K","rajeshisamazing@gmail.com","RR Nagar Banglore","+9182384898",""))
+        for(i in 0..5)
+            itemList.add(RetailerDataModel("Rajesh K","rajeshisamazing@gmail.com","RR Nagar Banglore","+9182384898"))
     }
 }

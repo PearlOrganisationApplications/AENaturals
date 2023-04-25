@@ -11,6 +11,7 @@
         android:padding="@dimen/sd6"
         android:textColor="@color/darkgreen"
         android:background="@color/midgreen"
+        android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
         />
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

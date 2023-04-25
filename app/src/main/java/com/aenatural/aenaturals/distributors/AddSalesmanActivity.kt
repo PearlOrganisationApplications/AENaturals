@@ -12,7 +12,9 @@ class AddSalesmanActivity : BaseClass() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-setLayoutXml()
+        setLayoutXml()
+        initializeViews()
+        initializeClickListners()
     }
 
     override fun setLayoutXml() {

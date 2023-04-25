@@ -127,7 +127,7 @@
                     android:layout_marginHorizontal="@dimen/sd10"
                     android:layout_marginVertical="5dp"
                     android:background="@drawable/loginedittextbg"
-                    android:hint="Address"
+                    android:hint="Email - Id"
                     android:inputType="number"
                     android:padding="@dimen/sd10" />
 
