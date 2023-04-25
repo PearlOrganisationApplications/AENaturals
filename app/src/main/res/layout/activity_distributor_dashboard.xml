@@ -9,10 +9,19 @@
     <include
         android:id="@+id/headerdistributor"
         layout="@layout/headerdistributor" />
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/midgreen"
+        android:text="Salesman Performance"
+        android:textColor="@color/darkgreen"
+        android:textStyle="bold"
+        android:padding="@dimen/sd6"
+        />
     <include layout="@layout/distributorchart" />
 
-    <include layout="@layout/distributorsectiontwo" />
+    <include layout="@layout/distributorsectiontwo"
+        android:id="@+id/addSellers"/>
 
     <include layout="@layout/distributorsectionthree" />
 </LinearLayout>

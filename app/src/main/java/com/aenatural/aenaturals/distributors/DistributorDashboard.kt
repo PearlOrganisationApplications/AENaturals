@@ -1,5 +1,6 @@
 package com.aenatural.aenaturals.distributors
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.LinearLayout
@@ -18,6 +19,7 @@ import java.util.*
 
 class DistributorDashboard : BaseClass() {
     lateinit var profile:LinearLayout
+    lateinit var addSellers:LinearLayout
     lateinit var recyclerView1: RecyclerView
     lateinit var recyclerView2: RecyclerView
     lateinit var pieChart: PieChart
@@ -38,6 +40,7 @@ class DistributorDashboard : BaseClass() {
 
     override fun initializeViews() {
         profile = findViewById(R.id.headerdistributor)
+        addSellers = findViewById(R.id.addSellers)
         recyclerView1 = findViewById(R.id.distributorTopRecycler)
         pieChart = findViewById(R.id.distibutorpiechart)
         setPieChart()
@@ -47,32 +50,37 @@ class DistributorDashboard : BaseClass() {
     private fun setPieChart(){
         pieChart.addPieSlice(
             PieModel(
-                "R", 40F,
+                "Salesman 1", 40F,
                 Color.parseColor("#004D40")
             )
         )
         pieChart.addPieSlice(
             PieModel(
-                "Python", 30F,
+                "Salesman 2", 30F,
                 Color.parseColor("#00BFA5")
             )
         )
         pieChart.addPieSlice(
             PieModel(
-                "C++", 5F,
+                "Salesman 3", 20F,
                 Color.parseColor("#1DE9B6")
             )
         )
         pieChart.addPieSlice(
             PieModel(
-                "Java", 25F,
-                Color.parseColor("#81D4FA")
+                "others", 10F,
+                Color.parseColor("#64FFDA")
             )
         )
     }
 
     override fun initializeClickListners() {
-
+        profile.setOnClickListener {
+            startActivity(Intent(this,DistributorProfileActivity::class.java))
+        }
+        addSellers.setOnClickListener {
+            startActivity(Intent(this,AddSalesmanActivity::class.java))
+        }
     }
 
     override fun initializeInputs() {

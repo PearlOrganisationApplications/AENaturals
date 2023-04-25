@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lightgreen"
+        tools:context=".distributors.DistributorProfileActivity"
+        >
+
+        <TextView
+           android:id="@+id/dist_backTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/midgreen"
+            android:drawableStart="@drawable/ic_baseline_arrow_back_ios_24"
+            android:gravity="center"
+            android:padding="@dimen/sd10"
+            android:text="Your Profile"
+            android:textColor="@color/darkgreen"
+            android:textSize="@dimen/sd16"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:orientation="vertical"
+
+            app:layout_constraintBottom_toTopOf="@+id/dist_linearLayout10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dist_backTV">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_account_placeholder" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/sd4"
+                    android:gravity="center"
+                    android:text="Rajesh G"
+                    android:textColor="@color/darkgreen"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/sd4"
+                    android:gravity="center"
+                    android:text="rajeshisamazing@gmail.com"
+                    android:textColor="@color/darkgreen"
+                    android:textSize="@dimen/sd14"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/sd4"
+                    android:gravity="center"
+                    android:text="+9187654321"
+                    android:textColor="@color/darkgreen"
+                    android:textSize="@dimen/sd14"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/sd4"
+                    android:gravity="center"
+                    android:text="BB Nagar,WB"
+                    android:textColor="@color/darkgreen"
+                    android:textSize="@dimen/sd12"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/midgreen"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/sd8">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ic_performance_darkgreen" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sd8"
+                    android:padding="@dimen/sd4"
+
+                    android:text="Performance"
+                    android:textColor="@color/darkgreen"
+                    android:textSize="@dimen/sd12"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="@color/midgreen"
+                android:orientation="horizontal"
+                android:padding="@dimen/sd16">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginVertical="@dimen/sd4"
+                        android:src="@drawable/ic_walletdarkgreen" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_baseline_currency_rupee_24"
+                        android:text="3000"
+                        android:textColor="@color/darkgreen"
+                        android:textSize="@dimen/sd14"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/sd4"
+                        android:text="Net Sales"
+                        android:textColor="@color/darkgreen"
+                        android:textSize="@dimen/sd12" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginVertical="@dimen/sd4"
+                        android:src="@drawable/ic_trolleydarkgreen" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="300"
+                        android:textColor="@color/darkgreen"
+                        android:textSize="@dimen/sd14"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/sd4"
+                        android:gravity="center"
+                        android:text="Total Items\n Sold"
+                        android:textColor="@color/darkgreen"
+                        android:textSize="@dimen/sd12" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginVertical="@dimen/sd4"
+                        android:src="@drawable/ic_customerdarkgreen" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="30"
+                        android:textColor="@color/darkgreen"
+                        android:textSize="@dimen/sd14"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/sd4"
+                        android:gravity="center"
+                        android:text="Total Salesman\n Added"
+                        android:textColor="@color/darkgreen"
+                        android:textSize="@dimen/sd12" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+           android:id="@+id/dist_linearLayout10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="@color/midgreen"
+                    android:layout_weight="1"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" more "
+                    android:layout_marginHorizontal="@dimen/sd4"
+                    android:gravity="center"
+                    android:textSize="@dimen/sd12"
+                    android:textColor="@color/darkgreen"
+                    android:textStyle="bold"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+
+                    android:background="@color/midgreen"
+                    android:layout_weight="1"
+                    />
+
+            </LinearLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+               android:id="@+id/dist_customercarebutton"
+                android:backgroundTint="@color/midgreen"
+                android:layout_marginVertical="@dimen/sd8"
+                android:layout_marginHorizontal="@dimen/sd14"
+                app:cardCornerRadius="@dimen/sd12"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Customer Care"
+                    android:textSize="@dimen/sd12"
+                    android:drawableEnd="@drawable/ic_supportdarkgreen"
+                    android:textStyle="bold"
+                    android:textColor="@color/darkgreen"
+                    android:gravity="center"
+                    android:padding="@dimen/sd8"
+                    />
+            </androidx.cardview.widget.CardView>
+            <include
+                layout="@layout/customercarelayout"
+               android:id="@+id/dist_customercareLayout"
+                android:visibility="gone"
+                />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/midgreen"
+               android:id="@+id/dist_privacypolicyButton"
+                android:layout_marginVertical="@dimen/sd8"
+                android:layout_marginHorizontal="@dimen/sd14"
+                app:cardCornerRadius="@dimen/sd12"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_baseline_text_snippet_24"
+                    android:gravity="center"
+                    android:padding="@dimen/sd8"
+                    android:text="Privacy Policy"
+                    android:textColor="@color/darkgreen"
+                    android:textSize="@dimen/sd12"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+            <include
+                layout="@layout/privacypolicylayout"
+               android:id="@+id/dist_privacypolicylayout"
+                android:visibility="gone"
+                />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/midgreen"
+                android:layout_marginVertical="@dimen/sd8"
+                android:layout_marginHorizontal="@dimen/sd14"
+                app:cardCornerRadius="@dimen/sd12"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Logout"
+                   android:id="@+id/dist_salesmanLogout"
+                    android:textSize="@dimen/sd12"
+                    android:drawableEnd="@drawable/ic_logout_darkgreen"
+                    android:textStyle="bold"
+                    android:textColor="@color/lightred"
+                    android:gravity="center"
+                    android:padding="@dimen/sd8"
+                    />
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

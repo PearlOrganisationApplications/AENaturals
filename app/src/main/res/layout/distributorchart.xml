@@ -31,55 +31,100 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="left"
         android:orientation="horizontal"
         >
         <LinearLayout
-            android:layout_width="@dimen/sd8"
-            android:layout_height="@dimen/sd8"
-            android:background="@color/darkgreen"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            >
+            <LinearLayout
+                android:layout_width="@dimen/sd8"
+                android:layout_height="@dimen/sd8"
+                android:background="@color/darkgreen"
+                />
+        </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="description"
+            android:text="Salesman 1"
+            android:textColor="@color/darkgreen"
             android:layout_margin="@dimen/sd2"
             />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginVertical="@dimen/sd4"
+        android:gravity="left"
         android:orientation="horizontal"
         >
         <LinearLayout
-            android:layout_width="@dimen/sd8"
-            android:layout_height="@dimen/sd8"
-            android:background="@color/darkgreen"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            >
+            <LinearLayout
+                android:layout_width="@dimen/sd8"
+                android:layout_height="@dimen/sd8"
+                android:background="#00BFA5"
+                />
+        </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="description"
+            android:text="Salesman 2"
+            android:textColor="@color/darkgreen"
             android:layout_margin="@dimen/sd2"
             />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="left"
         android:orientation="horizontal"
         >
         <LinearLayout
-            android:layout_width="@dimen/sd8"
-            android:layout_height="@dimen/sd8"
-            android:background="@color/darkgreen"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            >
+            <LinearLayout
+                android:layout_width="@dimen/sd8"
+                android:layout_height="@dimen/sd8"
+                android:background="#1DE9B6"
+                />
+        </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="description"
+            android:text="Salesman 3"
+            android:textColor="@color/darkgreen"
+            android:layout_margin="@dimen/sd2"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            >
+        <LinearLayout
+            android:layout_width="@dimen/sd8"
+            android:layout_height="@dimen/sd8"
+            android:background="#64FFDA"
+            />
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Others"
+            android:textColor="@color/darkgreen"
             android:layout_margin="@dimen/sd2"
             />
     </LinearLayout>
