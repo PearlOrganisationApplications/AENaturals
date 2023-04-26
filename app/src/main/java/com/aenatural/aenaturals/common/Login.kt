@@ -59,7 +59,7 @@ class Login : BaseClass() {
                 startActivity(Intent(this, SalesmanDashboard::class.java))
             }else if(emailEditText.text.toString().equals("distributor") && passwordEditText.text.toString().equals("123")){
                 startActivity(Intent(this, DistributorDashboard::class.java))
-            }else if(emailEditText.text.toString().equals("retailer") && passwordEditText.text.toString().equals("123")){
+            }else if(emailEditText.text.toString().equals("customer") && passwordEditText.text.toString().equals("123")){
                 startActivity(Intent(this, CustomerDashboard::class.java))
             }else{
                 Toast.makeText(applicationContext,"Email or Password is invalid",Toast.LENGTH_SHORT).show()

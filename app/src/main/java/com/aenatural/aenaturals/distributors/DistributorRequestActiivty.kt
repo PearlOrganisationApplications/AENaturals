@@ -9,6 +9,8 @@ import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.salesmans.Adapters.CartListAdapter
+import com.aenatural.aenaturals.salesmans.Adapters.DistributorCheckoutAdapter
+import com.aenatural.aenaturals.salesmans.Adapters.Distributor_RequestAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class DistributorRequestActiivty : BaseClass() {
@@ -44,10 +46,10 @@ class DistributorRequestActiivty : BaseClass() {
         dist_requestRecycler = findViewById(R.id.dist_requestRecycler)
         initDataModels()
 
-        dist_orderRecycler.adapter = CartListAdapter(retailerList)
+        dist_orderRecycler.adapter = Distributor_RequestAdapter(retailerList)
         dist_orderRecycler.layoutManager= LinearLayoutManager(this)
 
-        dist_requestRecycler.adapter = CartListAdapter(retailerList)
+        dist_requestRecycler.adapter = DistributorCheckoutAdapter(retailerList)
         dist_requestRecycler.layoutManager= LinearLayoutManager(this)
 
 

@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="150dp"
         app:egLegendColor="@color/darkgreen"
-app:egInnerValueString="sdf"
+        app:egInnerValueString="sdf"
         app:egInnerValueColor="@color/darkgreen"
         app:egLegendTextSize="@dimen/sd12"
         app:egInnerValueSize="@dimen/sd12"
