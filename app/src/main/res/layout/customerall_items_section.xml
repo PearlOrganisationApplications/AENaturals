@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/lightgreen"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingVertical="@dimen/sd6"
+        android:background="@color/midgreen"
+        android:paddingHorizontal="@dimen/sd12"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/bangers"
+            android:text="All Items"
+            android:textColor="@color/darkgreen"
+            android:textSize="@dimen/sd26"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+    <include
+        layout="@layout/productcategorydesign"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/sd6"
+        android:id="@+id/customerallItemsRecycler"
+        />
+</LinearLayout>
