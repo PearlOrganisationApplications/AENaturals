@@ -1,8 +1,10 @@
 package com.aenatural.aenaturals.customers
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +25,8 @@ import kotlin.collections.ArrayList
 class CustomerDashboard : BaseClass() {
 lateinit var customerTrendingRecyclerView:RecyclerView
 lateinit var customerallItemsRecycler:RecyclerView
+lateinit var profileIcon: LinearLayout
+
     lateinit var itemList: java.util.ArrayList<RetailerDataModel>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,10 +45,13 @@ lateinit var customerallItemsRecycler:RecyclerView
     override fun initializeViews() {
         customerTrendingRecyclerView = findViewById(R.id.customerTrendingRecyclerView)
         customerallItemsRecycler = findViewById(R.id.customerallItemsRecycler)
+        profileIcon = findViewById(R.id.customerProfileIcon)
     }
 
     override fun initializeClickListners() {
-
+    profileIcon.setOnClickListener {
+    startActivity(Intent(this,CustomerProfileActivity::class.java))
+}
     }
 
     override fun initializeInputs() {

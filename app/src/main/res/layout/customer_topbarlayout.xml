@@ -20,12 +20,12 @@
             android:src="@drawable/ic_cart"
             android:layout_marginRight="@dimen/sd14"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/linearLayout8"
+            app:layout_constraintEnd_toStartOf="@+id/customerProfileIcon"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5" />
 
         <LinearLayout
-            android:id="@+id/linearLayout8"
+            android:id="@+id/customerProfileIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
