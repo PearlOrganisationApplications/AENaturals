@@ -20,16 +20,16 @@
         android:padding="@dimen/sd8"
         >
         <ImageView
-            android:layout_width="@dimen/sd30"
-            android:layout_height="@dimen/sd30"
-            android:src="@drawable/ic_products"
+            android:layout_width="@dimen/sd38"
+            android:layout_height="@dimen/sd38"
+            android:src="@drawable/ic_skincare2"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/darkgreen"
             android:text="Skin Care"
-            android:layout_marginTop="@dimen/sd6"
+
             />
     </LinearLayout>
 
@@ -44,13 +44,56 @@
             <ImageView
                 android:layout_width="@dimen/sd30"
                 android:layout_height="@dimen/sd30"
-                android:src="@drawable/ic_products"
+                android:src="@drawable/ic_haircare"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/darkgreen"
-                android:text="Skin Care"
+                android:text="Hair Care"
+                android:layout_marginTop="@dimen/sd6"
+                />
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="@dimen/sd8"
+        >
+        <ImageView
+            android:layout_width="@dimen/sd30"
+            android:layout_height="@dimen/sd30"
+            android:src="@drawable/ic_herbal"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/darkgreen"
+            android:text="Herbal\n Powder"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/sd6"
+            />
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="@dimen/sd8"
+            >
+            <ImageView
+                android:layout_width="@dimen/sd30"
+                android:layout_height="@dimen/sd30"
+                android:src="@drawable/ic_health"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/darkgreen"
+                android:text="Nutritional "
                 android:layout_marginTop="@dimen/sd6"
                 />
         </LinearLayout>
@@ -67,61 +110,62 @@
             <ImageView
                 android:layout_width="@dimen/sd30"
                 android:layout_height="@dimen/sd30"
-                android:src="@drawable/ic_products"
+                android:src="@drawable/ic_personal"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/darkgreen"
-                android:text="Skin Care"
+                android:gravity="center"
+                android:text="Personal \nCare"
                 android:layout_marginTop="@dimen/sd6"
                 />
         </LinearLayout>
 
 
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="@dimen/sd8"
+        >
+        <ImageView
+            android:layout_width="@dimen/sd30"
+            android:layout_height="@dimen/sd30"
+            android:src="@drawable/ic_aroma"
+            />
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:textColor="@color/darkgreen"
+            android:text="Aroma\nPoweders"
             android:gravity="center"
-            android:padding="@dimen/sd8"
-            >
-            <ImageView
-                android:layout_width="@dimen/sd30"
-                android:layout_height="@dimen/sd30"
-                android:src="@drawable/ic_products"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/darkgreen"
-                android:text="Skin Care"
-                android:layout_marginTop="@dimen/sd6"
-                />
-        </LinearLayout>
-
-
-        <LinearLayout
+            android:layout_marginTop="@dimen/sd6"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="@dimen/sd8"
+        >
+        <ImageView
+            android:layout_width="@dimen/sd30"
+            android:layout_height="@dimen/sd30"
+            android:src="@drawable/ic_essentialoil"
+            />
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:textColor="@color/darkgreen"
             android:gravity="center"
-            android:padding="@dimen/sd8"
-            >
-            <ImageView
-                android:layout_width="@dimen/sd30"
-                android:layout_height="@dimen/sd30"
-                android:src="@drawable/ic_products"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/darkgreen"
-                android:text="Skin Care"
-                android:layout_marginTop="@dimen/sd6"
-                />
-        </LinearLayout>
+            android:text="Essential \nOils"
+            android:layout_marginTop="@dimen/sd6"
+            />
+    </LinearLayout>
 
 </LinearLayout>
 </HorizontalScrollView>

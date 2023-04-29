@@ -13,22 +13,39 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/sd6">
 
-        <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/sd12"
 
-            android:src="@drawable/ic_cart"
-            android:layout_marginRight="@dimen/sd14"
+            android:gravity="center"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/customerProfileIcon"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
+            app:layout_constraintVertical_bias="0.5">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_cart"
+                app:tint="@color/darkgreen" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cart"
+                android:textColor="@color/darkgreen"
+                android:textSize="@dimen/sd10"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/customerProfileIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginHorizontal="@dimen/sd4"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,10 +53,10 @@
             app:layout_constraintVertical_bias="0.5">
 
             <ImageView
+                android:id="@+id/profileicon"
                 android:layout_width="30dp"
                 android:layout_height="35dp"
-                android:id="@+id/profileicon"
-                android:src="@drawable/ic_usergreen" />
+                android:src="@drawable/ic_userinfo" />
 
             <TextView
                 android:layout_width="wrap_content"
