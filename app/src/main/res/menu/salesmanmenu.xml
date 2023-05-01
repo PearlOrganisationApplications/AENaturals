@@ -6,13 +6,13 @@
     android:id="@+id/saleHome"
     />
     <item
-        android:icon="@drawable/ic_label"
-        android:title="Sell"
+        android:icon="@drawable/ic_plusmore"
+        android:title="More"
         android:id="@+id/saleItems"
         />
     <item
         android:icon="@drawable/ic_products"
-        android:title="Request"
+        android:title="All Items"
         android:id="@+id/saleProducts"
         />
     <item

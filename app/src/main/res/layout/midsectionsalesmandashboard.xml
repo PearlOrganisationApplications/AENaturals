@@ -1,26 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:layout_marginHorizontal="@dimen/sd16"
     android:layout_marginVertical="@dimen/sd6"
+    android:layout_height="wrap_content"
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
     android:layout_height="wrap_content">
-    <TextView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/midgreen"
-        android:id="@+id/addCustomers"
-        android:text="Recent Customers"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:paddingVertical="6dp"
-        android:drawableEnd="@drawable/ic_plus2_24"
-        android:paddingHorizontal="@dimen/sd10"
-        android:textSize="@dimen/sd12"
-        />
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/salesMidsectionRecylerView"
-        />
+        android:layout_margin="@dimen/sd6"
+        android:layout_weight="1"
+        app:cardCornerRadius="@dimen/sd16"
+        android:backgroundTint="@color/lightgreen3"
+        >
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/sd16"
+
+            android:paddingVertical="@dimen/sd14">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/sd8"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Pending \nOrders"
+                    android:textColor="@color/darkmidgreen"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+
+                    android:src="@drawable/ic_preorder"
+                    app:tint="@color/darkgreen" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="42"
+                android:textColor="@color/darkgreen"
+                android:textSize="@dimen/sd26"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:gravity="bottom">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/sd20"
+                    android:src="@drawable/ic_rightarrowgreen" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:cardCornerRadius="@dimen/sd16"
+        android:layout_margin="@dimen/sd6"
+        android:backgroundTint="@color/lightgreen3"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/sd14"
+            android:paddingHorizontal="@dimen/sd16"
+            android:orientation="vertical"
+            >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/sd8"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pending \nPayment"
+                android:layout_weight="1"
+                android:textColor="@color/darkmidgreen"
+                android:textStyle="bold"
+                />
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_pendingpayment"
+                app:tint="@color/darkgreen" />
+        </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="14200"
+                android:textStyle="bold"
+                android:textColor="@color/darkgreen"
+                android:textSize="@dimen/sd26"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="bottom"
+                android:layout_weight="1"
+                >
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/sd20"
+                    android:src="@drawable/ic_rightarrowgreen"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginVertical="@dimen/sd6"
+        android:layout_height="wrap_content">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/sd6"
+            android:layout_weight="1"
+            app:cardCornerRadius="@dimen/sd16"
+            android:backgroundTint="@color/lightgreen3"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/sd14"
+                android:paddingHorizontal="@dimen/sd16"
+
+                android:orientation="vertical"
+                >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/sd8"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Total \nReturns"
+                    android:layout_weight="1"
+                    android:textColor="@color/darkmidgreen"
+                    android:textStyle="bold"
+                    />
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_return2"
+                    app:tint="@color/darkgreen" />
+
+            </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12"
+                    android:textStyle="bold"
+                    android:textColor="@color/darkgreen"
+                    android:textSize="@dimen/sd26"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="bottom"
+                    android:layout_weight="1"
+                    >
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="@dimen/sd20"
+                        android:src="@drawable/ic_rightarrowgreen"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:cardCornerRadius="@dimen/sd16"
+            android:layout_margin="@dimen/sd6"
+            android:backgroundTint="@color/lightgreen3"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/sd14"
+                android:paddingHorizontal="@dimen/sd16"
+                android:orientation="vertical"
+                >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/sd8"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Total \nSales"
+                    android:layout_weight="1"
+                    android:textColor="@color/darkmidgreen"
+                    android:textStyle="bold"
+                    />
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_increasing"
+                    app:tint="@color/darkgreen" />
+
+            </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="420"
+                    android:textStyle="bold"
+                    android:textColor="@color/darkgreen"
+                    android:textSize="@dimen/sd26"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="bottom"
+                    android:layout_weight="1"
+                    >
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="@dimen/sd20"
+                        android:src="@drawable/ic_rightarrowgreen"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/midgreen"
+            android:id="@+id/addCustomers"
+            android:text="Recent Customers"
+            android:visibility="gone"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:paddingVertical="6dp"
+            android:drawableEnd="@drawable/ic_plus2_24"
+            android:paddingHorizontal="@dimen/sd10"
+            android:textSize="@dimen/sd12"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/salesMidsectionRecylerView"
+            />
+
+    </LinearLayout>
 </LinearLayout>

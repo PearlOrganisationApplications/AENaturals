@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Requested Items : "
+            android:text="Pending Items : "
             android:layout_weight="1"
             android:textSize="@dimen/sd12"
             android:textColor="@color/darkgreen"
@@ -43,7 +43,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Selling : "
+            android:text="Order Added : "
             android:layout_weight="1"
             android:textSize="@dimen/sd12"
             android:textColor="@color/darkgreen"

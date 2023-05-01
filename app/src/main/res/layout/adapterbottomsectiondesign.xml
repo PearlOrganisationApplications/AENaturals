@@ -11,8 +11,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:padding="@dimen/sd20"
-
+        android:paddingVertical="@dimen/sd16"
+        android:paddingHorizontal="@dimen/sd20"
         android:orientation="vertical"
         android:layout_height="wrap_content">
 
@@ -21,12 +21,46 @@
             android:layout_width="match_parent"
             android:gravity="right"
             android:layout_weight="2"
+            android:layout_gravity=""
+            android:orientation="horizontal"
             android:layout_height="wrap_content"
             android:padding="@dimen/sd2"
       >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical"
+                >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Item Name"
+                android:layout_marginVertical="@dimen/sd6"
+                android:textColor="@color/darkgreen"
+                android:textSize="@dimen/sd14"
+                android:textStyle="bold" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/sd6"
+                    android:text="price Rs120 (MRP 300)"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sd10" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/sd4"
+                    android:text="+91 828383838"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sd10" />
+
+            </LinearLayout>
             <ImageView
                 android:layout_width="80dp"
+                android:layout_margin="@dimen/sd8"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_box"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -35,47 +69,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.5" />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Item Name"
-                android:textColor="@color/darkgreen"
-                android:textSize="@dimen/sd14"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/sd6"
-                android:text="price Rs120 (MRP 300)"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sd10" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/sd4"
-                android:text="+91 828383838"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sd10" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="right"
-    >
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="25dp"
-        android:src="@drawable/ic_add"
-        />
-</LinearLayout>
-</LinearLayout>
         </LinearLayout>
 
 </androidx.cardview.widget.CardView>

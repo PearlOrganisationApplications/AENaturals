@@ -8,17 +8,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/midgreen"
-        android:text="All Orders"
+        android:text="Customer List"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:paddingVertical="6dp"
         android:paddingHorizontal="@dimen/sd10"
         android:textSize="@dimen/sd12"
         />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/salessecondBottomRecylerView"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

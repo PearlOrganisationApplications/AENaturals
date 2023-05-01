@@ -72,13 +72,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun initrecyclerViews(view:View) {
-
+/*
         salesMidsectionRecylerView.adapter = MidSectionAdapter(retailerList)
 
         salesMidsectionRecylerView.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.HORIZONTAL,false)
 
-        Timer().schedule(object : TimerTask() {
+       Timer().schedule(object : TimerTask() {
             override fun run() {
                 if ((salesMidsectionRecylerView.layoutManager as LinearLayoutManager)!!.findFirstCompletelyVisibleItemPosition() < retailerList.size - 1) {
                     salesMidsectionRecylerView.layoutManager!!.smoothScrollToPosition(
@@ -92,13 +92,13 @@ class HomeFragment : Fragment() {
                     salesMidsectionRecylerView.smoothScrollToPosition(0);
                 }
             }
-        },0, 1500)
+        },0, 1500)*/
 
         salesBottomRecylerView.adapter = BottomSectionAdapter(retailerList)
         salesBottomRecylerView.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.HORIZONTAL,false)
 
-        salessecondBottomRecylerView.adapter = SecondBottomSectionAdapter(retailerList)
+        salessecondBottomRecylerView.adapter = MidSectionAdapter(retailerList)
         salessecondBottomRecylerView.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.VERTICAL,false)
     }
