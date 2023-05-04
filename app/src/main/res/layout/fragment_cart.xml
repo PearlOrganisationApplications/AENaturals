@@ -77,12 +77,16 @@
 <include
     android:id="@+id/cartrequestLayout"
     layout="@layout/cartrequestlayout"
-
+android:visibility="gone"
     />
     <include
         android:id="@+id/cartsellLayout"
         layout="@layout/cartselllayout"
         android:visibility="visible"
         />
+  <!--  <include
+        android:id="@+id/cart_requestproductLayout"
+        layout=""
+        />-->
 
 </LinearLayout>

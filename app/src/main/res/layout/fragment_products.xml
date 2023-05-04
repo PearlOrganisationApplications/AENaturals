@@ -15,14 +15,7 @@
             android:orientation="vertical"
             tools:context="com.aenatural.aenaturals.salesmans.fragments.ProductsFragment">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/midgreen"
-                android:padding="@dimen/sd8"
-                android:text="More"
-                android:textColor="@color/darkgreen"
-                android:textStyle="bold" />
+
 
             <include layout="@layout/salesman_more_header"
                 android:id="@+id/salesman_more_header"

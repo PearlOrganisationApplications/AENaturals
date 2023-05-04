@@ -1,120 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_height="wrap_content">
-<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="@color/midgreen"
-    >
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pending Orders"
-        android:layout_weight="1"
-        android:textColor="@color/darkgreen"
-        android:textStyle="bold"
-        android:padding="@dimen/sd8"
-        />
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:padding="@dimen/sd8"
-        android:src="@drawable/ic_baseline_filter_list_24"
-        />
-</LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Select Items to add to checkout list"
-        android:textColor="@color/darkgreen"
-        android:textStyle="bold"
-        android:background="@color/lightgreen"
-        android:padding="@dimen/sd10"
-        />
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/lightgreen"
-        android:id="@+id/salesmanMoreRecyclerView"
-        />
+    android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/sd6"
-        android:orientation="horizontal"
-        android:background="@color/midgreen"
-        android:padding="@dimen/sd8"
-        >
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/midgreen"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/sd8"
+                android:text="Pending Orders"
+                android:textColor="@color/darkgreen"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="@dimen/sd8"
+                android:src="@drawable/ic_baseline_filter_list_24" />
+        </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Total Items selected : "
-            android:layout_weight="1"
-            android:textSize="@dimen/sd12"
+            android:background="@color/lightgreen"
+            android:padding="@dimen/sd10"
+            android:text="Select Items to add to checkout list"
             android:textColor="@color/darkgreen"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/salesmanMoreRecyclerView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="10"
-            android:textSize="@dimen/sd14"
-            android:layout_marginHorizontal="6dp"
-            android:textColor="@color/darkgreen"
-            android:textStyle="bold"
-            />
+            android:background="@color/lightgreen" />
+
     </LinearLayout>
+
+
+
     <LinearLayout
+        android:id="@+id/linearLayout15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/midgreen"
-        android:padding="@dimen/sd8"
-        >
-        <TextView
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
+        <LinearLayout
+            android:id="@+id/linearLayout14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Total Amount: "
-            android:layout_weight="1"
-            android:textSize="@dimen/sd12"
-            android:textColor="@color/darkgreen"
-            android:textStyle="bold"
-            />
+            android:background="@color/midgreen"
+            android:orientation="horizontal"
+            android:padding="@dimen/sd8">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="400"
-            android:textSize="@dimen/sd14"
-            android:drawableStart="@drawable/ic_baseline_currency_rupee_24"
-            android:layout_marginHorizontal="6dp"
-            android:textColor="@color/darkgreen"
-            android:textStyle="bold"
-            />
-    </LinearLayout>
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/midgreen"
-        android:layout_marginVertical="@dimen/sd8"
-        android:layout_marginHorizontal="@dimen/sd14"
-        app:cardCornerRadius="@dimen/sd12"
-        >
-        <TextView
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Total Items selected : "
+                android:textColor="@color/darkgreen"
+                android:textSize="@dimen/sd12"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="6dp"
+                android:text="10"
+                android:textColor="@color/darkgreen"
+                android:textSize="@dimen/sd14"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Confirm"
-            android:textSize="@dimen/sd12"
-            android:drawableEnd="@drawable/ic_baseline_payment_24"
-            android:textStyle="bold"
-            android:textColor="@color/darkgreen"
-            android:gravity="center"
-            android:padding="@dimen/sd8"
-            />
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
+            android:background="@color/midgreen"
+            android:orientation="horizontal"
+            android:padding="@dimen/sd8">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Total Amount: "
+                android:textColor="@color/darkgreen"
+                android:textSize="@dimen/sd12"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="6dp"
+                android:drawableStart="@drawable/ic_baseline_currency_rupee_24"
+                android:text="400"
+                android:textColor="@color/darkgreen"
+                android:textSize="@dimen/sd14"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/sd14"
+            android:layout_marginVertical="@dimen/sd8"
+            android:backgroundTint="@color/midgreen"
+            app:cardCornerRadius="@dimen/sd12">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_baseline_payment_24"
+                android:gravity="center"
+                android:padding="@dimen/sd8"
+                android:text="Confirm"
+                android:textColor="@color/darkgreen"
+                android:textSize="@dimen/sd12"
+                android:textStyle="bold" />
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

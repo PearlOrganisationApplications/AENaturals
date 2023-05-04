@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
@@ -17,6 +18,7 @@ import com.aenatural.aenaturals.common.Models.SellerDataModel
 import com.aenatural.aenaturals.salesmans.Adapters.PendingOrderVH
 import com.aenatural.aenaturals.salesmans.Adapters.PendingOrdersAdapter
 import com.aenatural.aenaturals.salesmans.Adapters.PendingPaymentAdapter
+import com.aenatural.aenaturals.salesmans.Adapters.ReturnOrderAdapter
 
 class ProductsFragment : Fragment() {
     lateinit var salesmanMoreRecyclerView:RecyclerView
@@ -29,9 +31,9 @@ class ProductsFragment : Fragment() {
     lateinit var returnOrderCard:CardView
     lateinit var pendingPaymentCard:CardView
 
-    lateinit var return_order_layout:ScrollView
-    lateinit var pending_payment_layout:LinearLayout
-    lateinit var pendingorderslayout:LinearLayout
+    lateinit var return_order_layout:ConstraintLayout
+    lateinit var pending_payment_layout:ConstraintLayout
+    lateinit var pendingorderslayout:ConstraintLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,7 +93,7 @@ class ProductsFragment : Fragment() {
         pendingPaymentRecycler.adapter = PendingPaymentAdapter(requireContext(),pendingOrderData)
         pendingPaymentRecycler.layoutManager = LinearLayoutManager(requireContext())
 
-        returnOrdersRecycler.adapter = PendingOrdersAdapter(requireContext(),pendingOrderData)
+        returnOrdersRecycler.adapter = ReturnOrderAdapter(requireContext(),pendingOrderData)
         returnOrdersRecycler.layoutManager = LinearLayoutManager(requireContext())
     }
 

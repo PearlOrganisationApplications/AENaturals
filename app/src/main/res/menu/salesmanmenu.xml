@@ -5,19 +5,20 @@
     android:title="Home"
     android:id="@+id/saleHome"
     />
+
     <item
-        android:icon="@drawable/ic_plusmore"
-        android:title="More"
-        android:id="@+id/saleItems"
-        />
-    <item
-        android:icon="@drawable/ic_products"
-        android:title="All Items"
-        android:id="@+id/saleProducts"
+        android:icon="@drawable/ic_add"
+        android:title="Add Customers"
+        android:id="@+id/sale_addCustomer"
         />
     <item
         android:icon="@drawable/ic_cartblack"
         android:title="Cart"
         android:id="@+id/saleCart"
+        />
+    <item
+        android:icon="@drawable/ic_application"
+        android:title="More"
+        android:id="@+id/saleItems"
         />
 </menu>

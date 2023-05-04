@@ -11,6 +11,8 @@ class CustomerRegistrationActivity : BaseClass() {
     lateinit var genderMale:ImageView
     lateinit var genderFemale:ImageView
     lateinit var customerFormSubmit:CardView
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setLayoutXml()

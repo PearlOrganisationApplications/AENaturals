@@ -9,7 +9,7 @@ import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.salesmans.fragments.Cart
 import com.aenatural.aenaturals.salesmans.fragments.HomeFragment
 import com.aenatural.aenaturals.salesmans.fragments.ProductsFragment
-import com.aenatural.aenaturals.salesmans.fragments.RequestProducts
+import com.aenatural.aenaturals.salesmans.fragments.AddCustomers
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -49,8 +49,8 @@ class SalesmanDashboard : BaseClass() {
                 R.id.saleItems->{
                     supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,ProductsFragment()).commit()
                 }
-                R.id.saleProducts->{
-                    supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,RequestProducts()).commit()
+                R.id.sale_addCustomer->{
+                    supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,AddCustomers()).commit()
                 }
                 R.id.saleCart->{
                     supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,Cart()).commit()

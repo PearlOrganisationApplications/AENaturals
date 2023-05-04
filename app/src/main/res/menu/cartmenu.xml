@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-<item
-    android:title="Pending Items"
-    android:icon="@drawable/ic_products"
-    android:id="@+id/cartrequest"
-    />
+
     <item
-        android:title="Add Order"
+        android:title="Sell Item"
         android:id="@+id/cartsell"
         android:icon="@drawable/ic_label"
         />
+
+    <item
+    android:title="Request Item"
+    android:icon="@drawable/ic_products"
+    android:id="@+id/cartrequest"
+    />
+
 </menu>

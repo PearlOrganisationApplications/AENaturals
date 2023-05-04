@@ -12,6 +12,7 @@ import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.salesmans.Adapters.CartListAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.aenatural.aenaturals.R
+import com.aenatural.aenaturals.salesmans.Adapters.RequestProductsAdapter
 
 
 class Cart : Fragment() {
@@ -47,7 +48,7 @@ lateinit var retailerList:ArrayList<RetailerDataModel>
         cartsellRecycler.adapter = CartListAdapter(retailerList)
         cartsellRecycler.layoutManager=LinearLayoutManager(requireContext())
 
-        cartrequestRecycler.adapter = CartListAdapter(retailerList)
+        cartrequestRecycler.adapter = RequestProductsAdapter(retailerList,requireContext())
         cartrequestRecycler.layoutManager=LinearLayoutManager(requireContext())
 
     }
