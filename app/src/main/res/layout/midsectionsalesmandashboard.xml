@@ -209,6 +209,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:cardCornerRadius="@dimen/sd16"
+            android:id="@+id/card_moreabousales"
             android:layout_margin="@dimen/sd6"
             android:backgroundTint="@color/lightgreen3"
             >

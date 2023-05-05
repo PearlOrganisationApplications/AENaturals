@@ -51,7 +51,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="com.aenatural.aenaturals.salesmans.CustomerRegistrationActivity"
+            android:name="com.aenatural.aenaturals.salesmans.SaleDetailsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

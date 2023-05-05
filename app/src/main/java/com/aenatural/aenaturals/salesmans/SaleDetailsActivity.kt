@@ -1,17 +1,20 @@
 package com.aenatural.aenaturals.salesmans
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.R
+import org.eazegraph.lib.charts.PieChart
+import org.eazegraph.lib.models.PieModel
 
-class CustomerRegistrationActivity : BaseClass() {
+class SaleDetailsActivity : BaseClass() {
     lateinit var genderMale:ImageView
     lateinit var genderFemale:ImageView
     lateinit var customerFormSubmit:CardView
-
+    lateinit var pieChart: PieChart
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,12 +29,50 @@ class CustomerRegistrationActivity : BaseClass() {
     }
 
     override fun initializeViews() {
-        genderMale = findViewById(R.id.genderMale)
+        /*genderMale = findViewById(R.id.genderMale)
         genderFemale = findViewById(R.id.genderFemale)
-        customerFormSubmit = findViewById(R.id.customerFormSubmit)
-    }
+        customerFormSubmit = findViewById(R.id.customerFormSubmit)*/
 
+        pieChart = findViewById(R.id.salesman_piechart)
+        setPieChart()
+    }
+    private fun setPieChart(){
+
+        pieChart.isUseInnerValue = true
+        pieChart.innerValueString = "Sales"
+        pieChart.innerPaddingColor = R.color.midgreen
+
+        pieChart.addPieSlice(
+            PieModel(
+                "Salesman 1", 40F,
+                Color.parseColor("#004D40")
+            )
+        )
+        pieChart.addPieSlice(
+            PieModel(
+                "Salesman 2", 30F,
+                Color.parseColor("#00BFA5")
+            )
+        )
+        pieChart.addPieSlice(
+            PieModel(
+                "Salesman 3", 20F,
+                Color.parseColor("#1DE9B6")
+            )
+        )
+        pieChart.addPieSlice(
+            PieModel(
+                "others", 10F,
+                Color.parseColor("#64FFDA")
+            )
+        )
+        pieChart.startAnimation();
+
+
+
+    }
     override fun initializeClickListners() {
+/*
         var m=0
         var f=0
         genderMale.setOnClickListener {
@@ -57,6 +98,9 @@ class CustomerRegistrationActivity : BaseClass() {
         customerFormSubmit.setOnClickListener {
             startActivity(Intent(this,SalesmanDashboard::class.java))
         }
+*/
+
+
 
     }
 

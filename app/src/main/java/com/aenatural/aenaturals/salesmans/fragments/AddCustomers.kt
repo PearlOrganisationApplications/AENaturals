@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,13 +23,12 @@ class AddCustomers : Fragment() {
     lateinit var retailerList:ArrayList<RetailerDataModel>
     lateinit var requestproductscheckout:CardView*/
 
-    lateinit var genderMale: ImageView
-    lateinit var genderFemale: ImageView
+    lateinit var profilepic: LinearLayout
+    lateinit var parlor_pic: LinearLayout
     lateinit var customerFormSubmit:CardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -49,24 +49,24 @@ class AddCustomers : Fragment() {
     private fun initClickListener(view: View) {
         var m=0
         var f=0
-        genderMale.setOnClickListener {
+        profilepic.setOnClickListener {
             m=1
             if(f==1)
             {
                 f=0
-                genderFemale.setBackgroundResource(R.drawable.loginedittextbg)
+                parlor_pic.setBackgroundResource(R.drawable.loginedittextbg)
             }
-            genderMale.setBackgroundResource(R.drawable.tapcurvedbackground)
+            profilepic.setBackgroundResource(R.drawable.tapcurvedbackground)
         }
 
-        genderFemale.setOnClickListener {
+        parlor_pic.setOnClickListener {
             f=1
             if(m==1)
             {
                 m=0
-                genderMale.setBackgroundResource(R.drawable.loginedittextbg)
+                profilepic.setBackgroundResource(R.drawable.loginedittextbg)
             }
-            genderFemale.setBackgroundResource(R.drawable.tapcurvedbackground)
+            parlor_pic.setBackgroundResource(R.drawable.tapcurvedbackground)
         }
 
         customerFormSubmit.setOnClickListener {
@@ -93,8 +93,8 @@ class AddCustomers : Fragment() {
 /*        recyclerViewRequestProducts = view.findViewById(R.id.recyclerViewRequestProducts)
         requestproductscheckout = view.findViewById(R.id.requestproductscheckout)*/
 
-        genderMale = view.findViewById(R.id.genderMale)
-        genderFemale = view.findViewById(R.id.genderFemale)
+        profilepic = view.findViewById(R.id.profile_pic)
+        parlor_pic = view.findViewById(R.id.parlorpic)
         customerFormSubmit = view.findViewById(R.id.customerFormSubmit)
 
     }

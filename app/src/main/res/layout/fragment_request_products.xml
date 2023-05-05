@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/sd4"
     android:background="@color/lightgreen"
     android:gravity="center"
     android:padding="@dimen/sd10"
-    android:layout_margin="@dimen/sd4"
     tools:context="com.aenatural.aenaturals.salesmans.fragments.AddCustomers">
 
 
@@ -33,7 +33,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="15dp">
+                android:padding="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -44,23 +44,22 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/sd20"
+                        android:padding="@dimen/sd10"
                         android:text="Add new \nCustomer"
                         android:textColor="@color/darkgreen"
                         android:textSize="@dimen/sd20"
                         android:textStyle="bold" />
 
                     <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:src="@drawable/ic_addform" />
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/sd10"
-                    android:layout_marginVertical="5dp"
+                    android:layout_marginVertical="10dp"
                     android:text="Customer Details"
                     android:textColor="@color/darkgreen"
                     android:textSize="@dimen/sd10" />
@@ -107,7 +106,7 @@
                     android:layout_marginHorizontal="@dimen/sd10"
                     android:layout_marginVertical="5dp"
                     android:background="@drawable/loginedittextbg"
-                    android:hint="Address"
+                    android:hint="Email"
                     android:inputType="number"
                     android:padding="@dimen/sd10" />
 
@@ -117,19 +116,89 @@
                     android:layout_marginHorizontal="@dimen/sd10"
                     android:layout_marginVertical="5dp"
                     android:background="@drawable/loginedittextbg"
-                    android:hint="Email - Id"
+                    android:hint="Alternate phone number"
                     android:inputType="number"
                     android:padding="@dimen/sd10" />
 
-                <TextView
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/sd10"
+                        android:layout_marginVertical="5dp"
+                        android:layout_weight="0.4"
+                        android:background="@drawable/loginedittextbg"
+                        android:hint="pincode"
+                        android:inputType="number"
+                        android:padding="@dimen/sd10" />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/sd10"
+                        android:layout_marginVertical="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/loginedittextbg"
+                        android:hint="tag"
+                        android:drawableEnd="@drawable/ic_hashtag"
+                        android:inputType="number"
+                        android:padding="@dimen/sd6" />
+                </LinearLayout>
+
+                <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/sd10"
                     android:layout_marginVertical="5dp"
-                    android:layout_marginTop="@dimen/sd10"
-                    android:text="Select Gender"
-                    android:textColor="@color/darkgreen"
-                    android:textSize="@dimen/sd10" />
+                    android:background="@drawable/loginedittextbg"
+                    android:hint="Address"
+                    android:inputType="number"
+                    android:padding="@dimen/sd10" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/sd10"
+                        android:layout_marginVertical="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/loginedittextbg"
+                        android:hint="City"
+                        android:inputType="number"
+                        android:padding="@dimen/sd10" />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/sd10"
+                        android:layout_marginVertical="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/loginedittextbg"
+                        android:hint="State"
+                        android:inputType="number"
+                        android:padding="@dimen/sd10" />
+                </LinearLayout>
+
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/sd10"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/loginedittextbg"
+                    android:hint="social media id"
+                    android:inputType="number"
+                    android:padding="@dimen/sd10" />
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -138,23 +207,59 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/genderMale"
-                        android:layout_width="70dp"
-                        android:layout_height="90dp"
-                        android:layout_marginHorizontal="@dimen/sd6"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/sd4"
                         android:layout_weight="1"
+                        android:gravity="center"
+                        android:id="@+id/profile_pic"
                         android:background="@drawable/loginedittextbg"
-                        android:src="@drawable/ic_userm" />
+                        android:orientation="horizontal"
+                        android:padding="@dimen/sd8">
 
-                    <ImageView
-                        android:id="@+id/genderFemale"
-                        android:layout_width="70dp"
-                        android:layout_height="90dp"
-                        android:layout_marginHorizontal="@dimen/sd6"
+                        <ImageView
+
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_marginHorizontal="@dimen/sd6"
+                            android:src="@drawable/ic_userm" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Add Profile Photo"
+                            android:textColor="@color/darkgreen" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/sd4"
                         android:layout_weight="1"
+                        android:gravity="center"
+                        android:id="@+id/parlorpic"
                         android:background="@drawable/loginedittextbg"
-                        android:src="@drawable/ic_userf" />
+                        android:orientation="horizontal"
+                        android:padding="@dimen/sd8">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+
+                            android:layout_marginHorizontal="@dimen/sd6"
+
+                            android:src="@drawable/ic_store" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Add Parlor Photo"
+                            android:textColor="@color/darkgreen" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -166,9 +271,9 @@
         android:id="@+id/customerFormSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
         android:backgroundTint="@color/midgreen"
         app:cardCornerRadius="@dimen/sd20"
-        android:layout_marginBottom="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
