@@ -1,26 +1,77 @@
 package com.aenatural.aenaturals.salesmans
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
+import android.widget.SeekBar
+import android.widget.TextView
 import androidx.cardview.widget.CardView
-import com.aenatural.aenaturals.baseframework.BaseClass
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
+import com.aenatural.aenaturals.baseframework.BaseClass
+import com.aenatural.aenaturals.common.Models.SellerDataModel
+import com.aenatural.aenaturals.salesmans.Adapters.PendingPaymentAdapter
+import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
+import com.github.mikephil.charting.model.GradientColor
+import com.github.mikephil.charting.utils.ColorTemplate
 import org.eazegraph.lib.charts.PieChart
 import org.eazegraph.lib.models.PieModel
 
+
 class SaleDetailsActivity : BaseClass() {
-    lateinit var genderMale:ImageView
-    lateinit var genderFemale:ImageView
-    lateinit var customerFormSubmit:CardView
     lateinit var pieChart: PieChart
+
+    lateinit var pendingPayment:ArrayList<SellerDataModel>
+
+    lateinit var barChart: BarChart
+
+    lateinit var barData: BarData
+lateinit var saleHistoryback:ImageView
+    lateinit var barDataSet: BarDataSet
+
+    lateinit var barEntriesList: ArrayList<BarEntry>
+    lateinit var orderHistoryRecycler:RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setLayoutXml()
         initializeViews()
         initializeClickListners()
+        setchart()
+    }
+
+    private fun setchart() {
+        // on below line we are calling get bar
+        // chart data to add data to our array list
+        getBarChartData()
+
+        // on below line we are initializing our bar data set
+        barDataSet = BarDataSet(barEntriesList, "Monthly Sales")
+
+        // on below line we are initializing our bar data
+        barData = BarData(barDataSet)
+
+        // on below line we are setting data to our bar chart
+        barChart.data = barData
+
+        // on below line we are setting colors for our bar chart text
+        barDataSet.valueTextColor = Color.BLACK
+
+        // on below line we are setting color for our bar data set
+        barDataSet.setColor(resources.getColor(R.color.darkgreen))
+
+        // on below line we are setting text size
+        barDataSet.valueTextSize = 16f
+
+        // on below line we are enabling description as false
+        barChart.description.isEnabled = false
     }
 
     override fun setLayoutXml() {
@@ -29,18 +80,31 @@ class SaleDetailsActivity : BaseClass() {
     }
 
     override fun initializeViews() {
-        /*genderMale = findViewById(R.id.genderMale)
-        genderFemale = findViewById(R.id.genderFemale)
-        customerFormSubmit = findViewById(R.id.customerFormSubmit)*/
 
         pieChart = findViewById(R.id.salesman_piechart)
+        barChart = findViewById(R.id.chart1);
+        saleHistoryback = findViewById(R.id.saleHistoryback)
+        initDataModels()
+
+        orderHistoryRecycler = findViewById(R.id.saleshistoryRecycler)
+        orderHistoryRecycler.adapter = PendingPaymentAdapter(this,pendingPayment)
+        orderHistoryRecycler.layoutManager = LinearLayoutManager(this)
         setPieChart()
     }
+
+    private fun initDataModels() {
+        pendingPayment = ArrayList()
+        for (i in 0..5) {
+            pendingPayment.add(SellerDataModel("", "", "", "", ""))
+        }
+    }
+
     private fun setPieChart(){
 
-        pieChart.isUseInnerValue = true
+        pieChart.isUseInnerValue = false
         pieChart.innerValueString = "Sales"
         pieChart.innerPaddingColor = R.color.midgreen
+        pieChart.isUseInnerPadding= false
 
         pieChart.addPieSlice(
             PieModel(
@@ -72,41 +136,34 @@ class SaleDetailsActivity : BaseClass() {
 
     }
     override fun initializeClickListners() {
-/*
-        var m=0
-        var f=0
-        genderMale.setOnClickListener {
-            m=1
-            if(f==1)
-            {
-                f=0
-                genderFemale.setBackgroundResource(R.drawable.loginedittextbg)
-            }
-            genderMale.setBackgroundResource(R.drawable.tapcurvedbackground)
+        saleHistoryback.setOnClickListener {
+            onBackPressed()
         }
-
-        genderFemale.setOnClickListener {
-            f=1
-            if(m==1)
-            {
-                m=0
-                genderMale.setBackgroundResource(R.drawable.loginedittextbg)
-            }
-            genderFemale.setBackgroundResource(R.drawable.tapcurvedbackground)
-        }
-
-        customerFormSubmit.setOnClickListener {
-            startActivity(Intent(this,SalesmanDashboard::class.java))
-        }
-*/
-
 
 
     }
+
+
 
     override fun initializeInputs() {
     }
 
     override fun initializeLabels() {
+    }
+
+
+
+    private fun getBarChartData() {
+        barEntriesList = ArrayList()
+
+
+        barEntriesList.add(BarEntry(1f, 1f))
+        barEntriesList.add(BarEntry(2f, 2f))
+        barEntriesList.add(BarEntry(3f, 3f))
+        barEntriesList.add(BarEntry(4f, 2f))
+        barEntriesList.add(BarEntry(5f, 5f))
+        barEntriesList.add(BarEntry(6f, 3f))
+        barEntriesList.add(BarEntry(7f, 5f))
+
     }
 }

@@ -70,6 +70,7 @@
                     android:layout_width="60dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="@dimen/sd20"
+                    android:visibility="gone"
                     android:src="@drawable/ic_rightarrowgreen" />
             </LinearLayout>
         </LinearLayout>
@@ -128,6 +129,7 @@
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="40dp"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/sd20"
                     android:src="@drawable/ic_rightarrowgreen"
                     />
@@ -198,6 +200,7 @@
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="40dp"
+                        android:visibility="gone"
                         android:layout_marginTop="@dimen/sd20"
                         android:src="@drawable/ic_rightarrowgreen"
                         />
@@ -211,7 +214,7 @@
             app:cardCornerRadius="@dimen/sd16"
             android:id="@+id/card_moreabousales"
             android:layout_margin="@dimen/sd6"
-            android:backgroundTint="@color/lightgreen3"
+            android:backgroundTint="@color/midgreen"
             >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -232,7 +235,7 @@
                     android:layout_height="wrap_content"
                     android:text="Total \nSales"
                     android:layout_weight="1"
-                    android:textColor="@color/darkmidgreen"
+                    android:textColor="@color/darkgreen"
                     android:textStyle="bold"
                     />
                 <ImageView

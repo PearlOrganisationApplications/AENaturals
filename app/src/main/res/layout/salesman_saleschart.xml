@@ -28,7 +28,7 @@
             <org.eazegraph.lib.charts.PieChart
                 android:id="@+id/salesman_piechart"
                 android:layout_width="wrap_content"
-                android:layout_height="150dp"
+                android:layout_height="140dp"
 
                 app:egLegendColor="@color/darkgreen"
                 app:egInnerValueString="sdf"
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingHorizontal="@dimen/sd26"
-            android:padding="@dimen/sd6"
+            android:padding="@dimen/sd4"
             android:layout_marginHorizontal="@dimen/sd14"
             android:orientation="horizontal"
 
@@ -147,41 +147,39 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/sd8"
-                    android:background="@color/darkgreen"
+                    android:background="@color/teal_700"
                     />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_height="53dp"
                 android:layout_margin="@dimen/sd8"
                 android:layout_weight="1"
-                >
+                android:orientation="vertical">
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/sd10"
+                    android:layout_margin="@dimen/sd2"
                     android:text="return"
                     android:textColor="@color/darkgreen"
-                    android:layout_margin="@dimen/sd2"
-                    />
+                    android:textSize="@dimen/sd10" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4%"
-                    android:textSize="@dimen/sd14"
-                    android:textStyle="bold"
-                    android:textColor="@color/darkgreen"
                     android:layout_margin="@dimen/sd2"
-                    />
+                    android:text="4%"
+                    android:textColor="@color/darkgreen"
+                    android:textSize="@dimen/sd14"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/sd8"
-                    android:background="@color/darkgreen"
-                    />
+                    android:background="@color/teal_200" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
