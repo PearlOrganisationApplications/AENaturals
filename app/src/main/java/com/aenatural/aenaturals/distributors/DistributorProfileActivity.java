@@ -25,7 +25,7 @@ import java.util.Base64;
 
 public class DistributorProfileActivity extends BaseClass {
     TextView backTV;
-    TextView salesmanLogout;
+    TextView distLogout;
     CardView customercarebutton;
     CardView privacypolicyButton;
     CardView callus;
@@ -56,7 +56,7 @@ public class DistributorProfileActivity extends BaseClass {
     protected void initializeViews() {
 
         backTV = findViewById(R.id.dist_backTV);
-        salesmanLogout = findViewById(R.id.dist_salesmanLogout);
+        distLogout = findViewById(R.id.dist_Logout);
         privacypolicyButton = findViewById(R.id.dist_privacypolicyButton);
         customercarebutton = findViewById(R.id.dist_customercarebutton);
         privacypolicylayout = findViewById(R.id.dist_privacypolicylayout);
@@ -94,7 +94,7 @@ public class DistributorProfileActivity extends BaseClass {
             }
         });
 
-        salesmanLogout.setOnClickListener(new View.OnClickListener() {
+        distLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 alertDialog.show();
