@@ -70,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/sd2"
-                    android:text="(Salesperson)"
+                    android:text="(Customer)"
                     android:textColor="@color/darkgreen"
                     android:textSize="@dimen/sd12" />
             </LinearLayout>

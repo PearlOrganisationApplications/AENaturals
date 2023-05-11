@@ -20,13 +20,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class CustomerProfileActivity : BaseClass() {
 
-    lateinit var customerLogout: TextView
     lateinit var cust_customercareLayout: ScrollView
     lateinit var cust_privacypolicylayout: ScrollView
     lateinit var profile_bottomnav:BottomNavigationView
     lateinit var itemList: java.util.ArrayList<RetailerDataModel>
     lateinit var customerOrderHistoryRecycler:RecyclerView
     lateinit var alertDialog:AlertDialog.Builder
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setLayoutXml()

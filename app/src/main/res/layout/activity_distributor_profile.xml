@@ -70,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/sd2"
-                    android:text="(Salesperson)"
+                    android:text="(Distributor)"
                     android:textColor="@color/darkgreen"
                     android:textSize="@dimen/sd12" />
             </LinearLayout>
@@ -154,28 +154,59 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/sd6"
-                    android:background="@drawable/cardbg"
-                    android:orientation="vertical"
-                    android:padding="@dimen/sd10">
-
-                    <TextView
-                        android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="phone-no"
-                        android:textColor="@color/darkgreen"
-                        android:textSize="@dimen/sd10" />
+                        android:layout_margin="@dimen/sd6"
+                        android:layout_weight="1"
+                        android:background="@drawable/cardbg"
+                        android:orientation="vertical"
+                        android:padding="@dimen/sd10">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="phone-no"
+                            android:textColor="@color/darkgreen"
+                            android:textSize="@dimen/sd10" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/sd2"
+                            android:text="894512325"
+                            android:textColor="@color/darkgreen"
+                            android:textSize="@dimen/sd14"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/sd2"
-                        android:text="894512325"
-                        android:textColor="@color/darkgreen"
-                        android:textSize="@dimen/sd14"
-                        android:textStyle="bold" />
+                        android:layout_margin="@dimen/sd6"
+                        android:layout_weight="1"
+                        android:background="@drawable/cardbg"
+                        android:orientation="vertical"
+                        android:padding="@dimen/sd10">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="pincode"
+                            android:textColor="@color/darkgreen"
+                            android:textSize="@dimen/sd10" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/sd2"
+                            android:text="248001"
+                            android:textColor="@color/darkgreen"
+                            android:textSize="@dimen/sd14"
+                            android:textStyle="bold" />
+                    </LinearLayout>
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -244,7 +275,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="pincode"
+                            android:text="state"
                             android:textColor="@color/darkgreen"
                             android:textSize="@dimen/sd10" />
 
@@ -252,7 +283,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/sd2"
-                            android:text="248001"
+                            android:text="Uttarakhand"
                             android:textColor="@color/darkgreen"
                             android:textSize="@dimen/sd14"
                             android:textStyle="bold" />
@@ -270,7 +301,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="state"
+                        android:text="gst-no"
                         android:textColor="@color/darkgreen"
                         android:textSize="@dimen/sd10" />
 
@@ -278,7 +309,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/sd2"
-                        android:text="Uttarakhand"
+                        android:text="AQWER723YU"
                         android:textColor="@color/darkgreen"
                         android:textSize="@dimen/sd14"
                         android:textStyle="bold" />
@@ -295,7 +326,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="insta/fb-id"
+                        android:text="bank name"
                         android:textColor="@color/darkgreen"
                         android:textSize="@dimen/sd10" />
 
@@ -303,12 +334,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/sd2"
-                        android:text="user@34x"
+                        android:text="State Bank of India"
                         android:textColor="@color/darkgreen"
                         android:textSize="@dimen/sd14"
                         android:textStyle="bold" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -320,7 +350,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="tags/notes"
+                        android:text="account no"
                         android:textColor="@color/darkgreen"
                         android:textSize="@dimen/sd10" />
 
@@ -328,7 +358,103 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/sd2"
-                        android:text="cheap,natural,quality"
+                        android:text="123452565241"
+                        android:textColor="@color/darkgreen"
+                        android:textSize="@dimen/sd14"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/sd6"
+                    android:background="@drawable/cardbg"
+                    android:orientation="vertical"
+                    android:padding="@dimen/sd10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ifsc-code"
+                        android:textColor="@color/darkgreen"
+                        android:textSize="@dimen/sd10" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/sd2"
+                        android:text="SBIN888888"
+                        android:textColor="@color/darkgreen"
+                        android:textSize="@dimen/sd14"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/sd6"
+                    android:background="@drawable/cardbg"
+                    android:orientation="vertical"
+                    android:padding="@dimen/sd10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="upi-id"
+                        android:textColor="@color/darkgreen"
+                        android:textSize="@dimen/sd10" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/sd2"
+                        android:text="upiid@oksbi"
+                        android:textColor="@color/darkgreen"
+                        android:textSize="@dimen/sd14"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/sd6"
+                    android:background="@drawable/cardbg"
+                    android:orientation="vertical"
+                    android:padding="@dimen/sd10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="adhar-no"
+                        android:textColor="@color/darkgreen"
+                        android:textSize="@dimen/sd10" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/sd2"
+                        android:text="123456789456"
+                        android:textColor="@color/darkgreen"
+                        android:textSize="@dimen/sd14"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/sd6"
+                    android:background="@drawable/cardbg"
+                    android:orientation="vertical"
+                    android:padding="@dimen/sd10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="pan-no"
+                        android:textColor="@color/darkgreen"
+                        android:textSize="@dimen/sd10" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/sd2"
+                        android:text="AEZXT1212T"
                         android:textColor="@color/darkgreen"
                         android:textSize="@dimen/sd14"
                         android:textStyle="bold" />
@@ -357,13 +483,13 @@
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_marginHorizontal="@dimen/sd6"
-                            android:src="@drawable/ic_skincare2" />
+                            android:src="@drawable/ic_baseline_document_scanner_24" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="profile image"
+                            android:text="adhar image"
                             android:textColor="@color/darkgreen" />
                     </LinearLayout>
 
@@ -384,13 +510,13 @@
 
                             android:layout_marginHorizontal="@dimen/sd6"
 
-                            android:src="@drawable/ic_shop" />
+                            android:src="@drawable/ic_baseline_document_scanner_24" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="parlor image"
+                            android:text="pan image"
                             android:textColor="@color/darkgreen" />
                     </LinearLayout>
 
