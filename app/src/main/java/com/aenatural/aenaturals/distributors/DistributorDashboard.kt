@@ -3,6 +3,7 @@ package com.aenatural.aenaturals.distributors
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -10,9 +11,15 @@ import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.common.Models.SellerDataModel
+import com.aenatural.aenaturals.distributors.fragments.DistributorHomeFrag
 import com.aenatural.aenaturals.salesmans.BottomSectionAdapter
 import com.aenatural.aenaturals.salesmans.MidSectionAdapter
 import com.aenatural.aenaturals.salesmans.SecondBottomSectionAdapter
+import com.aenatural.aenaturals.salesmans.fragments.AddCustomers
+import com.aenatural.aenaturals.salesmans.fragments.Cart
+import com.aenatural.aenaturals.salesmans.fragments.HomeFragment
+import com.aenatural.aenaturals.salesmans.fragments.ProductsFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.eazegraph.lib.charts.PieChart
 import org.eazegraph.lib.models.PieModel
 
@@ -22,13 +29,9 @@ import java.util.*
 
 class DistributorDashboard : BaseClass() {
     lateinit var profile:LinearLayout
-    lateinit var addSellers:LinearLayout
-    lateinit var itemRequest:LinearLayout
-    lateinit var recyclerView1: RecyclerView
-    lateinit var recyclerView2: RecyclerView
-    lateinit var pieChart: PieChart
-    lateinit var sellerList:ArrayList<SellerDataModel>
-    lateinit var itemList:ArrayList<RetailerDataModel>
+    lateinit var distributor_DashboardFrameLayout:FrameLayout
+    lateinit var distributor_bottomnav:BottomNavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setLayoutXml()
@@ -45,99 +48,48 @@ class DistributorDashboard : BaseClass() {
 
     override fun initializeViews() {
         profile = findViewById(R.id.headerdistributor)
-        addSellers = findViewById(R.id.addSellers)
-        recyclerView1 = findViewById(R.id.distributorTopRecycler)
-        pieChart = findViewById(R.id.distibutorpiechart)
-        setPieChart()
-        recyclerView2 = findViewById(R.id.distributorMidRecycler)
-        itemRequest = findViewById(R.id.itemRequest)
+        distributor_bottomnav = findViewById(R.id.distributor_bottomnav)
+        distributor_DashboardFrameLayout = findViewById(R.id.distributor_DashboardFrameLayout)
 
-    }
-    private fun setPieChart(){
-        pieChart.addPieSlice(
-            PieModel(
-                "Salesman 1", 40F,
-                Color.parseColor("#004D40")
-            )
-        )
-        pieChart.addPieSlice(
-            PieModel(
-                "Salesman 2", 30F,
-                Color.parseColor("#00BFA5")
-            )
-        )
-        pieChart.addPieSlice(
-            PieModel(
-                "Salesman 3", 20F,
-                Color.parseColor("#1DE9B6")
-            )
-        )
-        pieChart.addPieSlice(
-            PieModel(
-                "others", 10F,
-                Color.parseColor("#64FFDA")
-            )
-        )
-        pieChart.startAnimation();
-
-
-
+        supportFragmentManager.beginTransaction().replace(R.id.distributor_DashboardFrameLayout,
+            DistributorHomeFrag()).commit()
     }
 
     override fun initializeClickListners() {
         profile.setOnClickListener {
             startActivity(Intent(this,DistributorProfileActivity::class.java))
         }
-        addSellers.setOnClickListener {
-            startActivity(Intent(this,AddSalesmanActivity::class.java))
-        }
-        itemRequest.setOnClickListener {
-            startActivity(Intent(this,DistributorRequestActiivty::class.java))
-        }
+
     }
 
     override fun initializeInputs() {
-
     }
 
     override fun initializeLabels() {
-        initData()
-        recyclerView1.adapter = SellerAdapter(sellerList)
+    }
 
-        recyclerView1.layoutManager = LinearLayoutManager(this,
-            LinearLayoutManager.HORIZONTAL,false)
-
-        Timer().schedule(object : TimerTask() {
-            override fun run() {
-                if ((recyclerView1.layoutManager as LinearLayoutManager)!!.findFirstCompletelyVisibleItemPosition() < sellerList.size - 1) {
-                    recyclerView1.layoutManager!!.smoothScrollToPosition(
-                        recyclerView1,
-                        RecyclerView.State(),
-                        (recyclerView1.layoutManager as LinearLayoutManager)!!.findFirstCompletelyVisibleItemPosition() + 1
-                    )
-                } else if ((recyclerView1.layoutManager as LinearLayoutManager)!!.findFirstCompletelyVisibleItemPosition() < sellerList.size - 1) {
-                    recyclerView1.layoutManager!!.smoothScrollToPosition(recyclerView1, RecyclerView.State(), 0)
-                }else{
-                    recyclerView1.smoothScrollToPosition(0);
+    private fun bottomNavigationControl() {
+        distributor_bottomnav.setOnItemSelectedListener {
+            when(it.itemId){
+                R.id.saleHome->{
+                    supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,
+                        DistributorHomeFrag()).commit()
+                }
+                R.id.saleItems->{
+                    supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,
+                        ProductsFragment()).commit()
+                }
+                R.id.sale_addCustomer->{
+                    supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,
+                        AddCustomers()).commit()
+                }
+                R.id.saleCart->{
+                    supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,
+                        Cart()).commit()
                 }
             }
-        },0, 1500)
-
-        recyclerView2.adapter = BottomSectionAdapter(itemList)
-        recyclerView2.layoutManager = LinearLayoutManager(this,
-            LinearLayoutManager.HORIZONTAL,false)
-
-        recyclerView2.adapter = SecondBottomSectionAdapter(itemList)
-        recyclerView2.layoutManager = LinearLayoutManager(this,
-            LinearLayoutManager.VERTICAL,false)
-
+            true
+        }
     }
-    private fun initData(){
-        sellerList= ArrayList()
-        itemList= ArrayList()
-        for(i in 0..5)
-            sellerList.add(SellerDataModel("Rajesh K","rajeshisamazing@gmail.com","RR Nagar Banglore","+9182384898",""))
-        for(i in 0..5)
-            itemList.add(RetailerDataModel("Rajesh K","rajeshisamazing@gmail.com","RR Nagar Banglore","+9182384898"))
-    }
+
 }

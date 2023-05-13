@@ -1,38 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:fillViewport="true"
-    android:orientation="vertical"
-    tools:context=".distributors.DistributorDashboard">
+    android:layout_height="match_parent"
+    tools:context=".distributors.DistributorDashboard"
+    >
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <include
-        android:id="@+id/headerdistributor"
-        layout="@layout/headerdistributor" />
-    <TextView
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/midgreen"
-        android:text="Salesman Performance"
-        android:textColor="@color/darkgreen"
-        android:textStyle="bold"
-        android:padding="@dimen/sd6"
-        />
-    <include layout="@layout/distributorchart" />
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/lightgreen"
+            android:orientation="vertical"
+            >
 
-    <include layout="@layout/distributorsectiontwo"
-        android:id="@+id/addSellers"/>
+            <include
+                android:id="@+id/headerdistributor"
+                layout="@layout/headerdistributor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <include layout="@layout/distributorsectionthree"
-        android:id="@+id/itemRequest"/>
-</LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/distributor_DashboardFrameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/distributor_bottomnav"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/headerdistributor" />
+
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/distributor_bottomnav"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/sd20"
+                android:layout_marginVertical="@dimen/sd12"
+                android:background="@drawable/bottomnavbg"
+                app:itemIconTint="@color/gray"
+                app:itemRippleColor="@color/darkgreen"
+                app:itemTextColor="@drawable/bottomnavcolor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:menu="@menu/salesmanmenu" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>
 </ScrollView>

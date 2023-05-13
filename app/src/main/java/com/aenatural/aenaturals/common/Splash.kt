@@ -22,6 +22,7 @@ class Splash : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.lightgreen)
         window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
+/*
         iv_logo = findViewById(R.id.iv_logo)
         val Animation = AnimationUtils.loadAnimation(this, R.anim.animzoomin)
         //  imageView.startAnimation(Animation);
@@ -35,6 +36,9 @@ class Splash : AppCompatActivity() {
             override fun onAnimationRepeat(animation: Animation) {}
         })
         iv_logo.startAnimation(Animation)
+*/
+        startActivity(Intent(applicationContext, Login::class.java))
+
 
      /*   Handler().postDelayed({
             val mIntent = Intent(this@Splash, WelcomeScreen::class.java)
