@@ -25,9 +25,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="@dimen/sd16"
+            android:paddingHorizontal="@dimen/sd14"
 
-            android:paddingVertical="@dimen/sd14">
+            android:paddingVertical="@dimen/sd12">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:text="42"
                 android:textColor="@color/darkgreen"
-                android:textSize="@dimen/sd26"
+                android:textSize="@dimen/sd22"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -86,8 +86,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="@dimen/sd14"
-            android:paddingHorizontal="@dimen/sd16"
+            android:paddingVertical="@dimen/sd12"
+            android:paddingHorizontal="@dimen/sd14"
             android:orientation="vertical"
             >
         <LinearLayout
@@ -118,7 +118,7 @@
                 android:text="14200"
                 android:textStyle="bold"
                 android:textColor="@color/darkgreen"
-                android:textSize="@dimen/sd26"
+                android:textSize="@dimen/sd22"
                 />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -156,8 +156,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/sd14"
-                android:paddingHorizontal="@dimen/sd16"
+                android:paddingVertical="@dimen/sd12"
+                android:paddingHorizontal="@dimen/sd14"
 
                 android:orientation="vertical"
                 >
@@ -189,7 +189,7 @@
                     android:text="12"
                     android:textStyle="bold"
                     android:textColor="@color/darkgreen"
-                    android:textSize="@dimen/sd26"
+                    android:textSize="@dimen/sd22"
                     />
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -212,15 +212,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:cardCornerRadius="@dimen/sd16"
-            android:id="@+id/card_moreabousales"
+            android:id="@+id/card_moreaboutsales"
             android:layout_margin="@dimen/sd6"
             android:backgroundTint="@color/midgreen"
             >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/sd14"
-                android:paddingHorizontal="@dimen/sd16"
+                android:paddingVertical="@dimen/sd12"
+                android:paddingHorizontal="@dimen/sd14"
                 android:orientation="vertical"
                 >
             <LinearLayout
@@ -251,7 +251,7 @@
                     android:text="420"
                     android:textStyle="bold"
                     android:textColor="@color/darkgreen"
-                    android:textSize="@dimen/sd26"
+                    android:textSize="@dimen/sd22"
                     />
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -275,8 +275,8 @@
             android:id="@+id/addCustomers"
             android:text="Recent Customers"
             android:visibility="gone"
-            android:textColor="@color/black"
             android:textStyle="bold"
+            android:textColor="@color/black"
             android:paddingVertical="6dp"
             android:drawableEnd="@drawable/ic_plus2_24"
             android:paddingHorizontal="@dimen/sd10"

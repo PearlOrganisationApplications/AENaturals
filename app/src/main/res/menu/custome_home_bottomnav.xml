@@ -6,15 +6,16 @@
         android:id="@+id/cust_Home"
         />
 
-    <item
-        android:icon="@drawable/ic_cust_pending"
-        android:title="Pending"
-        android:id="@+id/cust_pending"
-        />
+
     <item
         android:icon="@drawable/ic_performance_darkgreen"
         android:title="Profit"
         android:id="@+id/cust_Profit"
+        />
+    <item
+        android:icon="@drawable/ic_cust_pending"
+        android:title="History"
+        android:id="@+id/cust_pending"
         />
     <item
         android:icon="@drawable/ic_products"

@@ -13,6 +13,7 @@ class SecondBottomSectionAdapter(var data:List<RetailerDataModel>): RecyclerView
     }
 
     override fun onBindViewHolder(holder: SecondBottomSectionViewHolder, position: Int) {
+
     }
 
     override fun getItemCount(): Int {

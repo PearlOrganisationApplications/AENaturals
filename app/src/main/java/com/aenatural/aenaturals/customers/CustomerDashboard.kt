@@ -18,7 +18,9 @@ import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.common.Models.SellerDataModel
+import com.aenatural.aenaturals.customers.fragments.Cust_performance_frag
 import com.aenatural.aenaturals.customers.fragments.CustomerHomeFrag
+import com.aenatural.aenaturals.customers.fragments.CustomerOrder_HistoryFrag
 import com.aenatural.aenaturals.salesmans.fragments.AddCustomers
 import com.aenatural.aenaturals.salesmans.fragments.Cart
 import com.aenatural.aenaturals.salesmans.fragments.HomeFragment
@@ -44,6 +46,7 @@ class CustomerDashboard : BaseClass() {
         initializeClickListners()
         initializeLabels()
         initializeInputs()
+        bottomNavigationControl()
     }
 
     override fun setLayoutXml() {
@@ -79,18 +82,18 @@ class CustomerDashboard : BaseClass() {
         custBottomNav.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.cust_Home->{
-                    supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,HomeFragment()).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.cust_home_frame,CustomerHomeFrag()).commit()
                 }
                 R.id.cust_pending->{
-                    supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,
-                        ProductsFragment()).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.cust_home_frame,
+                        CustomerOrder_HistoryFrag()).commit()
                 }
                 R.id.cust_Profit->{
-                    supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,
-                        AddCustomers()).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.cust_home_frame,
+                        Cust_performance_frag()).commit()
                 }
                 R.id.custOrders->{
-                    supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,
+                    supportFragmentManager.beginTransaction().replace(R.id.cust_home_frame,
                         Cart()).commit()
                 }
             }

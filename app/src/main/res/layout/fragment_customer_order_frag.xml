@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Item History"
+        android:textStyle="bold"
+        android:textColor="@color/darkgreen"
+        android:textSize="@dimen/sd14"
+        android:background="@color/midgreen"
+        android:padding="@dimen/sd10"
+        />
+<com.google.android.material.bottomnavigation.BottomNavigationView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:menu="@menu/cust_history_menu"
+    android:layout_margin="@dimen/sd10"
+    android:background="@drawable/bottomnavbg"
+    />
+<include
+    layout="@layout/customer_sellhistory_layout"
+    />
+
+</LinearLayout>
