@@ -11,6 +11,7 @@ import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.common.Models.SellerDataModel
+import com.aenatural.aenaturals.distributors.fragments.AddSalesman
 import com.aenatural.aenaturals.distributors.fragments.DistributorHomeFrag
 import com.aenatural.aenaturals.salesmans.BottomSectionAdapter
 import com.aenatural.aenaturals.salesmans.MidSectionAdapter
@@ -39,6 +40,7 @@ class DistributorDashboard : BaseClass() {
         initializeClickListners()
         initializeInputs()
         initializeLabels()
+        bottomNavigationControl()
     }
 
     override fun setLayoutXml() {
@@ -49,9 +51,9 @@ class DistributorDashboard : BaseClass() {
     override fun initializeViews() {
         profile = findViewById(R.id.headerdistributor)
         distributor_bottomnav = findViewById(R.id.distributor_bottomnav)
-        distributor_DashboardFrameLayout = findViewById(R.id.distributor_DashboardFrameLayout)
+        distributor_DashboardFrameLayout = findViewById(R.id.DashboardFrameLayout)
 
-        supportFragmentManager.beginTransaction().replace(R.id.distributor_DashboardFrameLayout,
+        supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
             DistributorHomeFrag()).commit()
     }
 
@@ -72,19 +74,19 @@ class DistributorDashboard : BaseClass() {
         distributor_bottomnav.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.saleHome->{
-                    supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,
+                    supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
                         DistributorHomeFrag()).commit()
                 }
                 R.id.saleItems->{
-                    supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,
+                    supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
                         ProductsFragment()).commit()
                 }
                 R.id.sale_addCustomer->{
-                    supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,
-                        AddCustomers()).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
+                        AddSalesman()).commit()
                 }
                 R.id.saleCart->{
-                    supportFragmentManager.beginTransaction().replace(R.id.salesDashboardFrameLayout,
+                    supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
                         Cart()).commit()
                 }
             }

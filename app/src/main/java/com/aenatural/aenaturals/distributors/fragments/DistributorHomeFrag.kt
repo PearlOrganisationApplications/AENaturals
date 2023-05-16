@@ -48,10 +48,10 @@ class DistributorHomeFrag : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeViews(view)
+        initializeLabels()
         initializeClickListners()
         initializeInputs()
-        initializeLabels()
-    }
+         }
     public fun initializeViews(view: View) {
         addSellers = view.findViewById(R.id.addSellers)
         recyclerView1 = view.findViewById(R.id.distributorTopRecycler)

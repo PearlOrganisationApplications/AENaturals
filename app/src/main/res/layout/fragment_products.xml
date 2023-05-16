@@ -16,10 +16,9 @@
             tools:context="com.aenatural.aenaturals.salesmans.fragments.ProductsFragment">
 
 
-
-            <include layout="@layout/salesman_more_header"
+            <include
                 android:id="@+id/salesman_more_header"
-                />
+                layout="@layout/salesman_more_header" />
 
             <include layout="@layout/pendingorderslayout"
                 android:id="@+id/pendingorderslayout"
@@ -36,4 +35,5 @@
 
         </LinearLayout>
     </RelativeLayout>
+
 </ScrollView>

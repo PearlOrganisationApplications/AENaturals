@@ -132,6 +132,7 @@
                     android:background="@drawable/loginedittextbg"
                     android:drawableEnd="@drawable/ic_mail"
                     android:hint="abc@gmail.com"
+                    android:imeOptions="actionNext"
                     android:padding="@dimen/sd12"
                     android:paddingVertical="@dimen/sd4" />
 
@@ -148,6 +149,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/sd4"
+                    android:imeOptions="actionDone"
                     android:background="@drawable/loginedittextbg"
                     android:drawableEnd="@drawable/ic_padlock"
                     android:hint="***********"
