@@ -8,6 +8,7 @@
     android:layout_height="wrap_content"
     android:text="Sales team"
     android:textStyle="bold"
+    android:id="@+id/addSellers"
     android:padding="@dimen/sd6"
     android:drawableEnd="@drawable/ic_plus2_24"
     android:textColor="@color/darkgreen"

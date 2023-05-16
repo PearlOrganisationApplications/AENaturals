@@ -7,16 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.salesmans.BottomSectionAdapter
-
 import com.aenatural.aenaturals.salesmans.MidSectionAdapter
 import com.aenatural.aenaturals.salesmans.SecondBottomSectionAdapter
 import com.aenatural.aenaturals.R
-import com.aenatural.aenaturals.salesmans.SaleDetailsActivity
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -35,7 +32,7 @@ class HomeFragment : Fragment() {
     lateinit var salessecondBottomRecylerView:RecyclerView
     lateinit var retailerList:ArrayList<RetailerDataModel>
     lateinit var addCustomers:TextView
-    lateinit var card_moreabousales:CardView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -65,10 +62,6 @@ class HomeFragment : Fragment() {
 /*        addCustomers.setOnClickListener { startActivity(Intent(requireContext(),CustomerRegistrationActivity::class.java))
         }*/
 
-
-        card_moreabousales.setOnClickListener {
-            startActivity(Intent(requireContext(),SaleDetailsActivity::class.java))
-        }
     }
 
     private fun initDataModels(view:View) {
@@ -110,13 +103,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun initializeViews(view: View) {
-       
+
         salesMidsectionRecylerView = view.findViewById(R.id.salesMidsectionRecylerView)
         salesBottomRecylerView = view.findViewById(R.id.salesBottomRecylerView)
         salessecondBottomRecylerView = view.findViewById(R.id.salessecondBottomRecylerView)
         addCustomers = view.findViewById(R.id.addCustomers)
-
-        card_moreabousales = view.findViewById(R.id.card_moreabousales)
     }
 
 }
