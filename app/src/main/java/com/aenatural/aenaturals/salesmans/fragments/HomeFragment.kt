@@ -11,12 +11,9 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
-import com.aenatural.aenaturals.salesmans.BottomSectionAdapter
 
-import com.aenatural.aenaturals.salesmans.MidSectionAdapter
-import com.aenatural.aenaturals.salesmans.SecondBottomSectionAdapter
 import com.aenatural.aenaturals.R
-import com.aenatural.aenaturals.salesmans.SalesmanProfileActivity
+import com.aenatural.aenaturals.salesmans.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -57,7 +54,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initClickListeners(view: View) {
-        card_moreaboutsales.setOnClickListener { startActivity(Intent(requireContext(),SalesmanProfileActivity::class.java))
+        card_moreaboutsales.setOnClickListener { startActivity(Intent(requireContext(),SaleDetailsActivity::class.java))
         }
 
     }
