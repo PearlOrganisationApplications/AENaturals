@@ -20,6 +20,7 @@ import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.common.Models.SellerDataModel
 import com.aenatural.aenaturals.customers.fragments.Cust_performance_frag
 import com.aenatural.aenaturals.customers.fragments.CustomerHomeFrag
+import com.aenatural.aenaturals.customers.fragments.CustomerOrderFrag
 import com.aenatural.aenaturals.customers.fragments.CustomerOrder_HistoryFrag
 import com.aenatural.aenaturals.salesmans.fragments.AddCustomers
 import com.aenatural.aenaturals.salesmans.fragments.Cart
@@ -94,7 +95,7 @@ class CustomerDashboard : BaseClass() {
                 }
                 R.id.custOrders->{
                     supportFragmentManager.beginTransaction().replace(R.id.cust_home_frame,
-                        Cart()).commit()
+                        CustomerOrderFrag()).commit()
                 }
             }
             true

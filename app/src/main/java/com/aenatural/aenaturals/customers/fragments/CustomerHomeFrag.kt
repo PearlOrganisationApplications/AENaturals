@@ -37,6 +37,7 @@ class CustomerHomeFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().findViewById<LinearLayout>(R.id.include).visibility =View.VISIBLE
         initializeViews(view)
         initializeClickListners()
         initializeLabels()

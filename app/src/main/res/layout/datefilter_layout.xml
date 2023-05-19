@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:padding="@dimen/sd6"
+    android:gravity="right"
+    android:background="@color/midgreen"
+    android:layout_height="wrap_content">
+
+<ImageView
+    android:layout_width="@dimen/sd20"
+    android:layout_height="@dimen/sd20"
+    android:src="@drawable/ic_baseline_calendar_month_24"
+    />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18/05/2023 -"
+                android:padding="@dimen/sd4"
+                android:textColor="@color/darkgreen"
+                android:textStyle="bold"
+                />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:padding="@dimen/sd4"
+            android:layout_height="wrap_content"
+            android:text="- 28/05/2023"
+            android:textColor="@color/darkgreen"
+            android:textStyle="bold"
+            />
+
+</LinearLayout>

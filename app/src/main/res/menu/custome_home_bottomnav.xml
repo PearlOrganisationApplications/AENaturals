@@ -5,8 +5,11 @@
         android:title="Home"
         android:id="@+id/cust_Home"
         />
-
-
+    <item
+        android:icon="@drawable/ic_baseline_draw_32"
+        android:title="Parlor"
+        android:id="@+id/custOrders"
+        />
     <item
         android:icon="@drawable/ic_performance_darkgreen"
         android:title="Profit"
@@ -17,9 +20,5 @@
         android:title="History"
         android:id="@+id/cust_pending"
         />
-    <item
-        android:icon="@drawable/ic_products"
-        android:title="Orders"
-        android:id="@+id/custOrders"
-        />
+
 </menu>
