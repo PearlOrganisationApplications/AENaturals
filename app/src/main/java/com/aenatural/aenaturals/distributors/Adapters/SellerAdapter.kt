@@ -14,6 +14,8 @@ class SellerAdapter(var data:List<SellerDataModel>) :RecyclerView.Adapter<Seller
 
     override fun onBindViewHolder(holder: SellerViewHolder, position: Int) {
 
+//        val dalaList = data[position]
+
     }
 
     override fun getItemCount(): Int {

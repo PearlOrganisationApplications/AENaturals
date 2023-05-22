@@ -19,6 +19,7 @@ import com.aenatural.aenaturals.distributors.DistributorRequestActiivty
 import com.aenatural.aenaturals.distributors.SellerAdapter
 import com.aenatural.aenaturals.salesmans.BottomSectionAdapter
 import com.aenatural.aenaturals.salesmans.SecondBottomSectionAdapter
+import com.aenatural.aenaturals.salesmans.fragments.DistributorProductsFragment
 import org.eazegraph.lib.charts.PieChart
 import org.eazegraph.lib.models.PieModel
 import java.util.*
@@ -31,6 +32,11 @@ class DistributorHomeFrag : Fragment() {
     lateinit var pieChart: PieChart
     lateinit var sellerList: ArrayList<SellerDataModel>
     lateinit var itemList: ArrayList<RetailerDataModel>
+    lateinit var distributor_pendingOrder: LinearLayout
+    lateinit var distributor_pendingPayment: LinearLayout
+    lateinit var distributor_totalReturns: LinearLayout
+    lateinit var distributor_totalProfit: LinearLayout
+    lateinit var distributor_myOrder: LinearLayout
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,6 +64,11 @@ class DistributorHomeFrag : Fragment() {
         pieChart = view.findViewById(R.id.distibutorpiechart)
         recyclerView2 = view.findViewById(R.id.distributorMidRecycler)
         itemRequest = view.findViewById(R.id.itemRequest)
+        distributor_pendingOrder = view.findViewById(R.id.distributor_pendingOrder)
+        distributor_pendingPayment = view.findViewById(R.id.distributor_pendingPayment)
+        distributor_totalReturns = view.findViewById(R.id.distributor_totalReturns)
+        distributor_totalProfit = view.findViewById(R.id.distributor_totalProfit)
+        distributor_myOrder = view.findViewById(R.id.distributor_myOrder)
 
         setPieChart()
     }
@@ -92,7 +103,7 @@ class DistributorHomeFrag : Fragment() {
                 Color.parseColor("#64FFDA")
             )
         )
-        pieChart.startAnimation();
+        pieChart.startAnimation()
 
 
 
@@ -105,6 +116,17 @@ class DistributorHomeFrag : Fragment() {
         }
         itemRequest.setOnClickListener {
             startActivity(Intent(requireContext(), DistributorRequestActiivty::class.java))
+        }
+        distributor_pendingOrder.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
+                DistributorProductsFragment()
+            ).commit()
+        }
+        distributor_pendingPayment.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
+                DistributorProductsFragment()
+            ).commit()
+
         }
     }
 

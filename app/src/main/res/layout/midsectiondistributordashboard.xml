@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginHorizontal="@dimen/sd10"
+    android:layout_marginVertical="@dimen/sd4"
+    android:layout_height="wrap_content"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/distributor_pendingOrder"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/sd8"
+            android:paddingVertical="@dimen/sd8">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_preorder"
+                app:tint="@color/darkgreen" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pending\nOrders"
+                    android:textSize="10sp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:textColor="@color/darkgreen"
+                    android:textStyle="bold" />
+
+         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/distributor_pendingPayment"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/sd8"
+            android:paddingHorizontal="@dimen/sd8"
+            android:orientation="vertical"
+            >
+
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_pendingpayment"
+                app:tint="@color/darkgreen" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pending \nPayment"
+                android:textSize="10sp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/darkgreen"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/distributor_totalReturns"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/sd8"
+        android:paddingHorizontal="@dimen/sd8"
+
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_return2"
+            app:tint="@color/darkgreen" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total \nReturns"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:textSize="10sp"
+            android:textColor="@color/darkgreen"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+
+        <LinearLayout
+           android:id="@+id/distributor_totalProfit"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/sd8"
+        android:paddingHorizontal="@dimen/sd8"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_increasing"
+            app:tint="@color/darkgreen" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total \nProfit"
+            android:textSize="10sp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:textColor="@color/darkgreen"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/distributor_salesmanPerformance"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/sd8"
+            android:paddingHorizontal="@dimen/sd8"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:src="@drawable/salesman_performance"
+                app:tint="@color/darkgreen" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="salesman\nPerformance"
+                android:textSize="10sp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textColor="@color/darkgreen"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/distributor_myOrder"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/sd8"
+        android:paddingHorizontal="@dimen/sd8"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:src="@drawable/my_order"
+            app:tint="@color/darkgreen" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My \nOrders"
+            android:gravity="center"
+            android:textSize="10sp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/darkgreen"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

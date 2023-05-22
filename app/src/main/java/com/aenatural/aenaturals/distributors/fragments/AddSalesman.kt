@@ -2,21 +2,27 @@ package com.aenatural.aenaturals.distributors.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.cardview.widget.CardView
+import androidx.fragment.app.Fragment
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.distributors.DistributorDashboard
-import com.aenatural.aenaturals.salesmans.SalesmanDashboard
+import com.aenatural.aenaturals.salesmans.fragments.ProductsFragment
 
 class AddSalesman : Fragment() {
 
-    lateinit var distributor_profile_pic: LinearLayout
-    lateinit var distributor_parlorpic: LinearLayout
-    lateinit var distributorFormSubmit: CardView
+    private lateinit var distributor_profile_pic: LinearLayout
+    private lateinit var distributor_parlorpic: LinearLayout
+    private lateinit var distributorFormSubmit: CardView
+    companion object {
+
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +45,7 @@ class AddSalesman : Fragment() {
 
     }
 
+
     private fun initRecyclerAdapter(view: View) {
 
     }
@@ -47,6 +54,7 @@ class AddSalesman : Fragment() {
 
 
     }
+
 
     private fun initClickListener(view: View) {
         var m = 0
@@ -80,6 +88,21 @@ class AddSalesman : Fragment() {
         distributor_profile_pic = view.findViewById(R.id.distributor_profile_pic)
         distributor_parlorpic = view.findViewById(R.id.distributor_parlorpic)
         distributorFormSubmit = view.findViewById(R.id.distributorFormSubmit)
+    }
+
+        override fun onResume() {
+        super.onResume()
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+    }
+    private val callback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            // Handle the back button press here
+//            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
+                DistributorHomeFrag()
+            ).commit()
+            Toast.makeText(requireContext(), "Back button pressed", Toast.LENGTH_LONG).show()
+        }
     }
 
 }

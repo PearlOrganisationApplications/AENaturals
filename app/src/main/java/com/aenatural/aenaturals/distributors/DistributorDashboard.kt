@@ -16,10 +16,7 @@ import com.aenatural.aenaturals.distributors.fragments.DistributorHomeFrag
 import com.aenatural.aenaturals.salesmans.BottomSectionAdapter
 import com.aenatural.aenaturals.salesmans.MidSectionAdapter
 import com.aenatural.aenaturals.salesmans.SecondBottomSectionAdapter
-import com.aenatural.aenaturals.salesmans.fragments.AddCustomers
-import com.aenatural.aenaturals.salesmans.fragments.Cart
-import com.aenatural.aenaturals.salesmans.fragments.HomeFragment
-import com.aenatural.aenaturals.salesmans.fragments.ProductsFragment
+import com.aenatural.aenaturals.salesmans.fragments.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.eazegraph.lib.charts.PieChart
 import org.eazegraph.lib.models.PieModel
@@ -65,6 +62,7 @@ class DistributorDashboard : BaseClass() {
     }
 
     override fun initializeInputs() {
+
     }
 
     override fun initializeLabels() {
@@ -72,20 +70,24 @@ class DistributorDashboard : BaseClass() {
 
     private fun bottomNavigationControl() {
         distributor_bottomnav.setOnItemSelectedListener {
-            when(it.itemId){
+            when(it.itemId) {
                 R.id.saleHome->{
+
                     supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
                         DistributorHomeFrag()).commit()
                 }
                 R.id.saleItems->{
+
                     supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
-                        ProductsFragment()).commit()
+                         DistributorProductsFragment()).commit()
                 }
                 R.id.sale_addCustomer->{
+
                     supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
                         AddSalesman()).commit()
                 }
                 R.id.saleCart->{
+
                     supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
                         Cart()).commit()
                 }
@@ -93,5 +95,4 @@ class DistributorDashboard : BaseClass() {
             true
         }
     }
-
 }

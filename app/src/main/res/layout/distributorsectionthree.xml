@@ -6,7 +6,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Recent Item Request"
+        android:text="Customer list"
         android:textStyle="bold"
         android:padding="@dimen/sd6"
         android:textColor="@color/darkgreen"

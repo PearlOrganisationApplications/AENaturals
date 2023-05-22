@@ -28,7 +28,6 @@ class CustomAdapter(private val mList: List<SliderModel>) : RecyclerView.Adapter
 		// sets the image to the imageview from our itemHolder class
 		holder.imageView.setImageResource(ItemsViewModel.image)
 
-
 	}
 
 	// return the number of the items in the list

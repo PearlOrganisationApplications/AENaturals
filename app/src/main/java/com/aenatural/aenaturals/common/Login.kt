@@ -25,7 +25,6 @@ class Login : BaseClass() {
         getMidGreentheme()
         setLayoutXml()
 
-
         initializeViews()
         initializeClickListners()
     }
@@ -41,6 +40,7 @@ class Login : BaseClass() {
         /*   salesmanButton = findViewById(R.id.salesmanButton)
            retailerButton = findViewById(R.id.retailerButton)
            distributorButton = findViewById(R.id.distributorButton)*/
+
         tv_login = findViewById(R.id.tv_login)
         textView = findViewById(R.id.textView)
 
@@ -48,6 +48,7 @@ class Login : BaseClass() {
         val text = "<font color=#000000>By clicking \"Login\" above, you agree to our   </font> " +
                 "<font color=#0C805F>terms &amp; conditiions</font><font color=#000000> and </font>" +
                 "<font color=#0C805F>privacy policy.</font>"
+
         textView.setText(Html.fromHtml(text))
     }
 
@@ -64,7 +65,6 @@ class Login : BaseClass() {
             }else{
                 Toast.makeText(applicationContext,"Email or Password is invalid",Toast.LENGTH_SHORT).show()
             }
-
 
         }
     }
