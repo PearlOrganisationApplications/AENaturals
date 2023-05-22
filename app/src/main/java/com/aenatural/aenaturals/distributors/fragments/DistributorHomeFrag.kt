@@ -71,8 +71,8 @@ class DistributorHomeFrag : Fragment() {
         distributor_myOrder = view.findViewById(R.id.distributor_myOrder)
 
         setPieChart()
-    }
 
+    }
     private fun setPieChart(){
 
         pieChart.isUseInnerValue = false
@@ -157,10 +157,10 @@ class DistributorHomeFrag : Fragment() {
             }
         },0, 1500)
 
-     /*   recyclerView1.adapter = BottomSectionAdapter(itemList)
-        recyclerView1.layoutManager = LinearLayoutManager(requireContext(),
+        recyclerView2.adapter = BottomSectionAdapter(itemList)
+        recyclerView2.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.HORIZONTAL,false)
-*/
+
         recyclerView2.adapter = SecondBottomSectionAdapter(itemList)
         recyclerView2.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.VERTICAL,false)

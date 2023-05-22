@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +18,15 @@ import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.common.Models.SellerDataModel
+import com.aenatural.aenaturals.customers.fragments.Cust_performance_frag
+import com.aenatural.aenaturals.customers.fragments.CustomerHomeFrag
+import com.aenatural.aenaturals.customers.fragments.CustomerOrderFrag
+import com.aenatural.aenaturals.customers.fragments.CustomerOrder_HistoryFrag
+import com.aenatural.aenaturals.salesmans.fragments.AddCustomers
+import com.aenatural.aenaturals.salesmans.fragments.Cart
+import com.aenatural.aenaturals.salesmans.fragments.HomeFragment
+import com.aenatural.aenaturals.salesmans.fragments.ProductsFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.eazegraph.lib.charts.PieChart
 import org.eazegraph.lib.models.PieModel
 import java.util.*
@@ -23,11 +34,12 @@ import kotlin.collections.ArrayList
 
 
 class CustomerDashboard : BaseClass() {
-lateinit var customerTrendingRecyclerView:RecyclerView
-lateinit var customerallItemsRecycler:RecyclerView
-lateinit var profileIcon: LinearLayout
 
-    lateinit var itemList: java.util.ArrayList<RetailerDataModel>
+
+    lateinit var custDashboardFrameLayout: FrameLayout
+    lateinit var custBottomNav: BottomNavigationView
+    lateinit var custProfileIcon: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setLayoutXml()
@@ -35,23 +47,26 @@ lateinit var profileIcon: LinearLayout
         initializeClickListners()
         initializeLabels()
         initializeInputs()
+        bottomNavigationControl()
     }
 
     override fun setLayoutXml() {
         getMidGreentheme()
         setContentView(R.layout.activity_customer_dashboard)
+        supportFragmentManager.beginTransaction().replace(R.id.cust_home_frame,
+            CustomerHomeFrag()).commit()
     }
 
     override fun initializeViews() {
-        customerTrendingRecyclerView = findViewById(R.id.customerTrendingRecyclerView)
-        customerallItemsRecycler = findViewById(R.id.customerallItemsRecycler)
-        profileIcon = findViewById(R.id.customerProfileIcon)
+        custDashboardFrameLayout = findViewById(R.id.cust_home_frame)
+        custBottomNav = findViewById(R.id.custBottomNav)
+        custProfileIcon = findViewById(R.id.cust_profileicon)
     }
 
     override fun initializeClickListners() {
-    profileIcon.setOnClickListener {
-    startActivity(Intent(this,CustomerProfileActivity::class.java))
-}
+        custProfileIcon.setOnClickListener {
+            startActivity(Intent(this, CustomerProfileActivity::class.java))
+        }
     }
 
     override fun initializeInputs() {
@@ -59,35 +74,32 @@ lateinit var profileIcon: LinearLayout
     }
 
     override fun initializeLabels() {
-        initData()
-        customerTrendingRecyclerView.adapter = CustomerTrendingAdapter(itemList)
-        customerTrendingRecyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
-        Timer().schedule(object : TimerTask() {
-            override fun run() {
-                if ((customerTrendingRecyclerView.layoutManager as LinearLayoutManager)!!.findFirstCompletelyVisibleItemPosition() < itemList.size - 1) {
-                    customerTrendingRecyclerView.layoutManager!!.smoothScrollToPosition(
-                        customerTrendingRecyclerView,
-                        RecyclerView.State(),
-                        (customerTrendingRecyclerView.layoutManager as LinearLayoutManager)!!.findFirstCompletelyVisibleItemPosition() + 1
-                    )
-                } else if ((customerTrendingRecyclerView.layoutManager as LinearLayoutManager)!!.findFirstCompletelyVisibleItemPosition() < itemList.size - 1) {
-                    customerTrendingRecyclerView.layoutManager!!.smoothScrollToPosition(customerTrendingRecyclerView, RecyclerView.State(), 0)
-                }else{
-                    customerTrendingRecyclerView.smoothScrollToPosition(0);
-                }
-            }
-        },0, 1500)
 
-
-        customerallItemsRecycler.adapter = CustomerAllItemAdapter(itemList)
-        customerallItemsRecycler.layoutManager = LinearLayoutManager(this)
     }
 
 
-    private fun initData(){
-        itemList= java.util.ArrayList()
-        for(i in 0..5)
-            itemList.add(RetailerDataModel("Rajesh K","rajeshisamazing@gmail.com","RR Nagar Banglore","+9182384898"))
+
+    private fun bottomNavigationControl() {
+        custBottomNav.setOnItemSelectedListener {
+            when(it.itemId){
+                R.id.cust_Home->{
+                    supportFragmentManager.beginTransaction().replace(R.id.cust_home_frame,CustomerHomeFrag()).commit()
+                }
+                R.id.cust_pending->{
+                    supportFragmentManager.beginTransaction().replace(R.id.cust_home_frame,
+                        CustomerOrder_HistoryFrag()).commit()
+                }
+                R.id.cust_Profit->{
+                    supportFragmentManager.beginTransaction().replace(R.id.cust_home_frame,
+                        Cust_performance_frag()).commit()
+                }
+                R.id.custOrders->{
+                    supportFragmentManager.beginTransaction().replace(R.id.cust_home_frame,
+                        CustomerOrderFrag()).commit()
+                }
+            }
+            true
+        }
     }
 
 }

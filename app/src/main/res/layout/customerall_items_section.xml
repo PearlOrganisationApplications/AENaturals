@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/bangers"
-            android:text="All Items"
+            android:text="Shop Now"
             android:textColor="@color/darkgreen"
             android:textSize="@dimen/sd26"
             android:textStyle="bold" />
