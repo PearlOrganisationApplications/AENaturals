@@ -112,11 +112,11 @@ class DistributorHomeFrag : Fragment() {
     public fun initializeClickListners() {
 
         addSellers.setOnClickListener {
-            startActivity(Intent(requireContext(), AddSalesmanActivity::class.java))
+//            startActivity(Intent(requireContext(), AddSalesmanActivity::class.java))
         }
-        itemRequest.setOnClickListener {
-            startActivity(Intent(requireContext(), DistributorRequestActiivty::class.java))
-        }
+    /* itemRequest.setOnClickListener {
+        startActivity(Intent(requireContext(), DistributorRequestActiivty::class.java))
+        }*/
         distributor_pendingOrder.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
                 DistributorProductsFragment()

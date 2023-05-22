@@ -10,7 +10,8 @@
     android:textStyle="bold"
     android:id="@+id/addSellers"
     android:padding="@dimen/sd6"
-    android:drawableEnd="@drawable/ic_plus2_24"
+    android:drawableEnd="@drawable/ic_baseline_filter_list_16"
+    android:drawablePadding="@dimen/sd10"
     android:textColor="@color/darkgreen"
     android:background="@color/midgreen"
     />

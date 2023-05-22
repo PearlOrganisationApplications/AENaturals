@@ -1,4 +1,4 @@
-package com.aenatural.aenaturals.customers.fragments
+package com.aenatural.aenaturals.distributors.fragments
 
 import android.graphics.Color
 import android.os.Bundle
@@ -7,20 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.common.Models.SellerDataModel
-import com.aenatural.aenaturals.customers.adapters.CustomerSaleHistoryAdapter
-import com.aenatural.aenaturals.salesmans.Adapters.PendingPaymentAdapter
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
-class Cust_performance_frag : Fragment() {
 
+class DistributorProfitFrag : Fragment() {
+    // TODO: Rename and change types of parameters
     lateinit var barDataSet: BarDataSet
     lateinit var pendingPayment:ArrayList<SellerDataModel>
     lateinit var barEntriesList: ArrayList<BarEntry>
@@ -28,21 +27,21 @@ class Cust_performance_frag : Fragment() {
 
     lateinit var barData: BarData
 
-    lateinit var customer_history_recyler:RecyclerView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_cust_performance_frag, container, false)
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_distributor_profit, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().findViewById<LinearLayout>(R.id.include).visibility =View.VISIBLE
         initializeViews(view)
         setchart()
     }
@@ -57,10 +56,6 @@ class Cust_performance_frag : Fragment() {
     private fun initRecyclerView(view: View) {
 
     }
-
-
-
-
     private fun setchart() {
         // on below line we are calling get bar
         // chart data to add data to our array list
@@ -88,7 +83,6 @@ class Cust_performance_frag : Fragment() {
         barChart.description.isEnabled = false
     }
 
-
     private fun getBarChartData() {
         barEntriesList = ArrayList()
         barEntriesList.add(BarEntry(1f, 1f))
@@ -100,7 +94,4 @@ class Cust_performance_frag : Fragment() {
         barEntriesList.add(BarEntry(7f, 5f))
 
     }
-
-
-
 }

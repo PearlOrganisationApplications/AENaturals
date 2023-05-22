@@ -22,7 +22,7 @@
             android:orientation="vertical">
             <include
                 android:id="@+id/headerdistributor"
-                layout="@layout/headerdistributor" />
+                layout="@layout/search_bar" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,6 +39,7 @@
                 >
 
                 <include layout="@layout/midsectiondistributordashboard" />
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

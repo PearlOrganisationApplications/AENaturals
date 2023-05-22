@@ -18,11 +18,13 @@
 
             <include
                 android:id="@+id/salesman_more_header"
-                layout="@layout/distributor_more_header" />
+                layout="@layout/distributor_more_header"
+                />
 
             <include
                 android:id="@+id/pendingorderslayout"
-                layout="@layout/pendingorderslayout" />
+                layout="@layout/pendingorderslayout"
+                android:visibility="visible"/>
 
             <include layout="@layout/pending_payment_layout"
                 android:id="@+id/pending_payment_layout"
@@ -32,6 +34,20 @@
             <include layout="@layout/return_order_layout"
                 android:visibility="gone"
                 android:id="@+id/return_order_layout"/>
+
+<!--
+           <FrameLayout
+               android:id="@+id/frameLayout"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:visibility="gone"
+               android:background="@color/lightgreen2"/>
+-->
+
+            <include
+                android:id="@+id/distributorProfit"
+                layout="@layout/fragment_distributor_profit"
+                android:visibility="gone"/>
 
         </LinearLayout>
 

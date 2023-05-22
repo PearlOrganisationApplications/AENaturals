@@ -57,7 +57,7 @@ class AddSalesman : Fragment() {
 
 
     private fun initClickListener(view: View) {
-        var m = 0
+       /* var m = 0
         var f = 0
         distributor_profile_pic.setOnClickListener {
             m = 1
@@ -80,13 +80,13 @@ class AddSalesman : Fragment() {
 
         distributorFormSubmit.setOnClickListener {
             startActivity(Intent(requireContext(), DistributorDashboard::class.java))
-        }
+        }*/
 
     }
 
     private fun initViews(view: View) {
-        distributor_profile_pic = view.findViewById(R.id.distributor_profile_pic)
-        distributor_parlorpic = view.findViewById(R.id.distributor_parlorpic)
+        /*distributor_profile_pic = view.findViewById(R.id.distributor_profile_pic)
+        distributor_parlorpic = view.findViewById(R.id.distributor_parlorpic)*/
         distributorFormSubmit = view.findViewById(R.id.distributorFormSubmit)
     }
 
