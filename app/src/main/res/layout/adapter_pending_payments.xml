@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_marginVertical="@dimen/sd4"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/midgreen"
+    android:backgroundTint="@color/lightgreen"
     android:layout_marginHorizontal="@dimen/sd8"
     app:cardCornerRadius="@dimen/sd20"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,10 +13,16 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:orientation="horizontal"
-    android:paddingHorizontal="@dimen/sd10"
-    android:paddingVertical="@dimen/sd16"
+    android:paddingHorizontal="@dimen/sd6"
+    android:paddingVertical="@dimen/sd8"
     android:gravity="center"
     android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/ae_product"
+        android:layout_margin="@dimen/sd4"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,8 +52,8 @@
         android:orientation="horizontal"
         >
         <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
             android:src="@drawable/ic_rupeesmall"
             app:tint="@color/darkgreen" />
     <TextView
@@ -57,7 +63,7 @@
         android:padding="@dimen/sd8"
         android:textColor="@color/darkgreen"
         android:textStyle="bold"
-        android:textSize="@dimen/sd18"
+        android:textSize="@dimen/sd14"
         />
     </LinearLayout>
 </LinearLayout>

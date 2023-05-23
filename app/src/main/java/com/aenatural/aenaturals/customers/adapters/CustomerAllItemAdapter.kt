@@ -1,4 +1,4 @@
-package com.aenatural.aenaturals.customers
+package com.aenatural.aenaturals.customers.adapters
 
 import android.view.LayoutInflater
 import android.view.View
