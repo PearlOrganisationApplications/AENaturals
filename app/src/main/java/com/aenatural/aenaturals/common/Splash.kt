@@ -2,7 +2,10 @@ package com.aenatural.aenaturals.common
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
@@ -18,9 +21,19 @@ class Splash : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.lightgreen)
-        window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+       /* window.statusBarColor = ContextCompat.getColor(this, R.color.lightgreen)
+        window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);*/
+
+
+          Handler().postDelayed({
+         val mIntent = Intent(this@Splash, Login::class.java)
+         startActivity(mIntent)
+         finish()
+     }, 2000)
 
 /*
         iv_logo = findViewById(R.id.iv_logo)
@@ -37,13 +50,9 @@ class Splash : AppCompatActivity() {
         })
         iv_logo.startAnimation(Animation)
 */
-        startActivity(Intent(applicationContext, Login::class.java))
 
 
-     /*   Handler().postDelayed({
-            val mIntent = Intent(this@Splash, WelcomeScreen::class.java)
-            startActivity(mIntent)
-            finish()
-        }, 2000)*/
+
+
     }
 }
