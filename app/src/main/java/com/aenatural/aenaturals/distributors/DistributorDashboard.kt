@@ -71,25 +71,23 @@ class DistributorDashboard : BaseClass() {
     private fun bottomNavigationControl() {
         distributor_bottomnav.setOnItemSelectedListener {
             when(it.itemId) {
-                R.id.saleHome->{
+                R.id.dist_Home->{
 
                     supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
                         DistributorHomeFrag()).commit()
                 }
-                R.id.saleItems->{
-
-                    supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
-                         DistributorProductsFragment()).commit()
-                }
-                R.id.sale_addCustomer->{
-
-                    supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
-                        AddSalesman()).commit()
-                }
-                R.id.saleCart->{
-
+                R.id.dist_Cart->{
                     supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
                         Cart()).commit()
+                }
+                R.id.dist_more->{
+                    supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
+                        DistributorProductsFragment()).commit()
+                }
+                R.id.dist_addSalesman->{
+                    supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
+                        AddSalesman()).commit()
+
                 }
             }
             true

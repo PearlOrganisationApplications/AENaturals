@@ -152,6 +152,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_weight="1"
+        android:id="@+id/cust_new_order_button"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
         android:layout_marginVertical="@dimen/sd8"
