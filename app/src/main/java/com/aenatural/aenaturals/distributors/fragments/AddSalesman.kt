@@ -38,11 +38,11 @@ class AddSalesman : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().findViewById<LinearLayout>(R.id.headerdistributor).visibility =View.GONE
         initViews(view)
         initClickListener(view)
         initDataModels(view)
         initRecyclerAdapter(view)
-
     }
 
 

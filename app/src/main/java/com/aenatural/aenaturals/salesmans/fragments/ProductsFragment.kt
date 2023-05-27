@@ -49,7 +49,7 @@ class ProductsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        requireActivity().findViewById<LinearLayout>(R.id.include2).visibility =View.GONE
         initializeViews(view)
         initDataModels(view)
         initrecyclerViews(view)

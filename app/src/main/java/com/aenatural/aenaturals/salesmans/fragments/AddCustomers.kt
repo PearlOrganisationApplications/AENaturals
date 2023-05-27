@@ -40,6 +40,7 @@ class AddCustomers : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().findViewById<LinearLayout>(R.id.include2).visibility =View.GONE
         initViews(view)
         initClickListener(view)
         initDataModels(view)

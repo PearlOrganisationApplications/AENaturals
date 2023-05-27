@@ -35,20 +35,19 @@
                 android:visibility="gone"
                 android:id="@+id/return_order_layout"/>
 
-<!--
-           <FrameLayout
-               android:id="@+id/frameLayout"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:visibility="gone"
-               android:background="@color/lightgreen2"/>
--->
-
             <include
                 android:id="@+id/distributorProfit"
-                layout="@layout/fragment_distributor_profit"
+                layout="@layout/distributor_profit_layout"
                 android:visibility="gone"/>
-
+            <include
+                android:id="@+id/distributorProfit"
+                layout="@layout/distributor_profit_layout"
+                android:visibility="gone"/>
+<include
+    android:id="@+id/distributor_allOrder_layout"
+    layout="@layout/distributor_order_history_layout"
+    android:visibility="gone"
+    />
         </LinearLayout>
 
     </RelativeLayout>

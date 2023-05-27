@@ -1,6 +1,5 @@
 package com.aenatural.aenaturals.distributors.fragments
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,13 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.common.Models.SellerDataModel
-import com.aenatural.aenaturals.distributors.AddSalesmanActivity
-import com.aenatural.aenaturals.distributors.DistributorProfileActivity
-import com.aenatural.aenaturals.distributors.DistributorRequestActiivty
 import com.aenatural.aenaturals.distributors.SellerAdapter
 import com.aenatural.aenaturals.salesmans.BottomSectionAdapter
 import com.aenatural.aenaturals.salesmans.SecondBottomSectionAdapter
-import com.aenatural.aenaturals.salesmans.fragments.DistributorProductsFragment
+import com.aenatural.aenaturals.salesmans.fragments.DistributorMoreFragment
 import org.eazegraph.lib.charts.PieChart
 import org.eazegraph.lib.models.PieModel
 import java.util.*
@@ -53,11 +49,13 @@ class DistributorHomeFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().findViewById<LinearLayout>(R.id.headerdistributor).visibility =
+            View.VISIBLE
         initializeViews(view)
         initializeLabels()
         initializeClickListners()
-        initializeInputs()
-         }
+    }
+
     public fun initializeViews(view: View) {
         addSellers = view.findViewById(R.id.addSellers)
         recyclerView1 = view.findViewById(R.id.distributorTopRecycler)
@@ -73,12 +71,13 @@ class DistributorHomeFrag : Fragment() {
         setPieChart()
 
     }
-    private fun setPieChart(){
+
+    private fun setPieChart() {
 
         pieChart.isUseInnerValue = false
         pieChart.innerValueString = "Sales"
         pieChart.innerPaddingColor = R.color.midgreen
-        pieChart.isUseInnerPadding= false
+        pieChart.isUseInnerPadding = false
         pieChart.addPieSlice(
             PieModel(
                 "Salesman 1", 40F,
@@ -106,32 +105,57 @@ class DistributorHomeFrag : Fragment() {
         pieChart.startAnimation()
 
 
-
     }
 
     public fun initializeClickListners() {
+        var args = Bundle()
 
-        addSellers.setOnClickListener {
-//            startActivity(Intent(requireContext(), AddSalesmanActivity::class.java))
-        }
-    /* itemRequest.setOnClickListener {
-        startActivity(Intent(requireContext(), DistributorRequestActiivty::class.java))
-        }*/
         distributor_pendingOrder.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
-                DistributorProductsFragment()
-            ).commit()
+            args.putString("section","1");
+            var frag = DistributorMoreFragment()
+            frag.arguments =args
+
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.DashboardFrameLayout,
+                    frag
+                ).commit()
         }
         distributor_pendingPayment.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
-                DistributorProductsFragment()
-            ).commit()
-
+            args.putString("section","2");
+            var frag = DistributorMoreFragment()
+            frag.arguments =args
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.DashboardFrameLayout,
+                    frag
+                ).commit()
         }
-    }
-
-    public fun initializeInputs() {
-
+        distributor_totalReturns.setOnClickListener {
+            args.putString("section","3");
+            var frag = DistributorMoreFragment()
+            frag.arguments =args
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.DashboardFrameLayout,
+                    frag
+                ).commit()
+        }
+        distributor_totalProfit.setOnClickListener {
+            args.putString("section","4");
+            var frag = DistributorMoreFragment()
+            frag.arguments =args
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.DashboardFrameLayout,
+                    frag
+                ).commit()
+        }
+        distributor_myOrder.setOnClickListener {
+            args.putString("section","5");
+            var frag = DistributorMoreFragment()
+            frag.arguments =args
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.DashboardFrameLayout,
+                    frag
+                ).commit()
+        }
     }
 
     public fun initializeLabels() {
@@ -139,7 +163,7 @@ class DistributorHomeFrag : Fragment() {
         recyclerView1.adapter = SellerAdapter(sellerList)
 
         recyclerView1.layoutManager = LinearLayoutManager(requireContext(),
-            LinearLayoutManager.HORIZONTAL,false)
+            LinearLayoutManager.HORIZONTAL, false)
 
         Timer().schedule(object : TimerTask() {
             override fun run() {
@@ -150,28 +174,38 @@ class DistributorHomeFrag : Fragment() {
                         (recyclerView1.layoutManager as LinearLayoutManager)!!.findFirstCompletelyVisibleItemPosition() + 1
                     )
                 } else if ((recyclerView1.layoutManager as LinearLayoutManager)!!.findFirstCompletelyVisibleItemPosition() < sellerList.size - 1) {
-                    recyclerView1.layoutManager!!.smoothScrollToPosition(recyclerView1, RecyclerView.State(), 0)
-                }else{
+                    recyclerView1.layoutManager!!.smoothScrollToPosition(recyclerView1,
+                        RecyclerView.State(),
+                        0)
+                } else {
                     recyclerView1.smoothScrollToPosition(0);
                 }
             }
-        },0, 1500)
+        }, 0, 1500)
 
         recyclerView2.adapter = BottomSectionAdapter(itemList)
         recyclerView2.layoutManager = LinearLayoutManager(requireContext(),
-            LinearLayoutManager.HORIZONTAL,false)
+            LinearLayoutManager.HORIZONTAL, false)
 
         recyclerView2.adapter = SecondBottomSectionAdapter(itemList)
         recyclerView2.layoutManager = LinearLayoutManager(requireContext(),
-            LinearLayoutManager.VERTICAL,false)
+            LinearLayoutManager.VERTICAL, false)
 
     }
-    private fun initData(){
-        sellerList= ArrayList()
-        itemList= ArrayList()
-        for(i in 0..5)
-            sellerList.add(SellerDataModel("Rajesh K","rajeshisamazing@gmail.com","RR Nagar Banglore","+9182384898",""))
-        for(i in 0..5)
-            itemList.add(RetailerDataModel("Rajesh K","rajeshisamazing@gmail.com","RR Nagar Banglore","+9182384898"))
+
+    private fun initData() {
+        sellerList = ArrayList()
+        itemList = ArrayList()
+        for (i in 0..5)
+            sellerList.add(SellerDataModel("Rajesh K",
+                "rajeshisamazing@gmail.com",
+                "RR Nagar Banglore",
+                "+9182384898",
+                ""))
+        for (i in 0..5)
+            itemList.add(RetailerDataModel("Rajesh K",
+                "rajeshisamazing@gmail.com",
+                "RR Nagar Banglore",
+                "+9182384898"))
     }
 }

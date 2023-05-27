@@ -13,7 +13,7 @@
         />
     <item
         android:icon="@drawable/ic_products"
-        android:title="Orders"
+        android:title="Items"
         android:id="@+id/dist_Cart"
         />
     <item
