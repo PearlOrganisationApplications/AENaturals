@@ -281,6 +281,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
+        android:layout_marginVertical="@dimen/sd6"
+        android:layout_marginHorizontal="@dimen/sd10"
         android:backgroundTint="@color/midgreen"
         app:cardCornerRadius="@dimen/sd20"
         app:layout_constraintBottom_toBottomOf="parent"
