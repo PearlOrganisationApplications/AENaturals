@@ -38,6 +38,7 @@ class AddSalesman : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        backPress()
         requireActivity().findViewById<LinearLayout>(R.id.headerdistributor).visibility =View.GONE
         initViews(view)
         initClickListener(view)
@@ -45,7 +46,16 @@ class AddSalesman : Fragment() {
         initRecyclerAdapter(view)
     }
 
-
+    private fun backPress() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.DashboardFrameLayout,
+                        DistributorHomeFrag()
+                    ).commit()
+            }
+        })
+    }
     private fun initRecyclerAdapter(view: View) {
 
     }

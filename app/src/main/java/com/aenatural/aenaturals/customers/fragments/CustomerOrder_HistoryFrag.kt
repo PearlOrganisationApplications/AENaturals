@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.common.Models.SellerDataModel
 import com.aenatural.aenaturals.customers.adapters.CustomerOrderHistoryAdapter
 import com.aenatural.aenaturals.customers.adapters.CustomerSaleHistoryAdapter
+import com.aenatural.aenaturals.distributors.fragments.DistributorHomeFrag
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -37,6 +39,7 @@ class CustomerOrder_HistoryFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        backPress()
         requireActivity().findViewById<LinearLayout>(R.id.include).visibility =View.VISIBLE
         initializeViews(view)
         topnav(view)
@@ -82,6 +85,15 @@ class CustomerOrder_HistoryFrag : Fragment() {
             pendingPayment.add(SellerDataModel("", "", "", "", ""))
         }
     }
-
+    private fun backPress() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.cust_home_frame,
+                        CustomerHomeFrag()
+                    ).commit()
+            }
+        })
+    }
 
 }

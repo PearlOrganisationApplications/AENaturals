@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.activity.OnBackPressedCallback
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -40,6 +41,7 @@ class AddCustomers : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        backPress()
         requireActivity().findViewById<LinearLayout>(R.id.include2).visibility =View.GONE
         initViews(view)
         initClickListener(view)
@@ -100,4 +102,14 @@ class AddCustomers : Fragment() {
 
     }
 
+    private fun backPress() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.salesDashboardFrameLayout,
+                        HomeFragment()
+                    ).commit()
+            }
+        })
+    }
 }

@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
@@ -37,6 +39,7 @@ class CustomerHomeFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        backPress()
         requireActivity().findViewById<LinearLayout>(R.id.include).visibility =View.VISIBLE
         initializeViews(view)
         initializeClickListners()
@@ -89,5 +92,24 @@ class CustomerHomeFrag : Fragment() {
         for(i in 0..5)
             itemList.add(RetailerDataModel("Rajesh K","rajeshisamazing@gmail.com","RR Nagar Banglore","+9182384898"))
     }
+    private fun backPress() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                showExitConfirmationDialog()
+            }
+        })
+    }
 
+
+    private fun showExitConfirmationDialog() {
+        val alertDialogBuilder = AlertDialog.Builder(requireContext())
+        alertDialogBuilder.setTitle("Exit")
+        alertDialogBuilder.setMessage("Do you want to exit the app?")
+        alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
+            requireActivity().finish()
+        }
+        alertDialogBuilder.setNegativeButton("No", null)
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
+    }
 }

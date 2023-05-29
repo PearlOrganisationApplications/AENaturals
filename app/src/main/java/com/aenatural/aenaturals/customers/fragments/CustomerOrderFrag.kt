@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.*
 import android.widget.LinearLayout
+import androidx.activity.OnBackPressedCallback
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
@@ -37,6 +38,7 @@ class CustomerOrderFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        backPress()
         requireActivity().findViewById<LinearLayout>(R.id.include).visibility = View.GONE
         initViews(view)
         initClickListener(view)
@@ -101,5 +103,16 @@ class CustomerOrderFrag : Fragment() {
             layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT
             window.setAttributes(layoutParams)
         }
+    }
+
+    private fun backPress() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.cust_home_frame,
+                        CustomerHomeFrag()
+                    ).commit()
+            }
+        })
     }
 }

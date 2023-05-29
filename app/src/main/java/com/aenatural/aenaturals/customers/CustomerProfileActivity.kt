@@ -2,17 +2,15 @@ package com.aenatural.aenaturals.customers
 
 import android.app.AlertDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ScrollView
-import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.baseframework.BaseClass
+import com.aenatural.aenaturals.baseframework.Session
 import com.aenatural.aenaturals.common.Login
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.customers.adapters.CustomerProfileAdapter
@@ -26,9 +24,10 @@ class CustomerProfileActivity : BaseClass() {
     lateinit var itemList: java.util.ArrayList<RetailerDataModel>
     lateinit var customerOrderHistoryRecycler:RecyclerView
     lateinit var alertDialog:AlertDialog.Builder
-
+    var pref: Session? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        pref=Session(this);
         setLayoutXml()
         initializeViews()
         initializeClickListners()
@@ -54,6 +53,7 @@ class CustomerProfileActivity : BaseClass() {
         alertDialog.setMessage("Do you want to Logout?")
         alertDialog.setPositiveButton("Yes"){dialogInterface,_ ->
             run{
+                pref?.clearSession();
                 startActivity(Intent(this, Login::class.java))
                 dialogInterface.dismiss()
             }

@@ -18,8 +18,9 @@ import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.R
+import com.aenatural.aenaturals.baseframework.BaseClass
+import com.aenatural.aenaturals.baseframework.Session
 import com.aenatural.aenaturals.common.Login
 
 
@@ -35,10 +36,11 @@ class SalesmanProfileActivity : BaseClass() {
     lateinit var customercareLayout:ScrollView
     lateinit var privacypolicylayout:ScrollView
     lateinit var alertDialog:AlertDialog.Builder
-
+    var pref: Session? = null
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        pref=Session(this);
         setLayoutXml()
         initializeViews()
         initializeClickListners()
@@ -68,6 +70,7 @@ class SalesmanProfileActivity : BaseClass() {
         alertDialog.setMessage("Do you want to Logout?")
         alertDialog.setPositiveButton("Yes"){dialogInterface,_ ->
             run{
+                pref?.clearSession();
                 startActivity(Intent(this, Login::class.java))
                 dialogInterface.dismiss()
             }

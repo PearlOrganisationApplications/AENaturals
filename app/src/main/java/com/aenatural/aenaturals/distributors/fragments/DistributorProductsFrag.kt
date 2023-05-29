@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
@@ -47,10 +48,23 @@ private var cart_item_list = ArrayList<RetailerDataModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        backPress()
         requireActivity().findViewById<LinearLayout>(R.id.headerdistributor).visibility =View.GONE
         initializeViews(view)
         BottomNavControl(view)
 
+    }
+    private fun backPress() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.DashboardFrameLayout,
+                        DistributorHomeFrag()
+                    ).commit()
+                // Handle the back button press
+                // Call the desired function or perform any necessary actions
+            }
+        })
     }
     public fun initializeViews(view: View) {
         dist_cart_item_Recycler = view.findViewById(R.id.dist_cart_item_Recycler)

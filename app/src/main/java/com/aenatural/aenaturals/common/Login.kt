@@ -11,6 +11,7 @@ import com.aenatural.aenaturals.distributors.DistributorDashboard
 import com.aenatural.aenaturals.customers.CustomerDashboard
 import com.aenatural.aenaturals.salesmans.SalesmanDashboard
 import com.aenatural.aenaturals.R
+import com.aenatural.aenaturals.baseframework.Session
 
 
 class Login : BaseClass() {
@@ -19,14 +20,16 @@ class Login : BaseClass() {
     lateinit var passwordEditText: EditText
     lateinit var tv_login: TextView
     lateinit var textView: TextView
-
+    lateinit var session: Session
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        session = Session(this)
         getMidGreentheme()
         setLayoutXml()
-
         initializeViews()
         initializeClickListners()
+
+
     }
 
     override fun setLayoutXml() {
@@ -56,14 +59,27 @@ class Login : BaseClass() {
         tv_login.setOnClickListener {
             buttonEffect(tv_login)
 
-            if((emailEditText.text.toString().equals("salesman") && passwordEditText.text.toString().equals("123"))||(emailEditText.text.toString().equals("salesman ") && passwordEditText.text.toString().equals("123"))){
+            if ((emailEditText.text.toString()
+                    .equals("salesman") && passwordEditText.text.toString()
+                    .equals("123")) || (emailEditText.text.toString()
+                    .equals("salesman ") && passwordEditText.text.toString().equals("123"))
+            ) {
+                session.setLogin(emailEditText.text.toString(), 2)
                 startActivity(Intent(this, SalesmanDashboard::class.java))
-            }else if(emailEditText.text.toString().equals("distributor") && passwordEditText.text.toString().equals("123")){
+            } else if (emailEditText.text.toString()
+                    .equals("distributor") && passwordEditText.text.toString().equals("123")
+            ) {
+                session.setLogin(emailEditText.text.toString(), 1)
                 startActivity(Intent(this, DistributorDashboard::class.java))
-            }else if(emailEditText.text.toString().equals("customer") && passwordEditText.text.toString().equals("123")){
+            } else if (emailEditText.text.toString()
+                    .equals("customer") && passwordEditText.text.toString().equals("123")
+            ) {
+                session.setLogin(emailEditText.text.toString(), 3)
                 startActivity(Intent(this, CustomerDashboard::class.java))
-            }else{
-                Toast.makeText(applicationContext,"Email or Password is invalid",Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(applicationContext,
+                    "Email or Password is invalid",
+                    Toast.LENGTH_SHORT).show()
             }
 
         }
