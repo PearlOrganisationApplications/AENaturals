@@ -76,19 +76,23 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+
                         android:orientation="horizontal">
 
                         <EditText
                             android:layout_width="match_parent"
+                            android:id="@+id/sm_et1_firstname"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="@dimen/sd10"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="1"
+                            android:inputType="text"
                             android:background="@drawable/loginedittextbg"
                             android:hint="First Name"
                             android:padding="@dimen/sd10" />
 
                         <EditText
+                            android:id="@+id/sm_et2_lastname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="@dimen/sd10"
@@ -96,10 +100,12 @@
                             android:layout_weight="1"
                             android:background="@drawable/loginedittextbg"
                             android:hint="Last Name"
+                            android:inputType="text"
                             android:padding="@dimen/sd10" />
                     </LinearLayout>
 
                     <EditText
+                        android:id="@+id/sm_et3_mobilenumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/sd10"
@@ -112,17 +118,19 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:id="@+id/sm_et4_email"
+                        android:inputType="textEmailAddress"
                         android:layout_marginHorizontal="@dimen/sd10"
                         android:layout_marginVertical="5dp"
                         android:background="@drawable/loginedittextbg"
                         android:hint="Email"
-                        android:inputType="number"
                         android:padding="@dimen/sd10" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/sd10"
+                        android:id="@+id/sm_et5_alernatenumber"
                         android:layout_marginVertical="5dp"
                         android:background="@drawable/loginedittextbg"
                         android:hint="Alternate phone number"
@@ -137,24 +145,26 @@
                         <EditText
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/sm_et6_pincode"
                             android:layout_marginHorizontal="@dimen/sd10"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="0.4"
+                            android:inputType="text"
                             android:background="@drawable/loginedittextbg"
                             android:hint="pincode"
-                            android:inputType="number"
                             android:padding="@dimen/sd10" />
 
                         <EditText
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/sm_et7_tag"
                             android:layout_marginHorizontal="@dimen/sd10"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="1"
+                            android:inputType="text"
                             android:background="@drawable/loginedittextbg"
                             android:drawableEnd="@drawable/ic_hashtag"
                             android:hint="tag"
-                            android:inputType="number"
                             android:padding="@dimen/sd6" />
                     </LinearLayout>
 
@@ -163,9 +173,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/sd10"
                         android:layout_marginVertical="5dp"
+                        android:id="@+id/sm_et8_address"
+                        android:inputType="text"
                         android:background="@drawable/loginedittextbg"
                         android:hint="Address"
-                        android:inputType="number"
                         android:padding="@dimen/sd10" />
 
                     <LinearLayout
@@ -179,9 +190,10 @@
                             android:layout_marginHorizontal="@dimen/sd10"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="1"
+                            android:inputType="text"
+                            android:id="@+id/sm_et9_city"
                             android:background="@drawable/loginedittextbg"
                             android:hint="City"
-                            android:inputType="number"
                             android:padding="@dimen/sd10" />
 
                         <EditText
@@ -190,23 +202,24 @@
                             android:layout_marginHorizontal="@dimen/sd10"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="1"
+                            android:id="@+id/sm_et10_state"
+                            android:inputType="text"
                             android:background="@drawable/loginedittextbg"
                             android:hint="State"
-                            android:inputType="number"
                             android:padding="@dimen/sd10" />
                     </LinearLayout>
 
 
                     <EditText
+                        android:id="@+id/sm_et11_smID"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/sd10"
                         android:layout_marginVertical="5dp"
+                        android:inputType="text"
                         android:background="@drawable/loginedittextbg"
                         android:hint="social media id"
-                        android:inputType="number"
                         android:padding="@dimen/sd10" />
-
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -281,6 +294,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
+
         android:layout_marginVertical="@dimen/sd6"
         android:layout_marginHorizontal="@dimen/sd10"
         android:backgroundTint="@color/midgreen"
@@ -295,7 +309,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/sd14"
-
             android:text="Submit"
             android:textColor="@color/darkgreen"
             android:textSize="@dimen/sd14"

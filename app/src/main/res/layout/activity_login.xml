@@ -128,11 +128,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/sd4"
-                    android:inputType="textEmailAddress"
                     android:background="@drawable/loginedittextbg"
                     android:drawableEnd="@drawable/ic_mail"
                     android:hint="abc@gmail.com"
                     android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
                     android:padding="@dimen/sd12"
                     android:paddingVertical="@dimen/sd4" />
 
