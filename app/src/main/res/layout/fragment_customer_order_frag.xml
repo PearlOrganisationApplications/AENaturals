@@ -21,10 +21,18 @@
     android:layout_height="wrap_content"
     app:menu="@menu/cust_history_menu"
     android:layout_margin="@dimen/sd10"
+    android:id="@+id/customer_history_topnav"
     android:background="@drawable/bottomnavbg"
     />
+
 <include
     layout="@layout/customer_sellhistory_layout"
+    android:id="@+id/customer_sellhistory_layout"
     />
+    <include
+        layout="@layout/customer_order_history_layout"
+        android:id="@+id/customer_order_history_layout"
+        android:visibility="gone"
+        />
 
 </LinearLayout>

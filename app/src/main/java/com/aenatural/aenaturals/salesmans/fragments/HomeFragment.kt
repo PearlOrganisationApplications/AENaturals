@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -45,8 +48,9 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        requireActivity().findViewById<LinearLayout>(R.id.include2).visibility =View.VISIBLE
         super.onViewCreated(view, savedInstanceState)
-
+        backPress()
         initializeViews(view)
         initDataModels(view)
         initClickListeners(view)
@@ -56,7 +60,6 @@ class HomeFragment : Fragment() {
     private fun initClickListeners(view: View) {
         card_moreaboutsales.setOnClickListener { startActivity(Intent(requireContext(),SaleDetailsActivity::class.java))
         }
-
     }
     private fun initDataModels(view:View) {
         retailerList= ArrayList()
@@ -83,5 +86,24 @@ class HomeFragment : Fragment() {
         addCustomers = view.findViewById(R.id.addCustomers)
         card_moreaboutsales = view.findViewById(R.id.card_moreaboutsales)
     }
+    private fun backPress() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                showExitConfirmationDialog()
+            }
+        })
+    }
 
+
+    private fun showExitConfirmationDialog() {
+        val alertDialogBuilder = AlertDialog.Builder(requireContext())
+        alertDialogBuilder.setTitle("Exit")
+        alertDialogBuilder.setMessage("Do you want to exit the app?")
+        alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
+            requireActivity().finish()
+        }
+        alertDialogBuilder.setNegativeButton("No", null)
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
+    }
 }

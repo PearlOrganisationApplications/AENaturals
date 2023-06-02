@@ -3,13 +3,15 @@
 <item
     android:title="Sell History"
     android:icon="@drawable/ic_products"
+    android:id="@+id/menu_sell_history"
     />
     <item
         android:title="Order History"
         android:icon="@drawable/ic_cart"
+        android:id="@+id/menu_order_history"
         />
-    <item
+<!--    <item
         android:title="Return History"
         android:icon="@drawable/ic_return"
-        />
+        />-->
 </menu>

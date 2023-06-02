@@ -3,60 +3,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".distributors.fragments.DistributorProfitFrag">
-
-    <ScrollView
+    tools:context=".distributors.fragments.DistributorProductsFrag">
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/sd6"
-        android:layout_weight="1"
-        android:backgroundTint="@color/midgreen"
-        android:visibility="visible"
-        app:cardCornerRadius="@dimen/sd18">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
-            <TextView
-            android:layout_width="match_parent"
-                android:visibility="gone"
-            android:layout_height="wrap_content"
-            android:text="15/05/23 - 21/05/23"
-            android:drawableEnd="@drawable/ic_baseline_filter_list_16"
-            android:textStyle="bold"
-            android:textColor="@color/darkgreen"
-            android:gravity="right"
-            android:textSize="@dimen/sd14"
-            android:padding="@dimen/sd8"
-            />
-
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/cust_chart"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Total Profit : 210000"
-                android:textStyle="bold"
-                android:textColor="@color/darkgreen"
-                android:gravity="right"
-                android:textSize="@dimen/sd14"
-                android:padding="@dimen/sd8"
-                />
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    </ScrollView>
+        android:layout_height="wrap_content"
+        android:background="@color/midgreen"
+        android:id="@+id/dist_product_header"
+        android:textStyle="bold"
+        android:textColor="@color/darkgreen"
+        android:padding="@dimen/sd6"
+        android:text="Order Items"
+        />
+<com.google.android.material.bottomnavigation.BottomNavigationView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottomnavbg"
+    android:layout_margin="@dimen/sd6"
+    android:id="@+id/distributor_order_bottomMenu"
+    app:menu="@menu/distributor_cart_menu"
+    />
+<include
+    layout="@layout/distibutor_cart_items_layout"
+    android:id="@+id/distibutor_cart_items_layout"
+    />
+    <include
+        layout="@layout/dist_allorders_layout"
+        android:id="@+id/dist_allorders_layout"
+        android:visibility="gone"
+        />
 </LinearLayout>

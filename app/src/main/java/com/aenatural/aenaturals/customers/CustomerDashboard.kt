@@ -39,6 +39,7 @@ class CustomerDashboard : BaseClass() {
     lateinit var custDashboardFrameLayout: FrameLayout
     lateinit var custBottomNav: BottomNavigationView
     lateinit var custProfileIcon: ImageView
+    lateinit var customer_cart_icon:LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,11 +62,15 @@ class CustomerDashboard : BaseClass() {
         custDashboardFrameLayout = findViewById(R.id.cust_home_frame)
         custBottomNav = findViewById(R.id.custBottomNav)
         custProfileIcon = findViewById(R.id.cust_profileicon)
+        customer_cart_icon = findViewById(R.id.customer_cart_icon)
     }
 
     override fun initializeClickListners() {
         custProfileIcon.setOnClickListener {
             startActivity(Intent(this, CustomerProfileActivity::class.java))
+        }
+        customer_cart_icon.setOnClickListener {
+            startActivity(Intent(this,CustomerCartActivity::class.java))
         }
     }
 

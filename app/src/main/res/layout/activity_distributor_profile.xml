@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightgreen2"
+    android:background="@color/lightgreen"
     android:orientation="vertical"
     tools:context="com.aenatural.aenaturals.salesmans.SalesmanProfileActivity">
 

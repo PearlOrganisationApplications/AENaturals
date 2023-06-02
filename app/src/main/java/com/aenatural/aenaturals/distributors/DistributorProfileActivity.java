@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.aenatural.aenaturals.R;
 import com.aenatural.aenaturals.baseframework.BaseClass;
+import com.aenatural.aenaturals.baseframework.Session;
 import com.aenatural.aenaturals.common.Login;
 
 import java.util.Base64;
@@ -34,11 +35,12 @@ public class DistributorProfileActivity extends BaseClass {
     ScrollView customercareLayout;
     ScrollView privacypolicylayout;
     AlertDialog.Builder alertDialog;
-
+    Session pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        pref=new Session(this);
         setLayoutXml();
         initializeViews();
         initializeClickListners();
@@ -72,6 +74,7 @@ public class DistributorProfileActivity extends BaseClass {
         alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                pref.clearSession();
                 startActivity(new Intent(DistributorProfileActivity.this, Login.class));
                 dialog.dismiss();
             }
@@ -79,7 +82,7 @@ public class DistributorProfileActivity extends BaseClass {
         alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();     
+                dialog.dismiss();
             }
         });
 

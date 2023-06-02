@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ScrollView
+import androidx.activity.OnBackPressedCallback
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.salesmans.AllProductsAdapter
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.common.Models.SellerDataModel
+import com.aenatural.aenaturals.customers.fragments.CustomerHomeFrag
 import com.aenatural.aenaturals.salesmans.Adapters.PendingOrderVH
 import com.aenatural.aenaturals.salesmans.Adapters.PendingOrdersAdapter
 import com.aenatural.aenaturals.salesmans.Adapters.PendingPaymentAdapter
@@ -49,7 +51,8 @@ class ProductsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        backPress()
+        requireActivity().findViewById<LinearLayout>(R.id.include2).visibility =View.GONE
         initializeViews(view)
         initDataModels(view)
         initrecyclerViews(view)
@@ -111,5 +114,14 @@ class ProductsFragment : Fragment() {
         pendingorderslayout = view.findViewById(R.id.pendingorderslayout)
 
     }
-
+    private fun backPress() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.salesDashboardFrameLayout,
+                        HomeFragment()
+                    ).commit()
+            }
+        })
+    }
 }

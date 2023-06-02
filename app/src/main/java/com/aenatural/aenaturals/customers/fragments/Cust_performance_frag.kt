@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
@@ -43,6 +44,7 @@ class Cust_performance_frag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        backPress()
         initializeViews(view)
         setchart()
     }
@@ -100,7 +102,14 @@ class Cust_performance_frag : Fragment() {
         barEntriesList.add(BarEntry(7f, 5f))
 
     }
-
-
-
+    private fun backPress() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.cust_home_frame,
+                        CustomerHomeFrag()
+                    ).commit()
+            }
+        })
+    }
 }

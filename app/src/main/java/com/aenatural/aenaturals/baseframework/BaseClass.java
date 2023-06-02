@@ -25,7 +25,6 @@ public abstract class BaseClass extends AppCompatActivity {
     protected AppCompatActivity activityIn;
     protected String LogTag, CAId,LogString;
     public int STORAGE_PERMISSION_CODE = 1;
-    public Session session;
     public String classname="Login";
 
 
