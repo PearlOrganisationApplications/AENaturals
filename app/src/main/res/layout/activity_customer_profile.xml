@@ -79,6 +79,20 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:src="@drawable/ic_skincare2" />
+            <ImageView
+                android:id="@+id/edtProfile"
+                android:layout_width="@dimen/sd24"
+                android:layout_height="@dimen/sd24"
+                android:src="@drawable/ic_baseline_edit"
+                android:layout_marginStart="5dp"
+                android:layout_gravity="bottom"
+                app:tint="@color/darkgreen" />
+           <!-- <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:layout_gravity="bottom"
+                android:backgroundTint="@color/darkgreen"/>-->
         </LinearLayout>
     </LinearLayout>
 
@@ -101,9 +115,13 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/nameLL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/sd6"
+                    android:layout_marginStart="@dimen/sd6"
+                    android:layout_marginTop="@dimen/sd6"
+                    android:layout_marginEnd="@dimen/sd6"
+                    android:layout_marginBottom="@dimen/sd6"
                     android:background="@drawable/cardbg"
                     android:orientation="vertical"
                     android:padding="@dimen/sd10">
@@ -124,11 +142,31 @@
                         android:textSize="@dimen/sd14"
                         android:textStyle="bold" />
                 </LinearLayout>
-
-                <LinearLayout
+                <EditText
+                    android:id="@+id/nameEdt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:hint="Business name"
+                    android:padding="5dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/darkgreen"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:imeOptions="actionNext"
+                    android:background="@drawable/cardbg"
                     android:layout_margin="@dimen/sd6"
+                    android:inputType="textPersonName"
+                    android:minHeight="45dp"/>
+
+                <LinearLayout
+                    android:id="@+id/emailLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/sd6"
+                    android:layout_marginTop="@dimen/sd6"
+                    android:layout_marginEnd="@dimen/sd6"
+                    android:layout_marginBottom="@dimen/sd6"
                     android:background="@drawable/cardbg"
                     android:orientation="vertical"
                     android:padding="@dimen/sd10">
@@ -149,8 +187,26 @@
                         android:textSize="@dimen/sd14"
                         android:textStyle="bold" />
                 </LinearLayout>
+                <EditText
+                    android:id="@+id/emailEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:hint="Email-id"
+                    android:padding="5dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/darkgreen"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:imeOptions="actionNext"
+                    android:background="@drawable/cardbg"
+                    android:layout_margin="@dimen/sd6"
+                    android:inputType="textEmailAddress"
+                    android:minHeight="45dp"/>
+
 
                 <LinearLayout
+                    android:id="@+id/phoneNoLL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/sd6"
@@ -174,11 +230,33 @@
                         android:textSize="@dimen/sd14"
                         android:textStyle="bold" />
                 </LinearLayout>
-
-                <LinearLayout
+                <EditText
+                    android:id="@+id/phoneNoEdt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:hint="Phone No"
+                    android:padding="5dp"
+                    android:textSize="14sp"
+                    android:maxLength="13"
+                    android:textColor="@color/darkgreen"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:imeOptions="actionNext"
+                    android:background="@drawable/cardbg"
                     android:layout_margin="@dimen/sd6"
+                    android:inputType="phone|numberDecimal"
+                    android:minHeight="45dp"/>
+
+
+                <LinearLayout
+                    android:id="@+id/addressLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/sd6"
+                    android:layout_marginTop="@dimen/sd6"
+                    android:layout_marginEnd="@dimen/sd6"
+                    android:layout_marginBottom="@dimen/sd6"
                     android:background="@drawable/cardbg"
                     android:orientation="vertical"
                     android:padding="@dimen/sd10">
@@ -198,9 +276,47 @@
                         android:textColor="@color/darkgreen"
                         android:textSize="@dimen/sd14"
                         android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+
+                        <include
+                            android:id="@+id/cust_customercareLayout"
+                            layout="@layout/customercarelayout"
+                            android:visibility="gone" />
+
+                        <include
+                            android:id="@+id/cust_privacypolicylayout"
+                            layout="@layout/privacypolicylayout"
+                            android:visibility="gone" />
+                    </LinearLayout>
                 </LinearLayout>
 
+                <EditText
+                    android:id="@+id/addressEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/sd6"
+                    android:layout_marginTop="@dimen/sd6"
+                    android:layout_marginEnd="@dimen/sd6"
+                    android:layout_marginBottom="@dimen/sd6"
+                    android:background="@drawable/cardbg"
+                    android:hint="Address"
+                    android:visibility="gone"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:maxLines="2"
+                    android:minHeight="45dp"
+                    android:padding="5dp"
+                    android:textColor="@color/darkgreen"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+
                 <LinearLayout
+                    android:id="@+id/cityTVLL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -229,7 +345,9 @@
                             android:textColor="@color/darkgreen"
                             android:textSize="@dimen/sd14"
                             android:textStyle="bold" />
+
                     </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -258,10 +376,56 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <LinearLayout
+            <LinearLayout
+                android:id="@+id/cityEdtLL"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/cityEdt"
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="City"
+                    android:padding="5dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/darkgreen"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:imeOptions="actionNext"
+                    android:background="@drawable/cardbg"
                     android:layout_margin="@dimen/sd6"
+                    android:inputType="textCapWords"
+                    android:minHeight="45dp"/>
+                <EditText
+                    android:id="@+id/pincodeEdt"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Pincode"
+                    android:padding="5dp"
+                    android:textSize="14sp"
+                    android:maxLength="8"
+                    android:textColor="@color/darkgreen"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:imeOptions="actionNext"
+                    android:background="@drawable/cardbg"
+                    android:layout_margin="@dimen/sd6"
+                    android:inputType="number|numberDecimal"
+                    android:minHeight="45dp"/>
+            </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/stateLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/sd6"
+                    android:layout_marginTop="@dimen/sd6"
+                    android:layout_marginEnd="@dimen/sd6"
+                    android:layout_marginBottom="@dimen/sd6"
                     android:background="@drawable/cardbg"
                     android:orientation="vertical"
                     android:padding="@dimen/sd10">
@@ -283,10 +447,32 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
-                <LinearLayout
+                <EditText
+                    android:id="@+id/stateEdt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="State"
+                    android:visibility="gone"
+                    android:padding="5dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/darkgreen"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:imeOptions="actionNext"
+                    android:background="@drawable/cardbg"
                     android:layout_margin="@dimen/sd6"
+                    android:inputType="textCapWords"
+                    android:minHeight="45dp"/>
+
+
+                <LinearLayout
+                    android:id="@+id/instaLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/sd6"
+                    android:layout_marginTop="@dimen/sd6"
+                    android:layout_marginEnd="@dimen/sd6"
+                    android:layout_marginBottom="@dimen/sd6"
                     android:background="@drawable/cardbg"
                     android:orientation="vertical"
                     android:padding="@dimen/sd10">
@@ -308,10 +494,32 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
-                <LinearLayout
+                <EditText
+                    android:id="@+id/instaIdEdt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:hint="insta/fb id"
+                    android:padding="5dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/darkgreen"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:imeOptions="actionNext"
+                    android:background="@drawable/cardbg"
                     android:layout_margin="@dimen/sd6"
+                    android:inputType="text"
+                    android:minHeight="45dp"/>
+
+
+                <LinearLayout
+                    android:id="@+id/tagsLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/sd6"
+                    android:layout_marginTop="@dimen/sd6"
+                    android:layout_marginEnd="@dimen/sd6"
+                    android:layout_marginBottom="@dimen/sd6"
                     android:background="@drawable/cardbg"
                     android:orientation="vertical"
                     android:padding="@dimen/sd10">
@@ -332,6 +540,24 @@
                         android:textSize="@dimen/sd14"
                         android:textStyle="bold" />
                 </LinearLayout>
+
+
+                <EditText
+                    android:id="@+id/tagsEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_margin="@dimen/sd6"
+                    android:background="@drawable/cardbg"
+                    android:hint="tags/notes"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:minHeight="45dp"
+                    android:padding="5dp"
+                    android:textColor="@color/darkgreen"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -436,22 +662,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
 
-        <include
-            android:id="@+id/cust_customercareLayout"
-            layout="@layout/customercarelayout"
-            android:visibility="gone" />
-
-        <include
-            android:id="@+id/cust_privacypolicylayout"
-            layout="@layout/privacypolicylayout"
-            android:visibility="gone" />
-    </LinearLayout>
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"

@@ -77,9 +77,19 @@
     android:layout_height="80dp"
     android:src="@drawable/ic_skincare2"
     />
+        <ImageView
+            android:id="@+id/sale_edtProfile"
+            android:layout_width="@dimen/sd24"
+            android:layout_height="@dimen/sd24"
+            android:src="@drawable/ic_baseline_edit"
+            android:layout_marginStart="5dp"
+            android:layout_gravity="bottom"
+            app:tint="@color/darkgreen" />
+
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/sale_emailLL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -104,8 +114,26 @@
             android:textStyle="bold"
             />
     </LinearLayout>
-
+    
+    <EditText
+        android:id="@+id/sale_emailEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:hint="Email-id"
+        android:padding="5dp"
+        android:textSize="14sp"
+        android:textColor="@color/darkgreen"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:imeOptions="actionNext"
+        android:background="@drawable/cardbg"
+        android:layout_margin="@dimen/sd6"
+        android:inputType="textEmailAddress"
+        android:minHeight="45dp"/>
+    
     <LinearLayout
+        android:id="@+id/sale_phoneNoLL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -131,7 +159,26 @@
             />
     </LinearLayout>
 
+    <EditText
+        android:id="@+id/sale_phoneNoEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:hint="Phone No"
+        android:padding="5dp"
+        android:textSize="14sp"
+        android:maxLength="13"
+        android:textColor="@color/darkgreen"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:imeOptions="actionNext"
+        android:background="@drawable/cardbg"
+        android:layout_margin="@dimen/sd6"
+        android:inputType="phone|numberDecimal"
+        android:minHeight="45dp"/>
+
     <LinearLayout
+        android:id="@+id/sale_addressLL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -156,8 +203,29 @@
             android:textStyle="bold"
             />
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/sale_addressEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sd6"
+        android:layout_marginTop="@dimen/sd6"
+        android:layout_marginEnd="@dimen/sd6"
+        android:layout_marginBottom="@dimen/sd6"
+        android:background="@drawable/cardbg"
+        android:hint="Address"
+        android:visibility="gone"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:maxLines="2"
+        android:minHeight="45dp"
+        android:padding="5dp"
+        android:textColor="@color/darkgreen"
+        android:textSize="14sp"
+        android:textStyle="bold" />
     
     <LinearLayout
+        android:id="@+id/sale_cityTVLL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -215,7 +283,51 @@
                 />
         </LinearLayout>
     </LinearLayout>
+    
     <LinearLayout
+        android:id="@+id/sale_cityEdtLL"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/sale_cityEdt"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="City"
+            android:padding="5dp"
+            android:textSize="14sp"
+            android:textColor="@color/darkgreen"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:imeOptions="actionNext"
+            android:background="@drawable/cardbg"
+            android:layout_margin="@dimen/sd6"
+            android:inputType="textCapWords"
+            android:minHeight="45dp"/>
+        <EditText
+            android:id="@+id/sale_pincodeEdt"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="State"
+            android:padding="5dp"
+            android:textSize="14sp"
+            android:textColor="@color/darkgreen"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:maxLength="6"
+            android:imeOptions="actionNext"
+            android:background="@drawable/cardbg"
+            android:layout_margin="@dimen/sd6"
+            android:inputType="numberDecimal"
+            android:minHeight="45dp"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/sale_stateLL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -240,7 +352,26 @@
             android:textStyle="bold"
             />
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/sale_stateEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="State"
+        android:visibility="gone"
+        android:padding="5dp"
+        android:textSize="14sp"
+        android:textColor="@color/darkgreen"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:imeOptions="actionNext"
+        android:background="@drawable/cardbg"
+        android:layout_margin="@dimen/sd6"
+        android:inputType="textCapWords"
+        android:minHeight="45dp"/>
+    
     <LinearLayout
+        android:id="@+id/sale_instaIdLl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -265,7 +396,26 @@
             android:textStyle="bold"
             />
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/sale_instaIdEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:hint="insta/fb id"
+        android:padding="5dp"
+        android:textSize="14sp"
+        android:textColor="@color/darkgreen"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:imeOptions="actionNext"
+        android:background="@drawable/cardbg"
+        android:layout_margin="@dimen/sd6"
+        android:inputType="text"
+        android:minHeight="45dp"/>
+    
     <LinearLayout
+        android:id="@+id/sale_adharNoLL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -290,7 +440,30 @@
             android:textStyle="bold"
             />
     </LinearLayout>
+    
+    <EditText
+        android:id="@+id/sale_adharNoEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sd6"
+        android:layout_marginTop="@dimen/sd6"
+        android:layout_marginEnd="@dimen/sd6"
+        android:layout_marginBottom="@dimen/sd6"
+        android:background="@drawable/cardbg"
+        android:hint="Adhar no"
+        android:visibility="gone"
+        android:imeOptions="actionNext"
+        android:inputType="numberDecimal"
+        android:maxLines="1"
+        android:maxLength="12"
+        android:minHeight="45dp"
+        android:padding="5dp"
+        android:textColor="@color/darkgreen"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+    
     <LinearLayout
+        android:id="@+id/sale_panLL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -316,6 +489,26 @@
             />
     </LinearLayout>
 
+    <EditText
+        android:id="@+id/sale_panEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sd6"
+        android:layout_marginTop="@dimen/sd6"
+        android:layout_marginEnd="@dimen/sd6"
+        android:layout_marginBottom="@dimen/sd6"
+        android:background="@drawable/cardbg"
+        android:hint="Pan No"
+        android:visibility="gone"
+        android:imeOptions="actionNext"
+        android:inputType="textCapCharacters"
+        android:maxLines="1"
+        android:minHeight="45dp"
+        android:padding="5dp"
+        android:textColor="@color/darkgreen"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -329,7 +522,7 @@
             android:layout_margin="@dimen/sd4"
             android:layout_weight="1"
             android:gravity="center"
-            android:id="@+id/profile_pic"
+            android:id="@+id/sale_adharcardPic"
             android:background="@drawable/cardbg"
             android:orientation="horizontal"
             android:padding="@dimen/sd8">
@@ -355,7 +548,7 @@
             android:layout_margin="@dimen/sd4"
             android:layout_weight="1"
             android:gravity="center"
-            android:id="@+id/parlorpic"
+            android:id="@+id/sale_panCardPic"
             android:background="@drawable/cardbg"
             android:orientation="horizontal"
             android:padding="@dimen/sd8">
@@ -377,6 +570,7 @@
         </LinearLayout>
 
     </LinearLayout>
+
 <Button
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

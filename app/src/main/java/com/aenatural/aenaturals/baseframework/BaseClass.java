@@ -392,7 +392,8 @@ public abstract class BaseClass extends AppCompatActivity {
         inputMethodManager.hideSoftInputFromWindow(v.getApplicationWindowToken(),0);
     }
 
-*/    @Override
+*/
+    @Override
     protected void onPause() {
         super.onPause();
     }

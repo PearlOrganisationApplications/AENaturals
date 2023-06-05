@@ -11,6 +11,9 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
@@ -36,6 +39,30 @@ class SalesmanProfileActivity : BaseClass() {
     lateinit var customercareLayout:ScrollView
     lateinit var privacypolicylayout:ScrollView
     lateinit var alertDialog:AlertDialog.Builder
+
+    lateinit var sale_edtProfile: ImageView
+
+    lateinit var sale_emailLL: LinearLayout
+    lateinit var sale_phoneNoLL: LinearLayout
+    lateinit var sale_addressLL: LinearLayout
+    lateinit var sale_cityTVLL: LinearLayout
+    lateinit var sale_cityEdtLL: LinearLayout
+    lateinit var sale_stateLL: LinearLayout
+    lateinit var sale_instaIdLl: LinearLayout
+    lateinit var sale_adharNoLL: LinearLayout
+    lateinit var sale_panLL: LinearLayout
+    lateinit var sale_adharcardPic: LinearLayout
+    lateinit var sale_panCardPic: LinearLayout
+
+    lateinit var sale_emailEdt: EditText
+    lateinit var sale_phoneNoEdt: EditText
+    lateinit var sale_addressEdt: EditText
+    lateinit var sale_cityEdt: EditText
+    lateinit var sale_pincodeEdt: EditText
+    lateinit var sale_stateEdt: EditText
+    lateinit var sale_instaIdEdt: EditText
+    lateinit var sale_adharNoEdt: EditText
+    lateinit var sale_panEdt: EditText
     var pref: Session? = null
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,9 +88,34 @@ class SalesmanProfileActivity : BaseClass() {
         privacypolicylayout = findViewById(R.id.privacypolicylayout)
         customercareLayout = findViewById(R.id.customercareLayout)
 
+
         callus = findViewById(R.id.callus)
         mailus = findViewById(R.id.mailus)
         whatsapp = findViewById(R.id.whatsapp)
+
+        sale_edtProfile = findViewById(R.id.sale_edtProfile)
+
+        sale_emailLL = findViewById(R.id.sale_emailLL)
+        sale_phoneNoLL = findViewById(R.id.sale_phoneNoLL)
+        sale_addressLL = findViewById(R.id.sale_addressLL)
+        sale_cityTVLL = findViewById(R.id.sale_cityTVLL)
+        sale_cityEdtLL = findViewById(R.id.sale_cityEdtLL)
+        sale_stateLL = findViewById(R.id.sale_stateLL)
+        sale_instaIdLl = findViewById(R.id.sale_instaIdLl)
+        sale_adharNoLL = findViewById(R.id.sale_adharNoLL)
+        sale_panLL = findViewById(R.id.sale_panLL)
+        sale_adharcardPic = findViewById(R.id.sale_adharcardPic)
+        sale_panCardPic = findViewById(R.id.sale_panCardPic)
+
+        sale_emailEdt = findViewById(R.id.sale_emailEdt)
+        sale_phoneNoEdt = findViewById(R.id.sale_phoneNoEdt)
+        sale_addressEdt = findViewById(R.id.sale_addressEdt)
+        sale_cityEdt = findViewById(R.id.sale_cityEdt)
+        sale_pincodeEdt = findViewById(R.id.sale_pincodeEdt)
+        sale_stateEdt = findViewById(R.id.sale_stateEdt)
+        sale_instaIdEdt = findViewById(R.id.sale_instaIdEdt)
+        sale_adharNoEdt = findViewById(R.id.sale_adharNoEdt)
+        sale_panEdt = findViewById(R.id.sale_panEdt)
 
         alertDialog = AlertDialog.Builder(this)
         alertDialog.setTitle("Alert")
@@ -140,6 +192,37 @@ class SalesmanProfileActivity : BaseClass() {
 
                 Toast.makeText(this, "WhatsApp is not installed on your device", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        sale_edtProfile.setOnClickListener {
+            sale_emailLL.visibility = View.GONE
+            sale_phoneNoLL.visibility = View.GONE
+            sale_addressLL.visibility = View.GONE
+            sale_cityTVLL.visibility = View.GONE
+            sale_stateLL.visibility = View.GONE
+            sale_instaIdLl.visibility = View.GONE
+            sale_instaIdLl.visibility = View.GONE
+            sale_adharNoLL.visibility = View.GONE
+            sale_panLL.visibility = View.GONE
+            sale_edtProfile.visibility = View.GONE
+
+            sale_emailEdt.visibility = View.VISIBLE
+            sale_phoneNoEdt.visibility = View.VISIBLE
+            sale_addressEdt.visibility = View.VISIBLE
+            sale_cityEdtLL.visibility = View.VISIBLE
+            sale_stateEdt.visibility = View.VISIBLE
+            sale_instaIdEdt.visibility = View.VISIBLE
+            sale_adharNoEdt.visibility = View.VISIBLE
+            sale_panEdt.visibility = View.VISIBLE
+
+            sale_adharcardPic.setOnClickListener {
+
+            }
+
+            sale_panCardPic.setOnClickListener {
+
+            }
+
         }
 
     }
