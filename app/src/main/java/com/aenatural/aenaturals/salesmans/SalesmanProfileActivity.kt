@@ -11,6 +11,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -63,6 +64,8 @@ class SalesmanProfileActivity : BaseClass() {
     lateinit var sale_instaIdEdt: EditText
     lateinit var sale_adharNoEdt: EditText
     lateinit var sale_panEdt: EditText
+
+    lateinit var sale_button: Button
     var pref: Session? = null
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -116,6 +119,8 @@ class SalesmanProfileActivity : BaseClass() {
         sale_instaIdEdt = findViewById(R.id.sale_instaIdEdt)
         sale_adharNoEdt = findViewById(R.id.sale_adharNoEdt)
         sale_panEdt = findViewById(R.id.sale_panEdt)
+
+        sale_button = findViewById(R.id.sale_button)
 
         alertDialog = AlertDialog.Builder(this)
         alertDialog.setTitle("Alert")
@@ -214,6 +219,10 @@ class SalesmanProfileActivity : BaseClass() {
             sale_instaIdEdt.visibility = View.VISIBLE
             sale_adharNoEdt.visibility = View.VISIBLE
             sale_panEdt.visibility = View.VISIBLE
+            sale_button.visibility = View.VISIBLE
+
+            sale_adharcardPic.isEnabled = true
+            sale_panCardPic.isEnabled  = true
 
             sale_adharcardPic.setOnClickListener {
 
@@ -222,6 +231,33 @@ class SalesmanProfileActivity : BaseClass() {
             sale_panCardPic.setOnClickListener {
 
             }
+
+        }
+        sale_button.setOnClickListener {
+
+            sale_emailLL.visibility = View.VISIBLE
+            sale_phoneNoLL.visibility = View.VISIBLE
+            sale_addressLL.visibility = View.VISIBLE
+            sale_cityTVLL.visibility = View.VISIBLE
+            sale_stateLL.visibility = View.VISIBLE
+            sale_instaIdLl.visibility = View.VISIBLE
+            sale_instaIdLl.visibility = View.VISIBLE
+            sale_adharNoLL.visibility = View.VISIBLE
+            sale_panLL.visibility = View.VISIBLE
+            sale_edtProfile.visibility = View.VISIBLE
+
+            sale_emailEdt.visibility = View.GONE
+            sale_phoneNoEdt.visibility = View.GONE
+            sale_addressEdt.visibility = View.GONE
+            sale_cityEdtLL.visibility = View.GONE
+            sale_stateEdt.visibility = View.GONE
+            sale_instaIdEdt.visibility = View.GONE
+            sale_adharNoEdt.visibility = View.GONE
+            sale_panEdt.visibility = View.GONE
+            sale_button.visibility = View.GONE
+
+            sale_adharcardPic.isEnabled = false
+            sale_panCardPic.isEnabled  = false
 
         }
 

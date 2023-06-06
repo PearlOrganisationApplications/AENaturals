@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -53,6 +54,8 @@ class CustomerProfileActivity : BaseClass() {
     lateinit var instaIdEdt: EditText
     lateinit var tagsEdt: EditText
 
+    lateinit var button: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pref=Session(this);
@@ -98,6 +101,8 @@ class CustomerProfileActivity : BaseClass() {
         stateEdt = findViewById(R.id.stateEdt)
         instaIdEdt = findViewById(R.id.instaIdEdt)
         tagsEdt = findViewById(R.id.tagsEdt)
+
+        button = findViewById(R.id.button)
 
 
         alertDialog = AlertDialog.Builder(this)
@@ -155,6 +160,10 @@ alertDialog.show()
             stateEdt.visibility = View.VISIBLE
             instaIdEdt.visibility = View.VISIBLE
             tagsEdt.visibility = View.VISIBLE
+            button.visibility = View.VISIBLE
+
+            profile_pic.isEnabled = true
+            parlorpic.isEnabled = true
 
             profile_pic.setOnClickListener {
                 Toast.makeText(this,"hello ",Toast.LENGTH_SHORT).show()
@@ -163,6 +172,32 @@ alertDialog.show()
                 Toast.makeText(this,"hi ",Toast.LENGTH_SHORT).show()
             }
 
+        }
+
+        button.setOnClickListener {
+
+            nameLL.visibility = View.VISIBLE
+            emailLL.visibility = View.VISIBLE
+            phoneNoLL.visibility = View.VISIBLE
+            addressLL.visibility = View.VISIBLE
+            cityTVLL.visibility = View.VISIBLE
+            stateLL.visibility = View.VISIBLE
+            instaLL.visibility = View.VISIBLE
+            tagsLL.visibility = View.VISIBLE
+            edtProfile.visibility = View.VISIBLE
+
+            nameEdt.visibility = View.GONE
+            emailEdt.visibility = View.GONE
+            phoneNoEdt.visibility = View.GONE
+            addressEdt.visibility = View.GONE
+            cityEdtLL.visibility = View.GONE
+            stateEdt.visibility = View.GONE
+            instaIdEdt.visibility = View.GONE
+            tagsEdt.visibility = View.GONE
+            button.visibility = View.GONE
+
+            profile_pic.isEnabled = false
+            parlorpic.isEnabled = false
         }
 
 

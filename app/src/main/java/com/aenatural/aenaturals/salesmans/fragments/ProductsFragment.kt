@@ -21,6 +21,7 @@ import com.aenatural.aenaturals.salesmans.Adapters.PendingOrderVH
 import com.aenatural.aenaturals.salesmans.Adapters.PendingOrdersAdapter
 import com.aenatural.aenaturals.salesmans.Adapters.PendingPaymentAdapter
 import com.aenatural.aenaturals.salesmans.Adapters.ReturnOrderAdapter
+import java.sql.Date
 
 class ProductsFragment : Fragment() {
     lateinit var salesmanMoreRecyclerView:RecyclerView
@@ -32,6 +33,7 @@ class ProductsFragment : Fragment() {
     lateinit var pendingOrderCard:CardView
     lateinit var returnOrderCard:CardView
     lateinit var pendingPaymentCard:CardView
+    lateinit var salesman_pendingItem:LinearLayout
 
     lateinit var return_order_layout:ConstraintLayout
     lateinit var pending_payment_layout:ConstraintLayout
@@ -104,6 +106,7 @@ class ProductsFragment : Fragment() {
         salesmanMoreRecyclerView = view.findViewById(R.id.salesmanMoreRecyclerView)
         pendingPaymentRecycler = view.findViewById(R.id.pendingPaymentRecycler)
         returnOrdersRecycler = view.findViewById(R.id.returnOrdersRecycler)
+        salesman_pendingItem = view.findViewById(R.id.salesman_pendingItem)
 
         pendingPaymentCard = view.findViewById(R.id.pendingPaymentCard)
         returnOrderCard = view.findViewById(R.id.returnOrderCard)
@@ -124,4 +127,11 @@ class ProductsFragment : Fragment() {
             }
         })
     }
+  /*  fun List<Item>.filterByDate(date: Date): List<Item> {
+        return this.filter { item ->
+            // Replace `item.date` with the actual date property of your item
+            item.date == date
+        }
+    }*/
+
 }

@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -68,6 +69,8 @@ public class DistributorProfileActivity extends BaseClass {
     EditText dist_upiEdt;
     EditText dist_adharNoEdt;
     EditText dist_panEdt;
+
+    Button dist_button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,6 +134,8 @@ public class DistributorProfileActivity extends BaseClass {
         dist_upiEdt = findViewById(R.id.dist_upiEdt);
         dist_adharNoEdt = findViewById(R.id.dist_adharNoEdt);
         dist_panEdt = findViewById(R.id.dist_panEdt);
+
+        dist_button = findViewById(R.id.dist_button);
 
         alertDialog = new AlertDialog.Builder(this);
         alertDialog.setTitle("Alert");
@@ -268,6 +273,10 @@ public class DistributorProfileActivity extends BaseClass {
                 dist_adharNoEdt.setVisibility(View.VISIBLE);
                 dist_panEdt.setVisibility(View.VISIBLE);
 
+                dist_button.setVisibility(View.VISIBLE);
+
+                dis_adharPic.setEnabled(true);
+                dis_panPic.setEnabled(true);
                 dis_adharPic.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -281,6 +290,46 @@ public class DistributorProfileActivity extends BaseClass {
                         Toast.makeText(DistributorProfileActivity.this, "pan card pic", Toast.LENGTH_SHORT).show();
                     }
                 });
+            }
+        });
+
+        dist_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dis_nameLL.setVisibility(View.VISIBLE);
+                dis_emailLL.setVisibility(View.VISIBLE);
+                dist_phoneTVLL.setVisibility(View.VISIBLE);
+                dist_addressLL.setVisibility(View.VISIBLE);
+                dist_cityTVLL.setVisibility(View.VISIBLE);
+                dist_gstNoLL.setVisibility(View.VISIBLE);
+                dist_bankNameLL.setVisibility(View.VISIBLE);
+                dist_accountNoLL.setVisibility(View.VISIBLE);
+                dist_ifscLL.setVisibility(View.VISIBLE);
+                dist_upiLL.setVisibility(View.VISIBLE);
+                dist_adharNoLL.setVisibility(View.VISIBLE);
+                dist_panLL.setVisibility(View.VISIBLE);
+
+                dis_nameEdt.setVisibility(View.GONE);
+                dis_emailEdt.setVisibility(View.GONE);
+                dist_phoneEdt.setVisibility(View.GONE);
+                dis_pincodeEdt.setVisibility(View.GONE);
+                dist_addressEdt.setVisibility(View.GONE);
+                dist_cityEdt.setVisibility(View.GONE);
+                dist_stateEdt.setVisibility(View.GONE);
+                dist_phoneEdtLL.setVisibility(View.GONE);
+                dist_cityEdtLL.setVisibility(View.GONE);
+                dist_gstNoEdt.setVisibility(View.GONE);
+                dist_bankNameEdt.setVisibility(View.GONE);
+                dist_accountNoEdt.setVisibility(View.GONE);
+                dist_ifscEdt.setVisibility(View.GONE);
+                dist_upiEdt.setVisibility(View.GONE);
+                dist_adharNoEdt.setVisibility(View.GONE);
+                dist_panEdt.setVisibility(View.GONE);
+
+                dist_button.setVisibility(View.GONE);
+
+                dis_adharPic.setEnabled(false);
+                dis_panPic.setEnabled(false);
             }
         });
     }

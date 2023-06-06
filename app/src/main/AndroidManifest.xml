@@ -110,7 +110,9 @@
         </activity>
         <activity
             android:name="com.aenatural.aenaturals.common.Login"
-            android:exported="false">
+            android:exported="false"
+            android:windowSoftInputMode="stateVisible|adjustResize">
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

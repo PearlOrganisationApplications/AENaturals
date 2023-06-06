@@ -631,6 +631,7 @@
         android:layout_margin="@dimen/sd10"
         android:backgroundTint="@color/midgreen"
         android:padding="@dimen/sd4"
+        android:visibility="gone"
         android:text="Update Profile"
         android:textColor="@color/darkgreen"
         app:layout_constraintBottom_toTopOf="@+id/cardView"

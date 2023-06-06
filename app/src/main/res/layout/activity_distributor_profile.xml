@@ -96,7 +96,7 @@
         android:layout_height="0dp"
         android:fillViewport="true"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/dist_button"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
 
         <RelativeLayout
@@ -319,6 +319,21 @@
                         android:textColor="@color/darkgreen"
                         android:textSize="@dimen/sd14"
                         android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+
+                        <include
+                            android:id="@+id/dist_customercareLayout"
+                            layout="@layout/customercarelayout"
+                            android:visibility="gone" />
+
+                        <include
+                            android:id="@+id/dist_privacypolicylayout"
+                            layout="@layout/privacypolicylayout"
+                            android:visibility="gone" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <EditText
@@ -831,35 +846,19 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/dist_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/sd10"
         android:backgroundTint="@color/midgreen"
         android:padding="@dimen/sd4"
+        android:visibility="gone"
         android:text="Update Profile"
         android:textColor="@color/darkgreen"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
-
-        <include
-            android:id="@+id/dist_customercareLayout"
-            layout="@layout/customercarelayout"
-            android:visibility="gone" />
-
-        <include
-            android:id="@+id/dist_privacypolicylayout"
-            layout="@layout/privacypolicylayout"
-            android:visibility="gone" />
-    </LinearLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
