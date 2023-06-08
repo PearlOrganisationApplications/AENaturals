@@ -22,6 +22,13 @@ class CustomerHomeFrag : Fragment() {
     lateinit var customerTrendingRecyclerView: RecyclerView
     lateinit var customerallItemsRecycler: RecyclerView
     lateinit var itemList: java.util.ArrayList<RetailerDataModel>
+    lateinit var skincare: LinearLayout
+    lateinit var haircare: LinearLayout
+    lateinit var herbalPowder: LinearLayout
+    lateinit var nutritional: LinearLayout
+    lateinit var personalCare: LinearLayout
+    lateinit var aromaPoweders: LinearLayout
+    lateinit var essentialOils: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +57,13 @@ class CustomerHomeFrag : Fragment() {
     public fun initializeViews(view: View) {
         customerTrendingRecyclerView = view.findViewById(R.id.customerTrendingRecyclerView)
         customerallItemsRecycler = view.findViewById(R.id.customerallItemsRecycler)
+        skincare = view.findViewById(R.id.skincare)
+        haircare = view.findViewById(R.id.haircare)
+        herbalPowder = view.findViewById(R.id.herbalPowder)
+        nutritional = view.findViewById(R.id.nutritional)
+        personalCare = view.findViewById(R.id.personalCare)
+        aromaPoweders = view.findViewById(R.id.aromaPoweders)
+        essentialOils = view.findViewById(R.id.essentialOils)
     }
 
     public fun initializeClickListners() {

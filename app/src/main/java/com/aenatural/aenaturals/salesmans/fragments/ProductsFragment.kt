@@ -38,6 +38,7 @@ class ProductsFragment : Fragment() {
     lateinit var return_order_layout:ConstraintLayout
     lateinit var pending_payment_layout:ConstraintLayout
     lateinit var pendingorderslayout:ConstraintLayout
+    var visible_View = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,24 +60,26 @@ class ProductsFragment : Fragment() {
         initDataModels(view)
         initrecyclerViews(view)
         initclickListener(view)
+        val bundle = arguments
+        if (bundle != null) {
+            val visibleView = bundle.getString("section").toString()
+            when (visibleView) {
+                "1" -> view1()
+                "2" -> view2()
+                "3" -> view3()
+            }
+        }
     }
 
     private fun initclickListener(view: View) {
         pendingPaymentCard.setOnClickListener {
-            pendingorderslayout.visibility =View.GONE
-            pending_payment_layout.visibility =View.VISIBLE
-            return_order_layout.visibility =View.GONE
-
+           view2()
         }
         returnOrderCard.setOnClickListener {
-            pendingorderslayout.visibility =View.GONE
-            pending_payment_layout.visibility =View.GONE
-            return_order_layout.visibility =View.VISIBLE
+           view3()
         }
         pendingOrderCard.setOnClickListener {
-            pendingorderslayout.visibility =View.VISIBLE
-            pending_payment_layout.visibility =View.GONE
-            return_order_layout.visibility =View.GONE
+           view1()
         }
     }
 
@@ -118,7 +121,7 @@ class ProductsFragment : Fragment() {
 
     }
     private fun backPress() {
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.salesDashboardFrameLayout,
@@ -127,11 +130,26 @@ class ProductsFragment : Fragment() {
             }
         })
     }
-  /*  fun List<Item>.filterByDate(date: Date): List<Item> {
-        return this.filter { item ->
-            // Replace `item.date` with the actual date property of your item
-            item.date == date
-        }
-    }*/
 
+    /*  fun List<Item>.filterByDate(date: Date): List<Item> {
+          return this.filter { item ->
+              // Replace `item.date` with the actual date property of your item
+              item.date == date
+          }
+      }*/
+    fun view2() {
+        pendingorderslayout.visibility =View.GONE
+        pending_payment_layout.visibility =View.VISIBLE
+        return_order_layout.visibility =View.GONE
+    }
+    fun view3() {
+        pendingorderslayout.visibility =View.GONE
+        pending_payment_layout.visibility =View.GONE
+        return_order_layout.visibility =View.VISIBLE
+    }
+    fun view1() {
+        pendingorderslayout.visibility =View.VISIBLE
+        pending_payment_layout.visibility =View.GONE
+        return_order_layout.visibility =View.GONE
+    }
 }

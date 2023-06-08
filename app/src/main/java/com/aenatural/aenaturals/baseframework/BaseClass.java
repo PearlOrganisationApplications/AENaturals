@@ -82,6 +82,7 @@ public abstract class BaseClass extends AppCompatActivity {
             }
         });
     }
+
     /*  public void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt,String classname){
             baseApcContext = cnt;
             activityIn = ain;
@@ -393,6 +394,7 @@ public abstract class BaseClass extends AppCompatActivity {
     }
 
 */
+
     @Override
     protected void onPause() {
         super.onPause();

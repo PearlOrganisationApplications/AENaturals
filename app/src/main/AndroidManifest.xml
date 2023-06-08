@@ -111,7 +111,7 @@
         <activity
             android:name="com.aenatural.aenaturals.common.Login"
             android:exported="false"
-            android:windowSoftInputMode="stateVisible|adjustResize">
+            android:windowSoftInputMode="adjustResize">
 
             <meta-data
                 android:name="android.app.lib_name"
@@ -124,3 +124,4 @@
     </application>
 
 </manifest>
+    <!--|adjustPanstateVisible|-->

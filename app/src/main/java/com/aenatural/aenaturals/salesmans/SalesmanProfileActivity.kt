@@ -163,7 +163,7 @@ class SalesmanProfileActivity : BaseClass() {
                 customercareLayout.visibility=View.VISIBLE
             else
                 customercareLayout.visibility=View.GONE
-            privacypolicylayout.visibility=View.GONE
+                privacypolicylayout.visibility=View.GONE
 
         }
 

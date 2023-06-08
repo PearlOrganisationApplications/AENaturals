@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -77,7 +81,14 @@
 
             >
 
+           <!-- <ScrollView
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">-->
+
             <LinearLayout
+                android:id="@+id/loginll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -183,33 +194,33 @@
                     android:textColor="@color/darkgreen"
                     android:textSize="@dimen/sd16"
                     android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/sd6"
-                android:gravity="center"
-                android:orientation="horizontal">
-
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_weight="1"
-                    android:background="@color/darkgreen" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/sd6"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="@dimen/sd30"
-                    android:layout_height="@dimen/sd30"
-                    android:layout_margin="@dimen/sd6"
-                    android:src="@drawable/ic_logo_aen" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_weight="1"
+                        android:background="@color/darkgreen" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_weight="1"
-                    android:background="@color/darkgreen" />
+                    <ImageView
+                        android:layout_width="@dimen/sd30"
+                        android:layout_height="@dimen/sd30"
+                        android:layout_margin="@dimen/sd6"
+                        android:src="@drawable/ic_logo_aen" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_weight="1"
+                        android:background="@color/darkgreen" />
+                </LinearLayout>
             </LinearLayout>
+           <!-- </ScrollView>-->
 
             <TextView
                 android:id="@+id/textView"
@@ -248,3 +259,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
