@@ -202,14 +202,15 @@
                 android:gravity="center"
                 android:padding="@dimen/sd8"
                 >
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/sd2"
                     android:text="My Orders"
-                    android:textStyle="bold"
                     android:textColor="@color/darkgreen"
-                    />
+                    android:textStyle="bold" />
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

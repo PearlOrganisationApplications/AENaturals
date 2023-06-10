@@ -18,36 +18,32 @@
 
             <include
                 android:id="@+id/salesman_more_header"
-                layout="@layout/distributor_more_header"
-                />
+                layout="@layout/distributor_more_header" />
 
             <include
                 android:id="@+id/pendingorderslayout"
                 layout="@layout/pendingorderslayout"
-                android:visibility="visible"/>
+                android:visibility="visible" />
 
-            <include layout="@layout/pending_payment_layout"
+            <include
                 android:id="@+id/pending_payment_layout"
-                android:visibility="gone"
-                />
+                layout="@layout/pending_payment_layout"
+                android:visibility="gone" />
 
-            <include layout="@layout/return_order_layout"
-                android:visibility="gone"
-                android:id="@+id/return_order_layout"/>
+            <include
+                android:id="@+id/return_order_layout"
+                layout="@layout/return_order_layout"
+                android:visibility="gone" />
 
             <include
                 android:id="@+id/distributorProfit"
                 layout="@layout/distributor_profit_layout"
-                android:visibility="gone"/>
+                android:visibility="gone" />
+
             <include
-                android:id="@+id/distributorProfit"
-                layout="@layout/distributor_profit_layout"
-                android:visibility="gone"/>
-<include
-    android:id="@+id/distributor_allOrder_layout"
-    layout="@layout/distributor_order_history_layout"
-    android:visibility="gone"
-    />
+                android:id="@+id/distributor_allOrder_layout"
+                layout="@layout/distributor_order_history_layout"
+                android:visibility="gone" />
         </LinearLayout>
 
     </RelativeLayout>

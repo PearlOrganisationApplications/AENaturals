@@ -20,9 +20,45 @@
     android:textStyle="bold"
     android:text="All Orders"
     />
-        <include
-            layout="@layout/datefilter_layout"
-            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/sd6"
+            android:id="@+id/dateFilterLayout"
+            android:gravity="right"
+            android:background="@color/midgreen"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="@dimen/sd20"
+                android:layout_height="@dimen/sd20"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_calendar_month_24"
+                />
+
+            <TextView
+                android:id="@+id/startDateTextViewX"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Date"
+                android:padding="@dimen/sd4"
+                android:textColor="@color/darkgreen"
+                android:textStyle="bold"
+                />
+
+
+            <TextView
+                android:id="@+id/endDateTextViewX"
+                android:layout_width="wrap_content"
+                android:padding="@dimen/sd4"
+                android:layout_height="wrap_content"
+                android:text="End Date"
+                android:textColor="@color/darkgreen"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

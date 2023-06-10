@@ -7,6 +7,7 @@
     android:background="@color/lightgreen">
 
     <LinearLayout
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -14,6 +15,7 @@
 
         <LinearLayout
             android:id="@+id/skincare"
+            android:background="@drawable/custom_ripple"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -39,6 +41,7 @@
             android:id="@+id/haircare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:orientation="vertical"
             android:padding="@dimen/sd8">
@@ -60,6 +63,7 @@
         <LinearLayout
             android:id="@+id/herbalPowder"
             android:layout_width="wrap_content"
+            android:background="@drawable/custom_ripple"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
@@ -84,6 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:background="@drawable/custom_ripple"
             android:orientation="vertical"
             android:padding="@dimen/sd8">
 
@@ -106,6 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:background="@drawable/custom_ripple"
             android:orientation="vertical"
             android:padding="@dimen/sd8">
 
@@ -125,9 +131,12 @@
 
 
         <LinearLayout
-            android:id="@+id/aromaPoweders"
+            android:id="@+id/aromaPowders"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/custom_ripple"
+            android:clickable="true"
+            android:focusable="true"
             android:gravity="center"
             android:orientation="vertical"
             android:padding="@dimen/sd8">
@@ -146,10 +155,12 @@
                 android:textColor="@color/darkgreen" />
         </LinearLayout>
 
+
         <LinearLayout
             android:id="@+id/essentialOils"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/custom_ripple"
             android:gravity="center"
             android:orientation="vertical"
             android:padding="@dimen/sd8">

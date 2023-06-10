@@ -32,11 +32,9 @@
 
                 android:textStyle="bold" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="@dimen/sd8"
-                android:src="@drawable/ic_baseline_filter_list_24" />
+            <include
+                android:id="@+id/returnOrderDate"
+                layout="@layout/date_filter"/>
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

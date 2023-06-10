@@ -3,62 +3,72 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-android:orientation="vertical"
-    android:background="@color/imagesplash"
     android:layout_height="match_parent"
-    tools:context=".WelcomeUI.Activity.Splash">
+    android:background="@color/imagesplash"
+    android:orientation="vertical"
+    tools:context=".common.Splash">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="280dp"
         android:scaleType="fitXY"
         android:src="@drawable/leaves_bg2" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight="1"
-    android:gravity="center"
-    android:orientation="horizontal"
-    >
-    <ImageView
-        android:id="@+id/iv_logo"
-        android:layout_width="180dp"
-        android:layout_height="200dp"
-        android:src="@drawable/ae_bird"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    >
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ae "
-        android:fontFamily="@font/lemon"
-        android:textColor="@color/birdcolor"
-        android:textSize="@dimen/sd32"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
-        app:layout_constraintStart_toEndOf="@+id/iv_logo" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="naturals"
-        android:textColor="@color/birdcolor"
-        android:fontFamily="@font/lemon"
-        android:textSize="@dimen/sd30"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_logo"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
-</LinearLayout>
-</LinearLayout>
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="@dimen/sd4"
+            android:layout_weight="4.5"
+            android:scaleType="centerInside"
+            android:src="@drawable/ae_bird"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lemon"
+                android:text="ae "
+                android:textColor="@color/birdcolor"
+                android:textSize="@dimen/sd32"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/textView3"
+                app:layout_constraintStart_toEndOf="@+id/iv_logo" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lemon"
+                android:text="naturals"
+                android:textColor="@color/birdcolor"
+                android:textSize="@dimen/sd30"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_logo"
+                app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+        </LinearLayout>
+    </LinearLayout>
+
+
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="match_parent"

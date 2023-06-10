@@ -11,13 +11,15 @@
 <ImageView
     android:layout_width="@dimen/sd20"
     android:layout_height="@dimen/sd20"
+    android:layout_gravity="center"
     android:src="@drawable/ic_baseline_calendar_month_24"
     />
 
             <TextView
+                android:id="@+id/startDateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="18/05/2023 -"
+                android:text="Start Date"
                 android:padding="@dimen/sd4"
                 android:textColor="@color/darkgreen"
                 android:textStyle="bold"
@@ -25,10 +27,11 @@
 
 
         <TextView
+            android:id="@+id/endDateTextView"
             android:layout_width="wrap_content"
             android:padding="@dimen/sd4"
             android:layout_height="wrap_content"
-            android:text="- 28/05/2023"
+            android:text="End Date"
             android:textColor="@color/darkgreen"
             android:textStyle="bold"
             />

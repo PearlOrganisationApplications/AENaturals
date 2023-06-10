@@ -1,6 +1,5 @@
 package com.aenatural.aenaturals.customers.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,13 +8,14 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.customers.adapters.CustomerAllItemAdapter
-import com.aenatural.aenaturals.customers.CustomerProfileActivity
 import com.aenatural.aenaturals.customers.CustomerTrendingAdapter
+import com.aenatural.aenaturals.customers.adapters.SkincareAdapter
 import java.util.*
 
 class CustomerHomeFrag : Fragment() {
@@ -27,8 +27,15 @@ class CustomerHomeFrag : Fragment() {
     lateinit var herbalPowder: LinearLayout
     lateinit var nutritional: LinearLayout
     lateinit var personalCare: LinearLayout
-    lateinit var aromaPoweders: LinearLayout
+    private lateinit var aromaPowders: LinearLayout
     lateinit var essentialOils: LinearLayout
+    lateinit var customerSkincareRV: RecyclerView
+    lateinit var customerHaircareRV: RecyclerView
+    lateinit var customerHerbalPowderRV: RecyclerView
+    lateinit var customerNutritionalRV: RecyclerView
+    lateinit var customerPersonalCareRV: RecyclerView
+    lateinit var customerAromaPowdersRV: RecyclerView
+    lateinit var customerEssentialOilsRV: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,12 +69,41 @@ class CustomerHomeFrag : Fragment() {
         herbalPowder = view.findViewById(R.id.herbalPowder)
         nutritional = view.findViewById(R.id.nutritional)
         personalCare = view.findViewById(R.id.personalCare)
-        aromaPoweders = view.findViewById(R.id.aromaPoweders)
+        aromaPowders = view.findViewById(R.id.aromaPowders)
         essentialOils = view.findViewById(R.id.essentialOils)
+        customerSkincareRV = view.findViewById(R.id.customerSkincareRV)
+        customerHaircareRV = view.findViewById(R.id.customerHaircareRV)
+        customerHerbalPowderRV = view.findViewById(R.id.customerHerbalPowderRV)
+        customerNutritionalRV = view.findViewById(R.id.customerNutritionalRV)
+        customerPersonalCareRV = view.findViewById(R.id.customerPersonalCareRV)
+        customerAromaPowdersRV = view.findViewById(R.id.customerAromaPowdersRV)
+        customerEssentialOilsRV = view.findViewById(R.id.customerEssentialOilsRV)
     }
 
     public fun initializeClickListners() {
 
+        skincare.setOnClickListener {
+            customerallItemsRecycler.visibility = View.GONE
+            customerSkincareRV.visibility = View.VISIBLE
+        }
+        haircare.setOnClickListener {
+
+        }
+        herbalPowder.setOnClickListener {
+
+        }
+        nutritional.setOnClickListener {
+
+        }
+        personalCare.setOnClickListener {
+
+        }
+        aromaPowders.setOnClickListener {
+
+        }
+        essentialOils.setOnClickListener {
+
+        }
     }
 
     public fun initializeInputs() {
@@ -98,6 +134,9 @@ class CustomerHomeFrag : Fragment() {
 
         customerallItemsRecycler.adapter = CustomerAllItemAdapter(itemList)
         customerallItemsRecycler.layoutManager = LinearLayoutManager(requireContext())
+
+        customerSkincareRV.adapter = SkincareAdapter(itemList)
+        customerSkincareRV.layoutManager = LinearLayoutManager(requireContext())
     }
 
 

@@ -22,7 +22,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="@dimen/sd8"
@@ -30,11 +30,14 @@
                 android:textColor="@color/darkgreen"
                 android:textStyle="bold" />
 
-            <ImageView
+           <!-- <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:padding="@dimen/sd8"
-                android:src="@drawable/ic_baseline_filter_list_24" />
+                android:src="@drawable/ic_baseline_filter_list_24" />-->
+            <include
+                android:id="@+id/pendingOrderDate"
+                layout="@layout/date_filter"/>
         </LinearLayout>
 
         <TextView

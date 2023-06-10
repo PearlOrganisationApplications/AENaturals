@@ -26,13 +26,62 @@
 
 
     </LinearLayout>
-    <include
-        layout="@layout/productcategorydesign"
-        />
+
+    <include layout="@layout/productcategorydesign" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/sd6"
         android:id="@+id/customerallItemsRecycler"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/sd6"
+        android:id="@+id/customerSkincareRV"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_margin="@dimen/sd6"
+        android:id="@+id/customerHaircareRV"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_margin="@dimen/sd6"
+        android:id="@+id/customerHerbalPowderRV"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_margin="@dimen/sd6"
+        android:id="@+id/customerNutritionalRV"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_margin="@dimen/sd6"
+        android:id="@+id/customerPersonalCareRV"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_margin="@dimen/sd6"
+        android:id="@+id/customerAromaPowdersRV"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_margin="@dimen/sd6"
+        android:id="@+id/customerEssentialOilsRV"
         />
 </LinearLayout>
