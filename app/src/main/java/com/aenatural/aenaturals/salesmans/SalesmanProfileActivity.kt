@@ -89,6 +89,7 @@ class SalesmanProfileActivity : BaseClass() {
 
     var pref: Session? = null
 
+
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
