@@ -31,9 +31,35 @@
         android:padding="8dp"
         android:orientation="vertical"
         >
-        <include
-            layout="@layout/datefilter_layout"
-            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/sd6"
+            android:id="@+id/dateFilterLayoutDP"
+            android:gravity="right"
+            android:background="@color/midgreen"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="@dimen/sd20"
+                android:layout_height="@dimen/sd20"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_calendar_month_24"
+                />
+
+            <TextView
+                android:id="@+id/startDateTextViewDP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Date - End Date"
+                android:padding="@dimen/sd4"
+                android:textColor="@color/darkgreen"
+                android:textStyle="bold"
+                />
+
+
+        </LinearLayout>
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"

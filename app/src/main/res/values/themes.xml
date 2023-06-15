@@ -36,4 +36,9 @@
     <style name="MyButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="android:textColor">@color/darkgreen</item> <!-- set your desired text color -->
     </style>
+
+    <style name="animation">
+        <item name="android:windowEnterAnimation">@android:anim/linear_interpolator</item>
+        <item name="android:windowExitAnimation">@android:anim/anticipate_interpolator</item>
+    </style>
 </resources>

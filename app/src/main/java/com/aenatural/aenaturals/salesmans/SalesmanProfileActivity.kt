@@ -3,12 +3,18 @@ package com.aenatural.aenaturals.salesmans
 import android.Manifest
 import android.Manifest.permission.CALL_PHONE
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
+import android.provider.Settings
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
@@ -22,24 +28,30 @@ import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.baseframework.Session
 import com.aenatural.aenaturals.common.Login
+import com.yalantis.ucrop.UCrop
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import kotlin.properties.Delegates
 
 
 class SalesmanProfileActivity : BaseClass() {
 
-    lateinit var backTV:TextView
-    lateinit var salesmanLogout:TextView
-    lateinit var customercarebutton:CardView
-    lateinit var privacypolicyButton:CardView
-    lateinit var callus:CardView
-    lateinit var mailus:CardView
-    lateinit var whatsapp:CardView
-    lateinit var customercareLayout:ScrollView
-    lateinit var privacypolicylayout:ScrollView
-    lateinit var alertDialog:AlertDialog.Builder
+    lateinit var backTV: TextView
+    lateinit var salesmanLogout: TextView
+    lateinit var customercarebutton: CardView
+    lateinit var privacypolicyButton: CardView
+    lateinit var callus: CardView
+    lateinit var mailus: CardView
+    lateinit var whatsapp: CardView
+    lateinit var customercareLayout: ScrollView
+    lateinit var privacypolicylayout: ScrollView
+    lateinit var alertDialog: AlertDialog.Builder
 
     lateinit var sale_edtProfile: ImageView
 
@@ -64,13 +76,23 @@ class SalesmanProfileActivity : BaseClass() {
     lateinit var sale_instaIdEdt: EditText
     lateinit var sale_adharNoEdt: EditText
     lateinit var sale_panEdt: EditText
-
     lateinit var sale_button: Button
+    lateinit var sale_adharPic: ImageView
+    lateinit var sale_panImage: ImageView
+
+    private val cameraRequest = 188
+    private var IMAGE_TYPE by Delegates.notNull<Int>()
+    private val REQUEST_IMAGE_CAPTURE = 101
+    private val REQUEST_IMAGE_GALLERY = 102
+    private var cameraPermissionDenied = false
+    private var galleryPermissionDenied = false
+
     var pref: Session? = null
+
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        pref=Session(this);
+        pref = Session(this);
         setLayoutXml()
         initializeViews()
         initializeClickListners()
@@ -121,26 +143,28 @@ class SalesmanProfileActivity : BaseClass() {
         sale_panEdt = findViewById(R.id.sale_panEdt)
 
         sale_button = findViewById(R.id.sale_button)
+        sale_adharPic = findViewById(R.id.sale_adharPic)
+        sale_panImage = findViewById(R.id.sale_panImage)
 
         alertDialog = AlertDialog.Builder(this)
         alertDialog.setTitle("Alert")
         alertDialog.setMessage("Do you want to Logout?")
-        alertDialog.setPositiveButton("Yes"){dialogInterface,_ ->
-            run{
+        alertDialog.setPositiveButton("Yes") { dialogInterface, _ ->
+            run {
                 pref?.clearSession();
                 startActivity(Intent(this, Login::class.java))
                 dialogInterface.dismiss()
             }
         }
-        alertDialog.setNegativeButton("No"){dialogInterface,_ ->
-            run{
+        alertDialog.setNegativeButton("No") { dialogInterface, _ ->
+            run {
                 //startActivity(Intent(this, SalesmanDashboard::class.java))
                 dialogInterface.dismiss()
             }
         }
     }
 
-    @SuppressLint("QueryPermissionsNeeded")
+    @SuppressLint("QueryPermissionsNeeded", "SuspiciousIndentation")
     @RequiresApi(Build.VERSION_CODES.M)
     override fun initializeClickListners() {
         backTV.setOnClickListener {
@@ -149,37 +173,48 @@ class SalesmanProfileActivity : BaseClass() {
 
         salesmanLogout.setOnClickListener {
             alertDialog.show()
-    }
+        }
         privacypolicyButton.setOnClickListener {
-            if (privacypolicylayout.visibility==View.GONE)
-                privacypolicylayout.visibility=View.VISIBLE
-            else
-                privacypolicylayout.visibility=View.GONE
+            if (privacypolicylayout.visibility == View.GONE) {
+                privacypolicylayout.visibility = View.VISIBLE
+            } else {
+            }
+            privacypolicylayout.visibility = View.GONE
 
-            customercareLayout.visibility=View.GONE
+            customercareLayout.visibility = View.GONE
         }
         customercarebutton.setOnClickListener {
-            if (customercareLayout.visibility==View.GONE)
-                customercareLayout.visibility=View.VISIBLE
-            else
-                customercareLayout.visibility=View.GONE
-                privacypolicylayout.visibility=View.GONE
+            if (customercareLayout.visibility == View.GONE) {
+                customercareLayout.visibility = View.VISIBLE
+            } else {
+            }
+            customercareLayout.visibility = View.GONE
+            privacypolicylayout.visibility = View.GONE
 
         }
 
         callus.setOnClickListener {
             val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "+918046444999"))
-            if (ContextCompat.checkSelfPermission(getApplicationContext(), CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(
+                    getApplicationContext(),
+                    CALL_PHONE
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
                 startActivity(intent);
             } else {
                 ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CALL_PHONE), 1)
-                if (ContextCompat.checkSelfPermission(getApplicationContext(), CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
-                    startActivity(intent);
+                if (ContextCompat.checkSelfPermission(
+                        getApplicationContext(),
+                        CALL_PHONE
+                    ) == PackageManager.PERMISSION_GRANTED
+                ) {
+                }
+                startActivity(intent);
             }
         }
         mailus.setOnClickListener {
             val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
-                data = Uri.parse("mailto:"+"care@aenaturals.in")
+                data = Uri.parse("mailto:" + "care@aenaturals.in")
             }
             startActivity(emailIntent)
         }
@@ -191,11 +226,12 @@ class SalesmanProfileActivity : BaseClass() {
             intent.data = Uri.parse(url)
 
 
-            try{
+            try {
                 startActivity(intent)
-            } catch (_:Exception) {
+            } catch (_: Exception) {
 
-                Toast.makeText(this, "WhatsApp is not installed on your device", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "WhatsApp is not installed on your device", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
@@ -222,14 +258,23 @@ class SalesmanProfileActivity : BaseClass() {
             sale_button.visibility = View.VISIBLE
 
             sale_adharcardPic.isEnabled = true
-            sale_panCardPic.isEnabled  = true
+            sale_panCardPic.isEnabled = true
+            /*  if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.CAMERA)
+                  == PackageManager.PERMISSION_DENIED)
+                  ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), cameraRequest)*/
 
             sale_adharcardPic.setOnClickListener {
 
+                /*val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                startActivityForResult(cameraIntent, cameraRequest)*/
+                IMAGE_TYPE = 2
+                requestCameraPermission()
             }
 
             sale_panCardPic.setOnClickListener {
 
+                IMAGE_TYPE = 1
+                requestCameraPermission()
             }
 
         }
@@ -257,7 +302,7 @@ class SalesmanProfileActivity : BaseClass() {
             sale_button.visibility = View.GONE
 
             sale_adharcardPic.isEnabled = false
-            sale_panCardPic.isEnabled  = false
+            sale_panCardPic.isEnabled = false
 
         }
 
@@ -269,6 +314,203 @@ class SalesmanProfileActivity : BaseClass() {
 
     override fun initializeLabels() {
 
+    }
+
+    fun openCameraOrGallery(){
+
+        val options = arrayOf("Take Photo", "Choose from Gallery")
+
+        AlertDialog.Builder(this)
+            .setTitle("Select Option")
+            .setItems(options) { dialog, which ->
+                when (which) {
+                    0 -> openCamera()
+                    1 -> openGallery()
+                }
+            }
+            .show()
+    }
+
+    private fun openCamera() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
+    }
+
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, REQUEST_IMAGE_GALLERY)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                REQUEST_IMAGE_CAPTURE -> {
+                    val imageBitmap = data?.extras?.get("data") as Bitmap
+                    val imageUri = saveImageToFile(imageBitmap) // Save the image and get its Uri
+                    if (imageUri != null) {
+                        cropImage(imageUri)
+                    }
+
+                }
+                REQUEST_IMAGE_GALLERY -> {
+                    val imageUri = data?.data
+                    if (imageUri != null) {
+                        cropImage(imageUri)
+                    }
+                }
+                UCrop.REQUEST_CROP -> {
+                    val resultUri = UCrop.getOutput(data!!)
+                    // Process the cropped image (resultUri)
+                    if (resultUri != null) {
+                        if (IMAGE_TYPE == 1) {
+                            sale_panImage.setImageURI(resultUri)
+                        } else if (IMAGE_TYPE == 2) {
+                            sale_adharPic.setImageURI(resultUri)
+                        }
+                    }
+                }
+            }
+        } else if (resultCode == UCrop.RESULT_ERROR) {
+            val error = UCrop.getError(data!!)
+            // Handle the cropping error
+            printLogs("errorImage",error.toString(),"line 404 salesmanprofileActivity page")
+        }
+    }
+
+
+
+    private fun saveImageToFile(bitmap: Bitmap): Uri? {
+        val filesDir = filesDir
+        val imageFile = File(filesDir, "image.jpg")
+
+        try {
+            val outputStream = FileOutputStream(imageFile)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, outputStream)
+            outputStream.flush()
+            outputStream.close()
+
+            // Check if the file exists
+            if (!imageFile.exists()) {
+                return null
+            }
+
+            return FileProvider.getUriForFile(this, "com.aenatural.aenaturals.salesmans.fileprovider", imageFile)
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } catch (e: IllegalArgumentException) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
+
+    private fun cropImage(imageUri: Uri) {
+        val destinationUri = Uri.fromFile(File(cacheDir, "cropped_image.jpg"))
+
+        UCrop.of(imageUri, destinationUri)
+//            .withAspectRatio(1f, 1f)
+            .start(this)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun requestCameraPermission() {
+        val cameraPermission = Manifest.permission.CAMERA
+        val galleryPermission = Manifest.permission.READ_EXTERNAL_STORAGE
+
+        val permissionsToRequest = mutableListOf<String>()
+
+        if (ContextCompat.checkSelfPermission(
+                this,
+                cameraPermission
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            permissionsToRequest.add(cameraPermission)
+        }
+
+        if (ContextCompat.checkSelfPermission(
+                this,
+                galleryPermission
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            permissionsToRequest.add(galleryPermission)
+        }
+
+        if (permissionsToRequest.isNotEmpty()) {
+            val permissionsArray = permissionsToRequest.toTypedArray()
+            if (cameraPermissionDenied && !shouldShowRequestPermissionRationale(cameraPermission) &&
+                galleryPermissionDenied && !shouldShowRequestPermissionRationale(galleryPermission)
+            ) {
+                // User denied both camera and gallery permissions and checked "Never ask again"
+                // Show a dialog explaining why the permissions are necessary
+                // You can customize the dialog message based on your app's requirements
+                AlertDialog.Builder(this)
+                    .setTitle("Permissions Required")
+                    .setMessage("Please grant camera and gallery permissions to use this feature.")
+                    .setPositiveButton("Go to Settings") { _, _ ->
+                        // Open the app settings page
+                        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                        val uri = Uri.fromParts("package", packageName, null)
+                        intent.data = uri
+                        startActivity(intent)
+                    }
+                    .setNegativeButton("Cancel") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    .show()
+            } else {
+                // Show the permission request dialog
+                ActivityCompat.requestPermissions(this, permissionsArray, REQUEST_IMAGE_CAPTURE)
+            }
+        } else {
+            // Permissions already granted
+            // Proceed to open the camera or choose from gallery
+            openCameraOrGallery()
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_IMAGE_CAPTURE) {
+            var cameraPermissionGranted = false
+            var galleryPermissionGranted = false
+
+            for (i in permissions.indices) {
+                val permission = permissions[i]
+                val grantResult = grantResults[i]
+
+                if (permission == Manifest.permission.CAMERA) {
+                    if (grantResult == PackageManager.PERMISSION_GRANTED) {
+                        cameraPermissionGranted = true
+                    } else {
+                        cameraPermissionDenied = true
+                    }
+                }
+
+                if (permission == Manifest.permission.READ_EXTERNAL_STORAGE) {
+                    if (grantResult == PackageManager.PERMISSION_GRANTED) {
+                        galleryPermissionGranted = true
+                    } else {
+                        galleryPermissionDenied = true
+                    }
+                }
+            }
+
+            if (cameraPermissionGranted && galleryPermissionGranted) {
+                // Both camera and gallery permissions granted
+                // Proceed to open the camera or choose from gallery
+                openCameraOrGallery()
+            } else {
+                // Request the permissions again
+                requestCameraPermission()
+            }
+        }
     }
 
 

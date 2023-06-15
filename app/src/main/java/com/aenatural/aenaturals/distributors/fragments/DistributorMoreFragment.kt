@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Parcel
+import android.os.Parcelable
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -30,6 +32,7 @@ import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textview.MaterialTextView
 import java.text.SimpleDateFormat
@@ -57,18 +60,19 @@ class DistributorMoreFragment : Fragment() {
     lateinit var distributor_myOrder_button: LinearLayout
     lateinit var dateFilterLayout: LinearLayout
     private lateinit var startDateTextView: TextView
-    private lateinit var endDateTextView: TextView
     private lateinit var dateFilterTextView: TextView
+    private lateinit var dateFilterTextViewPP: TextView
+    private lateinit var dateFilterTextViewRO: TextView
+    private lateinit var startDateTextViewDP: TextView
     private lateinit var pendingOrderDate: LinearLayout
     private lateinit var pendingPaymentDate: LinearLayout
     private lateinit var returnOrderDate: LinearLayout
+    private lateinit var dateFilterLayoutDP: LinearLayout
     var visible_View = ""
 
-    private val myCalendar = Calendar.getInstance()
-    //getting current day,month and year.
-    /*val year = calendar.get(Calendar.YEAR)
-    val month = calendar.get(Calendar.MONTH)
-    val day = calendar.get(Calendar.DAY_OF_MONTH)*/
+    private val pendingOrderCalendar = Calendar.getInstance()
+    private val returnOrderCalendar = Calendar.getInstance()
+    private val pendingPaymentCalendar = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -153,12 +157,9 @@ class DistributorMoreFragment : Fragment() {
                 endDateTextView.setText(endDate)*/
 
                 Log.d("DatePicker", "Setting start date: $startDate")
-                startDateTextView.text = dateRange.toString()
                 Log.d("DatePicker", "Setting end date: $endDate")
-                endDateTextView.text = endDate
-                Log.d("startDate and endDat5e " ,
-                    startDateTextView.toString() + endDateTextView.toString()
-                )
+                startDateTextView.text = dateRange.toString()
+
                 Toast.makeText(requireContext(), "$dateRange is selected", Toast.LENGTH_LONG).show()
             }
 
@@ -175,13 +176,53 @@ class DistributorMoreFragment : Fragment() {
 
         }
 
+        dateFilterLayoutDP.setOnClickListener {
+           val datePicker = MaterialDatePicker.Builder.dateRangePicker().build()
+            // Clear the selection
+
+            datePicker.show(requireActivity().supportFragmentManager, "DatePickerProfitLayout")
+
+            datePicker.addOnPositiveButtonClickListener { selection ->
+                val format = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                val startDate = format.format(Date(selection.first ?: 0L)).toString()
+                val endDate = format.format(Date(selection.second ?: 0L)).toString()
+                val dateRange = "$startDate - $endDate"
+
+
+                Log.d("DatePickerDP", "Setting start date: $startDate")
+                Log.d("DatePickerDP", "Setting end date: $endDate")
+                startDateTextViewDP.text = dateRange.toString()
+
+                Toast.makeText(requireContext(), "$dateRange is selected", Toast.LENGTH_LONG).show()
+            }
+
+            // Setting up the event for when cancelled is clicked
+            datePicker.addOnNegativeButtonClickListener {
+                Toast.makeText(requireContext(), "${datePicker.headerText} is cancelled", Toast.LENGTH_LONG).show()
+
+            }
+
+            // Setting up the event for when back button is pressed
+            datePicker.addOnCancelListener {
+                Toast.makeText(requireContext(), "Date Picker Cancelled", Toast.LENGTH_LONG).show()
+            }
+
+        }
+
+
         pendingOrderDate.setOnClickListener {
             /*val datePickerDialog = DatePickerDialog(requireContext(), DatePickerDialog.OnDateSetListener
             { view, year, monthOfYear, dayOfMonth ->
 
             }, year, month, day)
             datePickerDialog.show()*/
-            showDatePicker()
+            showDatePicker(pendingOrderCalendar,dateFilterTextView)
+        }
+        pendingPaymentDate.setOnClickListener {
+            showDatePicker(pendingPaymentCalendar,dateFilterTextViewPP)
+        }
+        returnOrderDate.setOnClickListener {
+            showDatePicker(returnOrderCalendar,dateFilterTextViewRO)
         }
 
     }
@@ -266,11 +307,14 @@ class DistributorMoreFragment : Fragment() {
         distributor_myOrder_button = view.findViewById(R.id.distributor_myOrder_button)
         dateFilterLayout = view.findViewById(R.id.dateFilterLayout)
         startDateTextView = view.findViewById(R.id.startDateTextViewX)
-        endDateTextView = view.findViewById(R.id.endDateTextViewX)
         pendingOrderDate = view.findViewById(R.id.pendingOrderDate)
         pendingPaymentDate = view.findViewById(R.id.pendingPaymentDate)
         returnOrderDate = view.findViewById(R.id.returnOrderDate)
         dateFilterTextView = view.findViewById(R.id.dateFilterTextView)
+        dateFilterTextViewPP = view.findViewById(R.id.dateFilterTextViewPP)
+        dateFilterTextViewRO = view.findViewById(R.id.dateFilterTextViewRO)
+        dateFilterLayoutDP = view.findViewById(R.id.dateFilterLayoutDP)
+        startDateTextViewDP = view.findViewById(R.id.startDateTextViewDP)
 
         initData()
     }
@@ -295,7 +339,7 @@ class DistributorMoreFragment : Fragment() {
         }
     }
 
-    private fun showDatePicker() {
+    /*private fun showDatePicker() {
         val date = DatePickerDialog.OnDateSetListener { view, year, month, day ->
             myCalendar.set(Calendar.YEAR, year)
             myCalendar.set(Calendar.MONTH, month)
@@ -323,10 +367,49 @@ class DistributorMoreFragment : Fragment() {
 //        val formattedDate = myFormat.replace("/", "-")
         val dateFormat = SimpleDateFormat(myFormat, Locale.US)
         dateFilterTextView.text = dateFormat.format(myCalendar.time)
+    }*/
+
+
+    private fun showDatePicker(calendar: Calendar, dateTextView: TextView) {
+        val date = DatePickerDialog.OnDateSetListener { view, year, month, day ->
+            calendar.set(Calendar.YEAR, year)
+            calendar.set(Calendar.MONTH, month)
+            calendar.set(Calendar.DAY_OF_MONTH, day)
+            updateLabel(dateTextView,calendar)
+        }
+
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            R.style.MyDatePickerDialogTheme, // use your custom theme here
+            date,
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+
+        // Set the maximum and minimum date for the DatePickerDialog
+        val maxDateCalendar = Calendar.getInstance()
+        maxDateCalendar.add(Calendar.YEAR, 1) // Add 10 years to the current date
+        datePickerDialog.datePicker.maxDate = maxDateCalendar.timeInMillis
+//        datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
+        datePickerDialog.datePicker.minDate = getMinimumDate()
+        // Set the maximum date for the DatePickerDialog
+
+        datePickerDialog.show()
     }
+
+    private fun updateLabel(dateTextView: TextView, calendar: Calendar) {
+        val myFormat = "yyyy/MM/dd"
+        val dateFormat = SimpleDateFormat(myFormat, Locale.US)
+        dateTextView.text = dateFormat.format(calendar.time)
+    }
+
     private fun getMinimumDate(): Long {
         val minDateCalendar = Calendar.getInstance()
         minDateCalendar.add(Calendar.YEAR, -100) // Set 100 years ago from now
         return minDateCalendar.timeInMillis
     }
 }
+
+
+

@@ -31,9 +31,36 @@
                 android:textColor="@color/darkgreen"
                 android:textStyle="bold" />
 
-            <include
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:id="@+id/pendingPaymentDate"
-                layout="@layout/date_filter"/>
+                android:orientation="horizontal"
+                android:padding="@dimen/sd6"
+                android:gravity="right"
+                android:background="@color/midgreen"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="@dimen/sd20"
+                    android:layout_height="@dimen/sd20"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_calendar_month_24"
+                    />
+
+                <TextView
+                    android:id="@+id/dateFilterTextViewPP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sort by date"
+                    android:padding="@dimen/sd4"
+                    android:textColor="@color/darkgreen"
+                    android:textStyle="bold"
+                    />
+
+
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

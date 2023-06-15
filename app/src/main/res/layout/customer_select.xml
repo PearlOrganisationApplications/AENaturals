@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Customer"
+        android:textSize="@dimen/sd20"
+        android:textStyle="bold"
+        android:padding="@dimen/sd6"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="15dp"
+        android:layout_margin="@dimen/sd4"
+        android:layout_marginVertical="@dimen/sd6"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="16dp"
+
+        >
+        <SearchView
+            android:id="@+id/searchCustomer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="Search items"
+            android:iconifiedByDefault="false"
+            android:queryBackground="@android:color/transparent"
+            />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/customerListRV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/sd10"
+        android:weightSum="3">
+        <TextView
+            android:id="@+id/cancelTV"
+            android:layout_weight="1.2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sd14"
+            android:text="cancel"
+            android:gravity="center"
+            android:padding="@dimen/sd10"
+            android:textColor="@color/darkgreen"/>
+        <Space
+            android:layout_weight=".6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/doneCV"
+            android:layout_weight="1.2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:backgroundTint="@color/darkgreen"
+            android:layout_gravity="end"
+            android:layout_margin="@dimen/sd6"
+            app:cardCornerRadius="15dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sd14"
+                android:text="Done"
+                android:gravity="center"
+                android:padding="@dimen/sd10"
+                android:textColor="@color/white"
+                />
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</LinearLayout>

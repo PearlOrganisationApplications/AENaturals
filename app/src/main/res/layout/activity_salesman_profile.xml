@@ -522,7 +522,7 @@
                     android:padding="@dimen/sd8">
 
                     <ImageView
-
+                        android:id="@+id/sale_adharPic"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_marginHorizontal="@dimen/sd6"
@@ -548,6 +548,7 @@
                     android:padding="@dimen/sd8">
 
                     <ImageView
+                        android:id="@+id/sale_panImage"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
 

@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+
 import com.aenatural.aenaturals.R;
 
 public abstract class BaseClass extends AppCompatActivity {
@@ -83,7 +84,7 @@ public abstract class BaseClass extends AppCompatActivity {
         });
     }
 
-    /*  public void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt,String classname){
+       /*  public void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt,String classname){
             baseApcContext = cnt;
             activityIn = ain;
             LogTag = lt;
@@ -395,6 +396,8 @@ public abstract class BaseClass extends AppCompatActivity {
 
 */
 
+
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -410,6 +413,10 @@ public abstract class BaseClass extends AppCompatActivity {
         super.onDestroy();
     }
 
+    @Override
+    protected void onResumeFragments() {
+        super.onResumeFragments();
+    }
 
     protected abstract void setLayoutXml();
     protected abstract void initializeViews();

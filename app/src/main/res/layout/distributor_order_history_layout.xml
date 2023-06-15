@@ -41,22 +41,12 @@
                 android:id="@+id/startDateTextViewX"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Start Date"
+                android:text="Start Date - End Date"
                 android:padding="@dimen/sd4"
                 android:textColor="@color/darkgreen"
                 android:textStyle="bold"
                 />
 
-
-            <TextView
-                android:id="@+id/endDateTextViewX"
-                android:layout_width="wrap_content"
-                android:padding="@dimen/sd4"
-                android:layout_height="wrap_content"
-                android:text="End Date"
-                android:textColor="@color/darkgreen"
-                android:textStyle="bold"
-                />
 
         </LinearLayout>
     </LinearLayout>

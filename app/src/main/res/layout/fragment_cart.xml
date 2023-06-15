@@ -1,10 +1,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.aenatural.aenaturals.salesmans.fragments.Cart">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,16 +15,19 @@
         android:padding="@dimen/sd8"
         >
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/headerTV"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Pending Items : "
+            android:text="Sell Item"
             android:layout_weight="1"
             android:textSize="@dimen/sd12"
             android:textColor="@color/darkgreen"
             android:textStyle="bold"
             />
 
-        <TextView
+    </LinearLayout>
+
+    <!--<TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -32,7 +36,7 @@
             android:textColor="@color/darkgreen"
             android:textStyle="bold"
             />
-    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,13 +63,15 @@
             android:textColor="@color/darkgreen"
             android:textStyle="bold"
             />
-    </LinearLayout>
+    </LinearLayout>-->
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/cartnavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/sd20"
         android:layout_marginVertical="@dimen/sd8"
+        android:layout_marginTop="@dimen/sd6"
         android:background="@drawable/bottomnavbg"
         app:itemIconTint="@color/gray"
         app:itemRippleColor="@color/darkgreen"
@@ -74,19 +80,21 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/cartmenu" />
-<include
-    android:id="@+id/cartrequestLayout"
-    layout="@layout/cartrequestlayout"
-android:visibility="gone"
-    />
+
+    <include
+        android:id="@+id/cartrequestLayout"
+        layout="@layout/cartrequestlayout"
+        android:visibility="gone" />
+
     <include
         android:id="@+id/cartsellLayout"
         layout="@layout/cartselllayout"
-        android:visibility="visible"
-        />
-  <!--  <include
-        android:id="@+id/cart_requestproductLayout"
-        layout=""
-        />-->
+        android:visibility="visible" />
+
+
+     <!--  <include
+       android:id="@+id/cart_requestproductLayout"
+       layout=""
+       />-->
 
 </LinearLayout>
