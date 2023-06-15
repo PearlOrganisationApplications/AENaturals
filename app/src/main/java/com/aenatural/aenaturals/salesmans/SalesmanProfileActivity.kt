@@ -80,7 +80,7 @@ class SalesmanProfileActivity : BaseClass() {
     lateinit var sale_adharPic: ImageView
     lateinit var sale_panImage: ImageView
 
-    private val cameraRequest = 188
+//    private val cameraRequest = 188
     private var IMAGE_TYPE by Delegates.notNull<Int>()
     private val REQUEST_IMAGE_CAPTURE = 101
     private val REQUEST_IMAGE_GALLERY = 102
