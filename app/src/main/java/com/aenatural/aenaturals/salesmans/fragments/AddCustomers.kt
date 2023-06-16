@@ -25,7 +25,6 @@ class AddCustomers : Fragment() {
     lateinit var profilepic: LinearLayout
     lateinit var parlor_pic: LinearLayout
     lateinit var customerFormSubmit: CardView
-
     lateinit var sm_et1_firstname: EditText
     lateinit var sm_et2_lastname: EditText
     lateinit var sm_et3_mobilenumber: EditText
