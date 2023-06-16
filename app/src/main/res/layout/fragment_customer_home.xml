@@ -29,19 +29,24 @@
                 android:backgroundTint="@color/midgreen"
                 >
                 <EditText
+                    android:id="@+id/searchEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/sd8"
                     android:hint="search Items"
                     android:background="@null"
+                    android:imeOptions="actionSearch|actionGo"
                     android:textColor="@color/darkgreen"
                     android:drawableEnd="@drawable/ic_searchglossy"
                     />
 
             </androidx.cardview.widget.CardView>
+            <!--trending Layout-->
             <include
+                android:id="@+id/trendingLayout"
                 layout="@layout/cust_trendingsection"
                 />
+            <!--shop now layout-->
             <include
                 layout="@layout/customerall_items_section"
                 />

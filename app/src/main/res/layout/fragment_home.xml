@@ -23,6 +23,7 @@
             android:background="@drawable/searchbg"
             android:hint="search in products,orders"
             android:drawableEnd="@drawable/ic_searchglossy"
+            android:imeOptions="actionSearch"
             android:padding="@dimen/sd8"
             tools:ignore="TouchTargetSizeCheck" />
 

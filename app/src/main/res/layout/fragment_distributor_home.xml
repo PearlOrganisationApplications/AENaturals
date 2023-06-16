@@ -48,8 +48,9 @@
                 android:id="@+id/addSellers"/>
             </LinearLayout>
 
-            <include layout="@layout/distributorsectionthree"
-                android:id="@+id/itemRequest"/>
+            <include
+                android:id="@+id/itemRequest"
+                layout="@layout/distributorsectionthree" />
         </LinearLayout>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

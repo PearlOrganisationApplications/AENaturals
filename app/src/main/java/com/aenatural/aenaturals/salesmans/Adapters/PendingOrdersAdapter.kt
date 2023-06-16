@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.common.Models.SellerDataModel
@@ -22,5 +23,4 @@ class PendingOrdersAdapter (var context: Context,var data:ArrayList<SellerDataMo
 }
 
 class PendingOrderVH(itemView: View):RecyclerView.ViewHolder(itemView) {
-
 }

@@ -24,7 +24,6 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import org.eazegraph.lib.charts.PieChart
 import org.eazegraph.lib.models.PieModel
 
-
 class SaleDetailsActivity : BaseClass() {
     lateinit var pieChart: PieChart
 

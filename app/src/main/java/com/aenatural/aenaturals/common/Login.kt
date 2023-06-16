@@ -1,11 +1,17 @@
 package com.aenatural.aenaturals.common
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
 import android.text.Html
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.distributors.DistributorDashboard
 import com.aenatural.aenaturals.customers.CustomerDashboard
@@ -20,7 +26,11 @@ class Login : BaseClass() {
     lateinit var passwordEditText: EditText
     lateinit var tv_login: TextView
     lateinit var textView: TextView
+    lateinit var cardView2: CardView
+    lateinit var loginll: LinearLayout
     lateinit var session: Session
+    val rect = Rect()
+    private var keyboardVisible = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         session = Session(this)
@@ -34,11 +44,14 @@ class Login : BaseClass() {
 
     override fun setLayoutXml() {
         setContentView(R.layout.activity_login)
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
     }
 
     override fun initializeViews() {
         emailEditText = findViewById(R.id.emailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
+        cardView2 = findViewById(R.id.cardView2)
+        loginll = findViewById(R.id.loginll)
 
         /*   salesmanButton = findViewById(R.id.salesmanButton)
            retailerButton = findViewById(R.id.retailerButton)
@@ -83,6 +96,8 @@ class Login : BaseClass() {
             }
 
         }
+//        setupKeyboardVisibilityListener()
+
     }
 
     override fun initializeInputs() {
@@ -93,5 +108,54 @@ class Login : BaseClass() {
 
     }
 
+    fun setupKeyboardVisibilityListener(){
 
+        cardView2.viewTreeObserver.addOnGlobalLayoutListener{
+
+            cardView2.getWindowVisibleDisplayFrame(rect)
+            val screenHeight = cardView2.rootView.height
+
+            // Calculate the height difference between the visible window rect and the screen height
+            val heightDifference = screenHeight - rect.bottom
+
+            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val isKeyboardVisible = inputMethodManager.isAcceptingText
+
+            // If the height difference is positive and larger than a threshold (e.g., 200 pixels),
+            // consider the keyboard as visible
+
+//            val keyboardThreshold = 200
+//            val isKeyboardVisible = heightDifference > keyboardThreshold
+//            val isKeyboardVisible = heightDifference > screenHeight * 0.15 // Adjust the threshold as needed
+
+            if (isKeyboardVisible != keyboardVisible) {
+                keyboardVisible = isKeyboardVisible
+                if (keyboardVisible) {
+                    // Keyboard is visible, move your views up here
+                    moveViewsUp()
+                } else {
+                    // Keyboard is hidden, move your views back to their original position here
+                    moveViewsDown()
+                }
+            }
+        }
+    }
+
+    private fun moveViewsUp() {
+        // Calculate the desired translation for your views
+        val translationY = -200 // Example translation value
+
+        // Apply the translation to your views
+        cardView2.animate().translationY(translationY.toFloat()).start()
+//        loginll.animate().translationY(translationY.toFloat()).start()
+        // Add more views as needed
+    }
+
+    private fun moveViewsDown() {
+        val translationY = 200f
+        // Reset the translation of your views back to their original position
+        cardView2.animate().translationY(translationY).start()
+//        loginll.animate().translationY(0f).start()
+        // Add more views as needed
+    }
 }

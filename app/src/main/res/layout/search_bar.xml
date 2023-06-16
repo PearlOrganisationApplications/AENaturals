@@ -31,8 +31,6 @@
             android:queryHint="Search items"
             android:iconifiedByDefault="false"
             android:queryBackground="@android:color/transparent"
-
-
             />
     </androidx.cardview.widget.CardView>
 

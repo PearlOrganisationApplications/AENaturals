@@ -76,9 +76,10 @@
         app:cardCornerRadius="@dimen/sd12"
         >
         <TextView
+            android:id="@+id/selectCustomer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Mark as Sold"
+            android:text="Select Customers"
             android:textSize="@dimen/sd14"
             android:drawableEnd="@drawable/ic_baseline_checklist_rtl_24"
             android:textStyle="bold"

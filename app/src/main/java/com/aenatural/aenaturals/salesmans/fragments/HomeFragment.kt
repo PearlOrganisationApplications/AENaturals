@@ -20,11 +20,6 @@ import com.aenatural.aenaturals.salesmans.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-
 class HomeFragment : Fragment() {
 
 
@@ -34,6 +29,9 @@ class HomeFragment : Fragment() {
     lateinit var retailerList:ArrayList<RetailerDataModel>
     lateinit var addCustomers:TextView
     lateinit var card_moreaboutsales:CardView
+    lateinit var card_pendingOrder:CardView
+    lateinit var card_pendingPayments:CardView
+    lateinit var card_totalReturns:CardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +56,35 @@ class HomeFragment : Fragment() {
     }
 
     private fun initClickListeners(view: View) {
+        var args = Bundle()
+        card_pendingOrder.setOnClickListener {
+
+            args.putString("section","1")
+            var frag = ProductsFragment()
+            frag.arguments = args
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.salesDashboardFrameLayout,
+                    frag
+                ).commit()
+        }
+        card_pendingPayments.setOnClickListener {
+            args.putString("section","2")
+            var frag = ProductsFragment()
+            frag.arguments = args
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.salesDashboardFrameLayout,
+                    frag
+                ).commit()
+        }
+        card_totalReturns.setOnClickListener {
+            args.putString("section","3")
+            var frag = ProductsFragment()
+            frag.arguments = args
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.salesDashboardFrameLayout,
+                    frag
+                ).commit()
+        }
         card_moreaboutsales.setOnClickListener { startActivity(Intent(requireContext(),SaleDetailsActivity::class.java))
         }
     }
@@ -85,6 +112,9 @@ class HomeFragment : Fragment() {
         salessecondBottomRecylerView = view.findViewById(R.id.salessecondBottomRecylerView)
         addCustomers = view.findViewById(R.id.addCustomers)
         card_moreaboutsales = view.findViewById(R.id.card_moreaboutsales)
+        card_pendingPayments = view.findViewById(R.id.card_pendingPayments)
+        card_totalReturns = view.findViewById(R.id.card_totalReturns)
+        card_pendingOrder = view.findViewById(R.id.card_pendingOrder)
     }
     private fun backPress() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {

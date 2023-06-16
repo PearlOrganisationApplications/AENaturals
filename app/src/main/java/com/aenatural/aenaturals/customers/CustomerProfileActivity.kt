@@ -4,7 +4,12 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ScrollView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +30,32 @@ class CustomerProfileActivity : BaseClass() {
     lateinit var customerOrderHistoryRecycler:RecyclerView
     lateinit var alertDialog:AlertDialog.Builder
     var pref: Session? = null
+    lateinit var edtProfile: ImageView
+
+    lateinit var nameLL: LinearLayout
+    lateinit var emailLL: LinearLayout
+    lateinit var phoneNoLL: LinearLayout
+    lateinit var addressLL: LinearLayout
+    lateinit var cityTVLL: LinearLayout
+    lateinit var cityEdtLL: LinearLayout
+    lateinit var stateLL: LinearLayout
+    lateinit var instaLL: LinearLayout
+    lateinit var tagsLL: LinearLayout
+    lateinit var profile_pic: LinearLayout
+    lateinit var parlorpic: LinearLayout
+
+    lateinit var nameEdt: EditText
+    lateinit var emailEdt: EditText
+    lateinit var phoneNoEdt: EditText
+    lateinit var addressEdt: EditText
+    lateinit var cityEdt: EditText
+    lateinit var pincodeEdt: EditText
+    lateinit var stateEdt: EditText
+    lateinit var instaIdEdt: EditText
+    lateinit var tagsEdt: EditText
+
+    lateinit var button: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pref=Session(this);
@@ -46,6 +77,32 @@ class CustomerProfileActivity : BaseClass() {
 
         cust_customercareLayout = findViewById(R.id.cust_customercareLayout)
         cust_privacypolicylayout = findViewById(R.id.cust_privacypolicylayout)
+
+        edtProfile = findViewById(R.id.edtProfile)
+
+        nameLL = findViewById(R.id.nameLL)
+        emailLL = findViewById(R.id.emailLL)
+        phoneNoLL = findViewById(R.id.phoneNoLL)
+        addressLL = findViewById(R.id.addressLL)
+        cityTVLL = findViewById(R.id.cityTVLL) //textView layout
+        cityEdtLL = findViewById(R.id.cityEdtLL) //EditText layout
+        stateLL = findViewById(R.id.stateLL)
+        instaLL = findViewById(R.id.instaLL)
+        tagsLL = findViewById(R.id.tagsLL)
+        profile_pic = findViewById(R.id.profile_pic)
+        parlorpic = findViewById(R.id.parlorpic)
+
+        nameEdt = findViewById(R.id.nameEdt)
+        emailEdt = findViewById(R.id.emailEdt)
+        phoneNoEdt = findViewById(R.id.phoneNoEdt)
+        addressEdt = findViewById(R.id.addressEdt)
+        cityEdt = findViewById(R.id.cityEdt)
+        pincodeEdt = findViewById(R.id.pincodeEdt)
+        stateEdt = findViewById(R.id.stateEdt)
+        instaIdEdt = findViewById(R.id.instaIdEdt)
+        tagsEdt = findViewById(R.id.tagsEdt)
+
+        button = findViewById(R.id.button)
 
 
         alertDialog = AlertDialog.Builder(this)
@@ -84,6 +141,66 @@ alertDialog.show()
             }
             true
         }
+        edtProfile.setOnClickListener {
+            nameLL.visibility = View.GONE
+            emailLL.visibility = View.GONE
+            phoneNoLL.visibility = View.GONE
+            addressLL.visibility = View.GONE
+            cityTVLL.visibility = View.GONE
+            stateLL.visibility = View.GONE
+            instaLL.visibility = View.GONE
+            tagsLL.visibility = View.GONE
+            edtProfile.visibility = View.GONE
+
+            nameEdt.visibility = View.VISIBLE
+            emailEdt.visibility = View.VISIBLE
+            phoneNoEdt.visibility = View.VISIBLE
+            addressEdt.visibility = View.VISIBLE
+            cityEdtLL.visibility = View.VISIBLE
+            stateEdt.visibility = View.VISIBLE
+            instaIdEdt.visibility = View.VISIBLE
+            tagsEdt.visibility = View.VISIBLE
+            button.visibility = View.VISIBLE
+
+            profile_pic.isEnabled = true
+            parlorpic.isEnabled = true
+
+            profile_pic.setOnClickListener {
+                Toast.makeText(this,"hello ",Toast.LENGTH_SHORT).show()
+            }
+            parlorpic.setOnClickListener {
+                Toast.makeText(this,"hi ",Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
+        button.setOnClickListener {
+
+            nameLL.visibility = View.VISIBLE
+            emailLL.visibility = View.VISIBLE
+            phoneNoLL.visibility = View.VISIBLE
+            addressLL.visibility = View.VISIBLE
+            cityTVLL.visibility = View.VISIBLE
+            stateLL.visibility = View.VISIBLE
+            instaLL.visibility = View.VISIBLE
+            tagsLL.visibility = View.VISIBLE
+            edtProfile.visibility = View.VISIBLE
+
+            nameEdt.visibility = View.GONE
+            emailEdt.visibility = View.GONE
+            phoneNoEdt.visibility = View.GONE
+            addressEdt.visibility = View.GONE
+            cityEdtLL.visibility = View.GONE
+            stateEdt.visibility = View.GONE
+            instaIdEdt.visibility = View.GONE
+            tagsEdt.visibility = View.GONE
+            button.visibility = View.GONE
+
+            profile_pic.isEnabled = false
+            parlorpic.isEnabled = false
+        }
+
+
     }
 
     override fun initializeInputs() {

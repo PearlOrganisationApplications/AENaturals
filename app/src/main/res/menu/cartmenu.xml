@@ -2,15 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:title="Sell Item"
         android:id="@+id/cartsell"
         android:icon="@drawable/ic_label"
-        />
+        android:title="Sell Item" />
 
     <item
-    android:title="Request Item"
-    android:icon="@drawable/ic_products"
-    android:id="@+id/cartrequest"
-    />
+        android:id="@+id/cartrequest"
+        android:icon="@drawable/ic_products"
+        android:title="inventory" />
 
 </menu>
