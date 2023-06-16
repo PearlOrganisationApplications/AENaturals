@@ -84,11 +84,7 @@ class SalesmanProfileActivity : BaseClass() {
     private var IMAGE_TYPE by Delegates.notNull<Int>()
     private val REQUEST_IMAGE_CAPTURE = 101
     private val REQUEST_IMAGE_GALLERY = 102
-    private var cameraPermissionDenied = false
-    private var galleryPermissionDenied = false
-
     var pref: Session? = null
-
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -179,19 +175,18 @@ class SalesmanProfileActivity : BaseClass() {
             if (privacypolicylayout.visibility == View.GONE) {
                 privacypolicylayout.visibility = View.VISIBLE
             } else {
-            }
-            privacypolicylayout.visibility = View.GONE
+                privacypolicylayout.visibility = View.GONE
 
-            customercareLayout.visibility = View.GONE
+                customercareLayout.visibility = View.GONE
+            }
         }
         customercarebutton.setOnClickListener {
             if (customercareLayout.visibility == View.GONE) {
                 customercareLayout.visibility = View.VISIBLE
             } else {
+                customercareLayout.visibility = View.GONE
+                privacypolicylayout.visibility = View.GONE
             }
-            customercareLayout.visibility = View.GONE
-            privacypolicylayout.visibility = View.GONE
-
         }
 
         callus.setOnClickListener {
@@ -317,30 +312,8 @@ class SalesmanProfileActivity : BaseClass() {
 
     }
 
-    fun openCameraOrGallery(){
 
-        val options = arrayOf("Take Photo", "Choose from Gallery")
 
-        AlertDialog.Builder(this)
-            .setTitle("Select Option")
-            .setItems(options) { dialog, which ->
-                when (which) {
-                    0 -> openCamera()
-                    1 -> openGallery()
-                }
-            }
-            .show()
-    }
-
-    private fun openCamera() {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
-    }
-
-    private fun openGallery() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent, REQUEST_IMAGE_GALLERY)
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -379,140 +352,4 @@ class SalesmanProfileActivity : BaseClass() {
             printLogs("errorImage",error.toString(),"line 404 salesmanprofileActivity page")
         }
     }
-
-
-
-    private fun saveImageToFile(bitmap: Bitmap): Uri? {
-        val filesDir = filesDir
-        val imageFile = File(filesDir, "image.jpg")
-
-        try {
-            val outputStream = FileOutputStream(imageFile)
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, outputStream)
-            outputStream.flush()
-            outputStream.close()
-
-            // Check if the file exists
-            if (!imageFile.exists()) {
-                return null
-            }
-
-            return FileProvider.getUriForFile(this, "com.aenatural.aenaturals.salesmans.fileprovider", imageFile)
-        } catch (e: IOException) {
-            e.printStackTrace()
-        } catch (e: IllegalArgumentException) {
-            e.printStackTrace()
-        }
-
-        return null
-    }
-
-    private fun cropImage(imageUri: Uri) {
-        val destinationUri = Uri.fromFile(File(cacheDir, "cropped_image.jpg"))
-
-        UCrop.of(imageUri, destinationUri)
-//            .withAspectRatio(1f, 1f)
-            .start(this)
-    }
-
-    @RequiresApi(Build.VERSION_CODES.M)
-    private fun requestCameraPermission() {
-        val cameraPermission = Manifest.permission.CAMERA
-        val galleryPermission = Manifest.permission.READ_EXTERNAL_STORAGE
-
-        val permissionsToRequest = mutableListOf<String>()
-
-        if (ContextCompat.checkSelfPermission(
-                this,
-                cameraPermission
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            permissionsToRequest.add(cameraPermission)
-        }
-
-        if (ContextCompat.checkSelfPermission(
-                this,
-                galleryPermission
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            permissionsToRequest.add(galleryPermission)
-        }
-
-        if (permissionsToRequest.isNotEmpty()) {
-            val permissionsArray = permissionsToRequest.toTypedArray()
-            if (cameraPermissionDenied && !shouldShowRequestPermissionRationale(cameraPermission) &&
-                galleryPermissionDenied && !shouldShowRequestPermissionRationale(galleryPermission)
-            ) {
-                // User denied both camera and gallery permissions and checked "Never ask again"
-                // Show a dialog explaining why the permissions are necessary
-                // You can customize the dialog message based on your app's requirements
-                AlertDialog.Builder(this)
-                    .setTitle("Permissions Required")
-                    .setMessage("Please grant camera and gallery permissions to use this feature.")
-                    .setPositiveButton("Go to Settings") { _, _ ->
-                        // Open the app settings page
-                        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                        val uri = Uri.fromParts("package", packageName, null)
-                        intent.data = uri
-                        startActivity(intent)
-                    }
-                    .setNegativeButton("Cancel") { dialog, _ ->
-                        dialog.dismiss()
-                    }
-                    .show()
-            } else {
-                // Show the permission request dialog
-                ActivityCompat.requestPermissions(this, permissionsArray, REQUEST_IMAGE_CAPTURE)
-            }
-        } else {
-            // Permissions already granted
-            // Proceed to open the camera or choose from gallery
-            openCameraOrGallery()
-        }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.M)
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_IMAGE_CAPTURE) {
-            var cameraPermissionGranted = false
-            var galleryPermissionGranted = false
-
-            for (i in permissions.indices) {
-                val permission = permissions[i]
-                val grantResult = grantResults[i]
-
-                if (permission == Manifest.permission.CAMERA) {
-                    if (grantResult == PackageManager.PERMISSION_GRANTED) {
-                        cameraPermissionGranted = true
-                    } else {
-                        cameraPermissionDenied = true
-                    }
-                }
-
-                if (permission == Manifest.permission.READ_EXTERNAL_STORAGE) {
-                    if (grantResult == PackageManager.PERMISSION_GRANTED) {
-                        galleryPermissionGranted = true
-                    } else {
-                        galleryPermissionDenied = true
-                    }
-                }
-            }
-
-            if (cameraPermissionGranted && galleryPermissionGranted) {
-                // Both camera and gallery permissions granted
-                // Proceed to open the camera or choose from gallery
-                openCameraOrGallery()
-            } else {
-                // Request the permissions again
-                requestCameraPermission()
-            }
-        }
-    }
-
-
 }
