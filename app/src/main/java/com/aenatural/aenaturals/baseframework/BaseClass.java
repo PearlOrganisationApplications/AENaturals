@@ -37,8 +37,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public abstract class BaseClass extends AppCompatActivity {
     protected String versionNew;
@@ -202,8 +205,6 @@ public abstract class BaseClass extends AppCompatActivity {
             openCameraOrGallery();
         }
     }
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -245,11 +246,41 @@ public abstract class BaseClass extends AppCompatActivity {
         }
     }
 
-    public Uri
-    saveImageToFile(Bitmap bitmap) {
+    public Uri saveImageToFile(Bitmap bitmap) {
         File filesDir = getFilesDir();
         File imageFile = new File(filesDir, "image.jpg");
 
+        // Delete the existing file if it exists
+        if (imageFile.exists()) {
+            imageFile.delete();
+        }
+
+        try {
+            FileOutputStream outputStream = new FileOutputStream(imageFile);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 70, outputStream);
+            outputStream.flush();
+            outputStream.close();
+
+            if (imageFile.exists()) {
+                return FileProvider.getUriForFile(this, "com.aenatural.aenaturals.salesmans.fileprovider", imageFile);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+    public void cropImage(Uri imageUri) {
+        File destinationUri = new File(getCacheDir(), "cropped_image.jpg");
+
+        UCrop.of(imageUri, Uri.fromFile(destinationUri))
+                //.withAspectRatio(1f, 1f)
+                .start(this);
+    }
+
+      /*public Uri saveImageToFile(Bitmap bitmap) {
+        File filesDir = getFilesDir();
+        File imageFile = new File(filesDir, "image.jpg");
         try {
             FileOutputStream outputStream = new FileOutputStream(imageFile);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 70, outputStream);
@@ -267,17 +298,8 @@ public abstract class BaseClass extends AppCompatActivity {
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
-
         return null;
-    }
-
-    public void cropImage(Uri imageUri) {
-        File destinationUri = new File(getCacheDir(), "cropped_image.jpg");
-
-        UCrop.of(imageUri, Uri.fromFile(destinationUri))
-                //.withAspectRatio(1f, 1f)
-                .start(this);
-    }
+    }*/
 
        /*  public void setBaseApcContextParent(Context cnt, AppCompatActivity ain, String lt,String classname){
             baseApcContext = cnt;

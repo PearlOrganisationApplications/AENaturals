@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -29,6 +30,8 @@ import com.aenatural.aenaturals.R;
 import com.aenatural.aenaturals.baseframework.BaseClass;
 import com.aenatural.aenaturals.baseframework.Session;
 import com.aenatural.aenaturals.common.Login;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yalantis.ucrop.UCrop;
 
 public class DistributorProfileActivity extends BaseClass {
@@ -77,6 +80,7 @@ public class DistributorProfileActivity extends BaseClass {
     EditText dist_panEdt;
     ImageView dist_aadharIV;
     ImageView dist_panIV;
+    ImageView dist_profilePic;
 
     Button dist_button;
 
@@ -147,6 +151,7 @@ public class DistributorProfileActivity extends BaseClass {
         dist_button = findViewById(R.id.dist_button);
         dist_aadharIV = findViewById(R.id.dist_aadharIV);
         dist_panIV = findViewById(R.id.dist_panIV);
+        dist_profilePic = findViewById(R.id.dist_profilePic);
 
         alertDialog = new AlertDialog.Builder(this);
         alertDialog.setTitle("Alert");
@@ -251,6 +256,7 @@ public class DistributorProfileActivity extends BaseClass {
                 }
             }
         });
+
         dis_edtProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -266,6 +272,7 @@ public class DistributorProfileActivity extends BaseClass {
                 dist_upiLL.setVisibility(View.GONE);
                 dist_adharNoLL.setVisibility(View.GONE);
                 dist_panLL.setVisibility(View.GONE);
+                dis_edtProfile.setVisibility(View.GONE);
 
                 dis_nameEdt.setVisibility(View.VISIBLE);
                 dis_emailEdt.setVisibility(View.VISIBLE);
@@ -288,6 +295,7 @@ public class DistributorProfileActivity extends BaseClass {
 
                 dis_adharPic.setEnabled(true);
                 dis_panPic.setEnabled(true);
+                dist_profilePic.setEnabled(true);
                 dis_adharPic.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -302,6 +310,7 @@ public class DistributorProfileActivity extends BaseClass {
                 });
 
                 dis_panPic.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("SuspiciousIndentation")
                     @Override
                     public void onClick(View v) {
 //                        IMAGE_TYPE = 1;
@@ -310,6 +319,16 @@ public class DistributorProfileActivity extends BaseClass {
                             requestCameraPermission();
                         }else
                         Toast.makeText(DistributorProfileActivity.this, "pan card pic", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                dist_profilePic.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setImageType(3);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            requestCameraPermission();
+                        }
                     }
                 });
             }
@@ -330,6 +349,7 @@ public class DistributorProfileActivity extends BaseClass {
                 dist_upiLL.setVisibility(View.VISIBLE);
                 dist_adharNoLL.setVisibility(View.VISIBLE);
                 dist_panLL.setVisibility(View.VISIBLE);
+                dis_edtProfile.setVisibility(View.VISIBLE);
 
                 dis_nameEdt.setVisibility(View.GONE);
                 dis_emailEdt.setVisibility(View.GONE);
@@ -350,8 +370,10 @@ public class DistributorProfileActivity extends BaseClass {
 
                 dist_button.setVisibility(View.GONE);
 
+
                 dis_adharPic.setEnabled(false);
                 dis_panPic.setEnabled(false);
+                dist_profilePic.setEnabled(false);
             }
         });
     }
@@ -390,9 +412,26 @@ public class DistributorProfileActivity extends BaseClass {
                     // Process the cropped image (resultUri)
                     if (resultUri != null) {
                         if (getImageType() == 1) {
-                            dist_panIV.setImageURI(resultUri);
+//                            dist_panIV.setImageURI(resultUri);
+                            Glide.with(this)
+                                    .load(resultUri)
+                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                    .skipMemoryCache(true)
+                                    .into(dist_panIV);
                         } else if (getImageType() == 2) {
-                            dist_aadharIV.setImageURI(resultUri);
+//                            dist_aadharIV.setImageURI(resultUri);
+                            Glide.with(this)
+                                    .load(resultUri)
+                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                    .skipMemoryCache(true)
+                                    .into(dist_aadharIV);
+                        } else if (getImageType() == 3) {
+//                            dist_profilePic.setImageURI(resultUri);
+                            Glide.with(this)
+                                    .load(resultUri)
+                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                    .skipMemoryCache(true)
+                                    .into(dist_profilePic);
                         }
                     }
                     break;

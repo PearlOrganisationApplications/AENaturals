@@ -33,6 +33,9 @@ import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.baseframework.Session
 import com.aenatural.aenaturals.common.Login
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.squareup.picasso.Picasso
 import com.yalantis.ucrop.UCrop
 import java.io.File
 import java.io.FileOutputStream
@@ -79,11 +82,13 @@ class SalesmanProfileActivity : BaseClass() {
     lateinit var sale_button: Button
     lateinit var sale_adharPic: ImageView
     lateinit var sale_panImage: ImageView
+    lateinit var sale_profilePic: ImageView
 
 //    private val cameraRequest = 188
-    private var IMAGE_TYPE by Delegates.notNull<Int>()
+//    private var IMAGE_TYPE by Delegates.notNull<Int>()
    /* private val REQUEST_IMAGE_CAPTURE = 101
     private val REQUEST_IMAGE_GALLERY = 102*/
+
     var pref: Session? = null
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -142,6 +147,7 @@ class SalesmanProfileActivity : BaseClass() {
         sale_button = findViewById(R.id.sale_button)
         sale_adharPic = findViewById(R.id.sale_adharPic)
         sale_panImage = findViewById(R.id.sale_panImage)
+        sale_profilePic = findViewById(R.id.sale_profilePic)
 
         alertDialog = AlertDialog.Builder(this)
         alertDialog.setTitle("Alert")
@@ -255,6 +261,7 @@ class SalesmanProfileActivity : BaseClass() {
 
             sale_adharcardPic.isEnabled = true
             sale_panCardPic.isEnabled = true
+            sale_profilePic.isEnabled = true
             /*  if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.CAMERA)
                   == PackageManager.PERMISSION_DENIED)
                   ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), cameraRequest)*/
@@ -263,16 +270,20 @@ class SalesmanProfileActivity : BaseClass() {
 
                 /*val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                 startActivityForResult(cameraIntent, cameraRequest)*/
-                IMAGE_TYPE = 2
+                imageType = 2
                 requestCameraPermission()
             }
 
             sale_panCardPic.setOnClickListener {
 
-                IMAGE_TYPE = 1
+                imageType = 1
                 requestCameraPermission()
             }
 
+            sale_profilePic.setOnClickListener {
+               imageType = 3
+                requestCameraPermission()
+            }
         }
         sale_button.setOnClickListener {
 
@@ -299,6 +310,7 @@ class SalesmanProfileActivity : BaseClass() {
 
             sale_adharcardPic.isEnabled = false
             sale_panCardPic.isEnabled = false
+            sale_profilePic.isEnabled = false
 
         }
 
@@ -312,10 +324,7 @@ class SalesmanProfileActivity : BaseClass() {
 
     }
 
-
-
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == Activity.RESULT_OK) {
@@ -338,10 +347,16 @@ class SalesmanProfileActivity : BaseClass() {
                     val resultUri = UCrop.getOutput(data!!)
                     // Process the cropped image (resultUri)
                     if (resultUri != null) {
-                        if (IMAGE_TYPE == 1) {
+                        if (imageType == 1) {
                             sale_panImage.setImageURI(resultUri)
-                        } else if (IMAGE_TYPE == 2) {
+
+
+                        } else if (imageType == 2) {
                             sale_adharPic.setImageURI(resultUri)
+
+                        }else {
+                            sale_profilePic.setImageURI(resultUri)
+
                         }
                     }
                 }
@@ -351,5 +366,61 @@ class SalesmanProfileActivity : BaseClass() {
             // Handle the cropping error
             printLogs("errorImage",error.toString(),"line 404 salesmanprofileActivity page")
         }
+    }*/
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                REQUEST_IMAGE_CAPTURE -> {
+                    val imageBitmap = data?.extras?.get("data") as Bitmap
+                    val imageUri = saveImageToFile(imageBitmap)
+                    if (imageUri != null) {
+                        cropImage(imageUri)
+                    }
+                }
+                REQUEST_IMAGE_GALLERY -> {
+                    val imageUri = data?.data
+                    if (imageUri != null) {
+                        cropImage(imageUri)
+                    }
+                }
+                UCrop.REQUEST_CROP -> {
+                    val resultUri = UCrop.getOutput(data!!)
+                    if (resultUri != null) {
+                        when (imageType) {
+                            1 -> {
+                                Glide.with(this)
+                                    .load(resultUri)
+                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                    .skipMemoryCache(true)
+                                    .into(sale_panImage)
+                            }
+                            2 -> {
+                                Glide.with(this)
+                                    .load(resultUri)
+                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                    .skipMemoryCache(true)
+                                    .into(sale_adharPic)
+                            }
+                            3 -> {
+                                Glide.with(this)
+                                    .load(resultUri)
+                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                    .skipMemoryCache(true)
+                                    .into(sale_profilePic)
+                            }
+                        }
+                    }
+                }
+            }
+        } else if (resultCode == UCrop.RESULT_ERROR) {
+            val error = UCrop.getError(data!!)
+            // Handle the cropping error
+            Log.e("Error", "Crop error: $error")
+        }
     }
+
+
 }
