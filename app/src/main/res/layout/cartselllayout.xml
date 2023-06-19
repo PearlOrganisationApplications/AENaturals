@@ -15,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:id="@+id/sells_select_customer_name"
             android:layout_weight="1"
             android:textStyle="bold"
             android:textColor="@color/darkgreen"
@@ -56,16 +57,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
+            android:gravity="center"
             android:layout_weight="1"
-            android:textStyle="bold"
+
             android:textColor="@color/darkgreen"
             android:text="Selected Customer "
             />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
+            android:gravity="center"
             android:layout_weight="1"
             android:textStyle="bold"
             android:textColor="@color/darkgreen"

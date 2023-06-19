@@ -30,6 +30,7 @@ class Cart : Fragment() {
     lateinit var cartnavigation: BottomNavigationView
     lateinit var retailerList: ArrayList<RetailerDataModel>
     lateinit var selectCustomer: TextView
+    lateinit var sells_select_customer_name: TextView
     lateinit var customDialog: Dialog
     lateinit var searchCustomer: SearchView
     lateinit var customerListRV: RecyclerView
@@ -105,13 +106,14 @@ class Cart : Fragment() {
         }
         doneCV.setOnClickListener {
             customDialog.dismiss()
-            salesman_cart_select_customer.visibility = View.GONE
-            salesman_cart_customer_top_layout.visibility = View.VISIBLE
+            sells_select_customer_name.text = "Customer Name"
+//            salesman_cart_select_customer.visibility = View.GONE
+//            salesman_cart_customer_top_layout.visibility = View.VISIBLE
         }
         selectCustomer.setOnClickListener {
 
-            salesman_cart_select_customer.visibility = View.VISIBLE
-            salesman_cart_customer_top_layout.visibility = View.GONE
+//            salesman_cart_select_customer.visibility = View.VISIBLE
+//            salesman_cart_customer_top_layout.visibility = View.GONE
 //            customDialog.window?.attributes?.windowAnimations = R.style.animation
             customDialog.show()
 
@@ -124,6 +126,7 @@ class Cart : Fragment() {
     private fun initViews(view: View) {
         cartrequestLayout = view.findViewById(R.id.cartrequestLayout)
         cartsellLayout = view.findViewById(R.id.cartsellLayout)
+        sells_select_customer_name = view.findViewById(R.id.sells_select_customer_name)
         salesman_cart_select_customer = view.findViewById(R.id.salesman_cart_select_customer)
         salesman_cart_customer_top_layout = view.findViewById(R.id.salesman_cart_customer_top_layout)
         cartnavigation = view.findViewById(R.id.cartnavigation)
