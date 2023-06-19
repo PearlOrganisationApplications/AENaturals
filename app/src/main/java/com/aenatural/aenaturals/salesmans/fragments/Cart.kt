@@ -23,11 +23,14 @@ import com.aenatural.aenaturals.salesmans.Adapters.RequestProductsAdapter
 class Cart : Fragment() {
     lateinit var cartrequestLayout: LinearLayout
     lateinit var cartsellLayout: LinearLayout
+    lateinit var salesman_cart_select_customer: LinearLayout
+    lateinit var salesman_cart_customer_top_layout: LinearLayout
     lateinit var cartsellRecycler: RecyclerView
     lateinit var cartrequestRecycler: RecyclerView
     lateinit var cartnavigation: BottomNavigationView
     lateinit var retailerList: ArrayList<RetailerDataModel>
     lateinit var selectCustomer: TextView
+    lateinit var sells_select_customer_name: TextView
     lateinit var customDialog: Dialog
     lateinit var searchCustomer: SearchView
     lateinit var customerListRV: RecyclerView
@@ -98,23 +101,22 @@ class Cart : Fragment() {
             }
             true
         }
+        cancelTV.setOnClickListener {
+            customDialog.dismiss()
+        }
+        doneCV.setOnClickListener {
+            customDialog.dismiss()
+            sells_select_customer_name.text = "Customer Name"
+//            salesman_cart_select_customer.visibility = View.GONE
+//            salesman_cart_customer_top_layout.visibility = View.VISIBLE
+        }
         selectCustomer.setOnClickListener {
 
-            customDialog.setContentView(R.layout.customer_select)
-            customDialog.window?.setLayout(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-            searchCustomer = customDialog.findViewById(R.id.searchCustomer)
-            customerListRV = customDialog.findViewById(R.id.customerListRV)
-            cancelTV = customDialog.findViewById(R.id.cancelTV)
-            doneCV = customDialog.findViewById(R.id.doneCV)
+//            salesman_cart_select_customer.visibility = View.VISIBLE
+//            salesman_cart_customer_top_layout.visibility = View.GONE
 //            customDialog.window?.attributes?.windowAnimations = R.style.animation
             customDialog.show()
 
-            cancelTV.setOnClickListener {
-                customDialog.dismiss()
-            }
             customerListRV.adapter = CustomerAdapter(retailerList)
             customerListRV.layoutManager = LinearLayoutManager(requireContext(),
                 LinearLayoutManager.VERTICAL,false)
@@ -124,12 +126,24 @@ class Cart : Fragment() {
     private fun initViews(view: View) {
         cartrequestLayout = view.findViewById(R.id.cartrequestLayout)
         cartsellLayout = view.findViewById(R.id.cartsellLayout)
+        sells_select_customer_name = view.findViewById(R.id.sells_select_customer_name)
+        salesman_cart_select_customer = view.findViewById(R.id.salesman_cart_select_customer)
+        salesman_cart_customer_top_layout = view.findViewById(R.id.salesman_cart_customer_top_layout)
         cartnavigation = view.findViewById(R.id.cartnavigation)
         cartsellRecycler = view.findViewById(R.id.cartsellRecycler)
         cartrequestRecycler = view.findViewById(R.id.cartrequestRecycler)
         selectCustomer = view.findViewById(R.id.selectCustomer)
         headerTV = view.findViewById(R.id.headerTV)
 
+        customDialog.setContentView(R.layout.customer_select)
+        customDialog.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        searchCustomer = customDialog.findViewById(R.id.searchCustomer)
+        customerListRV = customDialog.findViewById(R.id.customerListRV)
+        cancelTV = customDialog.findViewById(R.id.cancelTV)
+        doneCV = customDialog.findViewById(R.id.doneCV)
     }
 
 

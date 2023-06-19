@@ -4,7 +4,75 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:id="@+id/salesman_cart_select_customer"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:id="@+id/sells_select_customer_name"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="@color/darkgreen"
+            android:text="Add items for selected customer"
+            />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:backgroundTint="@color/midgreen"
+        android:layout_marginVertical="@dimen/sd6"
+        android:layout_marginHorizontal="@dimen/sd14"
+        app:cardCornerRadius="@dimen/sd12"
+        >
+        <TextView
+            android:id="@+id/selectCustomer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Customer"
+            android:textSize="@dimen/sd14"
+            android:drawableEnd="@drawable/ic_baseline_checklist_rtl_24"
+            android:textStyle="bold"
+            android:textColor="@color/darkgreen"
+            android:gravity="center"
+            android:padding="@dimen/sd6"
+            />
+    </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:id="@+id/salesman_cart_customer_top_layout"
+        android:paddingHorizontal="@dimen/sd10"
+        android:paddingVertical="@dimen/sd8"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="1"
+
+            android:textColor="@color/darkgreen"
+            android:text="Selected Customer "
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="@color/darkgreen"
+            android:text="Customer Name"
+            />
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,25 +135,5 @@
             android:textStyle="bold"
             />
     </LinearLayout>
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/midgreen"
-        android:layout_marginVertical="@dimen/sd8"
-        android:layout_marginHorizontal="@dimen/sd14"
-        app:cardCornerRadius="@dimen/sd12"
-        >
-        <TextView
-            android:id="@+id/selectCustomer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Select Customers"
-            android:textSize="@dimen/sd14"
-            android:drawableEnd="@drawable/ic_baseline_checklist_rtl_24"
-            android:textStyle="bold"
-            android:textColor="@color/darkgreen"
-            android:gravity="center"
-            android:padding="@dimen/sd8"
-            />
-    </androidx.cardview.widget.CardView>
+
 </LinearLayout>
