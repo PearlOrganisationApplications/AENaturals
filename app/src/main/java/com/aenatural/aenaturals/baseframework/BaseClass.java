@@ -50,11 +50,20 @@ public abstract class BaseClass extends AppCompatActivity {
     protected String LogTag, CAId,LogString;
     public int STORAGE_PERMISSION_CODE = 1;
     public String classname="Login";
-    private final int REQUEST_IMAGE_CAPTURE = 101;
-    private final int REQUEST_IMAGE_GALLERY = 102;
-    private boolean cameraPermissionDenied = false;
-    private boolean galleryPermissionDenied = false;
 
+    public final int REQUEST_IMAGE_CAPTURE = 101;
+    public final int REQUEST_IMAGE_GALLERY = 102;
+    public boolean cameraPermissionDenied = false;
+    public boolean galleryPermissionDenied = false;
+    private int IMAGE_TYPE;
+
+    public int getImageType() {
+        return IMAGE_TYPE;
+    }
+
+    public void setImageType(int imageType) {
+        IMAGE_TYPE = imageType;
+    }
 
     public void printLogs(String tag, String funcs, String msg){
         Log.i("OSG-"+tag+"__"+funcs,msg);

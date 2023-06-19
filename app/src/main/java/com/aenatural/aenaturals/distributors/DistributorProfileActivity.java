@@ -11,8 +11,11 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +29,7 @@ import com.aenatural.aenaturals.R;
 import com.aenatural.aenaturals.baseframework.BaseClass;
 import com.aenatural.aenaturals.baseframework.Session;
 import com.aenatural.aenaturals.common.Login;
+import com.yalantis.ucrop.UCrop;
 
 public class DistributorProfileActivity extends BaseClass {
     TextView backTV;
@@ -71,8 +75,11 @@ public class DistributorProfileActivity extends BaseClass {
     EditText dist_upiEdt;
     EditText dist_adharNoEdt;
     EditText dist_panEdt;
+    ImageView dist_aadharIV;
+    ImageView dist_panIV;
 
     Button dist_button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,6 +145,8 @@ public class DistributorProfileActivity extends BaseClass {
         dist_panEdt = findViewById(R.id.dist_panEdt);
 
         dist_button = findViewById(R.id.dist_button);
+        dist_aadharIV = findViewById(R.id.dist_aadharIV);
+        dist_panIV = findViewById(R.id.dist_panIV);
 
         alertDialog = new AlertDialog.Builder(this);
         alertDialog.setTitle("Alert");
@@ -282,13 +291,24 @@ public class DistributorProfileActivity extends BaseClass {
                 dis_adharPic.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(DistributorProfileActivity.this, "aadhar pic", Toast.LENGTH_SHORT).show();
+
+//                        IMAGE_TYPE = 2;
+                        setImageType(2);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            requestCameraPermission();
+                        }else
+                            Toast.makeText(DistributorProfileActivity.this, "aadhar pic", Toast.LENGTH_SHORT).show();
                     }
                 });
 
                 dis_panPic.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+//                        IMAGE_TYPE = 1;
+                        setImageType(1);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            requestCameraPermission();
+                        }else
                         Toast.makeText(DistributorProfileActivity.this, "pan card pic", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -350,7 +370,37 @@ public class DistributorProfileActivity extends BaseClass {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case REQUEST_IMAGE_CAPTURE:
+                    Bitmap imageBitmap = (Bitmap) data.getExtras().get("data");
+                    Uri imageUri = saveImageToFile(imageBitmap); // Save the image and get its Uri
+                    if (imageUri != null) {
+                        cropImage(imageUri);
+                    }
+                    break;
 
+                case REQUEST_IMAGE_GALLERY:
+                     imageUri = data.getData();
+                    if (imageUri != null) {
+                        cropImage(imageUri);
+                    }
+                    break;
+                case UCrop.REQUEST_CROP:
+                    final Uri resultUri = UCrop.getOutput(data);
+                    // Process the cropped image (resultUri)
+                    if (resultUri != null) {
+                        if (getImageType() == 1) {
+                            dist_panIV.setImageURI(resultUri);
+                        } else if (getImageType() == 2) {
+                            dist_aadharIV.setImageURI(resultUri);
+                        }
+                    }
+                    break;
+            }
+        }else if (resultCode == UCrop.RESULT_ERROR) {
+            final Throwable error = UCrop.getError(data);
+            // Handle the cropping error
+            Log.d("errorImage", error != null ? error.toString() : "" + "line 404 salesmanprofileActivity page");
         }
     }
 }
