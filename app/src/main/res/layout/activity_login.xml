@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightgreen"
-    android:orientation="vertical">
-
-
+    >
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
@@ -78,7 +72,6 @@
             android:orientation="vertical"
             android:paddingHorizontal="@dimen/sd20"
             android:paddingVertical="@dimen/sd12"
-
             >
 
            <!-- <ScrollView
@@ -194,6 +187,44 @@
                     android:textColor="@color/darkgreen"
                     android:textSize="@dimen/sd16"
                     android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OR"
+                    android:layout_marginTop="@dimen/sd6"
+                    android:textColor="@color/darkgreen"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sd12"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:id="@+id/signupforparlorll"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/sd10"
+                        android:text="want to manage your parlour?"
+                        android:layout_marginHorizontal="@dimen/sd4"
+                        android:textColor="#15291D"
+                        android:textSize="@dimen/sd12"
+                        />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/sd10"
+                    android:gravity="center"
+
+                    android:text="Signup for My Parlour"
+                    android:textColor="@color/darkgreen"
+                    android:textSize="@dimen/sd14"
+                    android:textStyle="bold" />
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -255,8 +286,5 @@
         <include layout="@layout/layout_prelogin" />-->
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 

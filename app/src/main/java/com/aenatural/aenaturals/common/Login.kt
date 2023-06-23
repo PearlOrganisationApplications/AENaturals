@@ -18,6 +18,7 @@ import com.aenatural.aenaturals.customers.CustomerDashboard
 import com.aenatural.aenaturals.salesmans.SalesmanDashboard
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.baseframework.Session
+import com.aenatural.aenaturals.myspalon.MSRegisterActivity
 
 
 class Login : BaseClass() {
@@ -28,6 +29,8 @@ class Login : BaseClass() {
     lateinit var textView: TextView
     lateinit var cardView2: CardView
     lateinit var loginll: LinearLayout
+    lateinit var signupforparlorll: LinearLayout
+
     lateinit var session: Session
     val rect = Rect()
     private var keyboardVisible = false
@@ -52,6 +55,7 @@ class Login : BaseClass() {
         passwordEditText = findViewById(R.id.passwordEditText)
         cardView2 = findViewById(R.id.cardView2)
         loginll = findViewById(R.id.loginll)
+        signupforparlorll = findViewById(R.id.signupforparlorll)
 
         /*   salesmanButton = findViewById(R.id.salesmanButton)
            retailerButton = findViewById(R.id.retailerButton)
@@ -95,6 +99,10 @@ class Login : BaseClass() {
                     Toast.LENGTH_SHORT).show()
             }
 
+        }
+
+        signupforparlorll.setOnClickListener {
+            startActivity(Intent(this,MSRegisterActivity::class.java))
         }
 //        setupKeyboardVisibilityListener()
 
