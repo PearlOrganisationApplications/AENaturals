@@ -8,6 +8,7 @@ import com.aenatural.aenaturals.baseframework.BaseClass
 class MSAddBeauticians : BaseClass() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+setLayoutXml()
 
     }
 
@@ -17,11 +18,9 @@ class MSAddBeauticians : BaseClass() {
     }
 
     override fun initializeViews() {
-        TODO("Not yet implemented")
     }
 
     override fun initializeClickListners() {
-        TODO("Not yet implemented")
     }
 
     override fun initializeInputs() {

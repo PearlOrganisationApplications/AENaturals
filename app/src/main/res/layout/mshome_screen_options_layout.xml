@@ -4,30 +4,64 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/sd6"
+        android:background="@color/birdcolor"
+        android:gravity="center"
+        >
+        <ImageView
+            android:layout_width="@dimen/sd30"
+            android:layout_height="@dimen/sd30"
+            android:layout_margin="@dimen/sd4"
+            android:src="@drawable/ic_logo_aen"
+            />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Parlour Connect"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_margin="@dimen/sd4"
+        android:textSize="@dimen/sd20"
+        />
+
+
+    </LinearLayout>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:padding="@dimen/sd6"
     android:layout_weight="1"
     >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:orientation="vertical"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:id="@+id/ms_myprofile"
-        android:padding="@dimen/sd14"
-        android:background="@color/lightbirdcolor"
+        android:padding="@dimen/sd16"
+        android:background="@drawable/newcurvedbg"
         android:layout_margin="2dp"
         android:orientation="vertical"
         >
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-
+            android:layout_height="wrap_content"
             android:padding="@dimen/sd20"
             android:src="@drawable/barber"
             />
+
+
+    </LinearLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,18 +72,23 @@
             android:textColor="@color/darkgreen"
             android:text="My Profile"
             />
-
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:padding="@dimen/sd14"
-        android:id="@+id/ms_home_beauticians"
-        android:background="@color/lightbirdcolor"
-        android:layout_margin="1dp"
         android:orientation="vertical"
         >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/ms_home_beauticians"
+            android:padding="@dimen/sd14"
+            android:background="@drawable/newcurvedbg"
+            android:layout_margin="2dp"
+            android:orientation="vertical"
+            >
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -57,6 +96,7 @@
             android:padding="@dimen/sd20"
             android:src="@drawable/makeup"
             />
+        </LinearLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,17 +114,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:padding="@dimen/sd6"
         android:orientation="horizontal"
         >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:id="@+id/ms_home_customers"
-            android:background="@color/lightbirdcolor"
-            android:layout_margin="1dp"
             android:orientation="vertical"
             >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/ms_home_customers"
+                android:padding="@dimen/sd14"
+                android:background="@drawable/newcurvedbg"
+                android:layout_margin="2dp"
+                android:orientation="vertical"
+                >
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -92,6 +140,7 @@
                 android:padding="@dimen/sd20"
                 android:src="@drawable/ic_skincare2"
                 />
+            </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -108,11 +157,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:padding="@dimen/sd14"
-            android:background="@color/lightbirdcolor"
-            android:layout_margin="2dp"
             android:orientation="vertical"
             >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/sd14"
+                android:background="@drawable/newcurvedbg"
+                android:layout_margin="2dp"
+                android:orientation="vertical"
+                >
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -120,6 +175,7 @@
                 android:padding="@dimen/sd20"
                 android:src="@drawable/calendar"
                 />
+            </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -137,18 +193,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-
+        android:padding="@dimen/sd6"
         android:orientation="horizontal"
         >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:padding="@dimen/sd14"
-            android:background="@color/lightbirdcolor"
-            android:layout_margin="1dp"
             android:orientation="vertical"
             >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/sd18"
+                android:background="@drawable/newcurvedbg"
+                android:layout_margin="2dp"
+                android:orientation="vertical"
+                >
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -156,6 +218,7 @@
                 android:padding="@dimen/sd20"
                 android:src="@drawable/budgeting"
                 />
+            </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -172,11 +235,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:padding="@dimen/sd14"
-            android:background="@color/lightbirdcolor"
-            android:layout_margin="1dp"
             android:orientation="vertical"
             >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/sd14"
+                android:background="@drawable/newcurvedbg"
+                android:layout_margin="2dp"
+                android:orientation="vertical"
+                >
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -185,6 +254,7 @@
 
                 android:src="@drawable/beautician"
                 />
+            </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

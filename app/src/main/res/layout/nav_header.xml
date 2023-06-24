@@ -5,18 +5,20 @@
     android:orientation="horizontal"
     android:padding="@dimen/sd10"
     android:background="@color/birdcolor">
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-
         android:src="@drawable/ic_skincare2"
         />
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_weight="1"
     android:orientation="vertical"
     >
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,5 +38,6 @@
         android:textStyle="bold"
         android:textSize="@dimen/sd12"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
 </LinearLayout>
 </LinearLayout>
