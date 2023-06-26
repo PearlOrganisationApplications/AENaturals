@@ -8,7 +8,13 @@ data class RegisterRequest(
 )
 
 data class RegisterResponse(
-    val message: String,
     val status:String,
-    val token:String
+    val message: String,
+    val tocken:String
 )
+
+data class ErrorResponse(
+    val message: String,
+    val status: String
+)
+

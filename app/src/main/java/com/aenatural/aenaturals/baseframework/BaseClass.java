@@ -20,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -645,6 +646,13 @@ public abstract class BaseClass extends AppCompatActivity {
     protected abstract void initializeInputs();
     protected abstract void initializeLabels();
 
-
+public void errorHandler(String msg, TextView tv,Boolean mode){
+    tv.setText(msg);
+    if(mode){
+        tv.setVisibility(View.VISIBLE);
+    }else{
+        tv.setVisibility(View.GONE);
+    }
+}
 
 }

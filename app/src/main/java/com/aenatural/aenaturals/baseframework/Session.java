@@ -73,7 +73,6 @@ public class Session {
         edits.putBoolean(IS_LOGIN, true);
         edits.apply();
     }
-
     public int loginSection() {
         return prefs.getInt(Login_Section, 1);
     }
