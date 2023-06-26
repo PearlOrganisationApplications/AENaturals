@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".myspalon.MSAddBeauticians">
+    tools:context=".myspalon.CreateInvoide">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout2"
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
@@ -28,7 +28,6 @@
                 android:gravity="center_vertical">
 
                 <ImageButton
-                    android:id="@+id/beauticians_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
@@ -39,12 +38,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Add New Beautician"
+                    android:text="Invoice"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sd16"
                     android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.appbar.MaterialToolbar>
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -53,12 +53,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        app:layout_constraintVertical_bias="0.5">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginHorizontal="10dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="20dp"
@@ -76,61 +77,40 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Salutation"
+                    android:text="Beautician"
                     android:textColor="@color/birdcolor" />
 
-                <Spinner
-                    android:id="@+id/input_medicineET"
+                <SearchView
+                    android:id="@+id/beauticians_search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="4dp"
-                    android:background="@drawable/edittextborderwhite"
-                    android:inputType="text"
-                    android:padding="10dp" />
+                    android:queryBackground="@drawable/edittextborderwhite"
+                    app:iconifiedByDefault="true" />
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Full name"
+                    android:text="Customer Name"
                     android:textColor="@color/birdcolor" />
 
                 <EditText
-                    android:id="@+id/input_fullname"
+                    android:id="@+id/input_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="4dp"
                     android:background="@drawable/edittextborderwhite"
-                    android:hint="Full name"
-                    android:inputType="text"
+                    android:hint="name"
+                    android:inputType="textPersonName"
                     android:padding="10dp" />
-
-                <!--  <TextView
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_margin="5dp"
-                      android:text="Email"
-                      android:textColor="@color/birdcolor" />
-  
-                  <EditText
-                      android:id="@+id/input_email"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_gravity="center"
-                      android:layout_margin="4dp"
-                      android:background="@drawable/edittextborderwhite"
-                      android:hint="Email"
-                      android:inputType="text"
-                      android:padding="10dp" />-->
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Mobile"
+                    android:text="Mobile Number"
                     android:textColor="@color/birdcolor" />
 
                 <EditText
@@ -140,51 +120,26 @@
                     android:layout_gravity="center"
                     android:layout_margin="4dp"
                     android:background="@drawable/edittextborderwhite"
-                    android:hint="Mobile"
+                    android:hint="+91 0987654321"
                     android:inputType="text"
                     android:padding="10dp" />
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Gender"
-                    android:textColor="@color/birdcolor" />
-
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-
-                    <RadioButton
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Male" />
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:hint="Female" />
-
-
-                </RadioGroup>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:text="Qualification"
+                    android:text="Date"
                     android:textColor="@color/birdcolor" />
 
                 <EditText
-                    android:id="@+id/input_quali"
+                    android:id="@+id/input_dob"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="4dp"
                     android:background="@drawable/edittextborderwhite"
-                    android:hint="Qualification"
+                    android:editable="false"
+                    android:hint="15 May 1997"
                     android:inputType="text"
                     android:padding="10dp" />
 
@@ -192,17 +147,31 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Profession"
+                    android:text="Search and select service "
+                    android:textColor="@color/birdcolor" />
+
+                <androidx.appcompat.widget.SearchView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittextborderwhite"
+                    app:iconifiedByDefault="true" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="payment mode"
                     android:textColor="@color/birdcolor" />
 
                 <EditText
-                    android:id="@+id/input_profession"
+                    android:id="@+id/input_app_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="4dp"
                     android:background="@drawable/edittextborderwhite"
-                    android:hint="Profession"
+                    android:hint="cash"
                     android:inputType="text"
                     android:padding="10dp" />
 
@@ -210,38 +179,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Experience"
+                    android:text="Pay now"
                     android:textColor="@color/birdcolor" />
 
-                <EditText
-                    android:id="@+id/input_experience"
+                <Spinner
+                    android:id="@+id/input_paynow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="4dp"
+                    android:minHeight="45dp"
                     android:background="@drawable/edittextborderwhite"
-                    android:hint="Experience"
+                    android:hint="cash"
                     android:inputType="text"
                     android:padding="10dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:text="Appointment Interval (in minutes)"
-                    android:textColor="@color/birdcolor" />
-
-                <EditText
-                    android:id="@+id/input_appointment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="4dp"
-                    android:background="@drawable/edittextborderwhite"
-                    android:hint="in minutes"
-                    android:inputType="text"
-                    android:padding="10dp" />
-
 
                 <TextView
                     android:id="@+id/tv_submit"
@@ -251,7 +202,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/btn_roundbg"
-                    android:elevation="10dp"
+                    android:elevation="5dp"
                     android:gravity="center"
                     android:paddingHorizontal="30dp"
                     android:paddingVertical="10dp"
@@ -263,11 +214,11 @@
                     app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
 
+
             </LinearLayout>
 
 
         </androidx.cardview.widget.CardView>
-
     </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

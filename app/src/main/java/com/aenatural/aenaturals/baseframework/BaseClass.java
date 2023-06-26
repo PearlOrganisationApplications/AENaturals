@@ -287,7 +287,20 @@ public abstract class BaseClass extends AppCompatActivity {
                 .start(this);
     }
 
-    @androidx.annotation.RequiresApi(api = Build.VERSION_CODES.M)
+
+    /*public void birdTheme(){
+        Window window = getWindow();
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.birdcolor));
+        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+    }*/
+    public void birdTheme() {
+        Window window = getWindow();
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.birdcolor));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+    }
+
 
 
       /*public Uri saveImageToFile(Bitmap bitmap) {

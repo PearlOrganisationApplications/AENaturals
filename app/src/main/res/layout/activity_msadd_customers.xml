@@ -22,6 +22,7 @@
        android:src="@drawable/ic_camera"
        app:layout_constraintBottom_toBottomOf="@+id/circleImageView2"
        app:layout_constraintEnd_toEndOf="@+id/circleImageView2" />-->
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"

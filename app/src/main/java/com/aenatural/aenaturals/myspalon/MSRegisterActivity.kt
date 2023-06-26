@@ -45,7 +45,8 @@ class MSRegisterActivity : BaseClass() {
     override fun initializeClickListners() {
 tv_signup.setOnClickListener {
 
-    registerApi()
+    //registerApi()
+    startActivity(Intent(this@MSRegisterActivity, MSHomeScreenActivity::class.java))
 }
     }
 
