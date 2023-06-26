@@ -287,6 +287,9 @@ public abstract class BaseClass extends AppCompatActivity {
                 .start(this);
     }
 
+    @androidx.annotation.RequiresApi(api = Build.VERSION_CODES.M)
+
+
       /*public Uri saveImageToFile(Bitmap bitmap) {
         File filesDir = getFilesDir();
         File imageFile = new File(filesDir, "image.jpg");
