@@ -9,11 +9,10 @@ import android.widget.TextView
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.apiservices.MSRegisterService
 import com.aenatural.aenaturals.apiservices.datamodels.RegisterRequest
+import com.aenatural.aenaturals.apiservices.datamodels.RegisterResponse
 import com.aenatural.aenaturals.baseframework.BaseClass
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.aenatural.aenaturals.common.RetrofitClient
+import kotlinx.coroutines.*
 
 class MSRegisterActivity : BaseClass() {
     lateinit var tv_signup:TextView
@@ -45,7 +44,7 @@ class MSRegisterActivity : BaseClass() {
 
     override fun initializeClickListners() {
 tv_signup.setOnClickListener {
-  //  startActivity(Intent(this,MSHomeScreenActivity::class.java))
+
     registerApi()
 }
     }
@@ -58,15 +57,21 @@ var password = ms_register_parlor_password.text.toString()
 
         GlobalScope.launch(Dispatchers.Main) {
             try {
-                val request = RegisterRequest(email, password, name, address)
-                val response = MSRegisterService.registerUser(request)
-                if (response.isSuccessful) {
-                    val registerResponse = response.body()
-                    Log.d("RegisterApiResponse",response)
-                    // Handle the response
-                } else {
-                    val errorMessage = response.errorBody()?.string()
-                    // Handle the error
+                val apiService = RetrofitClient.retrofit.create(MSRegisterService::class.java)
+                val requestData = RegisterRequest(email, password,name,address)
+                try {
+                    val response = apiService.registerUser(requestData)
+                    if (response.isSuccessful) {
+                        val responseData = response.body()
+                        Log.d("RegisterResponse",responseData.toString())
+                        withContext(Dispatchers.Main) {
+                            startActivity(Intent(this@MSRegisterActivity, MSHomeScreenActivity::class.java))
+                        }
+                    } else {
+                        // Handle the error
+                    }
+                } catch (e: Exception) {
+                    // Handle the exception
                 }
             } catch (e: Exception) {
                 // Handle exceptions
