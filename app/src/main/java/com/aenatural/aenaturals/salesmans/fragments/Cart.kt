@@ -104,6 +104,7 @@ class Cart : Fragment() {
         cancelTV.setOnClickListener {
             customDialog.dismiss()
         }
+
         doneCV.setOnClickListener {
             customDialog.dismiss()
             sells_select_customer_name.text = "Customer Name"
