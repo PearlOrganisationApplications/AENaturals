@@ -46,13 +46,13 @@ import java.util.Locale;
 public abstract class BaseClass extends AppCompatActivity {
     protected String versionNew;
     protected String versionName;
-   // public IsAppUpdated mIsUpdateAppTask = null;
+    // public IsAppUpdated mIsUpdateAppTask = null;
     protected Context baseApcContext;
     public static boolean isInternetReceiver;
     protected AppCompatActivity activityIn;
-    protected String LogTag, CAId,LogString;
+    protected String LogTag, CAId, LogString;
     public int STORAGE_PERMISSION_CODE = 1;
-    public String classname="Login";
+    public String classname = "Login";
 
     public final int REQUEST_IMAGE_CAPTURE = 101;
     public final int REQUEST_IMAGE_GALLERY = 102;
@@ -68,15 +68,14 @@ public abstract class BaseClass extends AppCompatActivity {
         IMAGE_TYPE = imageType;
     }
 
-    public void printLogs(String tag, String funcs, String msg){
-        Log.i("OSG-"+tag+"__"+funcs,msg);
-        LogString = LogString+"TAG - "+tag+"<br/> FUNCTION - "+funcs+"<br/> DATA - "+msg+"<br/><br/><br/><br/>";
+    public void printLogs(String tag, String funcs, String msg) {
+        Log.i("OSG-" + tag + "__" + funcs, msg);
+        LogString = LogString + "TAG - " + tag + "<br/> FUNCTION - " + funcs + "<br/> DATA - " + msg + "<br/><br/><br/><br/>";
     }
 
 
-
     @SuppressLint("ObsoleteSdkInt")
-    public void getgreenTheme(){
+    public void getgreenTheme() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -84,25 +83,28 @@ public abstract class BaseClass extends AppCompatActivity {
         }
     }
 
-    public void getLightGreentheme(){
+    public void getLightGreentheme() {
         Window window = getWindow();
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.lightgreen));
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
-    public void getMidGreentheme(){
+
+    public void getMidGreentheme() {
         Window window = getWindow();
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.midgreen));
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
+
     @SuppressLint("ObsoleteSdkInt")
-    public void getwhiteTheme(){
+    public void getwhiteTheme() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(getResources().getColor(R.color.white));
         }
     }
-    public static void buttonEffect(View button){
+
+    public static void buttonEffect(View button) {
         button.setOnTouchListener(new View.OnTouchListener() {
 
             public boolean onTouch(View v, MotionEvent event) {
@@ -153,58 +155,64 @@ public abstract class BaseClass extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, REQUEST_IMAGE_GALLERY);
     }
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void requestCameraPermission() {
         String cameraPermission = android.Manifest.permission.CAMERA;
         String galleryPermission = android.Manifest.permission.READ_EXTERNAL_STORAGE;
 
-        List<String> permissionsToRequest = new ArrayList<>();
-
-        if (ContextCompat.checkSelfPermission(this, cameraPermission) != PackageManager.PERMISSION_GRANTED) {
-            permissionsToRequest.add(cameraPermission);
-        }
-
-        if (ContextCompat.checkSelfPermission(this, galleryPermission) != PackageManager.PERMISSION_GRANTED) {
-            permissionsToRequest.add(galleryPermission);
-        }
-
-        if (!permissionsToRequest.isEmpty()) {
-            String[] permissionsArray = permissionsToRequest.toArray(new String[0]);
-            if (cameraPermissionDenied && !shouldShowRequestPermissionRationale(cameraPermission) &&
-                    galleryPermissionDenied && !shouldShowRequestPermissionRationale(galleryPermission)) {
-                // User denied both camera and gallery permissions and checked "Never ask again"
-                // Show a dialog explaining why the permissions are necessary
-                // You can customize the dialog message based on your app's requirements
-                new AlertDialog.Builder(this)
-                        .setTitle("Permissions Required")
-                        .setMessage("Please grant camera and gallery permissions to use this feature.")
-                        .setPositiveButton("Go to Settings", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Open the app settings page
-                                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                                Uri uri = Uri.fromParts("package", getPackageName(), null);
-                                intent.setData(uri);
-                                startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        })
-                        .show();
-            } else {
-                // Show the permission request dialog
-                ActivityCompat.requestPermissions(this, permissionsArray, REQUEST_IMAGE_CAPTURE);
-            }
-        } else {
-            // Permissions already granted
-            // Proceed to open the camera or choose from gallery
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             openCameraOrGallery();
+        } else {
+            List<String> permissionsToRequest = new ArrayList<>();
+
+            if (ContextCompat.checkSelfPermission(this, cameraPermission) != PackageManager.PERMISSION_GRANTED) {
+                permissionsToRequest.add(cameraPermission);
+            }
+
+            if (ContextCompat.checkSelfPermission(this, galleryPermission) != PackageManager.PERMISSION_GRANTED) {
+                permissionsToRequest.add(galleryPermission);
+            }
+
+            if (!permissionsToRequest.isEmpty()) {
+                String[] permissionsArray = permissionsToRequest.toArray(new String[0]);
+                if (cameraPermissionDenied && !shouldShowRequestPermissionRationale(cameraPermission) &&
+                        galleryPermissionDenied && !shouldShowRequestPermissionRationale(galleryPermission)) {
+                    // User denied both camera and gallery permissions and checked "Never ask again"
+                    // Show a dialog explaining why the permissions are necessary
+                    // You can customize the dialog message based on your app's requirements
+                    new AlertDialog.Builder(this)
+                            .setTitle("Permissions Required")
+                            .setMessage("Please grant camera and gallery permissions to use this feature.")
+                            .setPositiveButton("Go to Settings", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Open the app settings page
+                                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                    Uri uri = Uri.fromParts("package", getPackageName(), null);
+                                    intent.setData(uri);
+                                    startActivity(intent);
+                                }
+                            })
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            })
+                            .show();
+                } else {
+                    // Show the permission request dialog
+                    ActivityCompat.requestPermissions(this, permissionsArray, REQUEST_IMAGE_CAPTURE);
+                }
+            } else {
+                // Permissions already granted
+                // Proceed to open the camera or choose from gallery
+                openCameraOrGallery();
+            }
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -270,6 +278,7 @@ public abstract class BaseClass extends AppCompatActivity {
 
         return null;
     }
+
     public void cropImage(Uri imageUri) {
         File destinationUri = new File(getCacheDir(), "cropped_image.jpg");
 
@@ -614,7 +623,6 @@ public abstract class BaseClass extends AppCompatActivity {
 */
 
 
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -636,11 +644,14 @@ public abstract class BaseClass extends AppCompatActivity {
     }
 
     protected abstract void setLayoutXml();
-    protected abstract void initializeViews();
-    protected abstract void initializeClickListners();
-    protected abstract void initializeInputs();
-    protected abstract void initializeLabels();
 
+    protected abstract void initializeViews();
+
+    protected abstract void initializeClickListners();
+
+    protected abstract void initializeInputs();
+
+    protected abstract void initializeLabels();
 
 
 }

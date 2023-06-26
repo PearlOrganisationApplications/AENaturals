@@ -76,6 +76,7 @@
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/cust_profilePic"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:src="@drawable/ic_skincare2" />
@@ -578,7 +579,7 @@
                         android:padding="@dimen/sd8">
 
                         <ImageView
-
+                            android:id="@+id/cust_profieIV"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_marginHorizontal="@dimen/sd6"
@@ -604,12 +605,12 @@
                         android:padding="@dimen/sd8">
 
                         <ImageView
+                            android:id="@+id/cust_parlorIV"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-
                             android:layout_marginHorizontal="@dimen/sd6"
-
-                            android:src="@drawable/ic_shop" />
+                            android:src="@drawable/ic_shop"
+                            />
 
                         <TextView
                             android:layout_width="wrap_content"

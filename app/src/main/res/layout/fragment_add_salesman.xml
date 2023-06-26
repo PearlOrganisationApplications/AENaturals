@@ -195,6 +195,7 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
+                            android:id="@+id/dist_adharFrontLL"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/sd4"
@@ -205,7 +206,7 @@
                             android:padding="@dimen/sd8">
 
                             <ImageView
-
+                                android:id="@+id/dist_adharFrontIV"
                                 android:layout_width="70dp"
                                 android:layout_height="70dp"
                                 android:layout_marginHorizontal="@dimen/sd6"
@@ -221,6 +222,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/dist_adharRearLL"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/sd4"
@@ -231,7 +233,7 @@
                             android:padding="@dimen/sd8">
 
                             <ImageView
-
+                                android:id="@+id/dist_adharRearIV"
                                 android:layout_width="70dp"
                                 android:layout_height="70dp"
                                 android:layout_marginHorizontal="@dimen/sd6"
@@ -276,5 +278,6 @@
             android:textColor="@color/darkgreen"
             android:textSize="@dimen/sd14"
             android:textStyle="bold" />
+
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import androidx.appcompat.app.AlertDialog
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.distributors.fragments.AddSalesman
@@ -50,12 +49,9 @@ class DistributorDashboard : BaseClass() {
 
     }
 
-    override fun initializeInputs() {
+    override fun initializeInputs() {}
 
-    }
-
-    override fun initializeLabels() {
-    }
+    override fun initializeLabels() {}
 
     private fun bottomNavigationControl() {
         distributor_bottomnav.setOnItemSelectedListener {
@@ -76,7 +72,6 @@ class DistributorDashboard : BaseClass() {
                 R.id.dist_addSalesman->{
                     supportFragmentManager.beginTransaction().replace(R.id.DashboardFrameLayout,
                         AddSalesman()).commit()
-
                 }
             }
             true

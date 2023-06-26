@@ -1,15 +1,21 @@
 package com.aenatural.aenaturals.customers
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
+import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +25,10 @@ import com.aenatural.aenaturals.baseframework.Session
 import com.aenatural.aenaturals.common.Login
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.customers.adapters.CustomerProfileAdapter
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.yalantis.ucrop.UCrop
 
 class CustomerProfileActivity : BaseClass() {
 
@@ -53,9 +62,14 @@ class CustomerProfileActivity : BaseClass() {
     lateinit var stateEdt: EditText
     lateinit var instaIdEdt: EditText
     lateinit var tagsEdt: EditText
+    lateinit var backTV: TextView
+    lateinit var cust_profilePic: ImageView
+    lateinit var cust_profieIV: ImageView
+    lateinit var cust_parlorIV: ImageView
 
     lateinit var button: Button
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pref=Session(this);
@@ -103,6 +117,11 @@ class CustomerProfileActivity : BaseClass() {
         tagsEdt = findViewById(R.id.tagsEdt)
 
         button = findViewById(R.id.button)
+        cust_profilePic = findViewById(R.id.cust_profilePic)
+        cust_profieIV = findViewById(R.id.cust_profieIV)
+        cust_parlorIV = findViewById(R.id.cust_parlorIV)
+        backTV = findViewById(R.id.backTV)
+
 
 
         alertDialog = AlertDialog.Builder(this)
@@ -123,6 +142,7 @@ class CustomerProfileActivity : BaseClass() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun initializeClickListners() {
         profile_bottomnav.setOnItemSelectedListener {
             when(it.itemId){
@@ -166,11 +186,16 @@ alertDialog.show()
             parlorpic.isEnabled = true
 
             profile_pic.setOnClickListener {
+                imageType =1
+                requestCameraPermission()
                 Toast.makeText(this,"hello ",Toast.LENGTH_SHORT).show()
             }
             parlorpic.setOnClickListener {
+                imageType =2
+                requestCameraPermission()
                 Toast.makeText(this,"hi ",Toast.LENGTH_SHORT).show()
             }
+
 
         }
 
@@ -200,6 +225,10 @@ alertDialog.show()
             parlorpic.isEnabled = false
         }
 
+        backTV.setOnClickListener {
+            onBackPressed()
+        }
+
 
     }
 
@@ -217,5 +246,61 @@ alertDialog.show()
         customerOrderHistoryRecycler.adapter = CustomerProfileAdapter(itemList)
         customerOrderHistoryRecycler.layoutManager = LinearLayoutManager(this)
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK) {
+
+            when (requestCode) {
+                REQUEST_IMAGE_CAPTURE -> {
+                    val imageBitmap = data?.extras?.get("data") as Bitmap
+                    val imageUri = saveImageToFile(imageBitmap)
+                    if (imageUri != null) {
+                        cropImage(imageUri)
+                    }
+                }
+                REQUEST_IMAGE_GALLERY -> {
+                    val imageUri = data?.data
+                    if (imageUri != null) {
+                        cropImage(imageUri)
+                    }
+                }
+                UCrop.REQUEST_CROP -> {
+                    val resultUri = UCrop.getOutput(data!!)
+                    if (resultUri != null) {
+                        when (imageType) {
+                            1 -> {
+                                Glide.with(this)
+                                    .load(resultUri)
+                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                    .skipMemoryCache(true)
+                                    .into(cust_profieIV)
+
+                                Glide.with(this)
+                                    .load(resultUri)
+                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                    .skipMemoryCache(true)
+                                    .into(cust_profilePic)
+                            }
+                            2 -> {
+                                Glide.with(this)
+                                    .load(resultUri)
+                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                    .skipMemoryCache(true)
+                                    .into(cust_parlorIV)
+                            }
+
+                        }
+                    }
+                }
+            }
+
+        } else if (resultCode == UCrop.RESULT_ERROR) {
+            val error = UCrop.getError(data!!)
+            // Handle the cropping error
+            Log.e("Error", "Crop error: $error")
+        }
     }
 }
