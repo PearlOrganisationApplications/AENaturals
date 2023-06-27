@@ -19,6 +19,27 @@
         android:theme="@style/Theme.AENaturals"
         tools:targetApi="31">
         <activity
+            android:name=".myspalon.MSCalendarSectionActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".myspalon.MSAddServiceActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".myspalon.MSServiceActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".myspalon.CreateInvoide"
             android:exported="false">
             <meta-data
