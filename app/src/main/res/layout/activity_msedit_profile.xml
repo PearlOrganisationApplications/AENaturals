@@ -281,5 +281,32 @@
 </androidx.core.widget.NestedScrollView>
 
 
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/sd20"
+        android:gravity="center"
+        android:id="@+id/ms_profile_pb"
+        android:layout_margin="@dimen/sd20"
+        android:background="@color/lightbirdcolor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5">
+        <ProgressBar
+            android:layout_width="100dp"
+            android:layout_margin="@dimen/sd6"
+            android:layout_height="100dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Loading"
+            android:textStyle="bold"
+            android:textColor="@color/darkgreen"
+            android:textSize="@dimen/sd14"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

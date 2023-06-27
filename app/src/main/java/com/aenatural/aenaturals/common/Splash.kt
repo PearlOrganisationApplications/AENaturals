@@ -13,6 +13,7 @@ import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.baseframework.Session
 import com.aenatural.aenaturals.customers.CustomerDashboard
 import com.aenatural.aenaturals.distributors.DistributorDashboard
+import com.aenatural.aenaturals.myspalon.MSHomeScreenActivity
 import com.aenatural.aenaturals.salesmans.SalesmanDashboard
 
 class Splash : AppCompatActivity() {
@@ -38,20 +39,31 @@ class Splash : AppCompatActivity() {
                     startActivity(mIntent)
                     finish()
                 }, 2000)
+
             }else if(section==2){
                 Handler().postDelayed({
                     val mIntent = Intent(this@Splash, SalesmanDashboard::class.java)
                     startActivity(mIntent)
                     finish()
                 }, 2000)
+
             }else if(section ==3){
                 Handler().postDelayed({
                     val mIntent = Intent(this@Splash, CustomerDashboard::class.java)
                     startActivity(mIntent)
                     finish()
                 }, 2000)
-            }else{
-                Toast.makeText(this,"Wrong Login Section",Toast.LENGTH_SHORT).show()
+
+            }else if(section ==4){
+
+                Handler().postDelayed({
+                    val mIntent = Intent(this@Splash, MSHomeScreenActivity::class.java)
+                    startActivity(mIntent)
+                    finish()
+                }, 2000)
+
+            }
+            else{
                 Handler().postDelayed({
                     val mIntent = Intent(this@Splash, Login::class.java)
                     startActivity(mIntent)
@@ -66,24 +78,6 @@ class Splash : AppCompatActivity() {
                 finish()
             }, 2000)
         }
-
-
-/*
-        iv_logo = findViewById(R.id.iv_logo)
-        val Animation = AnimationUtils.loadAnimation(this, R.anim.animzoomin)
-        //  imageView.startAnimation(Animation);
-        Animation.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationStart(animation: Animation) {}
-            override fun onAnimationEnd(animation: Animation) {
-                startActivity(Intent(applicationContext, WelcomeScreen::class.java))
-                // HomeActivity.class is the activity to go after showing the splash screen.
-            }
-
-            override fun onAnimationRepeat(animation: Animation) {}
-        })
-        iv_logo.startAnimation(Animation)
-*/
-
 
     }
 }

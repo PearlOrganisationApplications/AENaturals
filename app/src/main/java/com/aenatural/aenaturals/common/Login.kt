@@ -18,6 +18,7 @@ import com.aenatural.aenaturals.apiservices.LoginApiService
 import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.baseframework.Session
 import com.aenatural.aenaturals.common.RetrofitClient.retrofit
+import com.aenatural.aenaturals.myspalon.MSHomeScreenActivity
 import com.aenatural.aenaturals.myspalon.MSRegisterActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -25,7 +26,6 @@ import kotlinx.coroutines.launch
 
 
 class Login : BaseClass() {
-
     lateinit var emailEditText: EditText
     lateinit var passwordEditText: EditText
     lateinit var tv_login: TextView
@@ -109,6 +109,7 @@ class Login : BaseClass() {
             try {
                 val apiService = retrofit.create(LoginApiService::class.java)
                 val response = apiService.login(email, password)
+                Log.d("RegisterRequest", "$email $password")
                 if (response.isSuccessful) {
                     login_pb.visibility = View.GONE
                     cardView2.visibility = View.VISIBLE
@@ -118,8 +119,8 @@ class Login : BaseClass() {
                         if (responseData.status.equals("false")) {
                             errorHandler(responseData.message, loginerrorTV, true)
                         } else {
-                            startActivity(Intent(this@Login, MSRegisterActivity::class.java))
-                        }
+                            startActivity(Intent(this@Login, MSHomeScreenActivity::class.java))
+                            session.setLogin(emailEditText.text.toString(), 4)                        }
                     } else {
                         errorHandler("No response from server", loginerrorTV, true)
                     }
