@@ -41,7 +41,9 @@ class MSEditProfileActivit : BaseClass() {
                     ms_profile_pb.visibility = View.GONE
                     if(response.isSuccessful){
                         val data = response.body()
-                        Log.d("ProfileResponse ",data.toString())
+                        if (data != null) {
+                            Log.d("ProfileResponse ",data.profile.email.toString())
+                        }
                     }
                 }
 

@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 
 public interface MSGetProfileApiService {
-    @GET("profile")
+    @GET("parlour/profile")
     Call<MSProfileResponseDM> getProfile(@Header("Authorization") String token);
 }
