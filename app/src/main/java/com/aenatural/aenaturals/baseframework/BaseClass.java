@@ -20,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -82,11 +83,6 @@ public abstract class BaseClass extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(getResources().getColor(R.color.darkgreen));
         }
-    }
-    public void birdTheme(){
-        Window window = getWindow();
-        window.setStatusBarColor(ContextCompat.getColor(this, R.color.birdcolor));
-        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
     public void getLightGreentheme(){
         Window window = getWindow();
@@ -661,7 +657,7 @@ public abstract class BaseClass extends AppCompatActivity {
     protected abstract void initializeInputs();
     protected abstract void initializeLabels();
 
-public void errorHandler(String msg, TextView tv,Boolean mode){
+public void errorHandler(String msg, TextView tv, Boolean mode){
     tv.setText(msg);
     if(mode){
         tv.setVisibility(View.VISIBLE);
