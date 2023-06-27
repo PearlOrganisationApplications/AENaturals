@@ -11,7 +11,9 @@ import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.apiservices.MSGetProfileApiService
 import com.aenatural.aenaturals.apiservices.datamodels.MSProfileResponseDM
 import com.aenatural.aenaturals.baseframework.BaseClass
+import com.aenatural.aenaturals.baseframework.Session
 import com.aenatural.aenaturals.common.RetrofitClient.retrofit
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -20,6 +22,7 @@ import retrofit2.*
 class MSEditProfileActivit : BaseClass() {
     lateinit var profile_backIB: ImageButton
     lateinit var ms_profile_pb:LinearLayout
+    lateinit var session: Session
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setLayoutXml()
@@ -28,11 +31,14 @@ class MSEditProfileActivit : BaseClass() {
         getProfileResponse()
     }
 
+
     private fun getProfileResponse() {
-        var apiService = retrofit.create(MSGetProfileApiService::class.java)
+
+        val apiService = retrofit.create(MSGetProfileApiService::class.java)
+        val tkn = session.token
         GlobalScope.launch(Dispatchers.Main) {
         try {
-            val call:Call<MSProfileResponseDM> = apiService.getProfile("Bearer ys35KfzRPD2+UPuGRr4Qh7Ow5NnKG4fne4Y3mRmUgXZHhniKhbyWQ6cHDYEqVfdSXO6hCw09mrQUEEmpKG1to1XnnkrY4HAbe0cCW7RhnSBtyi8E")
+            val call:Call<MSProfileResponseDM> = apiService.getProfile("Bearer $tkn")
             call.enqueue(object:Callback<MSProfileResponseDM>{
                 override fun onResponse(
                     call: Call<MSProfileResponseDM>,
@@ -62,6 +68,7 @@ class MSEditProfileActivit : BaseClass() {
     override fun setLayoutXml() {
         setContentView(R.layout.activity_msedit_profile)
         birdTheme()
+        session = Session(this)
     }
 
     override fun initializeViews() {
