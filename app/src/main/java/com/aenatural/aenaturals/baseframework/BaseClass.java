@@ -32,17 +32,11 @@ import androidx.core.content.FileProvider;
 
 import com.aenatural.aenaturals.R;
 import com.yalantis.ucrop.UCrop;
-
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public abstract class BaseClass extends AppCompatActivity {
     protected String versionNew;

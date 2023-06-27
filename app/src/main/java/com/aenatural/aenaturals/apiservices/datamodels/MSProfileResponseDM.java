@@ -1,7 +1,6 @@
 package com.aenatural.aenaturals.apiservices.datamodels;
 
 import com.google.gson.annotations.SerializedName;
-import com.aenatural.aenaturals.apiservices.datamodels.Profile;
 
 public class MSProfileResponseDM {
     @SerializedName("profile")

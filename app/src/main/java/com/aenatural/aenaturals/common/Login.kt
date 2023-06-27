@@ -145,11 +145,13 @@ class Login : BaseClass() {
                     login_pb.visibility = View.GONE
                     cardView2.visibility = View.VISIBLE
                     val responseData = response.body()
+                    val tokn = responseData?.token
                     Log.d("LoginResponse", response.body().toString())
                     if (responseData != null) {
                         if (responseData.status.equals("false")) {
                             errorHandler(responseData.message, loginerrorTV, true)
                         } else {
+                            session.token = tokn
                             startActivity(Intent(this@Login, MSHomeScreenActivity::class.java))
                             session.setLogin(emailEditText.text.toString(), 4)                        }
                     } else {
