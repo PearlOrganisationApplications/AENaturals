@@ -24,8 +24,8 @@ import com.aenatural.aenaturals.distributors.DistributorDashboard
 import com.aenatural.aenaturals.myspalon.MSHomeScreenActivity
 import com.aenatural.aenaturals.myspalon.MSRegisterActivity
 import com.aenatural.aenaturals.salesmans.SalesmanDashboard
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
@@ -136,7 +136,8 @@ class Login : BaseClass() {
     }
 
     private fun apiHandler(email: String, password: String) {
-        GlobalScope.launch(Dispatchers.Main) {
+        val coroutineScope = CoroutineScope(Dispatchers.Main)
+        coroutineScope.launch {
             try {
                 val apiService = retrofit.create(LoginApiService::class.java)
                 val response = apiService.login(email, password)

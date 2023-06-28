@@ -74,7 +74,9 @@ class MSRegisterActivity : BaseClass() {
         var address = ms_register_parlor_address.text.toString()
         var password = ms_register_parlor_password.text.toString()
 
-        GlobalScope.launch(Dispatchers.Main) {
+        val coroutineScope = CoroutineScope(Dispatchers.Main)
+        coroutineScope.launch {
+
             try {
                 val apiService = retrofit.create(MSRegisterService::class.java)
 

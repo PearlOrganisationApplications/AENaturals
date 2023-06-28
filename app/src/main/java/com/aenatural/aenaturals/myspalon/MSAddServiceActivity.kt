@@ -13,7 +13,6 @@ import com.aenatural.aenaturals.common.DialogPB
 import com.aenatural.aenaturals.common.RetrofitClient.retrofit
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback

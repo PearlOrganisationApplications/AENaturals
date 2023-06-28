@@ -23,8 +23,8 @@ import com.aenatural.aenaturals.common.DialogPB
 import com.aenatural.aenaturals.common.Login
 import com.aenatural.aenaturals.common.RetrofitClient
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -140,7 +140,8 @@ class MSHomeScreenActivity : BaseClass(), NavigationView.OnNavigationItemSelecte
 
         val apiService = RetrofitClient.retrofit.create(MSGetProfileApiService::class.java)
         val tokn = session.token
-        GlobalScope.launch(Dispatchers.Main) {
+        val coroutineScope = CoroutineScope(Dispatchers.Main)
+        coroutineScope.launch {
             try {
                 val call: Call<MSProfileResponseDM> = apiService.getProfile("Bearer $tokn")
                 call.enqueue(object : Callback<MSProfileResponseDM> {

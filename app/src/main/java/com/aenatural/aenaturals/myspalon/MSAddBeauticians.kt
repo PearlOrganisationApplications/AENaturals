@@ -12,8 +12,8 @@ import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.baseframework.Session
 import com.aenatural.aenaturals.common.DialogPB
 import com.aenatural.aenaturals.common.RetrofitClient.retrofit
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class MSAddBeauticians : BaseClass() {
@@ -92,7 +92,8 @@ class MSAddBeauticians : BaseClass() {
     private fun sendDatatoApi() {
         initializeInputs()
         loadingDialog.startLoadingDialog()
-        GlobalScope.launch(Dispatchers.Main){
+        val coroutineScope = CoroutineScope(Dispatchers.Main)
+        coroutineScope.launch {
             val tokn = session.token
             var apiService = retrofit.create(MSAddStaffService::class.java)
 
