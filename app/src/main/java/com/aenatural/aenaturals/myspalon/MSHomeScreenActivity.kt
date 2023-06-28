@@ -6,11 +6,9 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.aenatural.aenaturals.R
@@ -18,6 +16,7 @@ import com.aenatural.aenaturals.apiservices.MSGetProfileApiService
 import com.aenatural.aenaturals.apiservices.datamodels.MSProfileResponseDM
 import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.baseframework.Session
+import com.aenatural.aenaturals.common.DialogPB
 import com.aenatural.aenaturals.common.Login
 import com.aenatural.aenaturals.common.RetrofitClient
 import com.google.android.material.navigation.NavigationView
@@ -27,7 +26,6 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.system.exitProcess
 
 
 class MSHomeScreenActivity : BaseClass(), NavigationView.OnNavigationItemSelectedListener {
@@ -38,7 +36,7 @@ class MSHomeScreenActivity : BaseClass(), NavigationView.OnNavigationItemSelecte
     lateinit var btn_drawer_menu:ImageView
     lateinit var drawerLayout:DrawerLayout
     lateinit var nav_view:NavigationView
-    lateinit var loadingDialog:DialogPB
+    lateinit var loadingDialog: DialogPB
     lateinit var session: Session
 
     @RequiresApi(Build.VERSION_CODES.M)

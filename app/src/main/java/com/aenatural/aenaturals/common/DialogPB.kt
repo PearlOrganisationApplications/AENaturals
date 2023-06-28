@@ -1,4 +1,4 @@
-package com.aenatural.aenaturals.myspalon
+package com.aenatural.aenaturals.common
 
 import android.annotation.SuppressLint
 import android.app.Activity
