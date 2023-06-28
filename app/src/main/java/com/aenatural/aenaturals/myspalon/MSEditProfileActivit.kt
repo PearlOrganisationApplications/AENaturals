@@ -155,6 +155,9 @@ class MSEditProfileActivit : BaseClass() {
                         val message = profileUpdateResponse?.message
                         // Handle the response data as needed
                         Log.d("profileUpdate",profileUpdateResponse.toString())
+                        if (status.equals("true")){
+                            loadingDialog.showErrorBottomSheetDialog(message.toString())
+                        }
                         Toast.makeText(this@MSEditProfileActivit, "successful", Toast.LENGTH_SHORT).show()
                     } else {
                         // Handle the error case
