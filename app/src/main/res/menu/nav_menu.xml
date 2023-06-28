@@ -7,9 +7,7 @@
         <item
             android:id="@+id/menu_item2"
             android:title="Customers" />
-        <item
-            android:id="@+id/menu_item3"
-            android:title="Calendar" />
+
         <item
             android:id="@+id/menu_appointments"
             android:title="Appointments" />

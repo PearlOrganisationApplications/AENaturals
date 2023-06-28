@@ -41,4 +41,16 @@
         <item name="android:windowEnterAnimation">@android:anim/linear_interpolator</item>
         <item name="android:windowExitAnimation">@android:anim/anticipate_interpolator</item>
     </style>
+
+    <style name="GreenDatePicker" parent="@android:style/Widget.Material.Light.DatePicker">
+        <item name="android:calendarTextColor">@color/birdcolor</item>
+        <item name="android:headerBackground">@color/white</item>
+        <item name="android:textColorPrimary">@color/birdcolor</item>
+        <item name="android:textColorSecondary">@color/birdcolor</item>
+        <item name="android:textColor">@color/birdcolor</item>
+        <item name="android:yearListSelectorColor">@color/birdcolor</item>
+        <item name="android:datePickerMode">calendar</item>
+    </style>
+
+
 </resources>

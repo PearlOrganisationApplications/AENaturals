@@ -15,7 +15,9 @@ Button ms_add_service_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+setLayoutXml();
+initializeViews();
+initializeClickListners();
     }
 
     @Override
