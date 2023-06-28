@@ -157,6 +157,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:id="@+id/ms_home_calendar"
             android:orientation="vertical"
             >
             <LinearLayout
@@ -206,6 +207,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:layout_weight="1"
                 android:padding="@dimen/sd18"
                 android:background="@drawable/newcurvedbg"
@@ -236,6 +238,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:id="@+id/ms_home_services"
             android:orientation="vertical"
             >
             <LinearLayout
@@ -252,7 +255,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:padding="@dimen/sd20"
-
                 android:src="@drawable/beautician"
                 />
             </LinearLayout>
