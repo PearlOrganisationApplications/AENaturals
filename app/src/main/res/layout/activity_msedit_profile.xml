@@ -7,7 +7,7 @@
     tools:context=".myspalon.MSEditProfileActivit">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+        android:id="@+id/profile_appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/profile_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/birdcolor"
@@ -28,7 +28,7 @@
                 android:gravity="center_vertical">
 
                 <ImageButton
-                    android:id="@+id/profile_backIB"
+                    android:id="@+id/profile_profile_backIB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
@@ -48,21 +48,21 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <ImageView
-        android:id="@+id/circleImageView2"
+        android:id="@+id/profile_circleImageView2"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/ic_userc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        app:layout_constraintTop_toBottomOf="@+id/profile_appBarLayout"
         app:tint="@color/birdcolor" />
 
 <ImageView
     android:layout_width="30dp"
     android:layout_height="30dp"
     android:src="@drawable/ic_baseline_camera_alt_24"
-    app:layout_constraintBottom_toBottomOf="@+id/circleImageView2"
-    app:layout_constraintEnd_toEndOf="@+id/circleImageView2"
+    app:layout_constraintBottom_toBottomOf="@+id/profile_circleImageView2"
+    app:layout_constraintEnd_toEndOf="@+id/profile_circleImageView2"
     app:tint="@color/birdcolor" />
 
 <androidx.core.widget.NestedScrollView
@@ -70,11 +70,11 @@
     android:layout_height="0dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/circleImageView2"
+    app:layout_constraintTop_toBottomOf="@+id/profile_circleImageView2"
     app:layout_constraintBottom_toBottomOf="parent">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView3"
+        android:id="@+id/profile_cardView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
@@ -95,14 +95,24 @@
                 android:text="Salutation"
                 android:textColor="@color/birdcolor" />
 
-            <EditText
-                android:id="@+id/input_medicineET"
+            <!--<EditText
+                android:id="@+id/profile_input_medicineET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="4dp"
                 android:background="@drawable/edittextborderwhite"
                 android:hint="Salutation"
+                android:inputType="text"
+                android:imeOptions="actionNext"
+                android:padding="10dp" />-->
+            <Spinner
+                android:id="@+id/profile_input_medicineET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:background="@drawable/edittextborderwhite"
                 android:inputType="text"
                 android:padding="10dp" />
             <TextView
@@ -113,14 +123,15 @@
                 android:textColor="@color/birdcolor" />
 
             <EditText
-                android:id="@+id/input_fullname"
+                android:id="@+id/profile_input_fullname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="4dp"
                 android:background="@drawable/edittextborderwhite"
                 android:hint="Full name"
-                android:inputType="text"
+                android:inputType="textPersonName"
+                android:imeOptions="actionNext"
                 android:padding="10dp" />
             <TextView
                 android:layout_width="wrap_content"
@@ -130,14 +141,15 @@
                 android:textColor="@color/birdcolor" />
 
             <EditText
-                android:id="@+id/input_email"
+                android:id="@+id/profile_input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="4dp"
                 android:background="@drawable/edittextborderwhite"
                 android:hint="Email"
-                android:inputType="text"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
                 android:padding="10dp" />
             <TextView
                 android:layout_width="wrap_content"
@@ -147,14 +159,15 @@
                 android:textColor="@color/birdcolor" />
 
             <EditText
-                android:id="@+id/input_mobile"
+                android:id="@+id/profile_input_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="4dp"
                 android:background="@drawable/edittextborderwhite"
                 android:hint="Mobile"
-                android:inputType="text"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
                 android:padding="10dp" />
 
 
@@ -170,10 +183,12 @@
 
 
                 <RadioButton
+                    android:id="@+id/profile_maleRB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Male"/>
                 <RadioButton
+                    android:id="@+id/profile_femaleRB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Female"/>
@@ -191,7 +206,7 @@
                 android:textColor="@color/birdcolor" />
 
             <EditText
-                android:id="@+id/input_quali"
+                android:id="@+id/profile_input_quali"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -208,7 +223,7 @@
                 android:textColor="@color/birdcolor" />
 
             <EditText
-                android:id="@+id/input_profession"
+                android:id="@+id/profile_input_profession"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -225,7 +240,7 @@
                 android:textColor="@color/birdcolor" />
 
             <EditText
-                android:id="@+id/input_experience"
+                android:id="@+id/profile_input_experience"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -242,7 +257,7 @@
                 android:textColor="@color/birdcolor" />
 
             <EditText
-                android:id="@+id/input_appointment"
+                android:id="@+id/profile_input_appointment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -255,7 +270,7 @@
 
 
             <TextView
-                android:id="@+id/tv_submit"
+                android:id="@+id/profile_tv_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -287,7 +302,8 @@
         android:orientation="vertical"
         android:padding="@dimen/sd20"
         android:gravity="center"
-        android:id="@+id/ms_profile_pb"
+        android:visibility="gone"
+        android:id="@+id/profile_ms_profile_pb"
         android:layout_margin="@dimen/sd20"
         android:background="@color/lightbirdcolor"
         app:layout_constraintBottom_toBottomOf="parent"
