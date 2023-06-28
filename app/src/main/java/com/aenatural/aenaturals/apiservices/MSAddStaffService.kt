@@ -10,7 +10,7 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface MSAddStaffService {
-    @POST("parlour/staff/add")
+    @POST("staff/add")
     @FormUrlEncoded
     suspend fun addStaff(@Header("Authorization") authorization: String,
                          @Field("salutation") salutation:String,
@@ -20,6 +20,5 @@ interface MSAddStaffService {
                          @Field("profession") profession:String,
                          @Field("experience") experience:String,
                          @Field("appointment_interval") appointment_interval:String,
-                         @Field("gender") gender:String,
-                         ):AddBeauticianDM
+                         @Field("gender") gender:String, ):AddBeauticianDM
 }
