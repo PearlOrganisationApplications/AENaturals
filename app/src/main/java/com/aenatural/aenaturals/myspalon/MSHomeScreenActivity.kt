@@ -168,14 +168,14 @@ class MSHomeScreenActivity : BaseClass(), NavigationView.OnNavigationItemSelecte
                             val salutation = profile?.salutation
                             if (data != null) {
                                 if (data.status.equals("true")) {
-                                    Log.d("ProfileResponse ", data.profile.email.toString())
-                                    Log.d("Profile ", profile.toString())
+                                    logHandler("ProfileResponse ", data.profile.email.toString())
+                                    logHandler("Profile ", profile.toString())
                                     try {
                                         profilestatus = data.profileStatus.toString()
-                                        Log.d("PResponse ", data.profileStatus.toString())
+                                        logHandler("PResponse ", data.profileStatus.toString())
                                     } catch (_: Exception) {
                                         profilestatus = "true"
-                                        Log.d("PResponse ", "true")
+                                        logHandler("PResponse ", "true")
                                     }
                                 } else {
                                     Toast.makeText(
@@ -218,16 +218,15 @@ class MSHomeScreenActivity : BaseClass(), NavigationView.OnNavigationItemSelecte
 
                     override fun onFailure(call: Call<MSProfileResponseDM>, t: Throwable) {
                         loadingDialog.dismissDialog()
-                        Log.d(
-                            "FailureResponse",
+                        logHandler("FailureResponse",
                             t.message.toString() + " \n" + t.localizedMessage + " \n" + t.cause + " \n" + t.stackTraceToString()
                         )
-                        Log.d("CallResponse", call.toString())
+                        logHandler("CallResponse", call.toString())
                     }
                 })
 
             } catch (e: Exception) {
-                Log.d("ExceptionResponse", e.message.toString())
+                logHandler("ExceptionResponse", e.message.toString())
             }
         }
     }

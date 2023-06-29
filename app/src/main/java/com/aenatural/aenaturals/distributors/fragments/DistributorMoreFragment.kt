@@ -2,12 +2,8 @@ package com.aenatural.aenaturals.salesmans.fragments
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.graphics.Color
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,9 +11,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
@@ -28,16 +24,9 @@ import com.aenatural.aenaturals.distributors.fragments.DistributorHomeFrag
 import com.aenatural.aenaturals.salesmans.Adapters.PendingOrdersAdapter
 import com.aenatural.aenaturals.salesmans.Adapters.PendingPaymentAdapter
 import com.aenatural.aenaturals.salesmans.Adapters.ReturnOrderAdapter
-import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
-import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.textview.MaterialTextView
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class DistributorMoreFragment : Fragment() {
     lateinit var salesmanMoreRecyclerView: RecyclerView
@@ -156,8 +145,8 @@ class DistributorMoreFragment : Fragment() {
                 /*startDateTextView.setText(startDate)
                 endDateTextView.setText(endDate)*/
 
-                Log.d("DatePicker", "Setting start date: $startDate")
-                Log.d("DatePicker", "Setting end date: $endDate")
+                logHandler("DatePicker", "Setting start date: $startDate")
+                logHandler("DatePicker", "Setting end date: $endDate")
                 startDateTextView.text = dateRange.toString()
 
                 Toast.makeText(requireContext(), "$dateRange is selected", Toast.LENGTH_LONG).show()
@@ -189,8 +178,8 @@ class DistributorMoreFragment : Fragment() {
                 val dateRange = "$startDate - $endDate"
 
 
-                Log.d("DatePickerDP", "Setting start date: $startDate")
-                Log.d("DatePickerDP", "Setting end date: $endDate")
+                logHandler("DatePickerDP", "Setting start date: $startDate")
+                logHandler("DatePickerDP", "Setting end date: $endDate")
                 startDateTextViewDP.text = dateRange.toString()
 
                 Toast.makeText(requireContext(), "$dateRange is selected", Toast.LENGTH_LONG).show()
@@ -408,6 +397,9 @@ class DistributorMoreFragment : Fragment() {
         val minDateCalendar = Calendar.getInstance()
         minDateCalendar.add(Calendar.YEAR, -100) // Set 100 years ago from now
         return minDateCalendar.timeInMillis
+    }
+    fun logHandler(name: String?, msg: String?) {
+        Log.d(name, msg!!)
     }
 }
 

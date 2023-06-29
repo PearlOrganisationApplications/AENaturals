@@ -114,7 +114,7 @@ class MSAddBeauticians : BaseClass() {
                     gender
                 )
 
-                Log.d("RegisterBeautician",response.toString())
+                logHandler("RegisterBeautician",response.toString())
                 loadingDialog.dismissDialog()
 
                 var status =response.status

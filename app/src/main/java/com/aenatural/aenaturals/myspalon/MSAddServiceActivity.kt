@@ -77,7 +77,7 @@ class MSAddServiceActivity : BaseClass() {
                 ) {
                     loadingDialog.dismissDialog()
                     if (response.isSuccessful) {
-                        Log.d("ADDSERVICERES", response.body().toString())
+                        logHandler("ADDSERVICERES", response.body().toString())
                     }else{
                         loadingDialog.showErrorBottomSheetDialog("No response from server")
                     }

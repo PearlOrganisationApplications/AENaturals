@@ -100,7 +100,7 @@ class MSBeauticians : BaseClass() {
 
                     } else {
                         // Handle the error case
-                        Log.d("error1 " , response.message())
+                        logHandler("error1 " , response.message())
                         loadingDialog.showErrorBottomSheetDialog(response.message() + response.body())
                     }
                 }
@@ -108,17 +108,16 @@ class MSBeauticians : BaseClass() {
                 override fun onFailure(call: Call<BeauticianProfileResponse>, t: Throwable) {
                     // Handle the failure case
                     loadingDialog.dismissDialog()
-                    Log.d(
-                        "FailureResponse",
+                    logHandler("FailureResponse",
                         t.message.toString() + " \n" + t.localizedMessage + " \n" + t.cause + " \n" + t.stackTraceToString()
                     )
-                    Log.d("CallResponse", call.toString())
+                    logHandler("CallResponse", call.toString())
                     loadingDialog.showErrorBottomSheetDialog(t.message.toString())
 
                 }
             })
         } catch (e: Exception) {
-            Log.d("ExceptionResponse", e.message.toString())
+            logHandler("ExceptionResponse", e.message.toString())
             loadingDialog.showErrorBottomSheetDialog(e.message.toString())
         }
     }
