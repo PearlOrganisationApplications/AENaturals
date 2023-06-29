@@ -77,6 +77,14 @@ class MSAddServiceActivity : BaseClass() {
                 ) {
                     loadingDialog.dismissDialog()
                     if (response.isSuccessful) {
+                        var data = response.body()
+                        if (data != null) {
+                            if(data.status.equals("false")){
+                                loadingDialog.showErrorBottomSheetDialog(data.message)
+                            }else{
+                                loadingDialog.startSucessDialog(this@MSAddServiceActivity,MSServiceActivity::class.java)
+                            }
+                        }
                         logHandler("ADDSERVICERES", response.body().toString())
                     }else{
                         loadingDialog.showErrorBottomSheetDialog("No response from server")
@@ -99,5 +107,6 @@ class MSAddServiceActivity : BaseClass() {
     }
 
     override fun initializeLabels() {
+
     }
 }
