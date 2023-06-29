@@ -12,7 +12,8 @@ import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.baseframework.Session
 import com.aenatural.aenaturals.common.DialogPB
 import com.aenatural.aenaturals.common.RetrofitClient.retrofit
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MSAddBeauticians : BaseClass() {
@@ -30,7 +31,6 @@ class MSAddBeauticians : BaseClass() {
     lateinit var ms_addbeautician_appointment_intervel: EditText
     lateinit var ms_addbeautician_save: TextView
     lateinit var session: Session
-    lateinit var MS_addbeautican_errorTV:TextView
     lateinit var loadingDialog: DialogPB
 
 
@@ -77,12 +77,10 @@ class MSAddBeauticians : BaseClass() {
         ms_addbeautician_qualification = findViewById(R.id.ms_addbeautician_qualification)
         ms_addbeautician_profession = findViewById(R.id.ms_addbeautician_profession)
         ms_addbeautician_experience = findViewById(R.id.ms_addbeautician_experience)
-        ms_addbeautician_appointment_intervel =
-            findViewById(R.id.ms_addbeautician_appointment_intervel)
+        ms_addbeautician_appointment_intervel = findViewById(R.id.ms_addbeautician_appointment_intervel)
         ms_addbeautician_save = findViewById(R.id.ms_addbeautician_save)
 
-        MS_addbeautican_errorTV = findViewById(R.id.MS_addbeautican_errorTV)
-        MS_addbeautican_errorTV.visibility = View.GONE
+//      MS_addbeautican_errorTV = findViewById(R.id.MS_addbeautican_errorTV)
     }
 
     override fun initializeClickListners() {
@@ -97,13 +95,15 @@ class MSAddBeauticians : BaseClass() {
     private fun sendDatatoApi() {
         initializeInputs()
         loadingDialog.startLoadingDialog()
-        MS_addbeautican_errorTV.visibility = View.GONE
-        GlobalScope.launch {
+        val coroutineScope = CoroutineScope(Dispatchers.Main)
+        coroutineScope.launch {
             val tokn = session.token
             var apiService = retrofit.create(MSAddStaffService::class.java)
 
             try {
-                var response = apiService.addStaff("Bearer $tokn",
+                if(gender=="")
+                    gender = "male"
+                val response = apiService.addStaff("Bearer $tokn",
                     salutation,
                     fullname,
                     mobile,
@@ -116,14 +116,18 @@ class MSAddBeauticians : BaseClass() {
 
                 Log.d("RegisterBeautician",response.toString())
                 loadingDialog.dismissDialog()
-                Log.d("ResStatus ",response.status)
-                if(response.status.toString() == "false") {
-                    MS_addbeautican_errorTV.visibility = View.VISIBLE
-                    errorHandler(response.message.toString(), MS_addbeautican_errorTV, true)
+
+                var status =response.status
+                println(status)
+                if(status.equals("false")) {
+                   // Toast.makeText(this@MSAddBeauticians,"Status "+response.status,Toast.LENGTH_SHORT).show()
+                    loadingDialog.showErrorBottomSheetDialog(response.message.toString())
+
+                    //errorHandler(response.message.toString(), MS_addbeautican_errorTV, true)
                 }
 
             }catch (e:Exception){
-
+                println("catch $e")
             }
 
         }
@@ -141,7 +145,7 @@ class MSAddBeauticians : BaseClass() {
         intervel = ms_addbeautician_appointment_intervel.text.toString()
 
         ms_addbeautician_gender_rg.setOnCheckedChangeListener { group, checkedId ->
-            val radioButton = findViewById<RadioButton>(checkedId)
+            val radioButton = group.findViewById<RadioButton>(checkedId)
             gender = radioButton.text.toString()
         }
 

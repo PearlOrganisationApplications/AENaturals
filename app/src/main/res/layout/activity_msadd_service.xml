@@ -51,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/sd8"
         android:layout_marginVertical="@dimen/sd6"
+        android:id="@+id/serv_name"
         android:hint="Name"
 
         />
@@ -59,6 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/sd8"
         android:layout_marginVertical="@dimen/sd6"
+        android:id="@+id/serv_cost"
         android:hint="Cost"
         />
 <Button
@@ -66,6 +68,7 @@
     android:layout_height="wrap_content"
     android:text="ADD"
     android:textColor="@color/white"
+    android:id="@+id/ms_service_save"
     android:textStyle="bold"
     android:backgroundTint="@color/birdcolor"
     android:layout_margin="@dimen/sd8"

@@ -55,58 +55,59 @@
         android:layout_marginHorizontal="10dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/MS_addbeautican_errorTV"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout2">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:fillViewport="true"
-    >
-        <LinearLayout
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:fillViewport="true">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Salutation"
-                android:textColor="@color/birdcolor" />
-
-            <Spinner
-                android:id="@+id/ms_addbeautician_salutation"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="4dp"
-                android:background="@drawable/edittextborderwhite"
-                android:inputType="text"
-                android:padding="10dp" />
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Salutation"
+                    android:textColor="@color/birdcolor" />
+
+                <Spinner
+                    android:id="@+id/ms_addbeautician_salutation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/edittextborderwhite"
+                    android:inputType="text"
+                    android:padding="10dp" />
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Full name"
-                android:textColor="@color/birdcolor" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Full name"
+                    android:textColor="@color/birdcolor" />
 
-            <EditText
-                android:id="@+id/ms_addbeautician_fullname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="4dp"
-                android:background="@drawable/edittextborderwhite"
-                android:hint="Full name"
-                android:inputType="text"
-                android:padding="10dp" />
+                <EditText
+                    android:id="@+id/ms_addbeautician_fullname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/edittextborderwhite"
+                    android:hint="Full name"
+                    android:inputType="text"
+                    android:padding="10dp" />
 
-            <!--  <TextView
+                <!--  <TextView
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:layout_margin="5dp"
@@ -124,162 +125,146 @@
                       android:inputType="text"
                       android:padding="10dp" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Mobile"
-                android:textColor="@color/birdcolor" />
-
-            <EditText
-                android:id="@+id/ms_addbeautician_mobile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="4dp"
-                android:background="@drawable/edittextborderwhite"
-                android:hint="Mobile"
-                android:inputType="text"
-                android:padding="10dp" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Gender"
-                android:textColor="@color/birdcolor" />
-
-            <RadioGroup
-                android:id="@+id/ms_addbeautician_gender_rg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-
-                <RadioButton
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Male" />
-
-                <RadioButton
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Female" />
+                    android:layout_margin="5dp"
+                    android:text="Mobile"
+                    android:textColor="@color/birdcolor" />
+
+                <EditText
+                    android:id="@+id/ms_addbeautician_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/edittextborderwhite"
+                    android:hint="Mobile"
+                    android:inputType="text"
+                    android:padding="10dp" />
 
 
-            </RadioGroup>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Gender"
+                    android:textColor="@color/birdcolor" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Qualification"
-                android:textColor="@color/birdcolor" />
-
-            <EditText
-                android:id="@+id/ms_addbeautician_qualification"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="4dp"
-                android:background="@drawable/edittextborderwhite"
-                android:hint="Qualification"
-                android:inputType="text"
-                android:padding="10dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Profession"
-                android:textColor="@color/birdcolor" />
-
-            <EditText
-                android:id="@+id/ms_addbeautician_profession"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="4dp"
-                android:background="@drawable/edittextborderwhite"
-                android:hint="Profession"
-                android:inputType="text"
-                android:padding="10dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Experience"
-                android:textColor="@color/birdcolor" />
-
-            <EditText
-                android:id="@+id/ms_addbeautician_experience"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="4dp"
-                android:background="@drawable/edittextborderwhite"
-                android:hint="Experience"
-                android:inputType="text"
-                android:padding="10dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Appointment Interval (in minutes)"
-                android:textColor="@color/birdcolor" />
-
-            <EditText
-                android:id="@+id/ms_addbeautician_appointment_intervel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="4dp"
-                android:background="@drawable/edittextborderwhite"
-                android:hint="in minutes"
-                android:inputType="text"
-                android:padding="10dp" />
+                <RadioGroup
+                    android:id="@+id/ms_addbeautician_gender_rg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
 
-            <TextView
-                android:id="@+id/ms_addbeautician_save"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/btn_roundbg"
-                android:elevation="10dp"
-                android:gravity="center"
-                android:paddingHorizontal="30dp"
-                android:paddingVertical="10dp"
-                android:text="Save"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+                    <RadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Male" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Female" />
 
 
-        </LinearLayout>
+                </RadioGroup>
 
-</ScrollView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Qualification"
+                    android:textColor="@color/birdcolor" />
+
+                <EditText
+                    android:id="@+id/ms_addbeautician_qualification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/edittextborderwhite"
+                    android:hint="Qualification"
+                    android:inputType="text"
+                    android:padding="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Profession"
+                    android:textColor="@color/birdcolor" />
+
+                <EditText
+                    android:id="@+id/ms_addbeautician_profession"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/edittextborderwhite"
+                    android:hint="Profession"
+                    android:inputType="text"
+                    android:padding="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Experience"
+                    android:textColor="@color/birdcolor" />
+
+                <EditText
+                    android:id="@+id/ms_addbeautician_experience"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/edittextborderwhite"
+                    android:hint="Experience"
+                    android:inputType="text"
+                    android:padding="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Appointment Interval (in minutes)"
+                    android:textColor="@color/birdcolor" />
+
+                <EditText
+                    android:id="@+id/ms_addbeautician_appointment_intervel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/edittextborderwhite"
+                    android:hint="in minutes"
+                    android:inputType="text"
+                    android:padding="10dp" />
+
+
+                <TextView
+                    android:id="@+id/ms_addbeautician_save"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/btn_roundbg"
+                    android:elevation="10dp"
+                    android:gravity="center"
+                    android:paddingHorizontal="30dp"
+                    android:paddingVertical="10dp"
+                    android:text="Save"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+
+
+            </LinearLayout>
+
+        </ScrollView>
     </androidx.cardview.widget.CardView>
-
-
-
-    <TextView
-        android:id="@+id/MS_addbeautican_errorTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/red"
-        android:padding="@dimen/sd6"
-        android:text="Error Message"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
