@@ -660,4 +660,8 @@ public void errorHandler(String msg, TextView tv, Boolean mode){
     }
 }
 
+public void logHandler(String name,String msg){
+    Log.d(name,msg);
+}
+
 }

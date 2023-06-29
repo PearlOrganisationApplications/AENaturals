@@ -2,6 +2,7 @@ package com.aenatural.aenaturals.myspalon
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import com.aenatural.aenaturals.R
@@ -34,6 +35,7 @@ class MSAddServiceActivity : BaseClass() {
         setLayoutXml()
         initializeViews()
         initializeInputs()
+        initializeClickListners()
     }
 
     override fun setLayoutXml() {
@@ -60,29 +62,35 @@ class MSAddServiceActivity : BaseClass() {
     private fun hitAddServiceApi() {
         loadingDialog.startLoadingDialog()
         val tokn = session.token
-        val coroutineScope = CoroutineScope(Dispatchers.Main)
-        coroutineScope.launch {
-            var apiService = retrofit.create(MSSaveService::class.java)
+        var apiService = retrofit.create(MSSaveService::class.java)
+//        val coroutineScope = CoroutineScope(Dispatchers.Main)
+//        coroutineScope.launch {
 
-            var call:Call<NormalDataModel> = apiService.addService("Bearer $tokn", service_name, service_cost)
 
-            call.enqueue(object:Callback<NormalDataModel>{
+            var call =
+                apiService.addService("Bearer $tokn", service_name, service_cost)
+
+            call.enqueue(object : Callback<NormalDataModel> {
                 override fun onResponse(
                     call: Call<NormalDataModel>,
                     response: Response<NormalDataModel>
                 ) {
-                    if (response.isSuccessful){
-
+                    loadingDialog.dismissDialog()
+                    if (response.isSuccessful) {
+                        Log.d("ADDSERVICERES", response.body().toString())
+                    }else{
+                        loadingDialog.showErrorBottomSheetDialog("No response from server")
                     }
                 }
 
                 override fun onFailure(call: Call<NormalDataModel>, t: Throwable) {
-                    TODO("Not yet implemented")
+                    logHandler("ErrorResponse",t.message.toString())
+                    loadingDialog.showErrorBottomSheetDialog("Something went wrong")
                 }
 
             })
 
-        }
+
     }
 
     override fun initializeInputs() {
