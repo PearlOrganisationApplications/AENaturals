@@ -31,7 +31,7 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListViewHold
     @Override
     public void onBindViewHolder(@NonNull ServiceListViewHolder holder, int position) {
         Service service = serviceList.get(position);
-        holder.servCostTextView.setText(service.getServ_name());
+        holder.servNameTextView.setText(service.getServ_name());
         holder.servCostTextView.setText(service.getServ_cost());
     }
 

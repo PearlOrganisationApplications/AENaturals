@@ -62,7 +62,6 @@ public class MSServiceActivity extends BaseClass {
     @Override
     protected void initializeViews() {
         ms_add_service_btn = findViewById(R.id.ms_add_service_btn);
-
         MSListserviceRV = findViewById(R.id.MSListserviceRV);
 
     }
