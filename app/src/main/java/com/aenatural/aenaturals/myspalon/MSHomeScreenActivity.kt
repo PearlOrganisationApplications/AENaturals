@@ -218,8 +218,7 @@ class MSHomeScreenActivity : BaseClass(), NavigationView.OnNavigationItemSelecte
 
                     override fun onFailure(call: Call<MSProfileResponseDM>, t: Throwable) {
                         loadingDialog.dismissDialog()
-                        logHandler
-                            "FailureResponse",
+                        logHandler("FailureResponse",
                             t.message.toString() + " \n" + t.localizedMessage + " \n" + t.cause + " \n" + t.stackTraceToString()
                         )
                         logHandler("CallResponse", call.toString())

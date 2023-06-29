@@ -108,8 +108,7 @@ class MSBeauticians : BaseClass() {
                 override fun onFailure(call: Call<BeauticianProfileResponse>, t: Throwable) {
                     // Handle the failure case
                     loadingDialog.dismissDialog()
-                    logHandler
-                        "FailureResponse",
+                    logHandler("FailureResponse",
                         t.message.toString() + " \n" + t.localizedMessage + " \n" + t.cause + " \n" + t.stackTraceToString()
                     )
                     logHandler("CallResponse", call.toString())
