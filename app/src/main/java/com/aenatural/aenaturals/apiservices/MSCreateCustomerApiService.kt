@@ -9,7 +9,7 @@ import retrofit2.http.POST
 
 interface MSCreateCustomerApiService {
     @FormUrlEncoded
-    @POST("customer/create")
+    @POST("customer/add")
     fun createCustomer(
         @Header("Authorization") token: String,
         @Field("full_name") fullName: String,
