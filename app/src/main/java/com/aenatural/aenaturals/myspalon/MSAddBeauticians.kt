@@ -10,6 +10,7 @@ import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.apiservices.MSAddStaffService
 import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.baseframework.Session
+import com.aenatural.aenaturals.common.DialogPB
 import com.aenatural.aenaturals.common.RetrofitClient.retrofit
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -31,6 +32,9 @@ class MSAddBeauticians : BaseClass() {
     lateinit var session: Session
     lateinit var MS_addbeautican_errorTV:TextView
     lateinit var loadingDialog: DialogPB
+
+
+
 
     var salutation = "Mr"
     var fullname = ""
