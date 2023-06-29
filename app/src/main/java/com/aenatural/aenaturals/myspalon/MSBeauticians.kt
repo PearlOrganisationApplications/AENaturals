@@ -90,7 +90,7 @@ class MSBeauticians : BaseClass() {
                                 // Create a Staff object with the retrieved values
                                 val staffItem = Staff("", "", "", "", mobile, "", "", "", "", "", fullName, "")
                                 staff1.add(staffItem)
-                                loadingDialog.showErrorBottomSheetDialog(fullName.toString() + mobile.toString())
+//                                loadingDialog.showErrorBottomSheetDialog(fullName.toString() + mobile.toString())
                             }
                         }
 
