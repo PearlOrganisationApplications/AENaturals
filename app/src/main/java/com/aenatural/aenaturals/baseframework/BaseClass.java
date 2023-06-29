@@ -2,6 +2,7 @@ package com.aenatural.aenaturals.baseframework;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,6 +21,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,8 +38,11 @@ import com.yalantis.ucrop.UCrop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public abstract class BaseClass extends AppCompatActivity {
     protected String versionNew;
@@ -54,6 +60,7 @@ public abstract class BaseClass extends AppCompatActivity {
     public boolean cameraPermissionDenied = false;
     public boolean galleryPermissionDenied = false;
     private int IMAGE_TYPE;
+
 
     public int getImageType() {
         return IMAGE_TYPE;
@@ -278,6 +285,7 @@ public abstract class BaseClass extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.birdcolor));
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }*/
+
     public void birdTheme() {
         Window window = getWindow();
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.birdcolor));
@@ -285,6 +293,49 @@ public abstract class BaseClass extends AppCompatActivity {
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
     }
+
+    public void showDatePicker(final Calendar calendar,  EditText dateTextView) {
+        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH, month);
+                calendar.set(Calendar.DAY_OF_MONTH, day);
+                updateLabel(dateTextView, calendar);
+            }
+        };
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+//                requireContext(),
+                this,
+                R.style.MyDatePickerDialogTheme, // use your custom theme here
+                date,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+        );
+
+        // Set the maximum and minimum date for the DatePickerDialog
+        Calendar maxDateCalendar = Calendar.getInstance();
+        maxDateCalendar.add(Calendar.YEAR, 1); // Add 1 year to the current date
+        datePickerDialog.getDatePicker().setMaxDate(maxDateCalendar.getTimeInMillis());
+        datePickerDialog.getDatePicker().setMinDate(getMinimumDate());
+
+        datePickerDialog.show();
+    }
+
+    public void updateLabel(EditText dateTextView, Calendar calendar) {
+        String myFormat = "yyyy/MM/dd";
+        SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US);
+        dateTextView.setText(dateFormat.format(calendar.getTime()));
+    }
+
+    public long getMinimumDate() {
+        Calendar minDateCalendar = Calendar.getInstance();
+        minDateCalendar.add(Calendar.YEAR, -100); // Set 100 years ago from now
+        return minDateCalendar.getTimeInMillis();
+    }
+
 
 
 

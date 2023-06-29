@@ -86,6 +86,7 @@
                         android:layout_margin="4dp"
                         android:background="@drawable/edittextborderwhite"
                         android:inputType="text"
+                        android:minHeight="40dp"
                         android:padding="10dp" />
 
 
