@@ -33,6 +33,9 @@ class MSAddBeauticians : BaseClass() {
     lateinit var session: Session
     lateinit var loadingDialog: DialogPB
 
+
+
+
     var salutation = "Mr"
     var fullname = ""
     var mobile = ""
