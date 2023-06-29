@@ -85,7 +85,7 @@ class MSRegisterActivity : BaseClass() {
                     if (response.isSuccessful) {
                         ms_register_pb.visibility = View.GONE
                         val responseData = response.body()
-                        Log.d("RegisterResponse", responseData.toString())
+                        logHandler("RegisterResponse", responseData.toString())
                         if (responseData != null) {
                             if (responseData.status == "false")
                                 errorHandler(responseData.message, MSregistererrorTV, true)
@@ -113,17 +113,17 @@ class MSRegisterActivity : BaseClass() {
                             converter.convert(errorBody)
                         }
                         if (errorResponse != null) {
-                            Log.d("ErrorResponse", errorResponse.toString())
+                            logHandler("ErrorResponse", errorResponse.toString())
                         } else {
-                            Log.d("Error", response.message())
+                            logHandler("Error", response.message())
                         }
                     }
                 } catch (e: Exception) {
-                    Log.d("error", "exception$e")
+                    logHandler("error", "exception$e")
                 }
 
             } catch (e: Exception) {
-                Log.d("Catch exception ", "" + e.toString());
+                logHandler("Catch exception ", "" + e.toString());
             }
         }
     }

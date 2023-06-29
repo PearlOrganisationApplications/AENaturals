@@ -141,13 +141,13 @@ class Login : BaseClass() {
             try {
                 val apiService = retrofit.create(LoginApiService::class.java)
                 val response = apiService.login(email, password)
-                Log.d("RegisterRequest", "$email $password")
+                logHandler("RegisterRequest", "$email $password")
                 if (response.isSuccessful) {
                     login_pb.visibility = View.GONE
                     cardView2.visibility = View.VISIBLE
                     val responseData = response.body()
                     val tokn = responseData?.token
-                    Log.d("LoginResponse", response.body().toString())
+                    logHandler("LoginResponse", response.body().toString())
                     if (responseData != null) {
                         if (responseData.status.equals("false")) {
                             errorHandler(responseData.message, loginerrorTV, true)

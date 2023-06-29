@@ -83,7 +83,7 @@ class MSEditProfileActivit : BaseClass() {
                         val appointmentInterval = profile?.appointmentInterval
                         val salutation = profile?.salutation
                         if (data != null) {
-                            Log.d("ProfileResponse ",data.profile.email.toString())
+                            logHandler("ProfileResponse ",data.profile.email.toString())
 //                            input_medicineET.setText(salutation)
                             val salutationIntex = dataList.indexOf(salutation)
                             input_salutationET.setSelection(salutationIntex)
@@ -108,13 +108,13 @@ class MSEditProfileActivit : BaseClass() {
 
                 override fun onFailure(call: Call<MSProfileResponseDM>, t: Throwable) {
                     ms_profile_pb.visibility = View.GONE
-                    Log.d("FailureResponse",t.message.toString()+" \n"+t.localizedMessage+" \n"+t.cause+" \n"+t.stackTraceToString())
-                    Log.d("CallResponse",call.toString())
+                    logHandler("FailureResponse",t.message.toString()+" \n"+t.localizedMessage+" \n"+t.cause+" \n"+t.stackTraceToString())
+                    logHandler("CallResponse",call.toString())
                 }
             })
 
         }catch (e:Exception){
-            Log.d("ExceptionResponse",e.message.toString())
+            logHandler("ExceptionResponse",e.message.toString())
         }
     }
 
@@ -145,7 +145,7 @@ class MSEditProfileActivit : BaseClass() {
                 experience = experience,
                 appointmentInterval = appointmentInterval,
                 salutation = salutation)
-//            Log.d("RequestBody",requestBody.toString())
+//            logHandler("RequestBody",requestBody.toString())
             call.enqueue(object : Callback<ProfileUpdateResponse> {
                 override fun onResponse(call: Call<ProfileUpdateResponse>, response: Response<ProfileUpdateResponse>) {
                     loadingDialog.dismissDialog()
@@ -154,7 +154,7 @@ class MSEditProfileActivit : BaseClass() {
                         val status = profileUpdateResponse?.status
                         val message = profileUpdateResponse?.message
                         // Handle the response data as needed
-                        Log.d("profileUpdate",profileUpdateResponse.toString())
+                        logHandler("profileUpdate",profileUpdateResponse.toString())
                         if (status.equals("true")){
                             loadingDialog.showErrorBottomSheetDialog(message.toString())
                         }
@@ -165,12 +165,12 @@ class MSEditProfileActivit : BaseClass() {
                 }
                 override fun onFailure(call: Call<ProfileUpdateResponse>, t: Throwable) {
                     loadingDialog.dismissDialog()
-                    Log.d("FailureResponse",t.message.toString()+" \n"+t.localizedMessage+" \n"+t.cause+" \n"+t.stackTraceToString())
-                    Log.d("CallResponse",call.toString())
+                    logHandler("FailureResponse",t.message.toString()+" \n"+t.localizedMessage+" \n"+t.cause+" \n"+t.stackTraceToString())
+                    logHandler("CallResponse",call.toString())
                 }
             })
             }catch (e:Exception){
-            Log.d("ExceptionResponse",e.message.toString())
+            logHandler("ExceptionResponse",e.message.toString())
         }
 
     }
