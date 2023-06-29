@@ -10,7 +10,7 @@ import retrofit2.http.POST
 interface MSSaveService {
     @FormUrlEncoded
     @POST("service/add")
-    suspend fun addService(
+    public fun addService(
         @Header("Authorization") authorization:String,
         @Field("serv_name") serv_name:String,
         @Field("serv_cost") serv_cost:String,
