@@ -49,8 +49,8 @@ class DialogPB(private val activity: Activity) {
         sucessDialog?.show()
 
         sucessDialog?.findViewById<Button>(R.id.sucess_dialog_back)?.setOnClickListener {
-            var intent = Intent(context, activityName::class.java)
-            context.startActivity(intent)
+var intent = Intent(context, activityName)
+    context.startActivity(intent)
             sucessDialog?.dismiss()
         }
     }
