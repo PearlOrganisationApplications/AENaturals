@@ -153,7 +153,7 @@ class Login : BaseClass() {
                             errorHandler(responseData.message, loginerrorTV, true)
                         } else {
                             session.token = tokn
-                            startActivity(Intent(this@Login, MSHomeScreenActivity::class.java))
+                            startActivity(Intent(this@Login, CustomerDashboard::class.java))
                             session.setLogin(emailEditText.text.toString(), 4)                        }
                     } else {
                         errorHandler("No response from server", loginerrorTV, true)

@@ -14,8 +14,10 @@ import com.aenatural.aenaturals.apiservices.datamodels.ErrorResponse
 import com.aenatural.aenaturals.apiservices.datamodels.RegisterRequest
 import com.aenatural.aenaturals.apiservices.datamodels.RegisterResponse
 import com.aenatural.aenaturals.baseframework.BaseClass
+import com.aenatural.aenaturals.common.Login
 import com.aenatural.aenaturals.common.RetrofitClient
 import com.aenatural.aenaturals.common.RetrofitClient.retrofit
+import com.aenatural.aenaturals.customers.CustomerDashboard
 import com.google.gson.Gson
 import kotlinx.coroutines.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -94,7 +96,7 @@ class MSRegisterActivity : BaseClass() {
                                     startActivity(
                                         Intent(
                                             this@MSRegisterActivity,
-                                            MSHomeScreenActivity::class.java
+                                            Login::class.java
                                         )
                                     )
                                 }
