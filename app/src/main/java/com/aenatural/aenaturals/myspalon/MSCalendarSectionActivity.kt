@@ -87,8 +87,10 @@ class MSCalendarSectionActivity : BaseClass() {
                     } else {
                         // Update the appointment list and notify the adapter
                         appointmentAdapter.setData(filteredAppointments)
+
                         Log.d("elseApponm",filteredAppointments.toString())
                     }
+
                     printLogs("success123", "onSuccess", appointmentResponse.toString())
                 } else {
                     // Handle the error case
@@ -212,7 +214,6 @@ class MSCalendarSectionActivity : BaseClass() {
     }
 
     private fun setupDatePicker() {
-        var monthOfYear2 = ""
         var selectedDate = ""
         datePicker.init(
             datePicker.year,
@@ -227,6 +228,7 @@ class MSCalendarSectionActivity : BaseClass() {
             }
             loadingDialogPB.startLoadingDialog()
             logHandler("Date ",selectedDate.toString())
+            appintmentList.clear()
             fetchAppointmentList(selectedDate)
         }
     }
