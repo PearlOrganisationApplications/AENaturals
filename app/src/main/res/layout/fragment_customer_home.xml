@@ -44,7 +44,7 @@
             <!--trending Layout-->
             <include
                 android:id="@+id/trendingLayout"
-                layout="@layout/cust_trendingsection"
+                layout="@layout/mshome_screen_options_layout"
                 />
             <!--shop now layout-->
             <include

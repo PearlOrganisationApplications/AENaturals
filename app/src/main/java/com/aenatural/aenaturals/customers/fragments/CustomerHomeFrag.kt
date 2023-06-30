@@ -1,27 +1,38 @@
 package com.aenatural.aenaturals.customers.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.core.view.GravityCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
+import com.aenatural.aenaturals.apiservices.MSGetProfileApiService
+import com.aenatural.aenaturals.apiservices.datamodels.MSProfileResponseDM
+import com.aenatural.aenaturals.baseframework.Session
+import com.aenatural.aenaturals.common.DialogPB
+import com.aenatural.aenaturals.common.Login
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
-import com.aenatural.aenaturals.customers.adapters.CustomerAllItemAdapter
+import com.aenatural.aenaturals.common.RetrofitClient
 import com.aenatural.aenaturals.customers.CustomerTrendingAdapter
+import com.aenatural.aenaturals.customers.adapters.CustomerAllItemAdapter
 import com.aenatural.aenaturals.customers.adapters.SkincareAdapter
+import com.aenatural.aenaturals.myspalon.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 class CustomerHomeFrag : Fragment() {
@@ -47,6 +58,15 @@ class CustomerHomeFrag : Fragment() {
     lateinit var shopNowLL : LinearLayout
     lateinit var shopNowLayout : LinearLayout
     private lateinit var searchButton: ImageView
+    lateinit var session: Session
+
+    lateinit var ms_myprofile: LinearLayout
+    lateinit var ms_home_beauticians: LinearLayout
+    lateinit var ms_home_customers: LinearLayout
+    lateinit var ms_home_invoice: LinearLayout
+    lateinit var ms_home_services: LinearLayout
+    lateinit var ms_home_calendar: LinearLayout
+    lateinit var loadingDialog: DialogPB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,14 +86,16 @@ class CustomerHomeFrag : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         backPress()
         requireActivity().findViewById<LinearLayout>(R.id.include).visibility =View.VISIBLE
+        session = Session(requireContext())
         initializeViews(view)
         initializeClickListners()
         initializeLabels()
         initializeInputs()
+        getProfileResponse()
     }
 
     public fun initializeViews(view: View) {
-        customerTrendingRecyclerView = view.findViewById(R.id.customerTrendingRecyclerView)
+        mshomeInitViews(view)
         customerallItemsRecycler = view.findViewById(R.id.customerallItemsRecycler)
         skincare = view.findViewById(R.id.skincare)
         haircare = view.findViewById(R.id.haircare)
@@ -94,8 +116,38 @@ class CustomerHomeFrag : Fragment() {
         shopNowLL   = view.findViewById(R.id.shopNowLL)
     }
 
-    public fun initializeClickListners() {
+    private fun mshomeInitViews(view: View) {
+        loadingDialog = DialogPB(requireActivity())
+        ms_myprofile = view.findViewById(R.id.ms_myprofile)
+        ms_home_beauticians = view.findViewById(R.id.ms_home_beauticians)
+        ms_home_invoice = view.findViewById(R.id.ms_home_invoice)
+        ms_home_services = view.findViewById(R.id.ms_home_services)
+        ms_home_customers = view.findViewById(R.id.ms_home_customers)
+        ms_home_calendar = view.findViewById(R.id.ms_home_calendar)
+    }
 
+    public fun initializeClickListners() {
+        ms_myprofile.setOnClickListener {
+            startActivity(Intent(requireContext(), MSEditProfileActivit::class.java))
+        }
+        ms_home_beauticians.setOnClickListener {
+            startActivity(Intent(requireContext(), MSBeauticians::class.java))
+        }
+        ms_home_customers.setOnClickListener {
+            startActivity(Intent(requireContext(), MSCustomersActivity::class.java))
+        }
+/*        btn_drawer_menu.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START);
+        }*/
+        ms_home_invoice.setOnClickListener {
+            startActivity(Intent(requireContext(), MSInvoiceActivity::class.java))
+        }
+        ms_home_calendar.setOnClickListener {
+            startActivity(Intent(requireContext(), MSCalendarSectionActivity::class.java))
+        }
+        ms_home_services.setOnClickListener {
+            startActivity(Intent(requireContext(), MSServiceActivity::class.java))
+        }
         skincare.setOnClickListener {
             customerallItemsRecycler.visibility = View.GONE
             customerSkincareRV.visibility = View.VISIBLE
@@ -137,7 +189,6 @@ class CustomerHomeFrag : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {}
         })
-        // Set a listener for keyboard search action
 
     }
 
@@ -147,24 +198,7 @@ class CustomerHomeFrag : Fragment() {
 
     public fun initializeLabels() {
         initData()
-        customerTrendingRecyclerView.adapter = CustomerTrendingAdapter(itemList)
-        customerTrendingRecyclerView.layoutManager = LinearLayoutManager(requireContext(),
-            LinearLayoutManager.HORIZONTAL,false)
-        Timer().schedule(object : TimerTask() {
-            override fun run() {
-                if ((customerTrendingRecyclerView.layoutManager as LinearLayoutManager)!!.findFirstCompletelyVisibleItemPosition() < itemList.size - 1) {
-                    customerTrendingRecyclerView.layoutManager!!.smoothScrollToPosition(
-                        customerTrendingRecyclerView,
-                        RecyclerView.State(),
-                        (customerTrendingRecyclerView.layoutManager as LinearLayoutManager)!!.findFirstCompletelyVisibleItemPosition() + 1
-                    )
-                } else if ((customerTrendingRecyclerView.layoutManager as LinearLayoutManager)!!.findFirstCompletelyVisibleItemPosition() < itemList.size - 1) {
-                    customerTrendingRecyclerView.layoutManager!!.smoothScrollToPosition(customerTrendingRecyclerView, RecyclerView.State(), 0)
-                }else{
-                    customerTrendingRecyclerView.smoothScrollToPosition(0);
-                }
-            }
-        },0, 1500)
+
 
 
         customerallItemsRecycler.adapter = CustomerAllItemAdapter(itemList)
@@ -227,4 +261,124 @@ class CustomerHomeFrag : Fragment() {
             }
         }
     }*/
+
+
+
+    private fun getProfileResponse() {
+
+        val apiService = RetrofitClient.retrofit.create(MSGetProfileApiService::class.java)
+        val tokn = session.token
+        val coroutineScope = CoroutineScope(Dispatchers.Main)
+        coroutineScope.launch {
+            try {
+                val call: Call<MSProfileResponseDM> = apiService.getProfile("Bearer $tokn")
+                call.enqueue(object : Callback<MSProfileResponseDM> {
+                    override fun onResponse(
+                        call: Call<MSProfileResponseDM>,
+                        response: Response<MSProfileResponseDM>
+                    ) {
+                        loadingDialog.dismissDialog()
+                        if (response.isSuccessful) {
+                            val data = response.body()
+                            var profilestatus = "false"
+                            val profile = data?.profile
+                            val email = profile?.email
+                            val status = data?.status
+                            val username = profile?.username
+                            val fullName = profile?.fullName
+                            val image = profile?.image
+                            val gender = profile?.gender
+                            val mobile = profile?.mobile
+                            val qualification = profile?.qualification
+                            val profession = profile?.profession
+                            val experience = profile?.experience
+                            val appointmentInterval = profile?.appointmentInterval
+                            val salutation = profile?.salutation
+                            if (data != null) {
+                                if (data.status.equals("true")) {
+                                    logHandler("ProfileResponse ", data.profile.email.toString())
+                                    logHandler("Profile ", profile.toString())
+                                    try {
+                                        profilestatus = data.profileStatus.toString()
+                                        logHandler("PResponse ", data.profileStatus.toString())
+                                    } catch (_: Exception) {
+                                        profilestatus = "true"
+                                        logHandler("PResponse ", "true")
+                                    }
+                                } else {
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Your Session has expired please login again",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    startActivity(
+                                        Intent(
+                                            requireContext(),
+                                            Login::class.java
+                                        )
+                                    )
+                                }
+
+                                if (email == null || fullName == null || image == "" || gender == null || mobile == null || qualification == null || profession == null ||
+                                    experience == null || appointmentInterval == null || salutation == null
+                                ) {
+                                    val builder = android.app.AlertDialog.Builder(requireContext())
+                                    builder.setTitle("Profile Details")
+                                        .setMessage("Some fields are missing, please fill all the details")
+                                        .setPositiveButton("ok") { dialog, _ ->
+                                            dialog.dismiss()
+                                            startActivity(
+                                                Intent(
+                                                    requireContext(),
+                                                    MSEditProfileActivit::class.java
+                                                )
+                                            )
+                                        }
+                                    val dialog = builder.create()
+                                    dialog.show()
+                                }
+
+                            } else {
+
+                            }
+                        }
+                    }
+
+                    override fun onFailure(call: Call<MSProfileResponseDM>, t: Throwable) {
+                        loadingDialog.dismissDialog()
+                        logHandler("FailureResponse",
+                            t.message.toString() + " \n" + t.localizedMessage + " \n" + t.cause + " \n" + t.stackTraceToString()
+                        )
+                        logHandler("CallResponse", call.toString())
+                    }
+                })
+
+            } catch (e: Exception) {
+                logHandler("ExceptionResponse", e.message.toString())
+            }
+        }
+    }
+    fun logHandler(name: String?, msg: String?) {
+        Log.d(name, msg!!)
+    }
+    public fun trendingSection(){
+        customerTrendingRecyclerView.adapter = CustomerTrendingAdapter(itemList)
+        customerTrendingRecyclerView.layoutManager = LinearLayoutManager(requireContext(),
+            LinearLayoutManager.HORIZONTAL,false)
+        Timer().schedule(object : TimerTask() {
+            override fun run() {
+                if ((customerTrendingRecyclerView.layoutManager as LinearLayoutManager)!!.findFirstCompletelyVisibleItemPosition() < itemList.size - 1) {
+                    customerTrendingRecyclerView.layoutManager!!.smoothScrollToPosition(
+                        customerTrendingRecyclerView,
+                        RecyclerView.State(),
+                        (customerTrendingRecyclerView.layoutManager as LinearLayoutManager)!!.findFirstCompletelyVisibleItemPosition() + 1
+                    )
+                } else if ((customerTrendingRecyclerView.layoutManager as LinearLayoutManager)!!.findFirstCompletelyVisibleItemPosition() < itemList.size - 1) {
+                    customerTrendingRecyclerView.layoutManager!!.smoothScrollToPosition(customerTrendingRecyclerView, RecyclerView.State(), 0)
+                }else{
+                    customerTrendingRecyclerView.smoothScrollToPosition(0);
+                }
+            }
+        },0, 1500)
+    }
 }
