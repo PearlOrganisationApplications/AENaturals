@@ -3,6 +3,7 @@ package com.aenatural.aenaturals.myspalon
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.DatePicker
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -60,8 +61,55 @@ class MSCalendarSectionActivity : BaseClass() {
 
     override fun initializeLabels() {
     }
-
     private fun fetchAppointmentList(selectedDate: String) {
+        val apiService = retrofit.create(MSAppointmentListApiService::class.java)
+        val bearerToken = session.token // Replace YOUR_BEARER_TOKEN with the actual bearer token
+
+        mainScope.launch {
+            try {
+                val response = withContext(Dispatchers.IO) {
+                    apiService.getAppointmentList("Bearer $bearerToken", selectedDate)
+                }
+
+                if (response.isSuccessful) {
+                    val appointmentResponse = response.body()
+                    val appointments = appointmentResponse?.appointments
+                    loadingDialogPB.dismissDialog()
+
+                    // Filter appointments based on the selected date
+                    val filteredAppointments = appointments?.filter { it.app_date == selectedDate }
+
+                    if (filteredAppointments.isNullOrEmpty()) {
+                        // No appointments for the selected date
+                        // Handle the empty list case (e.g., show a message)
+                        printLogs("success123", "onSuccess", appointmentResponse.toString())
+                        loadingDialogPB.showErrorBottomSheetDialog("No appointment ")
+                    } else {
+                        // Update the appointment list and notify the adapter
+                        appointmentAdapter.setData(filteredAppointments)
+                        Log.d("elseApponm",filteredAppointments.toString())
+                    }
+                    printLogs("success123", "onSuccess", appointmentResponse.toString())
+                } else {
+                    // Handle the error case
+                    val errorMessage = response.errorBody()?.string()
+                    loadingDialogPB.dismissDialog()
+                    printLogs("API Error", "failure", errorMessage)
+                    loadingDialogPB.showErrorBottomSheetDialog("$errorMessage")
+                }
+            } catch (e: Exception) {
+                // Handle any exceptions that occur during the API call
+                // Log the error or show an error message to the user
+                loadingDialogPB.dismissDialog()
+                printLogs("API Error", "failure", e.message ?: "Unknown error")
+                loadingDialogPB.showErrorBottomSheetDialog(e.message.toString())
+            }
+        }
+        setupRecyclerView()
+    }
+
+
+    /*private fun fetchAppointmentList(selectedDate: String) {
         val apiService = retrofit.create(MSAppointmentListApiService::class.java)
         val bearerToken = session.token // Replace YOUR_BEARER_TOKEN with the actual bearer token
 
@@ -78,14 +126,23 @@ class MSCalendarSectionActivity : BaseClass() {
 
                     // Handle the appointment list as needed
                     printLogs("success", "onSuccess", response.body()?.status)
-                    appointments?.forEach { appointment ->
+
+                   *//* appointments?.forEach { appointment ->
 //                        appointmentAdapter.setData(it)
                         val id = appointment.added_by_user_id
                         val reason = appointment.app_reason
 
                         val aItem = Appointment("",id,"","","","","",reason,"","")
                         appintmentList.add(aItem)
+                    }*//*
+                    appointments?.let {
+                        val filteredAppointments = it.filter { appointment ->
+                            appointment.app_date == selectedDate
+//                            appointmentAdapter.setData(it)
+                        }
+                        appointmentAdapter.setData(filteredAppointments)
                     }
+                    printLogs("success123", "onSuccess", appointmentResponse.toString())
                 } else {
                     // Handle the error case
                     val errorMessage = response.errorBody()?.string()
@@ -103,25 +160,73 @@ class MSCalendarSectionActivity : BaseClass() {
 
             setupRecyclerView()
         }
-    }
+    }*/
+
+  /*  private fun fetchAppointmentList(selectedDate: String) {
+        val apiService = retrofit.create(MSAppointmentListApiService::class.java)
+        val bearerToken = session.token // Replace YOUR_BEARER_TOKEN with the actual bearer token
+
+        mainScope.launch {
+            try {
+                val response = withContext(Dispatchers.IO) {
+                    apiService.getAppointmentList("Bearer $bearerToken", selectedDate)
+                }
+
+                if (response.isSuccessful) {
+                    val appointmentResponse = response.body()
+                    val appointments = appointmentResponse?.appointments
+                    loadingDialogPB.dismissDialog()
+
+
+                    appointments?.let {
+                        val filteredAppointments = it.filter { appointment ->
+                            appointment.app_date == selectedDate
+                        }
+                        appointmentAdapter.setData(filteredAppointments)
+                    }
+                    printLogs("success", "onSuccess", response.body()?.status)
+                    printLogs("success123", "onSuccess", appointmentResponse.toString())
+                } else {
+                    // Handle the error case
+                    val errorMessage = response.errorBody()?.string()
+                    loadingDialogPB.dismissDialog()
+                    printLogs("API Error", "failure", errorMessage)
+                    loadingDialogPB.showErrorBottomSheetDialog("$errorMessage")
+                }
+            } catch (e: Exception) {
+                // Handle any exceptions that occur during the API call
+                // Log the error or show an error message to the user
+                loadingDialogPB.dismissDialog()
+                printLogs("API Error", "failure", e.message ?: "Unknown error")
+                loadingDialogPB.showErrorBottomSheetDialog(e.message.toString())
+            }
+
+            setupRecyclerView()
+        }
+    }*/
 
 
     private fun setupRecyclerView() {
-//        appointmentAdapter = AppointmentAdapter()
-        val layoutManager = LinearLayoutManager(this)
-        appointmentRV.layoutManager = layoutManager
+        appointmentRV.layoutManager = LinearLayoutManager(this@MSCalendarSectionActivity)
         appointmentRV.adapter = appointmentAdapter
     }
 
     private fun setupDatePicker() {
-
+        var monthOfYear2 = ""
+        var selectedDate = ""
         datePicker.init(
             datePicker.year,
             datePicker.month,
             datePicker.dayOfMonth
         ) { _, year, monthOfYear, dayOfMonth ->
-            val selectedDate = "$year-${monthOfYear + 1}-${dayOfMonth}"
+            if(monthOfYear<9) {
+//                 monthOfYear2 = ("0$monthOfYear")
+                selectedDate = "$year-0${monthOfYear + 1}-${dayOfMonth}"
+            }else {
+               selectedDate  = "$year-${monthOfYear + 1}-${dayOfMonth}"
+            }
             loadingDialogPB.startLoadingDialog()
+            logHandler("Date ",selectedDate.toString())
             fetchAppointmentList(selectedDate)
         }
     }
