@@ -3,6 +3,7 @@ package com.aenatural.aenaturals.baseframework;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,6 +25,7 @@ import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -317,7 +319,7 @@ public abstract class BaseClass extends AppCompatActivity {
 
         // Set the maximum and minimum date for the DatePickerDialog
         Calendar maxDateCalendar = Calendar.getInstance();
-        maxDateCalendar.add(Calendar.YEAR, 1); // Add 1 year to the current date
+        maxDateCalendar.add(Calendar.YEAR, 3); // Add 1 year to the current date
         datePickerDialog.getDatePicker().setMaxDate(maxDateCalendar.getTimeInMillis());
         datePickerDialog.getDatePicker().setMinDate(getMinimumDate());
 
@@ -326,7 +328,8 @@ public abstract class BaseClass extends AppCompatActivity {
 
     public void updateLabel(EditText dateTextView, Calendar calendar) {
         String myFormat = "yyyy/MM/dd";
-        SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US);
+        String formattedDate = myFormat.replace("/", "-");
+        SimpleDateFormat dateFormat = new SimpleDateFormat(formattedDate, Locale.US);
         dateTextView.setText(dateFormat.format(calendar.getTime()));
     }
 
@@ -335,6 +338,55 @@ public abstract class BaseClass extends AppCompatActivity {
         minDateCalendar.add(Calendar.YEAR, -100); // Set 100 years ago from now
         return minDateCalendar.getTimeInMillis();
     }
+
+    public void openTimePicker(final EditText editText, Calendar currentTime) {
+        // Get the current time
+//        Calendar currentTime = Calendar.getInstance();
+        int hour = currentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = currentTime.get(Calendar.MINUTE);
+
+        // Create a TimePickerDialog with AM/PM differentiation
+        TimePickerDialog timePickerDialog = new TimePickerDialog(
+                this,
+                R.style.MyDatePickerDialogTheme,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        // Handle the selected time
+                        String selectedTime = formatTime(hourOfDay, minute);
+                        editText.setText(selectedTime);
+                    }
+                },
+                hour, minute, false); // Set is24HourView to false
+
+        // Show the time picker dialog
+        timePickerDialog.show();
+    }
+
+    private String formatTime(int hourOfDay, int minute) {
+        String timeSuffix;
+        int hour;
+
+        // Convert 24-hour format to 12-hour format with AM/PM
+        if (hourOfDay >= 12) {
+            timeSuffix = "PM";
+            if (hourOfDay > 12) {
+                hour = hourOfDay - 12;
+            } else {
+                hour = 12;
+            }
+        } else {
+            timeSuffix = "AM";
+            if (hourOfDay == 0) {
+                hour = 12;
+            } else {
+                hour = hourOfDay;
+            }
+        }
+
+        return String.format(Locale.getDefault(), "%02d:%02d %s", hour, minute, timeSuffix);
+    }
+
 
 
 

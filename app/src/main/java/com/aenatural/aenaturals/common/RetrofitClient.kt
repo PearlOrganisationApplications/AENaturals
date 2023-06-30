@@ -5,7 +5,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "https://devs.pearl-developer.com/ae/v1/"
+    val details = "Please fill all the details"
+        private const
+                val BASE_URL = "https://devs.pearl-developer.com/ae/v1/"
 
     val retrofit: Retrofit by lazy {
         Retrofit.Builder()

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".myspalon.MSAddAppointmentActivity">
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout2"
+            android:id="@+id/appointment_appBarLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
@@ -15,7 +15,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
+                android:id="@+id/appointment_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/birdcolor"
@@ -27,7 +27,7 @@
                     android:gravity="center_vertical">
 
                     <ImageButton
-                        android:id="@+id/beauticians_back"
+                        android:id="@+id/appointment_beauticians_back"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
@@ -52,10 +52,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout2">
+            app:layout_constraintTop_toBottomOf="@+id/appointment_appBarLayout2">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView3"
+                android:id="@+id/appointment_cardView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
@@ -63,7 +63,7 @@
                 app:cardElevation="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_title">
+                app:layout_constraintTop_toBottomOf="@+id/appointment_tv_title">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -79,7 +79,7 @@
                         android:textColor="@color/birdcolor" />
 
                     <Spinner
-                        android:id="@+id/input_medicineET"
+                        android:id="@+id/appointment_input_beauticianET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -87,6 +87,10 @@
                         android:background="@drawable/edittextborderwhite"
                         android:inputType="text"
                         android:minHeight="40dp"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:clickable="false"
+                        android:cursorVisible="false"
                         android:padding="10dp" />
 
 
@@ -98,7 +102,7 @@
                         android:textColor="@color/birdcolor" />
 
                     <EditText
-                        android:id="@+id/input_fullname"
+                        android:id="@+id/appointment_input_fullname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -116,7 +120,7 @@
                           android:textColor="@color/birdcolor" />
 
                       <EditText
-                          android:id="@+id/input_email"
+                          android:id="@+id/appointment_input_email"
                           android:layout_width="match_parent"
                           android:layout_height="wrap_content"
                           android:layout_gravity="center"
@@ -134,7 +138,7 @@
 <!--                        android:textColor="@color/birdcolor" />-->
 
 <!--                    <EditText-->
-<!--                        android:id="@+id/input_mobile"-->
+<!--                        android:id="@+id/appointment_input_mobile"-->
 <!--                        android:layout_width="match_parent"-->
 <!--                        android:layout_height="wrap_content"-->
 <!--                        android:layout_gravity="center"-->
@@ -152,7 +156,7 @@
 <!--                        android:textColor="@color/birdcolor" />-->
 
 <!--                    <EditText-->
-<!--                        android:id="@+id/input_quali"-->
+<!--                        android:id="@+id/appointment_input_quali"-->
 <!--                        android:layout_width="match_parent"-->
 <!--                        android:layout_height="wrap_content"-->
 <!--                        android:layout_gravity="center"-->
@@ -208,7 +212,7 @@
 <!--                        android:textColor="@color/birdcolor" />-->
 
 <!--        <EditText-->
-<!--            android:id="@+id/input_profession"-->
+<!--            android:id="@+id/appointment_input_profession"-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="wrap_content"-->
 <!--            android:layout_gravity="center"-->
@@ -228,11 +232,15 @@
                         android:textColor="@color/birdcolor" />
 
                     <EditText
-                        android:id="@+id/input_experience"
+                        android:id="@+id/appointment_input_dob"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="4dp"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:clickable="false"
+                        android:cursorVisible="false"
                         android:background="@drawable/edittextborderwhite"
                         android:hint="YYYY-MM-DD"
                         android:inputType="text"
@@ -244,13 +252,20 @@
                         android:layout_margin="5dp"
                         android:text="Appointment Time"
                         android:textColor="@color/birdcolor" />
-                    <Spinner
+                    <EditText
+                        android:id="@+id/appointment_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="4dp"
                         android:background="@drawable/edittextborderwhite"
                         android:inputType="text"
+                        android:focusable="false"
+                        android:hint="HH:MM AM"
+                        android:focusableInTouchMode="false"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:minHeight="40dp"
                         android:padding="10dp" />
                     <TextView
                         android:layout_width="wrap_content"
@@ -270,7 +285,7 @@
                         android:padding="10dp" />
 
                     <TextView
-                        android:id="@+id/tv_submit"
+                        android:id="@+id/appointment_tv_submit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -286,7 +301,7 @@
                         android:textColor="@color/white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+                        app:layout_constraintTop_toBottomOf="@+id/appointment_cardView3" />
 
 
                 </LinearLayout>
