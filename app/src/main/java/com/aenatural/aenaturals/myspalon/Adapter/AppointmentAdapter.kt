@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.apiservices.datamodels.Appointment
 
-class AppointmentAdapter(private val appointmentList: List<Appointment>) :
+class AppointmentAdapter(private val appointmentList: MutableList<Appointment>) :
     RecyclerView.Adapter<AppointmentAdapter.ViewHolder>() {
 
 //    private val appointmentList: MutableList<Appointment> = mutableListOf()
@@ -46,9 +46,9 @@ class AppointmentAdapter(private val appointmentList: List<Appointment>) :
         return appointmentList.size
     }
 
-    /*fun setData(appointments: List<Appointment>) {
+    fun setData(    appointments: List<Appointment>) {
         appointmentList.clear()
         appointmentList.addAll(appointments)
         notifyDataSetChanged()
-    }*/
+    }
 }
