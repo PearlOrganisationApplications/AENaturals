@@ -82,7 +82,7 @@ class MSAddServiceActivity : BaseClass() {
                             if(data.status.equals("false")){
                                 loadingDialog.showErrorBottomSheetDialog(data.message)
                             }else{
-                                loadingDialog.startSucessDialog(this@MSAddServiceActivity,MSServiceActivity::class.java)
+                                loadingDialog.startSucessDialog(data.message,this@MSAddServiceActivity,MSServiceActivity::class.java)
                             }
                         }
                         logHandler("ADDSERVICERES", response.body().toString())

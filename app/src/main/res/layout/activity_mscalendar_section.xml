@@ -56,6 +56,7 @@
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
         <DatePicker
+            android:id="@+id/datePicker"
             style="@style/GreenDatePicker"
             android:headerBackground="@color/birdcolor"
             android:layout_width="wrap_content"
@@ -73,24 +74,20 @@
         android:textColor="@color/white"
         />
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/appointmentRV"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="bottom"
-        >
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ADD"
         android:textColor="@color/white"
-    android:id="@+id/ms_add_appointment"
+        android:id="@+id/ms_add_appointment"
         android:textStyle="bold"
         android:backgroundTint="@color/birdcolor"
         android:layout_margin="@dimen/sd8"
         />
-    </LinearLayout>
 </LinearLayout>

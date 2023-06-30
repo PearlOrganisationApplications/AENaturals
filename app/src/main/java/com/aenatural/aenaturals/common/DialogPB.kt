@@ -40,13 +40,16 @@ class DialogPB(private val activity: Activity) {
     fun dismissDialog() {
         dialog?.dismiss()
     }
-    fun startSucessDialog(context: Context, activityName:Class<*>){
+    fun startSucessDialog(msg:String, context: Context, activityName:Class<*>){
         val builder = AlertDialog.Builder(activity)
         val inflater = activity.layoutInflater
         builder.setView(inflater.inflate(R.layout.dialog_success, null))
         builder.setCancelable(true)
         sucessDialog = builder.create()
         sucessDialog?.show()
+
+        val successMsg = sucessDialog?.findViewById<TextView>(R.id.successMsg)
+        successMsg?.text = msg
 
         sucessDialog?.findViewById<Button>(R.id.sucess_dialog_back)?.setOnClickListener {
 var intent = Intent(context, activityName)
