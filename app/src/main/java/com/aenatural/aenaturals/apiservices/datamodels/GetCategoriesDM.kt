@@ -3,7 +3,8 @@ package com.aenatural.aenaturals.apiservices.datamodels
 data class GetCategoriesDM(
     val status: String,
     val categories: List<Category>,
-    val image_endpoint: String
+    val image_endpoint: String,
+    val message:String
 )
 
 data class Category(
