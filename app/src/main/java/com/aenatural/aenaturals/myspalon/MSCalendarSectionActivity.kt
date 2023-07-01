@@ -14,6 +14,7 @@ import com.aenatural.aenaturals.apiservices.datamodels.Appointment
 import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.baseframework.Session
 import com.aenatural.aenaturals.common.DialogPB
+import com.aenatural.aenaturals.common.RetrofitClient.mainScope
 import com.aenatural.aenaturals.common.RetrofitClient.retrofit
 import com.aenatural.aenaturals.myspalon.Adapter.AppointmentAdapter
 import kotlinx.coroutines.*
@@ -26,7 +27,7 @@ class MSCalendarSectionActivity : BaseClass() {
     private lateinit var appointmentRV: RecyclerView
     private lateinit var datePicker: DatePicker
     private val appintmentList = ArrayList<Appointment>()
-    private val mainScope = CoroutineScope(Dispatchers.Main)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setLayoutXml()
@@ -110,104 +111,6 @@ class MSCalendarSectionActivity : BaseClass() {
         setupRecyclerView()
     }
 
-
-    /*private fun fetchAppointmentList(selectedDate: String) {
-        val apiService = retrofit.create(MSAppointmentListApiService::class.java)
-        val bearerToken = session.token // Replace YOUR_BEARER_TOKEN with the actual bearer token
-
-        mainScope.launch {
-            try {
-                val response = withContext(Dispatchers.IO) {
-                    apiService.getAppointmentList("Bearer $bearerToken", selectedDate)
-                }
-
-                if (response.isSuccessful) {
-                    val appointmentResponse = response.body()
-                    val appointments = appointmentResponse?.appointments
-                    loadingDialogPB.dismissDialog()
-
-                    // Handle the appointment list as needed
-                    printLogs("success", "onSuccess", response.body()?.status)
-
-                   *//* appointments?.forEach { appointment ->
-//                        appointmentAdapter.setData(it)
-                        val id = appointment.added_by_user_id
-                        val reason = appointment.app_reason
-
-                        val aItem = Appointment("",id,"","","","","",reason,"","")
-                        appintmentList.add(aItem)
-                    }*//*
-                    appointments?.let {
-                        val filteredAppointments = it.filter { appointment ->
-                            appointment.app_date == selectedDate
-//                            appointmentAdapter.setData(it)
-                        }
-                        appointmentAdapter.setData(filteredAppointments)
-                    }
-                    printLogs("success123", "onSuccess", appointmentResponse.toString())
-                } else {
-                    // Handle the error case
-                    val errorMessage = response.errorBody()?.string()
-                    loadingDialogPB.dismissDialog()
-                    printLogs("API Error", "failure", errorMessage)
-                    loadingDialogPB.showErrorBottomSheetDialog("$errorMessage")
-                }
-            } catch (e: Exception) {
-                // Handle any exceptions that occur during the API call
-                // Log the error or show an error message to the user
-                loadingDialogPB.dismissDialog()
-                printLogs("API Error", "failure", e.message ?: "Unknown error")
-                loadingDialogPB.showErrorBottomSheetDialog(e.message.toString())
-            }
-
-            setupRecyclerView()
-        }
-    }*/
-
-  /*  private fun fetchAppointmentList(selectedDate: String) {
-        val apiService = retrofit.create(MSAppointmentListApiService::class.java)
-        val bearerToken = session.token // Replace YOUR_BEARER_TOKEN with the actual bearer token
-
-        mainScope.launch {
-            try {
-                val response = withContext(Dispatchers.IO) {
-                    apiService.getAppointmentList("Bearer $bearerToken", selectedDate)
-                }
-
-                if (response.isSuccessful) {
-                    val appointmentResponse = response.body()
-                    val appointments = appointmentResponse?.appointments
-                    loadingDialogPB.dismissDialog()
-
-
-                    appointments?.let {
-                        val filteredAppointments = it.filter { appointment ->
-                            appointment.app_date == selectedDate
-                        }
-                        appointmentAdapter.setData(filteredAppointments)
-                    }
-                    printLogs("success", "onSuccess", response.body()?.status)
-                    printLogs("success123", "onSuccess", appointmentResponse.toString())
-                } else {
-                    // Handle the error case
-                    val errorMessage = response.errorBody()?.string()
-                    loadingDialogPB.dismissDialog()
-                    printLogs("API Error", "failure", errorMessage)
-                    loadingDialogPB.showErrorBottomSheetDialog("$errorMessage")
-                }
-            } catch (e: Exception) {
-                // Handle any exceptions that occur during the API call
-                // Log the error or show an error message to the user
-                loadingDialogPB.dismissDialog()
-                printLogs("API Error", "failure", e.message ?: "Unknown error")
-                loadingDialogPB.showErrorBottomSheetDialog(e.message.toString())
-            }
-
-            setupRecyclerView()
-        }
-    }*/
-
-
     private fun setupRecyclerView() {
         appointmentRV.layoutManager = LinearLayoutManager(this@MSCalendarSectionActivity)
         appointmentRV.adapter = appointmentAdapter
@@ -233,5 +136,9 @@ class MSCalendarSectionActivity : BaseClass() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        mainScope.cancel()
+    }
 
 }
