@@ -3,6 +3,7 @@ package com.aenatural.aenaturals.myspalon
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.DatePicker
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import com.aenatural.aenaturals.apiservices.datamodels.Appointment
 import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.baseframework.Session
 import com.aenatural.aenaturals.common.DialogPB
+import com.aenatural.aenaturals.common.RetrofitClient.mainScope
 import com.aenatural.aenaturals.common.RetrofitClient.retrofit
 import com.aenatural.aenaturals.myspalon.Adapter.AppointmentAdapter
 import kotlinx.coroutines.*
@@ -25,7 +27,7 @@ class MSCalendarSectionActivity : BaseClass() {
     private lateinit var appointmentRV: RecyclerView
     private lateinit var datePicker: DatePicker
     private val appintmentList = ArrayList<Appointment>()
-    private val mainScope = CoroutineScope(Dispatchers.Main)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setLayoutXml()
@@ -60,7 +62,6 @@ class MSCalendarSectionActivity : BaseClass() {
 
     override fun initializeLabels() {
     }
-
     private fun fetchAppointmentList(selectedDate: String) {
         val apiService = retrofit.create(MSAppointmentListApiService::class.java)
         val bearerToken = session.token // Replace YOUR_BEARER_TOKEN with the actual bearer token
@@ -76,16 +77,22 @@ class MSCalendarSectionActivity : BaseClass() {
                     val appointments = appointmentResponse?.appointments
                     loadingDialogPB.dismissDialog()
 
-                    // Handle the appointment list as needed
-                    printLogs("success", "onSuccess", response.body()?.status)
-                    appointments?.forEach { appointment ->
-//                        appointmentAdapter.setData(it)
-                        val id = appointment.added_by_user_id
-                        val reason = appointment.app_reason
+                    // Filter appointments based on the selected date
+                    val filteredAppointments = appointments?.filter { it.app_date == selectedDate }
 
-                        val aItem = Appointment("",id,"","","","","",reason,"","")
-                        appintmentList.add(aItem)
+                    if (filteredAppointments.isNullOrEmpty()) {
+                        // No appointments for the selected date
+                        // Handle the empty list case (e.g., show a message)
+                        printLogs("success123", "onSuccess", appointmentResponse.toString())
+                        loadingDialogPB.showErrorBottomSheetDialog("No appointment ")
+                    } else {
+                        // Update the appointment list and notify the adapter
+                        appointmentAdapter.setData(filteredAppointments)
+
+                        Log.d("elseApponm",filteredAppointments.toString())
                     }
+
+                    printLogs("success123", "onSuccess", appointmentResponse.toString())
                 } else {
                     // Handle the error case
                     val errorMessage = response.errorBody()?.string()
@@ -100,31 +107,38 @@ class MSCalendarSectionActivity : BaseClass() {
                 printLogs("API Error", "failure", e.message ?: "Unknown error")
                 loadingDialogPB.showErrorBottomSheetDialog(e.message.toString())
             }
-
-            setupRecyclerView()
         }
+        setupRecyclerView()
     }
 
-
     private fun setupRecyclerView() {
-//        appointmentAdapter = AppointmentAdapter()
-        val layoutManager = LinearLayoutManager(this)
-        appointmentRV.layoutManager = layoutManager
+        appointmentRV.layoutManager = LinearLayoutManager(this@MSCalendarSectionActivity)
         appointmentRV.adapter = appointmentAdapter
     }
 
     private fun setupDatePicker() {
-
+        var selectedDate = ""
         datePicker.init(
             datePicker.year,
             datePicker.month,
             datePicker.dayOfMonth
         ) { _, year, monthOfYear, dayOfMonth ->
-            val selectedDate = "$year-${monthOfYear + 1}-${dayOfMonth}"
+            if(monthOfYear<9) {
+//                 monthOfYear2 = ("0$monthOfYear")
+                selectedDate = "$year-0${monthOfYear + 1}-${dayOfMonth}"
+            }else {
+               selectedDate  = "$year-${monthOfYear + 1}-${dayOfMonth}"
+            }
             loadingDialogPB.startLoadingDialog()
+            logHandler("Date ",selectedDate.toString())
+            appintmentList.clear()
             fetchAppointmentList(selectedDate)
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        mainScope.cancel()
+    }
 
 }

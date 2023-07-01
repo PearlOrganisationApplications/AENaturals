@@ -62,6 +62,7 @@ public abstract class BaseClass extends AppCompatActivity {
     public boolean cameraPermissionDenied = false;
     public boolean galleryPermissionDenied = false;
     private int IMAGE_TYPE;
+//    public Session session = new Session(this);
 
 
     public int getImageType() {

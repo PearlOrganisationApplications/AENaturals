@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".myspalon.MSCalendarSectionActivity">
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+        android:id="@+id/calender_appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/calender_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/birdcolor"
@@ -28,7 +28,7 @@
                 android:gravity="center_vertical">
 
                 <ImageButton
-                    android:id="@+id/profile_backIB"
+                    android:id="@+id/calender_profile_backIB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
@@ -39,7 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Services"
+                    android:text="Calender"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sd16"
                     android:textStyle="bold" />
@@ -53,7 +53,7 @@
         android:orientation="vertical"
         android:gravity="center"
         android:background="@color/birdcolor"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+        app:layout_constraintTop_toBottomOf="@+id/calender_appBarLayout">
 
         <DatePicker
             android:id="@+id/datePicker"

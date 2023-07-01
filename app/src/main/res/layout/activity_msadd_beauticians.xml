@@ -159,11 +159,13 @@
 
 
                     <RadioButton
+                        android:id="@+id/bea_maleRB"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Male" />
 
                     <RadioButton
+                        android:id="@+id/bea_femaleRB"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="Female" />
