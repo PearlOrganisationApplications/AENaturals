@@ -10,7 +10,7 @@ data class AppointmentListResponse(
 )
 
 data class Appointment(
-    @SerializedName("app_id")
+/*    @SerializedName("id")
     val app_id: String,
     @SerializedName("added_by_user_id")
     val added_by_user_id: String,
@@ -30,5 +30,16 @@ data class Appointment(
     val created_at: String?,
     @SerializedName("updated_at")
     val updated_at: String?
+)*/
+    val full_name: String,
+    val image: String?, // Assuming the image field can be nullable
+    val gender: String,
+    val mobile: String,
+    val dob: String,
+    val app_date: String,
+    val app_time: String,
+    val app_duration: String,
+    val app_status: String,
+    val app_reason: String
 )
 
