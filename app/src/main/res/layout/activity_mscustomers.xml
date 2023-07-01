@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".myspalon.MSCustomersActivity">
@@ -56,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="Customers"
-                    android:textColor="@color/white"
+                    android:textColor="@color/darkgreen"
                     android:textSize="@dimen/sd16"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -75,11 +76,13 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/sd6"
+        android:layout_marginVertical="@dimen/sd6"
+        android:layout_marginHorizontal="@dimen/sd12"
         android:backgroundTint="@color/birdcolor"
         android:padding="@dimen/sd10"
         android:id="@+id/add_customers_btn"
         android:text="ADD Customers"
+        android:textColor="@color/darkgreen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

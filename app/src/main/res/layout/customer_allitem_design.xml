@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_marginHorizontal="@dimen/sd8"
+    android:background="@color/lightbirdcolor"
     android:layout_marginVertical="@dimen/sd4"
     app:cardCornerRadius="@dimen/sd8"
     android:layout_height="wrap_content">
@@ -11,6 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:padding="@dimen/sd8">
 
         <ImageView

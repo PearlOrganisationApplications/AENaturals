@@ -28,6 +28,7 @@ class Splash : AppCompatActivity() {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash)
+
         /* window.statusBarColor = ContextCompat.getColor(this, R.color.lightgreen)
          window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);*/
         sharedPref =Session(this)
