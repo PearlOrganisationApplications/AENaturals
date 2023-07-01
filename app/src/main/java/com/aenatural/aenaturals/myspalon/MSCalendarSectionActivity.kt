@@ -83,6 +83,9 @@ class MSCalendarSectionActivity : BaseClass() {
                     if (filteredAppointments.isNullOrEmpty()) {
                         // No appointments for the selected date
                         // Handle the empty list case (e.g., show a message)
+
+
+
                         printLogs("success123", "onSuccess", appointmentResponse.toString())
                         loadingDialogPB.showErrorBottomSheetDialog("No appointment ")
                     } else {

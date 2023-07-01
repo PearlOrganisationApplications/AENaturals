@@ -21,7 +21,7 @@ class AppointmentAdapter(private val appointmentList: MutableList<Appointment>) 
         private val reasonTextView: TextView = itemView.findViewById(R.id.reasonTextView)
 */
         fun bind(appointment: Appointment) {
-            fullNameTextView.text = appointment.added_by_user_id
+            fullNameTextView.text = appointment.full_name
            mobileTextView.text = appointment.app_reason
 //            mobileTextView.text = appointment.customer_id
           /*  dateTextView.text = appointment.app_date

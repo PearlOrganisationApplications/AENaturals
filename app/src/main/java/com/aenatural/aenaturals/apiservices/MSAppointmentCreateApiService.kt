@@ -16,6 +16,7 @@ interface MSAppointmentCreateApiService {
         @Field("app_date") appDate: String,
         @Field("app_time") appTime: String,
         @Field("app_duration") appDuration: String,
-        @Field("app_reason") appReason: String
+        @Field("app_reason") appReason: String,
+        @Field("app_from") appFrom: String
     ): Call<NormalDataModel>
 }
