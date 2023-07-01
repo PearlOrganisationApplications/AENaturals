@@ -43,9 +43,6 @@ class MSAddBeauticians : BaseClass() {
     lateinit var loadingDialog: DialogPB
 
 
-
-
-
     var salutation = ""
     var fullname = ""
     var mobile = ""
@@ -81,13 +78,16 @@ class MSAddBeauticians : BaseClass() {
         adapterSpinner = ArrayAdapter(this, R.layout.spinner_dropdown_item, dataList)
         ms_addbeautician_salutation.adapter = adapterSpinner
 
+
+
         ms_addbeautician_fullname = findViewById(R.id.ms_addbeautician_fullname)
         ms_addbeautician_mobile = findViewById(R.id.ms_addbeautician_mobile)
         ms_addbeautician_gender_rg = findViewById(R.id.ms_addbeautician_gender_rg)
         ms_addbeautician_qualification = findViewById(R.id.ms_addbeautician_qualification)
         ms_addbeautician_profession = findViewById(R.id.ms_addbeautician_profession)
         ms_addbeautician_experience = findViewById(R.id.ms_addbeautician_experience)
-        ms_addbeautician_appointment_intervel = findViewById(R.id.ms_addbeautician_appointment_intervel)
+        ms_addbeautician_appointment_intervel =
+            findViewById(R.id.ms_addbeautician_appointment_intervel)
         ms_addbeautician_save = findViewById(R.id.ms_addbeautician_save)
         bea_maleRB = findViewById(R.id.bea_maleRB)
         bea_femaleRB = findViewById(R.id.bea_femaleRB)
@@ -108,17 +108,27 @@ class MSAddBeauticians : BaseClass() {
 
     private fun sendDatatoApi() {
 
-//        val coroutineScope = CoroutineScope(Dispatchers.Main)
         initializeInputs()
+//        val coroutineScope = CoroutineScope(Dispatchers.Main)
+
         loadingDialog.startLoadingDialog()
         val tokn = session.token
-        var apiService = retrofit.create(MSAddStaffService::class.java)
+        val salutation1 = salutation
+        val fullname1 = fullname
+        val mobile1 = mobile
+        val qualification = qualification
+        val profession = profession
+        val experience = experience
+        val intervel = intervel
+        val gender = gender
+        val apiService = retrofit.create(MSAddStaffService::class.java)
 
         try {
-            val call = apiService.addStaff("Bearer $tokn",
-                salutation,
-                fullname,
-                mobile,
+            val call = apiService.addStaff(
+                "Bearer $tokn",
+                salutation1,
+                fullname1,
+                mobile1,
                 qualification,
                 profession,
                 experience,
@@ -126,21 +136,26 @@ class MSAddBeauticians : BaseClass() {
                 gender
             )
 
-            call.enqueue(object : Callback<AddBeauticianDM>{
+            call.enqueue(object : Callback<AddBeauticianDM> {
                 override fun onResponse(
                     call: Call<AddBeauticianDM>,
                     response: Response<AddBeauticianDM>
                 ) {
                     if (response.isSuccessful) {
-                        logHandler("RegisterBeautician",response.toString())
+                        logHandler("RegisterBeautician", response.toString())
                         loadingDialog.dismissDialog()
 
-                        var status =response.body()?.status
+                        val status = response.body()?.status
+                        val msg = response.body()?.message
                         println(status)
-                        if(status.equals("false")){
+                        if (status.equals("false")) {
                             loadingDialog.showErrorBottomSheetDialog(response.body()?.message.toString())
-                        }
-                    }else{
+                        } else loadingDialog.startSucessDialog(
+                            msg.toString(),
+                            this@MSAddBeauticians,
+                            MSBeauticians::class.java
+                        )
+                    } else {
                         loadingDialog.dismissDialog()
                         val errorBody = response.errorBody()?.string()
                         if (errorBody != null) {
@@ -168,7 +183,6 @@ class MSAddBeauticians : BaseClass() {
     }
 
 
-
     override fun initializeInputs() {
 //        salutation = ms_addbeautician_salutation.text.toString()
         fullname = ms_addbeautician_fullname.text.toString()
@@ -178,25 +192,35 @@ class MSAddBeauticians : BaseClass() {
         experience = ms_addbeautician_experience.text.toString()
         intervel = ms_addbeautician_appointment_intervel.text.toString()
 
-        ms_addbeautician_gender_rg.setOnCheckedChangeListener { group, checkedId ->
+/*        ms_addbeautician_gender_rg.setOnCheckedChangeListener { group, checkedId ->
             val radioButton = group.findViewById<RadioButton>(checkedId)
             gender = radioButton.text.toString()
-        }
+        }*/
         if (bea_maleRB.isChecked) {
             gender = "male"
-        }else if (bea_femaleRB.isChecked) {
+        } else if (bea_femaleRB.isChecked) {
             gender = "female"
         }
 
-        ms_addbeautician_salutation.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                salutation = dataList[position] // Retrieve the selected value
+        ms_addbeautician_salutation.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    salutation = dataList[position]
+                    salutation =
+                        adapterSpinner.getItem(position).toString()// Retrieve the selected value
+                    Log.d("Salutation ", salutation + " " + position)
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    // Handle case when nothing is selected (optional)
+                }
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Handle case when nothing is selected (optional)
-            }
-        }
     }
 
     override fun initializeLabels() {

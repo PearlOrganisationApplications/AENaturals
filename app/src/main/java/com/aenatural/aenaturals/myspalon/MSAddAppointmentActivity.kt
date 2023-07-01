@@ -45,6 +45,7 @@ class MSAddAppointmentActivity : BaseClass() {
     private val staff1 = ArrayList<Staff>()
     private val beauticianNames: MutableList<String> = mutableListOf()
     lateinit var beauticianAdapter: ArrayAdapter<String>
+    var selectedBeautician = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setLayoutXml()
@@ -97,6 +98,11 @@ class MSAddAppointmentActivity : BaseClass() {
             createAppointment()
         }
 
+
+    }
+
+
+    override fun initializeInputs() {
         // Set a listener to handle spinner item selection
         beauticianSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
@@ -117,11 +123,6 @@ class MSAddAppointmentActivity : BaseClass() {
             }
 
         }
-    }
-
-
-    override fun initializeInputs() {
-
     }
 
     override fun initializeLabels() {
