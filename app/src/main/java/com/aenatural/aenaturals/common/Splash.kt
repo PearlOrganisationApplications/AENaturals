@@ -57,7 +57,7 @@ class Splash : AppCompatActivity() {
             }else if(section ==4){
 
                 Handler().postDelayed({
-                    val mIntent = Intent(this@Splash, MSHomeScreenActivity::class.java)
+                    val mIntent = Intent(this@Splash, CustomerDashboard::class.java)
                     startActivity(mIntent)
                     finish()
                 }, 2000)

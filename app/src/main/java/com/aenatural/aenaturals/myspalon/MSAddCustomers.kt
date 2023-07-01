@@ -201,13 +201,16 @@ open class MSAddCustomers : BaseClass() {
                         // Handle the response status and message as needed
                         printLogs("success","onResponse",message)
                         loadingDialog.dismissDialog()
+                        loadingDialog.startSucessDialog(message.toString(),this@MSAddCustomers,MSCustomersActivity::class.java)
                     } else {
                         // Handle the error case
                         loadingDialog.dismissDialog()
                         val errorBody = response.errorBody()?.string()
                         if (errorBody != null) {
                             Log.d("Error", errorBody)
+                            loadingDialog.showErrorBottomSheetDialog(errorBody)
                         }
+                        loadingDialog.showErrorBottomSheetDialog(errorBody + "Error")
                     }
                 }
 
@@ -215,12 +218,14 @@ open class MSAddCustomers : BaseClass() {
                     // Handle the failure case
                     Log.e("API Error", t.message ?: "Unknown error")
                     loadingDialog.dismissDialog()
+                    loadingDialog.showErrorBottomSheetDialog(t.message.toString())
                 }
             })
 
         } catch (e: Exception) {
             logHandler("ExceptionResponse", e.message.toString())
             loadingDialog.dismissDialog()
+            loadingDialog.showErrorBottomSheetDialog(e.message.toString())
         }
     }
 
