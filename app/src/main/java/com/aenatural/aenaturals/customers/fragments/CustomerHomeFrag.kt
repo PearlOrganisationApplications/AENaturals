@@ -39,13 +39,13 @@ class CustomerHomeFrag : Fragment() {
     lateinit var customerTrendingRecyclerView: RecyclerView
     lateinit var customerallItemsRecycler: RecyclerView
     lateinit var itemList: java.util.ArrayList<RetailerDataModel>
-    lateinit var skincare: LinearLayout
-    lateinit var haircare: LinearLayout
-    lateinit var herbalPowder: LinearLayout
-    lateinit var nutritional: LinearLayout
-    lateinit var personalCare: LinearLayout
-    private lateinit var aromaPowders: LinearLayout
-    lateinit var essentialOils: LinearLayout
+//    lateinit var skincare: LinearLayout
+//    lateinit var haircare: LinearLayout
+//    lateinit var herbalPowder: LinearLayout
+//    lateinit var nutritional: LinearLayout
+//    lateinit var personalCare: LinearLayout
+    //private lateinit var aromaPowders: LinearLayout
+    //lateinit var essentialOils: LinearLayout
     lateinit var customerSkincareRV: RecyclerView
     lateinit var customerHaircareRV: RecyclerView
     lateinit var customerHerbalPowderRV: RecyclerView
@@ -53,6 +53,7 @@ class CustomerHomeFrag : Fragment() {
     lateinit var customerPersonalCareRV: RecyclerView
     lateinit var customerAromaPowdersRV: RecyclerView
     lateinit var customerEssentialOilsRV: RecyclerView
+    lateinit var product_category_recycler_view: RecyclerView
     lateinit var searchEditText : EditText
     lateinit var trendingLayout : LinearLayout
     lateinit var shopNowLL : LinearLayout
@@ -67,6 +68,8 @@ class CustomerHomeFrag : Fragment() {
     lateinit var ms_home_services: LinearLayout
     lateinit var ms_home_calendar: LinearLayout
     lateinit var loadingDialog: DialogPB
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,24 +95,32 @@ class CustomerHomeFrag : Fragment() {
         initializeLabels()
         initializeInputs()
         getProfileResponse()
+        hitgetcategoryApi()
+    }
+
+    private fun hitgetcategoryApi() {
+
     }
 
     public fun initializeViews(view: View) {
         mshomeInitViews(view)
         customerallItemsRecycler = view.findViewById(R.id.customerallItemsRecycler)
-        skincare = view.findViewById(R.id.skincare)
+/*        skincare = view.findViewById(R.id.skincare)
         haircare = view.findViewById(R.id.haircare)
         herbalPowder = view.findViewById(R.id.herbalPowder)
         nutritional = view.findViewById(R.id.nutritional)
         personalCare = view.findViewById(R.id.personalCare)
         aromaPowders = view.findViewById(R.id.aromaPowders)
-        essentialOils = view.findViewById(R.id.essentialOils)
+        essentialOils = view.findViewById(R.id.essentialOils)*/
         customerSkincareRV = view.findViewById(R.id.customerSkincareRV)
         customerHaircareRV = view.findViewById(R.id.customerHaircareRV)
         customerHerbalPowderRV = view.findViewById(R.id.customerHerbalPowderRV)
         customerNutritionalRV = view.findViewById(R.id.customerNutritionalRV)
         customerPersonalCareRV = view.findViewById(R.id.customerPersonalCareRV)
         customerAromaPowdersRV = view.findViewById(R.id.customerAromaPowdersRV)
+
+        product_category_recycler_view = view.findViewById(R.id.product_category_recycler_view)
+
         customerEssentialOilsRV = view.findViewById(R.id.customerEssentialOilsRV)
         trendingLayout  = view.findViewById(R.id.trendingLayout)
         searchEditText   = view.findViewById(R.id.searchEditText)
@@ -148,7 +159,7 @@ class CustomerHomeFrag : Fragment() {
         ms_home_services.setOnClickListener {
             startActivity(Intent(requireContext(), MSServiceActivity::class.java))
         }
-        skincare.setOnClickListener {
+        /*skincare.setOnClickListener {
             customerallItemsRecycler.visibility = View.GONE
             customerSkincareRV.visibility = View.VISIBLE
         }
@@ -169,7 +180,7 @@ class CustomerHomeFrag : Fragment() {
         }
         essentialOils.setOnClickListener {
 
-        }
+        }*/
 
         searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

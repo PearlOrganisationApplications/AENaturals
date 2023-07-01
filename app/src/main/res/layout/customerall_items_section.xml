@@ -28,7 +28,14 @@
 
     </LinearLayout>
 
-    <include layout="@layout/productcategorydesign" />
+    <!--<include layout="@layout/productcategorydesign" />-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/product_category_recycler_view"
+        />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
