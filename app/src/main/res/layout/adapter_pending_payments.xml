@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_marginVertical="@dimen/sd4"
     android:layout_height="wrap_content"
+
     android:backgroundTint="@color/lightgreen"
     android:layout_marginHorizontal="@dimen/sd8"
     app:cardCornerRadius="@dimen/sd20"
@@ -14,6 +15,7 @@
     android:layout_width="match_parent"
     android:orientation="horizontal"
     android:paddingHorizontal="@dimen/sd6"
+    android:background="@color/lightgreen"
     android:paddingVertical="@dimen/sd8"
     android:gravity="center"
     android:layout_height="wrap_content">

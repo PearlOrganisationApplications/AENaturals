@@ -322,6 +322,7 @@ class CustomerHomeFrag : Fragment() {
                                 if (email == null || fullName == null || image == "" || gender == null || mobile == null || qualification == null || profession == null ||
                                     experience == null || appointmentInterval == null || salutation == null
                                 ) {
+                                    try{
                                     val builder = android.app.AlertDialog.Builder(requireContext())
                                     builder.setTitle("Profile Details")
                                         .setMessage("Some fields are missing, please fill all the details")
@@ -336,6 +337,8 @@ class CustomerHomeFrag : Fragment() {
                                         }
                                     val dialog = builder.create()
                                     dialog.show()
+                                }catch (_:Exception){
+                                }
                                 }
 
                             } else {

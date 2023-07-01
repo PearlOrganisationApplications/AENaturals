@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".myspalon.MSAddCustomers">
 
@@ -321,29 +322,29 @@
                     android:paddingVertical="10dp"
                     android:text="Save"
                     android:textAllCaps="true"
-                    android:textColor="@color/white"
+                    android:textColor="@color/darkgreen"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cust_cardView3" />
 
 
-                <TextView
-                    android:id="@+id/cust_tv_import"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/btn_roundbg"
-                    android:elevation="5dp"
-                    android:gravity="center"
-                    android:paddingHorizontal="30dp"
-                    android:paddingVertical="10dp"
-                    android:text="import from contact"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cust_cardView3" />
+<!--                <TextView-->
+<!--                    android:id="@+id/cust_tv_import"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginBottom="20dp"-->
+<!--                    android:background="@drawable/btn_roundbg"-->
+<!--                    android:elevation="5dp"-->
+<!--                    android:gravity="center"-->
+<!--                    android:paddingHorizontal="30dp"-->
+<!--                    android:paddingVertical="10dp"-->
+<!--                    android:text="import from contact"-->
+<!--                    android:textAllCaps="true"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/cust_cardView3" />-->
 
 
             </LinearLayout>

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -30,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/sd8"
             android:text="Added Succesfully"
-            android:textColor="@color/birdcolor"
+            android:textColor="@color/darkgreen"
             android:textSize="@dimen/sd16"
             android:textStyle="bold" />
         <Button
@@ -38,6 +39,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/birdcolor"
             android:id="@+id/sucess_dialog_back"
+            android:textColor="@color/darkgreen"
             android:layout_marginHorizontal="@dimen/sd10"
             android:text="BACK"
             android:textStyle="bold"
