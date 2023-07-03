@@ -16,15 +16,20 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
+import com.aenatural.aenaturals.apiservices.GetProductCategoriesService
 import com.aenatural.aenaturals.apiservices.MSGetProfileApiService
+import com.aenatural.aenaturals.apiservices.datamodels.Category
+import com.aenatural.aenaturals.apiservices.datamodels.GetCategoriesDM
 import com.aenatural.aenaturals.apiservices.datamodels.MSProfileResponseDM
 import com.aenatural.aenaturals.baseframework.Session
 import com.aenatural.aenaturals.common.DialogPB
 import com.aenatural.aenaturals.common.Login
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.common.RetrofitClient
+import com.aenatural.aenaturals.common.RetrofitClient.retrofit
 import com.aenatural.aenaturals.customers.CustomerTrendingAdapter
 import com.aenatural.aenaturals.customers.adapters.CustomerAllItemAdapter
+import com.aenatural.aenaturals.customers.adapters.ProductCategoryAdapter
 import com.aenatural.aenaturals.customers.adapters.SkincareAdapter
 import com.aenatural.aenaturals.myspalon.*
 import kotlinx.coroutines.CoroutineScope
@@ -33,19 +38,21 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.create
 import java.util.*
+import kotlin.collections.ArrayList
 
 class CustomerHomeFrag : Fragment() {
     lateinit var customerTrendingRecyclerView: RecyclerView
     lateinit var customerallItemsRecycler: RecyclerView
     lateinit var itemList: java.util.ArrayList<RetailerDataModel>
-    lateinit var skincare: LinearLayout
-    lateinit var haircare: LinearLayout
-    lateinit var herbalPowder: LinearLayout
-    lateinit var nutritional: LinearLayout
-    lateinit var personalCare: LinearLayout
-    private lateinit var aromaPowders: LinearLayout
-    lateinit var essentialOils: LinearLayout
+//    lateinit var skincare: LinearLayout
+//    lateinit var haircare: LinearLayout
+//    lateinit var herbalPowder: LinearLayout
+//    lateinit var nutritional: LinearLayout
+//    lateinit var personalCare: LinearLayout
+    //private lateinit var aromaPowders: LinearLayout
+    //lateinit var essentialOils: LinearLayout
     lateinit var customerSkincareRV: RecyclerView
     lateinit var customerHaircareRV: RecyclerView
     lateinit var customerHerbalPowderRV: RecyclerView
@@ -53,6 +60,7 @@ class CustomerHomeFrag : Fragment() {
     lateinit var customerPersonalCareRV: RecyclerView
     lateinit var customerAromaPowdersRV: RecyclerView
     lateinit var customerEssentialOilsRV: RecyclerView
+    lateinit var product_category_recycler_view: RecyclerView
     lateinit var searchEditText : EditText
     lateinit var trendingLayout : LinearLayout
     lateinit var shopNowLL : LinearLayout
@@ -67,6 +75,8 @@ class CustomerHomeFrag : Fragment() {
     lateinit var ms_home_services: LinearLayout
     lateinit var ms_home_calendar: LinearLayout
     lateinit var loadingDialog: DialogPB
+lateinit var categories:List<Category>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,24 +102,62 @@ class CustomerHomeFrag : Fragment() {
         initializeLabels()
         initializeInputs()
         getProfileResponse()
+        hitgetcategoryApi()
+    }
+
+    private fun hitgetcategoryApi() {
+        loadingDialog.startLoadingDialog()
+            var categoryapiService = retrofit.create(GetProductCategoriesService::class.java)
+            var call:Call<GetCategoriesDM> = categoryapiService.getCategories("Bearer "+session.token)
+        call.enqueue(object:Callback<GetCategoriesDM>{
+            override fun onResponse(
+                call: Call<GetCategoriesDM>,
+                response: Response<GetCategoriesDM>
+            ) {
+                loadingDialog.dismissDialog()
+                var data = response.body()
+                if(response.isSuccessful){
+                    logHandler("CategoryRes",response.body().toString())
+                    if (data != null) {
+                        if(data.status.equals("true")){
+                            categories = data.categories
+                            product_category_recycler_view.adapter = ProductCategoryAdapter(categories,data.image_endpoint)
+
+                            try {
+                                product_category_recycler_view.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+
+                            }
+                            catch (_:Exception){
+
+                            }
+                        }else{
+
+                        }
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<GetCategoriesDM>, t: Throwable) {
+                loadingDialog.dismissDialog()
+                logHandler("CategoryFailureRes",t.message.toString())
+            }
+
+        })
     }
 
     public fun initializeViews(view: View) {
         mshomeInitViews(view)
         customerallItemsRecycler = view.findViewById(R.id.customerallItemsRecycler)
-        skincare = view.findViewById(R.id.skincare)
-        haircare = view.findViewById(R.id.haircare)
-        herbalPowder = view.findViewById(R.id.herbalPowder)
-        nutritional = view.findViewById(R.id.nutritional)
-        personalCare = view.findViewById(R.id.personalCare)
-        aromaPowders = view.findViewById(R.id.aromaPowders)
-        essentialOils = view.findViewById(R.id.essentialOils)
+
         customerSkincareRV = view.findViewById(R.id.customerSkincareRV)
         customerHaircareRV = view.findViewById(R.id.customerHaircareRV)
         customerHerbalPowderRV = view.findViewById(R.id.customerHerbalPowderRV)
         customerNutritionalRV = view.findViewById(R.id.customerNutritionalRV)
         customerPersonalCareRV = view.findViewById(R.id.customerPersonalCareRV)
         customerAromaPowdersRV = view.findViewById(R.id.customerAromaPowdersRV)
+
+        product_category_recycler_view = view.findViewById(R.id.product_category_recycler_view)
+
         customerEssentialOilsRV = view.findViewById(R.id.customerEssentialOilsRV)
         trendingLayout  = view.findViewById(R.id.trendingLayout)
         searchEditText   = view.findViewById(R.id.searchEditText)
@@ -148,28 +196,7 @@ class CustomerHomeFrag : Fragment() {
         ms_home_services.setOnClickListener {
             startActivity(Intent(requireContext(), MSServiceActivity::class.java))
         }
-        skincare.setOnClickListener {
-            customerallItemsRecycler.visibility = View.GONE
-            customerSkincareRV.visibility = View.VISIBLE
-        }
-        haircare.setOnClickListener {
 
-        }
-        herbalPowder.setOnClickListener {
-
-        }
-        nutritional.setOnClickListener {
-
-        }
-        personalCare.setOnClickListener {
-
-        }
-        aromaPowders.setOnClickListener {
-
-        }
-        essentialOils.setOnClickListener {
-
-        }
 
         searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -193,10 +220,10 @@ class CustomerHomeFrag : Fragment() {
     }
 
     public fun initializeInputs() {
-
     }
 
     public fun initializeLabels() {
+        categories = ArrayList()
         initData()
 
 
@@ -234,33 +261,6 @@ class CustomerHomeFrag : Fragment() {
         val alertDialog = alertDialogBuilder.create()
         alertDialog.show()
     }
-
-    /*private fun performSearch() {
-        val query = searchEditText.text.toString()
-        // Perform the search operation with the query
-        if (query.isNotEmpty()) {
-            // Iterate through the items in the shop now layout and filter based on the search query
-            for (i in 0 until shopNowLayout.childCount) {
-                val childView = shopNowLayout.getChildAt(i)
-                if (childView is TextView) {
-                    val itemName = childView.text.toString()
-                    if (itemName.contains(query, ignoreCase = true)) {
-                        // Item matches the search query, show it or perform relevant actions
-                        childView.visibility = View.VISIBLE
-                    } else {
-                        // Item does not match the search query, hide it or perform relevant actions
-                        childView.visibility = View.GONE
-                    }
-                }
-            }
-        } else {
-            // Search query is empty, show all items in the shop now layout
-            for (i in 0 until shopNowLayout.childCount) {
-                val childView = shopNowLayout.getChildAt(i)
-                childView.visibility = View.VISIBLE
-            }
-        }
-    }*/
 
     private fun getProfileResponse() {
 
@@ -359,11 +359,9 @@ class CustomerHomeFrag : Fragment() {
             }
         }
     }
-
     fun logHandler(name: String?, msg: String?) {
         Log.d(name, msg!!)
     }
-
     public fun trendingSection(){
         customerTrendingRecyclerView.adapter = CustomerTrendingAdapter(itemList)
         customerTrendingRecyclerView.layoutManager = LinearLayoutManager(requireContext(),
