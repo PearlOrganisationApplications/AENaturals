@@ -262,8 +262,6 @@ class CustomerHomeFrag : Fragment() {
         }
     }*/
 
-
-
     private fun getProfileResponse() {
 
         val apiService = RetrofitClient.retrofit.create(MSGetProfileApiService::class.java)
@@ -361,9 +359,11 @@ class CustomerHomeFrag : Fragment() {
             }
         }
     }
+
     fun logHandler(name: String?, msg: String?) {
         Log.d(name, msg!!)
     }
+
     public fun trendingSection(){
         customerTrendingRecyclerView.adapter = CustomerTrendingAdapter(itemList)
         customerTrendingRecyclerView.layoutManager = LinearLayoutManager(requireContext(),
