@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.apiservices.GetProductCategoriesService
 import com.aenatural.aenaturals.apiservices.MSGetProfileApiService
+import com.aenatural.aenaturals.apiservices.ProductApiService
 import com.aenatural.aenaturals.apiservices.datamodels.Category
 import com.aenatural.aenaturals.apiservices.datamodels.GetCategoriesDM
 import com.aenatural.aenaturals.apiservices.datamodels.MSProfileResponseDM
@@ -26,6 +27,7 @@ import com.aenatural.aenaturals.common.DialogPB
 import com.aenatural.aenaturals.common.Login
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.common.RetrofitClient
+import com.aenatural.aenaturals.common.RetrofitClient.mainScope
 import com.aenatural.aenaturals.common.RetrofitClient.retrofit
 import com.aenatural.aenaturals.customers.CustomerTrendingAdapter
 import com.aenatural.aenaturals.customers.adapters.CustomerAllItemAdapter
@@ -35,6 +37,7 @@ import com.aenatural.aenaturals.myspalon.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,7 +45,7 @@ import retrofit2.create
 import java.util.*
 import kotlin.collections.ArrayList
 
-class CustomerHomeFrag : Fragment() {
+class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback {
     lateinit var customerTrendingRecyclerView: RecyclerView
     lateinit var customerallItemsRecycler: RecyclerView
     lateinit var itemList: java.util.ArrayList<RetailerDataModel>
@@ -75,7 +78,7 @@ class CustomerHomeFrag : Fragment() {
     lateinit var ms_home_services: LinearLayout
     lateinit var ms_home_calendar: LinearLayout
     lateinit var loadingDialog: DialogPB
-lateinit var categories:List<Category>
+  lateinit var categories:List<Category>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -121,7 +124,7 @@ lateinit var categories:List<Category>
                     if (data != null) {
                         if(data.status.equals("true")){
                             categories = data.categories
-                            product_category_recycler_view.adapter = ProductCategoryAdapter(categories,data.image_endpoint)
+                            product_category_recycler_view.adapter = ProductCategoryAdapter(requireContext(),categories,data.image_endpoint,this@CustomerHomeFrag)
 
                             try {
                                 product_category_recycler_view.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
@@ -148,17 +151,16 @@ lateinit var categories:List<Category>
     public fun initializeViews(view: View) {
         mshomeInitViews(view)
         customerallItemsRecycler = view.findViewById(R.id.customerallItemsRecycler)
-
-        customerSkincareRV = view.findViewById(R.id.customerSkincareRV)
+/*      customerSkincareRV = view.findViewById(R.id.customerSkincareRV)
         customerHaircareRV = view.findViewById(R.id.customerHaircareRV)
         customerHerbalPowderRV = view.findViewById(R.id.customerHerbalPowderRV)
         customerNutritionalRV = view.findViewById(R.id.customerNutritionalRV)
         customerPersonalCareRV = view.findViewById(R.id.customerPersonalCareRV)
-        customerAromaPowdersRV = view.findViewById(R.id.customerAromaPowdersRV)
+        customerAromaPowdersRV = view.findViewById(R.id.customerAromaPowdersRV)*/
 
         product_category_recycler_view = view.findViewById(R.id.product_category_recycler_view)
 
-        customerEssentialOilsRV = view.findViewById(R.id.customerEssentialOilsRV)
+//        customerEssentialOilsRV = view.findViewById(R.id.customerEssentialOilsRV)
         trendingLayout  = view.findViewById(R.id.trendingLayout)
         searchEditText   = view.findViewById(R.id.searchEditText)
         shopNowLL   = view.findViewById(R.id.shopNowLL)
@@ -249,6 +251,44 @@ lateinit var categories:List<Category>
         })
     }
 
+    private fun getProductCategory() {
+        val apiService =retrofit.create(ProductApiService::class.java)
+        val tkn = session.token
+        val categoryId = session.getcategoryId()
+
+        mainScope.launch {
+            try {
+                val response = withContext(Dispatchers.IO) {
+                    apiService.getProduct(tkn, categoryId)
+                }
+                if (response.isSuccessful) {
+                    val productResponse = response.body()
+                    val status = productResponse?.status
+                    val product = productResponse?.categories
+                    val imageEndpoint = productResponse?.image_endpoint
+
+                    // Process the product and image endpoint as needed
+                    if(status.equals("true")) {
+
+
+                        try {
+
+                        } catch (_: Exception) {
+
+                        }
+                    }
+                } else {
+                    // Handle the error case
+                    val errorMessage = response.message()
+                    // Handle the error message
+                }
+            } catch (e: Exception) {
+                // Handle the exception case
+                e.printStackTrace()
+            }
+        }
+
+    }
 
     private fun showExitConfirmationDialog() {
         val alertDialogBuilder = AlertDialog.Builder(requireContext())
@@ -266,8 +306,7 @@ lateinit var categories:List<Category>
 
         val apiService = RetrofitClient.retrofit.create(MSGetProfileApiService::class.java)
         val tokn = session.token
-        val coroutineScope = CoroutineScope(Dispatchers.Main)
-        coroutineScope.launch {
+        mainScope.launch {
             try {
                 val call: Call<MSProfileResponseDM> = apiService.getProfile("Bearer $tokn")
                 call.enqueue(object : Callback<MSProfileResponseDM> {
@@ -359,6 +398,7 @@ lateinit var categories:List<Category>
             }
         }
     }
+
     fun logHandler(name: String?, msg: String?) {
         Log.d(name, msg!!)
     }
@@ -381,5 +421,9 @@ lateinit var categories:List<Category>
                 }
             }
         },0, 1500)
+    }
+
+    override fun onItemClicked(categoryID: String) {
+        getProductCategory()
     }
 }
