@@ -31,7 +31,7 @@ class CustomerCartActivity : BaseClass() {
         initializeClickListners()
 //        initData()
         initializeInputs()
-        initializeLabels()
+//        initializeLabels()
 
         loadCartList()
 
