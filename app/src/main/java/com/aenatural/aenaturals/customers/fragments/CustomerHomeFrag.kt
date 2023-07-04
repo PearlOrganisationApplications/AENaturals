@@ -16,13 +16,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
+import com.aenatural.aenaturals.apiservices.CustomerAddCartService
 import com.aenatural.aenaturals.apiservices.GetProductCategoriesService
 import com.aenatural.aenaturals.apiservices.MSGetProfileApiService
 import com.aenatural.aenaturals.apiservices.ProductApiService
-import com.aenatural.aenaturals.apiservices.datamodels.CategoriesProduct
-import com.aenatural.aenaturals.apiservices.datamodels.Category
-import com.aenatural.aenaturals.apiservices.datamodels.GetCategoriesDM
-import com.aenatural.aenaturals.apiservices.datamodels.MSProfileResponseDM
+import com.aenatural.aenaturals.apiservices.datamodels.*
 import com.aenatural.aenaturals.baseframework.Session
 import com.aenatural.aenaturals.common.DialogPB
 import com.aenatural.aenaturals.common.Login
@@ -43,7 +41,7 @@ import retrofit2.create
 import java.util.*
 import kotlin.collections.ArrayList
 
-class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback {
+class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback,CustomerAllItemAdapter.CustomerAdapterCallBack {
     lateinit var customerTrendingRecyclerView: RecyclerView
     lateinit var customerallItemsRecycler: RecyclerView
     lateinit var itemList: java.util.ArrayList<RetailerDataModel>
@@ -125,13 +123,19 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback {
                     logHandler("CategoryRes", response.body().toString())
                     if (data != null) {
                         if (data.status.equals("true")) {
-                            categories = data.categories
-                            product_category_recycler_view.adapter = ProductCategoryAdapter(
-                                requireContext(),
-                                categories,
-                                data.image_endpoint,
-                                this@CustomerHomeFrag
-                            )
+                            try{
+                                categories = data.categories
+                                product_category_recycler_view.adapter = ProductCategoryAdapter(
+                                    requireContext(),
+                                    categories,
+                                    data.image_endpoint,
+                                    this@CustomerHomeFrag
+                                )
+
+                            }
+                            catch (_:Exception){
+
+                            }
 
                             try {
                                 product_category_recycler_view.layoutManager = LinearLayoutManager(
@@ -303,12 +307,12 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback {
                             }
                         }*/
                         if (status.equals("true")) {
-                            categoryProduct = productResponse?.categories ?: emptyList()
+                            categoryProduct = productResponse.categories ?: emptyList()
 //                             imageEndpoint = productResponse?.image_endpoint ?: ""
 
                             try {
                                 customerallItemsRecycler.layoutManager = LinearLayoutManager(requireContext())
-                                customerallItemsRecycler.adapter = CustomerAllItemAdapter(categoryProduct, imageEndpoint)
+                                customerallItemsRecycler.adapter = CustomerAllItemAdapter(categoryProduct, imageEndpoint,this@CustomerHomeFrag)
                                 Log.d("successItem", status.toString() + "   " + categoryProduct.toString())
                             } catch (e: Exception) {
                                 logHandler("catchContext", e.message + "   " + e.stackTraceToString())
@@ -489,5 +493,49 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback {
     override fun onDestroy() {
         super.onDestroy()
         mainScope.cancel()
+    }
+
+    override fun onCartIconClicked(categoryID: String) {
+        loadingDialog.startLoadingDialog()
+        val apiService = RetrofitClient.retrofit.create(CustomerAddCartService::class.java)
+        val token =session.token
+        mainScope.launch {
+            try{
+                val call:Call<NormalDataModel> = apiService.addtoCart("Bearer $token",categoryID)
+                call.enqueue(object:Callback<NormalDataModel>{
+                    override fun onResponse(
+                        call: Call<NormalDataModel>,
+                        response: Response<NormalDataModel>
+                    ) {
+                        loadingDialog.dismissDialog()
+                        if(response.isSuccessful){
+                            var data = response.body()
+                            try {
+                                Toast.makeText(requireContext(),"Item added to cart",Toast.LENGTH_SHORT).show()
+                            }
+                            catch (_:Exception){
+
+                            }
+                            logHandler("OnCartIconClicked",response.body().toString())
+                            if(data?.status.equals("true")){
+
+                            }else{
+
+                            }
+
+                        }
+                    }
+
+                    override fun onFailure(call: Call<NormalDataModel>, t: Throwable) {
+                        loadingDialog.dismissDialog()
+                        logHandler("OnCartFailureRes",t.message)
+                    }
+
+                })
+            }
+            catch (_:Exception){
+
+            }
+        }
     }
 }
