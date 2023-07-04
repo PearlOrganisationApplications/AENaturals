@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class CategoriesProductResponse(
     val status: String,
-    val categories: List<CategoriesProduct>,
+    val categories: ArrayList<CategoriesProduct>,
     val image_endpoint: String,
     val message: String
 )
@@ -19,7 +19,8 @@ data class CategoriesProduct(
     @SerializedName("image")
     val cat_image: String?,
     @SerializedName("pro_price")
-    val prodPrice: String?
+    val prodPrice: String?,
+    val prod_description: String
 
 )
 
