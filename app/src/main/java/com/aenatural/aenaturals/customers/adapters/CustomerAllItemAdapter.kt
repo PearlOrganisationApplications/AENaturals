@@ -29,8 +29,14 @@ import com.bumptech.glide.Glide
     }
 }*/
 
-class CustomerAllItemAdapter(var data:List<CategoriesProduct>, var imageEndpoint: String):
+class CustomerAllItemAdapter(var data:MutableList<CategoriesProduct>, var imageEndpoint: String):
     RecyclerView.Adapter<CustomerAllItemAdapter.CustomerAllItemHolder>() {
+
+    fun updateData(newCategoryProduct: ArrayList<CategoriesProduct>, newImageEndpoint: String) {
+        data = newCategoryProduct
+        imageEndpoint = newImageEndpoint
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomerAllItemHolder {
         return CustomerAllItemHolder(LayoutInflater.from(parent.context).inflate(R.layout.customer_allitem_design,parent,false))
@@ -48,7 +54,7 @@ if(!(product.cat_image==null||product.cat_image=="null")){
 
 }
         holder.item_name.text = product.prod_name
-        holder.item_description.text = product.prod_status
+        holder.item_description.text = product.prod_description
         holder.item_price.text = product.prodPrice
     }
 

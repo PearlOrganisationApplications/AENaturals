@@ -78,7 +78,7 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback {
     lateinit var ms_home_calendar: LinearLayout
     lateinit var loadingDialog: DialogPB
     lateinit var categories: List<Category>
-    lateinit var categoryProduct: List<CategoriesProduct>
+     var categoryProduct= ArrayList<CategoriesProduct>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,10 +109,11 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback {
         getProductCategory()
     }
 
+
     private fun hitgetcategoryApi() {
         loadingDialog.startLoadingDialog()
-        var categoryapiService = retrofit.create(GetProductCategoriesService::class.java)
-        var call: Call<GetCategoriesDM> =
+        val categoryapiService = retrofit.create(GetProductCategoriesService::class.java)
+        val call: Call<GetCategoriesDM> =
             categoryapiService.getCategories("Bearer " + session.token)
         call.enqueue(object : Callback<GetCategoriesDM> {
             override fun onResponse(
@@ -126,14 +127,17 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback {
                     if (data != null) {
                         if (data.status.equals("true")) {
                             categories = data.categories
-                            product_category_recycler_view.adapter = ProductCategoryAdapter(
-                                requireContext(),
-                                categories,
-                                data.image_endpoint,
-                                this@CustomerHomeFrag
-                            )
 
                             try {
+
+                                product_category_recycler_view.adapter = ProductCategoryAdapter(
+                                    requireContext(),
+                                    categories,
+                                    data.image_endpoint,
+                                    this@CustomerHomeFrag
+                                )
+
+
                                 product_category_recycler_view.layoutManager = LinearLayoutManager(
                                     requireContext(),
                                     LinearLayoutManager.HORIZONTAL,
@@ -272,11 +276,12 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback {
             })
     }
 
-    private fun getProductCategory() {
+    /*private fun getProductCategory() {
         val apiService = retrofit.create(ProductApiService::class.java)
         val tkn = session.token
         val categoryId = session.getcategoryId()
-
+        categoryProduct = ArrayList()
+        customerallItemsRecycler.layoutManager = LinearLayoutManager(requireContext())
         mainScope.launch {
             try {
                 val response = withContext(Dispatchers.IO) {
@@ -290,7 +295,7 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback {
                     // Process the product and image endpoint as needed
                     if (productResponse != null) {
                         val imageEndpoint = productResponse.image_endpoint ?: ""
-                        /*if (status.equals("true")) {
+                        *//*if (status.equals("true")) {
                             categoryProduct = productResponse.categories
                             val imageEndpoint = productResponse.image_endpoint
                             try {
@@ -301,14 +306,21 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback {
                             } catch (e: Exception) {
                                 logHandler("catchContext",e.message + "   "+ e.stackTraceToString())
                             }
-                        }*/
+                        }*//*
                         if (status.equals("true")) {
-                            categoryProduct = productResponse?.categories ?: emptyList()
+                            categoryProduct = productResponse?.categories!!
 //                             imageEndpoint = productResponse?.image_endpoint ?: ""
-
+Log.d("Category Product ",categoryProduct.toString())
                             try {
-                                customerallItemsRecycler.layoutManager = LinearLayoutManager(requireContext())
-                                customerallItemsRecycler.adapter = CustomerAllItemAdapter(categoryProduct, imageEndpoint)
+                                var adapter = CustomerAllItemAdapter(categoryProduct, imageEndpoint)
+
+                                customerallItemsRecycler.adapter = adapter
+
+                                categoryProduct = productResponse?.categories!!
+                                // Update the adapter data
+                                adapter.updateData(categoryProduct, imageEndpoint)
+                                // Notify the adapter that the data has changed
+                                adapter.notifyDataSetChanged()
                                 Log.d("successItem", status.toString() + "   " + categoryProduct.toString())
                             } catch (e: Exception) {
                                 logHandler("catchContext", e.message + "   " + e.stackTraceToString())
@@ -318,8 +330,8 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback {
                             // For example, you can clear the adapter or show an error message
                             customerallItemsRecycler.adapter = null // Clear the adapter
                             Log.d("successItem2", status.toString() + "     "+ productResponse)
-                           /* customerallItemsRecycler.layoutManager = LinearLayoutManager(requireContext())
-                            customerallItemsRecycler.adapter = CustomerAllItemAdapter(categoryProduct, imageEndpoint)*/
+                           *//* customerallItemsRecycler.layoutManager = LinearLayoutManager(requireContext())
+                            customerallItemsRecycler.adapter = CustomerAllItemAdapter(categoryProduct, imageEndpoint)*//*
                         }
 
                     }
@@ -336,7 +348,60 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback {
             }
         }
 
+    }*/
+    private fun getProductCategory() {
+        Log.d("getProductCategory","Function Run")
+        val apiService = retrofit.create(ProductApiService::class.java)
+        val tkn = session.token
+        val categoryId = session.getcategoryId()
+//        categoryProduct = ArrayList()
+
+        // Create the adapter and set it to the RecyclerView
+        val adapter = CustomerAllItemAdapter(categoryProduct, "")
+        customerallItemsRecycler.adapter = adapter
+
+        mainScope.launch {
+            customerallItemsRecycler.layoutManager = LinearLayoutManager(requireContext())
+
+            try {
+                val response = withContext(Dispatchers.IO) {
+                    apiService.getProduct("Bearer $tkn", categoryId)
+                }
+                if (response.isSuccessful) {
+                    val productResponse = response.body()
+                    val status = productResponse?.status
+                    Log.d("getProductCategory2","Function Run2")
+                    // Process the product and image endpoint as needed
+                    if (productResponse != null) {
+                        val imageEndpoint = productResponse.image_endpoint ?: ""
+                        if (status.equals("true")) {
+                            categoryProduct = productResponse.categories!!
+                            // Update the adapter data
+                            adapter.updateData(categoryProduct, imageEndpoint)
+                            // Notify the adapter that the data has changed
+                            adapter.notifyDataSetChanged()
+                            Log.d("successItem", status.toString() + "   " + categoryProduct.toString())
+                        } else {
+                            // Handle the case when the status is not "true"
+                            // For example, you can clear the adapter or show an error message
+                            categoryProduct.clear()
+                            adapter.notifyDataSetChanged()
+                            Log.d("successItem2", status.toString() + "     "+ productResponse)
+                        }
+                    }
+                } else {
+                    // Handle the error case
+                    val errorMessage = response.message()
+                    // Handle the error message
+                    logHandler("elseBlock", errorMessage)
+                }
+            } catch (e: Exception) {
+                // Handle the exception case
+                e.printStackTrace()
+            }
+        }
     }
+
 
     private fun showExitConfirmationDialog() {
         val alertDialogBuilder = AlertDialog.Builder(requireContext())
