@@ -289,6 +289,7 @@ public abstract class BaseClass extends AppCompatActivity {
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }*/
 
+
     public void birdTheme() {
         Window window = getWindow();
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.birdcolor));
@@ -297,6 +298,33 @@ public abstract class BaseClass extends AppCompatActivity {
         }
     }
 
+    public void showDobPicker(final Calendar calendar,  EditText dateTextView){
+        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH, month);
+                calendar.set(Calendar.DAY_OF_MONTH, day);
+                updateLabel(dateTextView, calendar);
+            }
+        };
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+//                requireContext(),
+                this,
+                R.style.MyDatePickerDialogTheme, // use your custom theme here
+                date,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+        );
+
+//        datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+        datePickerDialog.getDatePicker().setMinDate(getMinimumDate());
+
+        datePickerDialog.show();
+    }
     public void showDatePicker(final Calendar calendar,  EditText dateTextView) {
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -322,7 +350,8 @@ public abstract class BaseClass extends AppCompatActivity {
         Calendar maxDateCalendar = Calendar.getInstance();
         maxDateCalendar.add(Calendar.YEAR, 3); // Add 1 year to the current date
         datePickerDialog.getDatePicker().setMaxDate(maxDateCalendar.getTimeInMillis());
-        datePickerDialog.getDatePicker().setMinDate(getMinimumDate());
+//        datePickerDialog.getDatePicker().setMinDate(getMinimumDate());
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
 
         datePickerDialog.show();
     }

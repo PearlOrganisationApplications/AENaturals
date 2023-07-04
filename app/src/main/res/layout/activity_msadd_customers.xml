@@ -251,6 +251,10 @@
                     android:background="@drawable/edittextborderwhite"
                     android:hint="date"
                     android:inputType="text"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:padding="10dp" />
 
                 <TextView
@@ -268,6 +272,10 @@
                     android:layout_margin="4dp"
                     android:background="@drawable/edittextborderwhite"
                     android:hint="time"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:inputType="text"
                     android:padding="10dp" />
 
@@ -285,7 +293,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="4dp"
                     android:background="@drawable/edittextborderwhite"
-                    android:hint="duration"
+                    android:hint="duration in minutes"
                     android:inputType="text"
                     android:padding="10dp" />
 

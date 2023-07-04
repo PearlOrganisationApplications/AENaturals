@@ -46,7 +46,7 @@ class AppointmentAdapter(private val appointmentList: MutableList<Appointment>) 
         return appointmentList.size
     }
 
-    fun setData(   appointments: List<Appointment>) {
+    fun setData(  appointments: List<Appointment>) {
         appointmentList.clear()
         appointmentList.addAll(appointments)
         notifyDataSetChanged()

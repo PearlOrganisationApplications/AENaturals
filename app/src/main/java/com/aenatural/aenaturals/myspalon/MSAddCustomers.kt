@@ -87,7 +87,8 @@ open class MSAddCustomers : BaseClass() {
         cust_appointLL.visibility = View.GONE
 
         cust_input_dob.setOnClickListener {
-            showDatePicker()
+//            showDatePicker()
+            showDobPicker(myCalendar,cust_input_dob)
         }
         cust_appointmentCB.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
@@ -124,43 +125,19 @@ open class MSAddCustomers : BaseClass() {
             }
         }
 
+        cust_input_app_date.setOnClickListener {
+            showDatePicker(myCalendar,cust_input_app_date)
+        }
+        cust_input_profession.setOnClickListener {
+            openTimePicker(cust_input_profession,myCalendar)
+        }
+
     }
 
     override fun initializeInputs() {
     }
 
     override fun initializeLabels() {
-    }
-
-    private fun showDatePicker() {
-        val date = DatePickerDialog.OnDateSetListener { view, year, month, day ->
-            myCalendar.set(Calendar.YEAR, year)
-            myCalendar.set(Calendar.MONTH, month)
-            myCalendar.set(Calendar.DAY_OF_MONTH, day)
-            updateLabel()
-        }
-
-        val datePickerDialog = DatePickerDialog(
-            this@MSAddCustomers,
-            R.style.MyDatePickerDialogTheme, // use your custom theme here
-            date,
-            myCalendar.get(Calendar.YEAR),
-            myCalendar.get(Calendar.MONTH),
-            myCalendar.get(Calendar.DAY_OF_MONTH)
-        )
-
-        // Set the maximum and minimum date for the DatePickerDialog
-        datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
-        datePickerDialog.datePicker.minDate = minimumDate
-
-        datePickerDialog.show()
-    }
-
-    private fun updateLabel() {
-        val myFormat = "yyyy/dd/MM"
-        val formattedDate = myFormat.replace("/", "-")
-        val dateFormat = SimpleDateFormat(formattedDate, Locale.US)
-        cust_input_dob.setText(dateFormat.format(myCalendar.time))
     }
 
     private fun updateCustomer() {

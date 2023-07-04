@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.apiservices.GetProductCategoriesService
 import com.aenatural.aenaturals.apiservices.MSGetProfileApiService
+import com.aenatural.aenaturals.apiservices.ProductApiService
+import com.aenatural.aenaturals.apiservices.datamodels.CategoriesProduct
 import com.aenatural.aenaturals.apiservices.datamodels.Category
 import com.aenatural.aenaturals.apiservices.datamodels.GetCategoriesDM
 import com.aenatural.aenaturals.apiservices.datamodels.MSProfileResponseDM
@@ -26,15 +28,14 @@ import com.aenatural.aenaturals.common.DialogPB
 import com.aenatural.aenaturals.common.Login
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.common.RetrofitClient
+import com.aenatural.aenaturals.common.RetrofitClient.mainScope
 import com.aenatural.aenaturals.common.RetrofitClient.retrofit
 import com.aenatural.aenaturals.customers.CustomerTrendingAdapter
 import com.aenatural.aenaturals.customers.adapters.CustomerAllItemAdapter
 import com.aenatural.aenaturals.customers.adapters.ProductCategoryAdapter
 import com.aenatural.aenaturals.customers.adapters.SkincareAdapter
 import com.aenatural.aenaturals.myspalon.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,10 +43,18 @@ import retrofit2.create
 import java.util.*
 import kotlin.collections.ArrayList
 
-class CustomerHomeFrag : Fragment() {
+class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback {
     lateinit var customerTrendingRecyclerView: RecyclerView
     lateinit var customerallItemsRecycler: RecyclerView
     lateinit var itemList: java.util.ArrayList<RetailerDataModel>
+
+    //    lateinit var skincare: LinearLayout
+//    lateinit var haircare: LinearLayout
+//    lateinit var herbalPowder: LinearLayout
+//    lateinit var nutritional: LinearLayout
+//    lateinit var personalCare: LinearLayout
+    //private lateinit var aromaPowders: LinearLayout
+    //lateinit var essentialOils: LinearLayout
     lateinit var customerSkincareRV: RecyclerView
     lateinit var customerHaircareRV: RecyclerView
     lateinit var customerHerbalPowderRV: RecyclerView
@@ -54,10 +63,11 @@ class CustomerHomeFrag : Fragment() {
     lateinit var customerAromaPowdersRV: RecyclerView
     lateinit var customerEssentialOilsRV: RecyclerView
     lateinit var product_category_recycler_view: RecyclerView
-    lateinit var searchEditText : EditText
-    lateinit var trendingLayout : LinearLayout
-    lateinit var shopNowLL : LinearLayout
-
+    lateinit var searchEditText: EditText
+    lateinit var trendingLayout: LinearLayout
+    lateinit var shopNowLL: LinearLayout
+    lateinit var shopNowLayout: LinearLayout
+    private lateinit var searchButton: ImageView
     lateinit var session: Session
 
     lateinit var ms_myprofile: LinearLayout
@@ -67,7 +77,8 @@ class CustomerHomeFrag : Fragment() {
     lateinit var ms_home_services: LinearLayout
     lateinit var ms_home_calendar: LinearLayout
     lateinit var loadingDialog: DialogPB
-lateinit var categories:List<Category>
+    lateinit var categories: List<Category>
+    lateinit var categoryProduct: List<CategoriesProduct>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,7 +98,7 @@ lateinit var categories:List<Category>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         backPress()
-        requireActivity().findViewById<LinearLayout>(R.id.include).visibility =View.VISIBLE
+        requireActivity().findViewById<LinearLayout>(R.id.include).visibility = View.VISIBLE
         session = Session(requireContext())
         initializeViews(view)
         initializeClickListners()
@@ -95,34 +106,44 @@ lateinit var categories:List<Category>
         initializeInputs()
         getProfileResponse()
         hitgetcategoryApi()
+        getProductCategory()
     }
 
     private fun hitgetcategoryApi() {
         loadingDialog.startLoadingDialog()
-            var categoryapiService = retrofit.create(GetProductCategoriesService::class.java)
-            var call:Call<GetCategoriesDM> = categoryapiService.getCategories("Bearer "+session.token)
-        call.enqueue(object:Callback<GetCategoriesDM>{
+        var categoryapiService = retrofit.create(GetProductCategoriesService::class.java)
+        var call: Call<GetCategoriesDM> =
+            categoryapiService.getCategories("Bearer " + session.token)
+        call.enqueue(object : Callback<GetCategoriesDM> {
             override fun onResponse(
                 call: Call<GetCategoriesDM>,
                 response: Response<GetCategoriesDM>
             ) {
                 loadingDialog.dismissDialog()
                 var data = response.body()
-                if(response.isSuccessful){
-                    logHandler("CategoryRes",response.body().toString())
+                if (response.isSuccessful) {
+                    logHandler("CategoryRes", response.body().toString())
                     if (data != null) {
-                        if(data.status.equals("true")){
+                        if (data.status.equals("true")) {
                             categories = data.categories
-                            product_category_recycler_view.adapter = ProductCategoryAdapter(categories,data.image_endpoint)
+                            product_category_recycler_view.adapter = ProductCategoryAdapter(
+                                requireContext(),
+                                categories,
+                                data.image_endpoint,
+                                this@CustomerHomeFrag
+                            )
 
                             try {
-                                product_category_recycler_view.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                                product_category_recycler_view.layoutManager = LinearLayoutManager(
+                                    requireContext(),
+                                    LinearLayoutManager.HORIZONTAL,
+                                    false
+                                )
+
+                            } catch (_: Exception) {
 
                             }
-                            catch (_:Exception){
-
-                            }
-                        }else{
+                        } else {
 
                         }
                     }
@@ -131,7 +152,7 @@ lateinit var categories:List<Category>
 
             override fun onFailure(call: Call<GetCategoriesDM>, t: Throwable) {
                 loadingDialog.dismissDialog()
-                logHandler("CategoryFailureRes",t.message.toString())
+                logHandler("CategoryFailureRes", t.message.toString())
             }
 
         })
@@ -141,19 +162,19 @@ lateinit var categories:List<Category>
         mshomeInitViews(view)
         customerallItemsRecycler = view.findViewById(R.id.customerallItemsRecycler)
 
-        customerSkincareRV = view.findViewById(R.id.customerSkincareRV)
+/*      customerSkincareRV = view.findViewById(R.id.customerSkincareRV)
         customerHaircareRV = view.findViewById(R.id.customerHaircareRV)
         customerHerbalPowderRV = view.findViewById(R.id.customerHerbalPowderRV)
         customerNutritionalRV = view.findViewById(R.id.customerNutritionalRV)
         customerPersonalCareRV = view.findViewById(R.id.customerPersonalCareRV)
-        customerAromaPowdersRV = view.findViewById(R.id.customerAromaPowdersRV)
+        customerAromaPowdersRV = view.findViewById(R.id.customerAromaPowdersRV)*/
 
         product_category_recycler_view = view.findViewById(R.id.product_category_recycler_view)
 
-        customerEssentialOilsRV = view.findViewById(R.id.customerEssentialOilsRV)
-        trendingLayout  = view.findViewById(R.id.trendingLayout)
-        searchEditText   = view.findViewById(R.id.searchEditText)
-        shopNowLL   = view.findViewById(R.id.shopNowLL)
+//        customerEssentialOilsRV = view.findViewById(R.id.customerEssentialOilsRV)
+        trendingLayout = view.findViewById(R.id.trendingLayout)
+        searchEditText = view.findViewById(R.id.searchEditText)
+        shopNowLL = view.findViewById(R.id.shopNowLL)
     }
 
     private fun mshomeInitViews(view: View) {
@@ -215,32 +236,107 @@ lateinit var categories:List<Category>
     }
 
     public fun initializeLabels() {
-        categories = ArrayList()
+       /* categories = ArrayList()
         initData()
 
 
 
         customerallItemsRecycler.adapter = CustomerAllItemAdapter(itemList)
-        customerallItemsRecycler.layoutManager = LinearLayoutManager(requireContext())
+        customerallItemsRecycler.layoutManager = LinearLayoutManager(requireContext())*/
 
-        customerSkincareRV.adapter = SkincareAdapter(itemList)
-        customerSkincareRV.layoutManager = LinearLayoutManager(requireContext())
+        /*customerSkincareRV.adapter = SkincareAdapter(itemList)
+        customerSkincareRV.layoutManager = LinearLayoutManager(requireContext())*/
     }
 
 
-    private fun initData(){
-        itemList= java.util.ArrayList()
-        for(i in 0..5)
-            itemList.add(RetailerDataModel("Rajesh K","rajeshisamazing@gmail.com","RR Nagar Banglore","+9182384898"))
+    private fun initData() {
+        itemList = java.util.ArrayList()
+        for (i in 0..5)
+            itemList.add(
+                RetailerDataModel(
+                    "Rajesh K",
+                    "rajeshisamazing@gmail.com",
+                    "RR Nagar Banglore",
+                    "+9182384898"
+                )
+            )
     }
+
     private fun backPress() {
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                showExitConfirmationDialog()
-            }
-        })
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    showExitConfirmationDialog()
+                }
+            })
     }
 
+    private fun getProductCategory() {
+        val apiService = retrofit.create(ProductApiService::class.java)
+        val tkn = session.token
+        val categoryId = session.getcategoryId()
+
+        mainScope.launch {
+            try {
+                val response = withContext(Dispatchers.IO) {
+                    apiService.getProduct("Bearer $tkn", categoryId)
+
+                }
+                if (response.isSuccessful) {
+                    val productResponse = response.body()
+                    val status = productResponse?.status
+
+                    // Process the product and image endpoint as needed
+                    if (productResponse != null) {
+                        val imageEndpoint = productResponse.image_endpoint ?: ""
+                        /*if (status.equals("true")) {
+                            categoryProduct = productResponse.categories
+                            val imageEndpoint = productResponse.image_endpoint
+                            try {
+                                customerallItemsRecycler.layoutManager = LinearLayoutManager(requireContext())
+                                customerallItemsRecycler.adapter =
+                                    CustomerAllItemAdapter(categoryProduct, imageEndpoint)
+                                Log.d("successItem",status.toString() +"   " + categoryProduct.toString())
+                            } catch (e: Exception) {
+                                logHandler("catchContext",e.message + "   "+ e.stackTraceToString())
+                            }
+                        }*/
+                        if (status.equals("true")) {
+                            categoryProduct = productResponse?.categories ?: emptyList()
+//                             imageEndpoint = productResponse?.image_endpoint ?: ""
+
+                            try {
+                                customerallItemsRecycler.layoutManager = LinearLayoutManager(requireContext())
+                                customerallItemsRecycler.adapter = CustomerAllItemAdapter(categoryProduct, imageEndpoint)
+                                Log.d("successItem", status.toString() + "   " + categoryProduct.toString())
+                            } catch (e: Exception) {
+                                logHandler("catchContext", e.message + "   " + e.stackTraceToString())
+                            }
+                        } else {
+                            // Handle the case when the status is not "true"
+                            // For example, you can clear the adapter or show an error message
+                            customerallItemsRecycler.adapter = null // Clear the adapter
+                            Log.d("successItem2", status.toString() + "     "+ productResponse)
+                           /* customerallItemsRecycler.layoutManager = LinearLayoutManager(requireContext())
+                            customerallItemsRecycler.adapter = CustomerAllItemAdapter(categoryProduct, imageEndpoint)*/
+                        }
+
+                    }
+                } else {
+                    // Handle the error case
+                    val errorMessage = response.message()
+                    // Handle the error message
+                    logHandler("elseBlock",errorMessage)
+
+                }
+            } catch (e: Exception) {
+                // Handle the exception case
+                e.printStackTrace()
+            }
+        }
+
+    }
 
     private fun showExitConfirmationDialog() {
         val alertDialogBuilder = AlertDialog.Builder(requireContext())
@@ -258,8 +354,7 @@ lateinit var categories:List<Category>
 
         val apiService = RetrofitClient.retrofit.create(MSGetProfileApiService::class.java)
         val tokn = session.token
-        val coroutineScope = CoroutineScope(Dispatchers.Main)
-        coroutineScope.launch {
+        mainScope.launch {
             try {
                 val call: Call<MSProfileResponseDM> = apiService.getProfile("Bearer $tokn")
                 call.enqueue(object : Callback<MSProfileResponseDM> {
@@ -312,23 +407,24 @@ lateinit var categories:List<Category>
                                 if (email == null || fullName == null || image == "" || gender == null || mobile == null || qualification == null || profession == null ||
                                     experience == null || appointmentInterval == null || salutation == null
                                 ) {
-                                    try{
-                                    val builder = android.app.AlertDialog.Builder(requireContext())
-                                    builder.setTitle("Profile Details")
-                                        .setMessage("Some fields are missing, please fill all the details")
-                                        .setPositiveButton("ok") { dialog, _ ->
-                                            dialog.dismiss()
-                                            startActivity(
-                                                Intent(
-                                                    requireContext(),
-                                                    MSEditProfileActivit::class.java
+                                    try {
+                                        val builder =
+                                            android.app.AlertDialog.Builder(requireContext())
+                                        builder.setTitle("Profile Details")
+                                            .setMessage("Some fields are missing, please fill all the details")
+                                            .setPositiveButton("ok") { dialog, _ ->
+                                                dialog.dismiss()
+                                                startActivity(
+                                                    Intent(
+                                                        requireContext(),
+                                                        MSEditProfileActivit::class.java
+                                                    )
                                                 )
-                                            )
-                                        }
-                                    val dialog = builder.create()
-                                    dialog.show()
-                                }catch (_:Exception){
-                                }
+                                            }
+                                        val dialog = builder.create()
+                                        dialog.show()
+                                    } catch (_: Exception) {
+                                    }
                                 }
 
                             } else {
@@ -339,7 +435,8 @@ lateinit var categories:List<Category>
 
                     override fun onFailure(call: Call<MSProfileResponseDM>, t: Throwable) {
                         loadingDialog.dismissDialog()
-                        logHandler("FailureResponse",
+                        logHandler(
+                            "FailureResponse",
                             t.message.toString() + " \n" + t.localizedMessage + " \n" + t.cause + " \n" + t.stackTraceToString()
                         )
                         logHandler("CallResponse", call.toString())
@@ -351,13 +448,17 @@ lateinit var categories:List<Category>
             }
         }
     }
+
     fun logHandler(name: String?, msg: String?) {
         Log.d(name, msg!!)
     }
-    public fun trendingSection(){
+
+    public fun trendingSection() {
         customerTrendingRecyclerView.adapter = CustomerTrendingAdapter(itemList)
-        customerTrendingRecyclerView.layoutManager = LinearLayoutManager(requireContext(),
-            LinearLayoutManager.HORIZONTAL,false)
+        customerTrendingRecyclerView.layoutManager = LinearLayoutManager(
+            requireContext(),
+            LinearLayoutManager.HORIZONTAL, false
+        )
         Timer().schedule(object : TimerTask() {
             override fun run() {
                 if ((customerTrendingRecyclerView.layoutManager as LinearLayoutManager)!!.findFirstCompletelyVisibleItemPosition() < itemList.size - 1) {
@@ -367,11 +468,26 @@ lateinit var categories:List<Category>
                         (customerTrendingRecyclerView.layoutManager as LinearLayoutManager)!!.findFirstCompletelyVisibleItemPosition() + 1
                     )
                 } else if ((customerTrendingRecyclerView.layoutManager as LinearLayoutManager)!!.findFirstCompletelyVisibleItemPosition() < itemList.size - 1) {
-                    customerTrendingRecyclerView.layoutManager!!.smoothScrollToPosition(customerTrendingRecyclerView, RecyclerView.State(), 0)
-                }else{
+                    customerTrendingRecyclerView.layoutManager!!.smoothScrollToPosition(
+                        customerTrendingRecyclerView,
+                        RecyclerView.State(),
+                        0
+                    )
+                } else {
                     customerTrendingRecyclerView.smoothScrollToPosition(0);
                 }
             }
-        },0, 1500)
+        }, 0, 1500)
+    }
+
+    override fun onItemClicked(categoryID: String) {
+        logHandler("itmeClicked",categoryID)
+
+        getProductCategory()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mainScope.cancel()
     }
 }

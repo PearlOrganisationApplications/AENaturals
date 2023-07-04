@@ -43,7 +43,7 @@
         android:layout_margin="@dimen/sd6"
         android:id="@+id/customerallItemsRecycler"
         />
-    <androidx.recyclerview.widget.RecyclerView
+    <!--<androidx.recyclerview.widget.RecyclerView
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -91,5 +91,5 @@
         android:visibility="gone"
         android:layout_margin="@dimen/sd6"
         android:id="@+id/customerEssentialOilsRV"
-        />
+        />-->
 </LinearLayout>

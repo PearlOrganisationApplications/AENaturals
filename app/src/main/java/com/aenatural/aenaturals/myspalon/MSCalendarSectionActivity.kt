@@ -62,6 +62,7 @@ class MSCalendarSectionActivity : BaseClass() {
 
     override fun initializeLabels() {
     }
+
     private fun fetchAppointmentList(selectedDate: String) {
         val apiService = retrofit.create(MSAppointmentListApiService::class.java)
         val bearerToken = session.token // Replace YOUR_BEARER_TOKEN with the actual bearer token
@@ -83,8 +84,6 @@ class MSCalendarSectionActivity : BaseClass() {
                     if (filteredAppointments.isNullOrEmpty()) {
                         // No appointments for the selected date
                         // Handle the empty list case (e.g., show a message)
-
-
 
                         printLogs("success123", "onSuccess", appointmentResponse.toString())
                         loadingDialogPB.showErrorBottomSheetDialog("No appointment ")

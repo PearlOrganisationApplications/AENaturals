@@ -48,8 +48,6 @@ class MSAddAppointmentActivity : BaseClass() {
     var reason = ""
     var res_cust_id = ArrayList<String>()
     var res_staff_id = ArrayList<String>()
-    private val custList = ArrayList<Customer>()
-    private val staff1 = ArrayList<Staff>()
     private val beauticianNames: MutableList<String> = mutableListOf()
     private val customerNames: MutableList<String> = mutableListOf()
     lateinit var beauticianAdapter: ArrayAdapter<String>
@@ -89,9 +87,9 @@ class MSAddAppointmentActivity : BaseClass() {
         beauticianSpinner = findViewById(R.id.appointment_input_beauticianET)
 
         beauticianAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, beauticianNames)
-// Set the dropdown layout style
+           // Set the dropdown layout style
         beauticianAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-// Set the adapter on the spinner
+           // Set the adapter on the spinner
         beauticianSpinner.adapter = beauticianAdapter
 
         customerAdapter = ArrayAdapter(this,R.layout.spinner_dropdown_item,customerNames)
@@ -279,6 +277,7 @@ class MSAddAppointmentActivity : BaseClass() {
             }
         }
     }
+
     private fun getBeauticianDetails() {
         val apiService = RetrofitClient.retrofit.create(BeauticianProfileApiService::class.java)
         val tkn = session.token

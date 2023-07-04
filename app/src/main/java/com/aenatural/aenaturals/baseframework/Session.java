@@ -19,6 +19,7 @@ public class Session {
     public static final String U_Profile_Pic = "profile_picture";
     public static final String HAS_SESSION = "has_session";
     public static final String IS_UPDATED = "is_updated";
+    public static final String CATOGERY_ID = "categoryId";
 
 
     public Session(Context baseApbcContext) {
@@ -47,6 +48,14 @@ public class Session {
         edits.apply();
     }
 
+    public void setcategoryId(String value) {
+        editor.putString(CATOGERY_ID,value);
+        editor.apply();
+    }
+
+    public String getcategoryId() {
+        return prefs.getString(CATOGERY_ID,"1");
+    }
     public Boolean getIsUpdateRequired() {
         return prefs.getBoolean(IS_UPDATED, false);
     }
