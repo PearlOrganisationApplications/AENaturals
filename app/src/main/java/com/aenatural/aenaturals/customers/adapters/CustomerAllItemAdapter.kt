@@ -8,9 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.R
-import com.aenatural.aenaturals.apiservices.datamodels.Product
+import com.aenatural.aenaturals.apiservices.datamodels.CategoriesProduct
+import com.bumptech.glide.Glide
 
-class CustomerAllItemAdapter(var data:List<RetailerDataModel>):
+/*class CustomerAllItemAdapter(var data:List<RetailerDataModel>):
     RecyclerView.Adapter<CustomerAllItemAdapter.CustomerAllItemHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomerAllItemHolder {
         return CustomerAllItemHolder(LayoutInflater.from(parent.context).inflate(R.layout.customer_allitem_design,parent,false))
@@ -26,9 +27,9 @@ class CustomerAllItemAdapter(var data:List<RetailerDataModel>):
     inner class CustomerAllItemHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         var item_image = itemView
     }
-}
+}*/
 
-/*class CustomerAllItemAdapter(var data:List<Product>, var imageEndpoint: String):
+class CustomerAllItemAdapter(var data:List<CategoriesProduct>, var imageEndpoint: String):
     RecyclerView.Adapter<CustomerAllItemAdapter.CustomerAllItemHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomerAllItemHolder {
@@ -37,12 +38,18 @@ class CustomerAllItemAdapter(var data:List<RetailerDataModel>):
 
     override fun onBindViewHolder(holder: CustomerAllItemHolder, position: Int) {
         val product = data[position]
-*//*        val imageUrl = "$imageEndpoint${product.image_endpoint}"
 
-        Glide.with(holder.itemView.context)
-            .load(imageUrl)
-            .into(holder.item_image)*//*
-//        holder.item_image = product.categories
+if(!(product.cat_image==null||product.cat_image=="null")){
+    val imageUrl = "$imageEndpoint${product.cat_image}"
+
+    Glide.with(holder.itemView.context)
+        .load(imageUrl)
+        .into(holder.item_image)
+
+}
+        holder.item_name.text = product.prod_name
+        holder.item_description.text = product.prod_status
+        holder.item_price.text = product.prodPrice
     }
 
     override fun getItemCount(): Int {
@@ -55,4 +62,4 @@ class CustomerAllItemAdapter(var data:List<RetailerDataModel>):
         var item_description = itemView.findViewById<TextView>(R.id.item_description)
         var item_price = itemView.findViewById<TextView>(R.id.item_price)
     }
-}*/
+}

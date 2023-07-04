@@ -54,7 +54,7 @@ public class Session {
     }
 
     public String getcategoryId() {
-        return prefs.getString(CATOGERY_ID,null);
+        return prefs.getString(CATOGERY_ID,"1");
     }
     public Boolean getIsUpdateRequired() {
         return prefs.getBoolean(IS_UPDATED, false);

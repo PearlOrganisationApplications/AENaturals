@@ -1,17 +1,25 @@
 package com.aenatural.aenaturals.apiservices.datamodels
 
-data class ProductResponse(
+import com.google.gson.annotations.SerializedName
+
+data class CategoriesProductResponse(
     val status: String,
-    val categories: List<Product>,
-    val image_endpoint: String?
+    val categories: List<CategoriesProduct>,
+    val image_endpoint: String,
+    val message: String
 )
 
-data class Product(
+data class CategoriesProduct(
     val prod_id: String,
     val prod_name: String,
     val prod_status: String,
     val created_at: String?,
     val updated_at: String?,
-    val cat_id: String
+    val cat_id: String,
+    @SerializedName("image")
+    val cat_image: String?,
+    @SerializedName("pro_price")
+    val prodPrice: String?
+
 )
 

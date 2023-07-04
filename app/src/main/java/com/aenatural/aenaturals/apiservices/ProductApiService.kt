@@ -1,6 +1,6 @@
 package com.aenatural.aenaturals.apiservices
 
-import com.aenatural.aenaturals.apiservices.datamodels.ProductResponse
+import com.aenatural.aenaturals.apiservices.datamodels.CategoriesProductResponse
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
@@ -12,12 +12,13 @@ interface ProductApiService {
     suspend fun getProduct(
         @Header("Authorization") token: String,
         @Path("id") categoryId: String
-    ): Response<ProductResponse>
+    ): Response<CategoriesProductResponse>
 }
+
 /*interface ProductApiService {
     @GET("category/product/{id}")
      fun getProduct(
         @Header("Authorization") token: String,
         @Path("id") categoryId: String
-    ): Call<ProductResponse>
+    ): Call<CategoriesProductResponse>
 }*/
