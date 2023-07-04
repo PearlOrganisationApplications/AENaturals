@@ -46,13 +46,6 @@ class CustomerHomeFrag : Fragment() {
     lateinit var customerTrendingRecyclerView: RecyclerView
     lateinit var customerallItemsRecycler: RecyclerView
     lateinit var itemList: java.util.ArrayList<RetailerDataModel>
-//    lateinit var skincare: LinearLayout
-//    lateinit var haircare: LinearLayout
-//    lateinit var herbalPowder: LinearLayout
-//    lateinit var nutritional: LinearLayout
-//    lateinit var personalCare: LinearLayout
-    //private lateinit var aromaPowders: LinearLayout
-    //lateinit var essentialOils: LinearLayout
     lateinit var customerSkincareRV: RecyclerView
     lateinit var customerHaircareRV: RecyclerView
     lateinit var customerHerbalPowderRV: RecyclerView
@@ -64,8 +57,7 @@ class CustomerHomeFrag : Fragment() {
     lateinit var searchEditText : EditText
     lateinit var trendingLayout : LinearLayout
     lateinit var shopNowLL : LinearLayout
-    lateinit var shopNowLayout : LinearLayout
-    private lateinit var searchButton: ImageView
+
     lateinit var session: Session
 
     lateinit var ms_myprofile: LinearLayout
