@@ -114,6 +114,7 @@
             android:layout_height="wrap_content"
             android:text="Confirm Order"
             android:padding="@dimen/sd10"
+            android:id="@+id/customer_chekout_button"
             android:gravity="center"
             android:textColor="@color/darkgreen"
             android:textStyle="bold"
