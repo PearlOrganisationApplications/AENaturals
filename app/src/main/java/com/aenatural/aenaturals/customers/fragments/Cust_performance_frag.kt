@@ -21,6 +21,7 @@ import com.github.mikephil.charting.data.BarEntry
 class Cust_performance_frag : Fragment() {
 
     lateinit var barDataSet: BarDataSet
+    lateinit var llhidden: LinearLayout
     lateinit var pendingPayment:ArrayList<SellerDataModel>
     lateinit var barEntriesList: ArrayList<BarEntry>
     lateinit var barChart: BarChart
@@ -49,6 +50,9 @@ class Cust_performance_frag : Fragment() {
     public fun initializeViews(view: View) {
 
         barChart = view.findViewById(R.id.cust_chart);
+        llhidden = view.findViewById(R.id.llhidden)
+
+        llhidden.visibility = View.GONE
 
         initRecyclerView(view)
 
