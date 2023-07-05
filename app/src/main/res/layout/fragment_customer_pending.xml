@@ -7,6 +7,7 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
+
 <com.google.android.material.bottomnavigation.BottomNavigationView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -26,6 +27,5 @@
         android:id="@+id/cust_sell_list_layout"
         android:visibility="gone"
         />
-
 
 </LinearLayout>

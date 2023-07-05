@@ -152,7 +152,6 @@
         >
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_weight="1"
         android:id="@+id/cust_new_order_button"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
@@ -163,7 +162,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="New"
+            android:text="Confirm"
             android:textSize="@dimen/sd12"
             android:drawableEnd="@drawable/ic_baseline_draw_32"
             android:textStyle="bold"
@@ -187,6 +186,7 @@
                 android:layout_height="wrap_content"
                 android:text="Confirm"
                 android:textSize="@dimen/sd12"
+                android:visibility="gone"
                 android:drawableEnd="@drawable/ic_baseline_checklist_rtl_24"
                 android:textStyle="bold"
                 android:textColor="@color/darkgreen"
