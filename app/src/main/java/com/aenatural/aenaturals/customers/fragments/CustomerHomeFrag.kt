@@ -293,6 +293,7 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback,Cust
 
                     // Process the product and image endpoint as needed
                     if (productResponse != null) {
+
                         val imageEndpoint = productResponse.image_endpoint ?: ""
                         /*if (status.equals("true")) {
                             categoryProduct = productResponse.categories
@@ -311,6 +312,9 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback,Cust
 //                             imageEndpoint = productResponse?.image_endpoint ?: ""
 
                             try {
+
+                                //Toast.makeText(requireContext(),categoryProduct.size.toString(),Toast.LENGTH_SHORT).show()
+
                                 customerallItemsRecycler.layoutManager = LinearLayoutManager(requireContext())
                                 customerallItemsRecycler.adapter = CustomerAllItemAdapter(categoryProduct, imageEndpoint,this@CustomerHomeFrag)
                                 Log.d("successItem", status.toString() + "   " + categoryProduct.toString())
