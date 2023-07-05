@@ -16,7 +16,7 @@
     android:layout_margin="@dimen/sd4">
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/orderItemImage"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/ae_product"
@@ -33,18 +33,21 @@
         android:padding="@dimen/sd6">
 
         <TextView
+            android:id="@+id/orderName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Item Name"
             android:textColor="@color/darkgreen" />
 
         <TextView
+            android:id="@+id/orderQuantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Quantity"
             android:textColor="@color/darkgreen" />
 
         <TextView
+            android:id="@+id/purchaseDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Prchase Date"
@@ -62,6 +65,7 @@
             android:src="@drawable/ic_rupeesmall"
             app:tint="@color/darkgreen" />
         <TextView
+            android:id="@+id/orderPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="320"

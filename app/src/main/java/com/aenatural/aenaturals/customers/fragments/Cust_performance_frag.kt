@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.common.Models.SellerDataModel
-import com.aenatural.aenaturals.customers.adapters.CustomerSaleHistoryAdapter
-import com.aenatural.aenaturals.salesmans.Adapters.PendingPaymentAdapter
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet

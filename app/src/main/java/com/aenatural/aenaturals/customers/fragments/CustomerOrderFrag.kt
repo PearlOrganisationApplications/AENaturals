@@ -2,6 +2,7 @@ package com.aenatural.aenaturals.customers.fragments
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.LinearLayout
 import androidx.activity.OnBackPressedCallback
@@ -11,9 +12,16 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
+import com.aenatural.aenaturals.apiservices.OrderHistoryApiService
+import com.aenatural.aenaturals.baseframework.Session
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
+import com.aenatural.aenaturals.common.RetrofitClient.mainScope
+import com.aenatural.aenaturals.common.RetrofitClient.retrofit
 import com.aenatural.aenaturals.salesmans.Adapters.CartListAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class CustomerOrderFrag : Fragment() {
@@ -25,6 +33,7 @@ class CustomerOrderFrag : Fragment() {
     lateinit var retailerList: ArrayList<RetailerDataModel>
     lateinit var cust_new_order_button: CardView
     lateinit var dialog: Dialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -38,6 +47,7 @@ class CustomerOrderFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         backPress()
         requireActivity().findViewById<LinearLayout>(R.id.include).visibility = View.GONE
         initViews(view)
@@ -115,4 +125,5 @@ class CustomerOrderFrag : Fragment() {
             }
         })
     }
+
 }
