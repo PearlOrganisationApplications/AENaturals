@@ -21,6 +21,7 @@ import com.aenatural.aenaturals.apiservices.datamodels.CustomerProductListDM
 import com.aenatural.aenaturals.apiservices.datamodels.CustomerProductListService
 import com.aenatural.aenaturals.apiservices.datamodels.NormalDataModel
 import com.aenatural.aenaturals.baseframework.Session
+import com.aenatural.aenaturals.common.DialogPB
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.common.RetrofitClient
 import com.aenatural.aenaturals.common.RetrofitClient.mainScope
@@ -49,6 +50,7 @@ class CustomerOrderFrag : Fragment() {
     lateinit var cust_new_order_button: CardView
     lateinit var dialog: Dialog
     lateinit var session: Session
+    lateinit var loadingDialogPB: DialogPB
     var customerName =""
     var customerMobile =""
     private val selectedItemsList = mutableListOf<JSONObject>()
@@ -65,13 +67,14 @@ class CustomerOrderFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        loadingDialogPB = DialogPB(requireActivity())
         backPress()
         requireActivity().findViewById<LinearLayout>(R.id.include).visibility = View.GONE
         initViews(view)
         initClickListener(view)
         initRecyclerViews(view)
         session = Session(requireContext())
+
         listproductapi()
     }
 
@@ -138,6 +141,8 @@ var apiservice = RetrofitClient.retrofit.create(CustomerProductListService::clas
     }
 
     private fun callSubmitApi() {
+
+        loadingDialogPB.startLoadingDialog()
         val apiService = RetrofitClient.retrofit.create(CheckoutApiService::class.java)
 
 
@@ -158,6 +163,7 @@ var apiservice = RetrofitClient.retrofit.create(CustomerProductListService::clas
                 response: Response<NormalDataModel>
             ) {
                 if(response.isSuccessful){
+                    loadingDialogPB.dismissDialog()
                     try {
                         Log.d("SellItemResp",response.body().toString())
                         Toast.makeText(requireContext(),"Sucessfully Added",Toast.LENGTH_SHORT)
@@ -167,11 +173,15 @@ var apiservice = RetrofitClient.retrofit.create(CustomerProductListService::clas
 
                 }
                 else{
+                    loadingDialogPB.dismissDialog()
                     Log.d("SellItemError",response.errorBody().toString())
+                    loadingDialogPB.showErrorBottomSheetDialog("something went wrong please try again")
                 }
             }
 
             override fun onFailure(call: Call<NormalDataModel>, t: Throwable) {
+                loadingDialogPB.dismissDialog()
+                loadingDialogPB.showErrorBottomSheetDialog(t.message.toString())
 
             }
         })
