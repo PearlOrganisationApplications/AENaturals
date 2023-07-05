@@ -24,15 +24,42 @@ class CustomerCartListAdapter(var data:ArrayList<CartItem>, var imageEndpoint: S
 
     override fun onBindViewHolder(holder: CartListViewHolder, position: Int) {
         val item = data[position]
-        var quantity:Int = 0
-        holder.minusitemcart.setOnClickListener {
+        var quantity:Int = 1
+        /*holder.minusitemcart.setOnClickListener {
             if(quantity>0)
-                quantity-=1
+                quantity -= 1
             holder.itemquantityTV.text="quantity : "+quantity.toString()
+            selectedItem.remove(item.prod_id)
+            Log.d("selectedItem",selectedItem.toString())
         }
         holder.additemcart.setOnClickListener {
             quantity+=1
             holder.itemquantityTV.text="quantity : "+quantity.toString()
+            selectedItem[item.prod_id] = quantity.toString()
+            Log.d("selectedItem1",selectedItem.toString())
+        }*/
+        // Inside the ViewHolder
+        holder.minusitemcart.setOnClickListener {
+            if (quantity > 0) {
+                quantity -= 1
+            }
+            holder.itemquantityTV.text = "Quantity: $quantity"
+            if (quantity == 0) {
+                // If quantity becomes 0, remove the item from the selected items
+                selectedItem.remove(item.prod_id)
+            } else {
+                // Update the quantity in the selected items map
+                selectedItem[item.prod_id] = quantity.toString()
+            }
+            Log.d("selectedItem", selectedItem.toString())
+        }
+
+        holder.additemcart.setOnClickListener {
+            quantity += 1
+            holder.itemquantityTV.text = "Quantity: $quantity"
+            // Update the quantity in the selected items map
+            selectedItem[item.prod_id] = quantity.toString()
+            Log.d("selectedItem1", selectedItem.toString())
         }
         holder.cart_itemName.text = item.prod_name
         holder.cart_itemDescription.text = item.prod_description
@@ -47,7 +74,7 @@ class CustomerCartListAdapter(var data:ArrayList<CartItem>, var imageEndpoint: S
         }
         holder.selectCheckBox.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                selectedItem[item.prod_id] = item.quantity
+                selectedItem[item.prod_id] = quantity.toString()
                 Log.d("ifselectedItem",selectedItem.toString())
             }else{
                 selectedItem.remove(item.prod_id)
