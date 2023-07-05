@@ -2,7 +2,7 @@ package com.aenatural.aenaturals.apiservices.datamodels
 
 data class ViewCartItemResponse(
     val status: String,
-    val carts: List<CartItem>,
+    val carts: ArrayList<CartItem>,
     val image_endpoint:String,
     val message: String
 )

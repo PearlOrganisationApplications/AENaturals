@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="@dimen/sd8"
-    app:cardCornerRadius="@dimen/sd8"
     android:background="@color/white"
-    android:layout_height="wrap_content">
+    app:cardCornerRadius="@dimen/sd8">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:padding="@dimen/sd4"
+        android:layout_height="wrap_content"
         android:background="@color/white"
-        android:layout_height="wrap_content">
+        android:padding="@dimen/sd4">
 
         <ImageView
             android:id="@+id/cart_imageView"
@@ -24,24 +25,39 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
+            android:id="@+id/linearLayout21"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="@dimen/sd8"
             android:orientation="vertical"
+            android:padding="@dimen/sd8"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cart_imageView"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5">
 
-            <TextView
-                android:id="@+id/cart_itemName"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Item Name"
-                android:textColor="@color/darkgreen"
-                android:textSize="@dimen/sd14"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/cart_itemName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Item Name"
+                    android:textColor="@color/darkgreen"
+                    android:textSize="@dimen/sd14"
+                    android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/selectCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:layout_editor_absoluteY="189dp" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/cart_itemDescription"
@@ -66,33 +82,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:padding="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="5dp">
+
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_removegreen"
                     android:id="@+id/minusitemcart"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:id="@+id/cartitemquantity"
-                    android:gravity="center"
-                    android:paddingVertical="@dimen/sd10"
-                    android:paddingHorizontal="@dimen/sd14"
-                    android:layout_marginHorizontal="@dimen/sd4"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/darkgreen"
-                    android:textStyle="bold"
-                    android:background="@drawable/loginedittextbg"
-                    android:text="quantity:0"/>
-                <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/ic_plus"
+                    android:src="@drawable/ic_removegreen" />
+
+                <TextView
+                    android:id="@+id/cartitemquantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/sd4"
+                    android:background="@drawable/loginedittextbg"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/sd14"
+                    android:paddingVertical="@dimen/sd10"
+                    android:text="quantity:0"
+                    android:textColor="@color/darkgreen"
+                    android:textStyle="bold" />
+
+                <ImageView
                     android:id="@+id/additemcart"
-                    />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_plus" />
             </LinearLayout>
         </LinearLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
