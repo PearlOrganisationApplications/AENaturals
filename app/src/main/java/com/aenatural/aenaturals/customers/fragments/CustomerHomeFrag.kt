@@ -283,70 +283,48 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback,Cust
         val apiService = retrofit.create(ProductApiService::class.java)
         val tkn = session.token
         val categoryId = session.getcategoryId()
-
-        mainScope.launch {
             try {
-                val response = withContext(Dispatchers.IO) {
-                    apiService.getProduct("Bearer $tkn", categoryId)
+                val call = apiService.getProduct("Bearer $tkn", categoryId)
+                call.enqueue(object :Callback<CategoriesProductResponse>{
+                    override fun onResponse(
+                        call: Call<CategoriesProductResponse>,
+                        response: Response<CategoriesProductResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            val productResponse = response.body()
+                            val status = productResponse?.status
 
-                }
-                if (response.isSuccessful) {
-                    val productResponse = response.body()
-                    val status = productResponse?.status
+                            // Process the product and image endpoint as needed
+                            if (productResponse != null) {
+                                val imageEndpoint = productResponse.image_endpoint ?: ""
+                                if (status.equals("true")) {
+                                    categoryProduct = productResponse.categories ?: emptyList()
+                                    try {
+                                        customerallItemsRecycler.layoutManager = LinearLayoutManager(requireContext())
+                                        customerallItemsRecycler.adapter = CustomerAllItemAdapter(categoryProduct, imageEndpoint,this@CustomerHomeFrag)
+                                        Log.d("successItem", status.toString() + "   " + categoryProduct.toString())
+                                    } catch (e: Exception) {
+                                        logHandler("catchContext", e.message + "   " + e.stackTraceToString())
+                                    }
+                                } else {
 
-                    // Process the product and image endpoint as needed
-                    if (productResponse != null) {
-
-                        val imageEndpoint = productResponse.image_endpoint ?: ""
-                        /*if (status.equals("true")) {
-                            categoryProduct = productResponse.categories
-                            val imageEndpoint = productResponse.image_endpoint
-                            try {
-                                customerallItemsRecycler.layoutManager = LinearLayoutManager(requireContext())
-                                customerallItemsRecycler.adapter =
-                                    CustomerAllItemAdapter(categoryProduct, imageEndpoint)
-                                Log.d("successItem",status.toString() +"   " + categoryProduct.toString())
-                            } catch (e: Exception) {
-                                logHandler("catchContext",e.message + "   "+ e.stackTraceToString())
-                            }
-                        }*/
-                        if (status.equals("true")) {
-                            categoryProduct = productResponse.categories ?: emptyList()
-//                             imageEndpoint = productResponse?.image_endpoint ?: ""
-
-                            try {
-
-                                //Toast.makeText(requireContext(),categoryProduct.size.toString(),Toast.LENGTH_SHORT).show()
-
-                                customerallItemsRecycler.layoutManager = LinearLayoutManager(requireContext())
-                                customerallItemsRecycler.adapter = CustomerAllItemAdapter(categoryProduct, imageEndpoint,this@CustomerHomeFrag)
-                                Log.d("successItem", status.toString() + "   " + categoryProduct.toString())
-                            } catch (e: Exception) {
-                                logHandler("catchContext", e.message + "   " + e.stackTraceToString())
+                                    customerallItemsRecycler.adapter = null // Clear the adapter
+                                    Log.d("successItem2", status.toString() + "     "+ productResponse)
+                                }
                             }
                         } else {
-                            // Handle the case when the status is not "true"
-                            // For example, you can clear the adapter or show an error message
-                            customerallItemsRecycler.adapter = null // Clear the adapter
-                            Log.d("successItem2", status.toString() + "     "+ productResponse)
-                           /* customerallItemsRecycler.layoutManager = LinearLayoutManager(requireContext())
-                            customerallItemsRecycler.adapter = CustomerAllItemAdapter(categoryProduct, imageEndpoint)*/
+                            val errorMessage = response.message()
+                            logHandler("elseBlock",errorMessage)
                         }
-
                     }
-                } else {
-                    // Handle the error case
-                    val errorMessage = response.message()
-                    // Handle the error message
-                    logHandler("elseBlock",errorMessage)
 
-                }
+                    override fun onFailure(call: Call<CategoriesProductResponse>, t: Throwable) {
+                    }
+
+                })
             } catch (e: Exception) {
-                // Handle the exception case
                 e.printStackTrace()
             }
-        }
-
     }
 
     private fun showExitConfirmationDialog() {
