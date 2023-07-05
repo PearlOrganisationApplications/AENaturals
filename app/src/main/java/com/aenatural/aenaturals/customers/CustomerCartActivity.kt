@@ -12,6 +12,7 @@ import com.aenatural.aenaturals.apiservices.datamodels.CartItem
 import com.aenatural.aenaturals.apiservices.datamodels.NormalDataModel
 import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.baseframework.Session
+import com.aenatural.aenaturals.common.DialogPB
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.common.RetrofitClient
 import com.aenatural.aenaturals.common.RetrofitClient.mainScope
@@ -35,6 +36,7 @@ class CustomerCartActivity : BaseClass() {
     lateinit var retailerList: ArrayList<CartItem>
     lateinit var session: Session
     lateinit var customer_chekout_button:TextView
+    lateinit var loadingDialogPB: DialogPB
     private val selectedItemsList = mutableListOf<JSONObject>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +52,7 @@ class CustomerCartActivity : BaseClass() {
         setContentView(R.layout.activity_customer_cart)
         getMidGreentheme()
         session = Session(this)
+        loadingDialogPB = DialogPB(this)
     }
 
     override fun initializeViews() {
@@ -61,11 +64,13 @@ class CustomerCartActivity : BaseClass() {
         customer_chekout_button.setOnClickListener {
         logHandler("ItemList",selectedItemsList.toString())
             hitcheckoutApi()
+//            recreate()
         }
     }
 
     private fun hitcheckoutApi() {
-        val apiService = RetrofitClient.retrofit.create(CheckoutApiService::class.java)
+        loadingDialogPB.startLoadingDialog()
+        val apiService = retrofit.create(CheckoutApiService::class.java)
 
 
         val mediaType = "application/json".toMediaType()
@@ -79,9 +84,12 @@ class CustomerCartActivity : BaseClass() {
                 response: Response<NormalDataModel>
             ) {
                 if(response.isSuccessful){
+                    loadingDialogPB.dismissDialog()
                     val data = response.body()
                     logHandler("CheckoutRes",data.toString())
+
                 }else{
+                    loadingDialogPB.dismissDialog()
                     val statusCode = response.code()
                     val errorBody = response.errorBody()?.string()
                     logHandler("CheckoutRes", "Response not successful. Status code: $statusCode, Error body: $errorBody")

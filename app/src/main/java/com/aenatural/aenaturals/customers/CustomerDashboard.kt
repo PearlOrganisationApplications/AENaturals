@@ -107,4 +107,8 @@ class CustomerDashboard : BaseClass() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
 }

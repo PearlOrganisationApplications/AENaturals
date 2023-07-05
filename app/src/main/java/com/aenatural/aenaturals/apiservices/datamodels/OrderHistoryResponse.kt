@@ -8,11 +8,26 @@ data class OrderHistoryResponse(
 )
 
 data class OrderHistoryData(
-    val orders: List<Order>,
-    val sold: List<Order>
+    val orders: List<Order>
 )
 
 data class Order(
+    val id: Int,
+    val quantity: Int,
+    val product_details: ProductDetails
+)
+
+data class SellHistoryResponse(
+    val status: String,
+    val history: SellHistoryData,
+    val image_endpoint: String
+)
+
+data class SellHistoryData(
+    val sold: List<SoldItem>
+)
+
+data class SoldItem(
     val id: Int,
     val quantity: Int,
     val product_details: ProductDetails
@@ -25,6 +40,22 @@ data class ProductDetails(
     val prod_name: String,
     val prod_description: String?
 )
+
+
+/*data class Order(
+    val id: Int,
+    val quantity: Int,
+    val product_details: ProductDetails
+)
+
+
+data class ProductDetails(
+    val id: Int,
+    val image: String?,
+    val pro_price: String?,
+    val prod_name: String,
+    val prod_description: String?
+)*/
 
 
 

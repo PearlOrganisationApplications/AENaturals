@@ -523,4 +523,9 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback,Cust
             }
         }
     }
+
+    override fun onDetach() {
+        super.onDetach()
+        mainScope.cancel()
+    }
 }

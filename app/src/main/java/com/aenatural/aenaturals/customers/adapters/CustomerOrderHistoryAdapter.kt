@@ -27,9 +27,11 @@ class CustomerOrderHistoryAdapter(var data: ArrayList<Order>, var imageEndpoint:
         holder.orderQuantity.text = "Quantity ${order.quantity}"
         holder.orderPrice.text = order.product_details.pro_price
         holder.purchaseDate.text = order.product_details.prod_description
-        Glide.with(holder.itemView.context)
-            .load(imageUrl)
-            .into(holder.orderItemImage)
+        if (!(order.product_details.image == null)) {
+            Glide.with(holder.itemView.context)
+                .load(imageUrl)
+                .into(holder.orderItemImage)
+        }
     }
 
     override fun getItemCount(): Int {
