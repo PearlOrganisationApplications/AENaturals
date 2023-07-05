@@ -68,7 +68,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imageView_addtocart"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:src="@drawable/ic_addtocart"
