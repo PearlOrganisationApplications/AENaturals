@@ -85,13 +85,15 @@ class CustomerCartActivity : BaseClass() {
                         val imageEndpoint = viewCartItemResponse.image_endpoint
                         printLogs("loadCartList","isSuccessful",status +"  "+ viewCartItemResponse.message)
                         // Process the cart items
-             /*           for (cartItem in carts) {
+
+                        /*           for (cartItem in carts) {
                             val prodId = cartItem.prod_id
                             val prodName = cartItem.prod_name
                             val prodPrice = cartItem.pro_price
                             val prodDescription = cartItem.prod_description
                             // ... and so on for other properties
                         }*/
+
                             if (status.equals("true")) {
                                 retailerList = carts
                                 try {
