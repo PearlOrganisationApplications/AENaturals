@@ -9,16 +9,10 @@ import retrofit2.http.Path
 
 interface ProductApiService {
     @GET("category/product/{id}")
-    suspend fun getProduct(
-        @Header("Authorization") token: String,
-        @Path("id") categoryId: String
-    ): Response<CategoriesProductResponse>
-}
-
-/*interface ProductApiService {
-    @GET("category/product/{id}")
-     fun getProduct(
+    public fun getProduct(
         @Header("Authorization") token: String,
         @Path("id") categoryId: String
     ): Call<CategoriesProductResponse>
-}*/
+}
+
+

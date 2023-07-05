@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.apiservices.OrderHistoryApiService
 import com.aenatural.aenaturals.apiservices.datamodels.Order
+import com.aenatural.aenaturals.apiservices.datamodels.OrderHistoryResponse
 import com.aenatural.aenaturals.baseframework.Session
 import com.aenatural.aenaturals.common.DialogPB
 import com.aenatural.aenaturals.common.Models.SellerDataModel
@@ -26,6 +27,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class CustomerOrder_HistoryFrag : Fragment() {
@@ -60,6 +64,7 @@ class CustomerOrder_HistoryFrag : Fragment() {
         requireActivity().findViewById<LinearLayout>(R.id.include).visibility =View.VISIBLE
         initializeViews(view)
         topnav(view)
+        fetchOrderHistory()
     }
 
     private fun topnav(view: View) {
@@ -72,7 +77,7 @@ class CustomerOrder_HistoryFrag : Fragment() {
                 R.id.menu_order_history->{
                     customer_sellhistory_layout.visibility = View.GONE
                     customer_order_history_layout.visibility=View.VISIBLE
-                    fetchOrderHistory()
+
                 }
             }
             true
@@ -120,58 +125,66 @@ class CustomerOrder_HistoryFrag : Fragment() {
 //        loadingDialogPB.startLoadingDialog()
         val apiService = retrofit.create(OrderHistoryApiService::class.java)
         val tkn = session.token
+        printLogs("fetchOrderHistory", "fetchOrderHistory", "Function ran")
 
-        mainScope.launch {
             try {
-                val response = withContext(Dispatchers.IO) {
-                    apiService.getOrderHistory("Bearer $tkn")
-                }
-                if (response.isSuccessful) {
-                    val orderHistoryResponse = response.body()
-                    if (orderHistoryResponse != null) {
-                        loadingDialogPB.dismissDialog()
-                        // Handle the response here
-                        val status = orderHistoryResponse.status
-                        val orderHistory = orderHistoryResponse.history
-                        val imageEndpoint = orderHistoryResponse.image_endpoint
-                        printLogs("status", "empty", status)
-                        // Update the UI with order history data
+   val call = apiService.getOrderHistory("Bearer $tkn")
+                call.enqueue(object:Callback<OrderHistoryResponse>{
+                    override fun onResponse(
+                        call: Call<OrderHistoryResponse>,
+                        response: Response<OrderHistoryResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            val orderHistoryResponse = response.body()
+                            if (orderHistoryResponse != null) {
+                                loadingDialogPB.dismissDialog()
+                                // Handle the response here
+                                val status = orderHistoryResponse.status
+                                val orderHistory = orderHistoryResponse.history
+                                val imageEndpoint = orderHistoryResponse.image_endpoint
+                                printLogs("orderHistoryResponse", "empty", orderHistoryResponse.toString())
+                                // Update the UI with order history data
 //                        updateOrderHistoryUI(orders)
 //                        if (status.equals("true")) {
 
-                            try {
-                                orders = orderHistory.orders
-                                if (orders.isEmpty()) {
-                                    printLogs("getOrderHistory", "empty", "No orders found in history")
-                                    loadingDialogPB.showErrorBottomSheetDialog("No orders found in history")
-                                }else {
-                                    customer_order_history_recycler.adapter =
-                                        CustomerOrderHistoryAdapter(
-                                            orders as ArrayList<Order>, imageEndpoint
-                                        )
-                                    customer_order_history_recycler.layoutManager =
-                                        LinearLayoutManager(requireContext())
-                                }
-                            } catch (_: Exception) {
+                                try {
+                                    orders = orderHistory.orders
+                                    if (orders.isEmpty()) {
+                                        printLogs("getOrderHistory", "empty", "No orders found in history")
+                                        loadingDialogPB.showErrorBottomSheetDialog("No orders found in history")
+                                    }else {
+                                        customer_order_history_recycler.adapter =
+                                            CustomerOrderHistoryAdapter(
+                                                orders as ArrayList<Order>, imageEndpoint
+                                            )
+                                        customer_order_history_recycler.layoutManager =
+                                            LinearLayoutManager(requireContext())
+                                    }
+                                } catch (_: Exception) {
 
-                            }
+                                }
 
 //                        }
+                            }
+                        } else {
+                            // Handle error case
+                            loadingDialogPB.dismissDialog()
+                            val errorBody = response.errorBody().toString()
+                            // Handle the error body if needed
+                            printLogs("fetchOrderHistory", "error", errorBody)
+                        }
                     }
-                } else {
-                    // Handle error case
-                    loadingDialogPB.dismissDialog()
-                    val errorBody = response.errorBody().toString()
-                    // Handle the error body if needed
-                    printLogs("fetchOrderHistory", "error", errorBody)
-                }
+
+                    override fun onFailure(call: Call<OrderHistoryResponse>, t: Throwable) {
+                    }
+                })
             } catch (e: Exception) {
                 // Handle exception
                 loadingDialogPB.dismissDialog()
                 e.printStackTrace()
             }
         }
-    }
+
 
    /* private fun updateOrderHistoryUI(orders: List<Order>) {
         // Update the UI with the order history data
@@ -184,8 +197,6 @@ class CustomerOrder_HistoryFrag : Fragment() {
 
     fun printLogs(tag: String, funcs: String, msg: String) {
         Log.i("OSG-" + tag + "__" + funcs, msg)
-        LogString =
-            LogString + "TAG - " + tag + "<br/> FUNCTION - " + funcs + "<br/> DATA - " + msg + "<br/><br/><br/><br/>"
     }
 
 }
