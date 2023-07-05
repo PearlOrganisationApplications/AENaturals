@@ -33,7 +33,6 @@ if(!(product.cat_image==null||product.cat_image=="null")){
     Glide.with(holder.itemView.context)
         .load(imageUrl)
         .into(holder.item_image)
-
 }
         holder.item_name.text = product.prod_name
         holder.item_description.text = product.prod_description

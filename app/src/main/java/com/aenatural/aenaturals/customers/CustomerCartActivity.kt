@@ -2,14 +2,18 @@ package com.aenatural.aenaturals.customers
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.apiservices.CartItemApiService
+import com.aenatural.aenaturals.apiservices.CheckoutApiService
 import com.aenatural.aenaturals.apiservices.datamodels.CartItem
+import com.aenatural.aenaturals.apiservices.datamodels.NormalDataModel
 import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.baseframework.Session
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
+import com.aenatural.aenaturals.common.RetrofitClient
 import com.aenatural.aenaturals.common.RetrofitClient.mainScope
 import com.aenatural.aenaturals.common.RetrofitClient.retrofit
 import com.aenatural.aenaturals.customers.adapters.CustomerCartListAdapter
@@ -17,6 +21,12 @@ import com.aenatural.aenaturals.customers.adapters.CustomerCartListAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class CustomerCartActivity : BaseClass() {
 
@@ -24,17 +34,16 @@ class CustomerCartActivity : BaseClass() {
     lateinit var itemList: ArrayList<CartItem>
     lateinit var retailerList: ArrayList<CartItem>
     lateinit var session: Session
+    lateinit var customer_chekout_button:TextView
+    private val selectedItemsList = mutableListOf<JSONObject>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setLayoutXml()
         initializeViews()
         initializeClickListners()
-//        initData()
         initializeInputs()
-//        initializeLabels()
-
         loadCartList()
-
     }
 
     override fun setLayoutXml() {
@@ -45,9 +54,44 @@ class CustomerCartActivity : BaseClass() {
 
     override fun initializeViews() {
         customer_cart_recyclerview = findViewById(R.id.customer_cart_recyclerview)
+        customer_chekout_button = findViewById(R.id.customer_chekout_button)
     }
 
     override fun initializeClickListners() {
+        customer_chekout_button.setOnClickListener {
+        logHandler("ItemList",selectedItemsList.toString())
+            hitcheckoutApi()
+        }
+    }
+
+    private fun hitcheckoutApi() {
+        val apiService = RetrofitClient.retrofit.create(CheckoutApiService::class.java)
+
+
+        val mediaType = "application/json".toMediaType()
+        val requestBody = selectedItemsList.toString().toRequestBody(mediaType)
+
+        val call:Call<NormalDataModel> = apiService.checkout("Bearer "+session.token.toString(),requestBody)
+
+        call.enqueue(object:Callback<NormalDataModel>{
+            override fun onResponse(
+                call: Call<NormalDataModel>,
+                response: Response<NormalDataModel>
+            ) {
+                if(response.isSuccessful){
+                    val data = response.body()
+                    logHandler("CheckoutRes",data.toString())
+                }else{
+                    val statusCode = response.code()
+                    val errorBody = response.errorBody()?.string()
+                    logHandler("CheckoutRes", "Response not successful. Status code: $statusCode, Error body: $errorBody")
+                }
+            }
+            override fun onFailure(call: Call<NormalDataModel>, t: Throwable) {
+                logHandler("CheckoutRes",t.toString())
+            }
+        })
+
     }
 
     override fun initializeInputs() {
@@ -84,7 +128,6 @@ class CustomerCartActivity : BaseClass() {
                         val carts = viewCartItemResponse.carts
                         val imageEndpoint = viewCartItemResponse.image_endpoint
                         printLogs("loadCartList","isSuccessful",status +"  "+ viewCartItemResponse.message)
-                        // Process the cart items
 
                         /*           for (cartItem in carts) {
                             val prodId = cartItem.prod_id
@@ -93,32 +136,24 @@ class CustomerCartActivity : BaseClass() {
                             val prodDescription = cartItem.prod_description
                             // ... and so on for other properties
                         }*/
-
                             if (status.equals("true")) {
                                 retailerList = carts
                                 try {
                                     customer_cart_recyclerview.adapter = CustomerCartListAdapter(
-                                        retailerList, imageEndpoint
+                                        retailerList, imageEndpoint,selectedItemsList
                                     )
-
                                     customer_cart_recyclerview.layoutManager =
                                         LinearLayoutManager(this@CustomerCartActivity)
                                 } catch (_: Exception) {
-
                                 }
                             }
-
-
                     }
                 } else {
-                    // Handle error case
                     val errorBody = response.errorBody().toString()
                     val error = response.body()?.message
-                    // Handle the error body if needed
                     printLogs("loadCartList","error",errorBody + "__" + response.message() + "__" + response.body()?.status + "__" + error)
                 }
             } catch (e: Exception) {
-                // Handle exception
                 e.printStackTrace()
             }
         }
