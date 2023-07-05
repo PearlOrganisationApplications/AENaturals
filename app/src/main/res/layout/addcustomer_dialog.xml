@@ -22,6 +22,17 @@
         android:hint="Customer Name"
         android:layout_margin="@dimen/sd12"
         android:background="@color/white"
+        android:id="@+id/dialog_cust_name"
+        android:padding="@dimen/sd10"
+        android:textColorHint="@color/darkgreen"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mobile Number"
+        android:id="@+id/dialog_cust_number"
+        android:layout_marginHorizontal="@dimen/sd12"
+        android:background="@color/white"
         android:padding="@dimen/sd10"
         android:textColorHint="@color/darkgreen"
         />

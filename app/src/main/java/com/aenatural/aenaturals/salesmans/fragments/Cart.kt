@@ -60,11 +60,11 @@ class Cart : Fragment() {
         initViews(view)
         initClickListener(view)
         initDataModels(view)
-        initRecyclerAdapter(view)
+     //   initRecyclerAdapter(view)
     }
 
     private fun initRecyclerAdapter(view: View) {
-        cartsellRecycler.adapter = CartListAdapter(retailerList)
+      //  cartsellRecycler.adapter = CartListAdapter(retailerList)
         cartsellRecycler.layoutManager = LinearLayoutManager(requireContext())
 
         cartrequestRecycler.adapter = RequestProductsAdapter(retailerList, requireContext())
