@@ -46,13 +46,14 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback,Cust
     lateinit var customerallItemsRecycler: RecyclerView
     lateinit var itemList: java.util.ArrayList<RetailerDataModel>
 
-    //    lateinit var skincare: LinearLayout
+//    lateinit var skincare: LinearLayout
 //    lateinit var haircare: LinearLayout
 //    lateinit var herbalPowder: LinearLayout
 //    lateinit var nutritional: LinearLayout
 //    lateinit var personalCare: LinearLayout
-    //private lateinit var aromaPowders: LinearLayout
-    //lateinit var essentialOils: LinearLayout
+//    private lateinit var aromaPowders: LinearLayout
+//    lateinit var essentialOils: LinearLayout
+
     lateinit var customerSkincareRV: RecyclerView
     lateinit var customerHaircareRV: RecyclerView
     lateinit var customerHerbalPowderRV: RecyclerView
@@ -60,6 +61,7 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback,Cust
     lateinit var customerPersonalCareRV: RecyclerView
     lateinit var customerAromaPowdersRV: RecyclerView
     lateinit var customerEssentialOilsRV: RecyclerView
+
     lateinit var product_category_recycler_view: RecyclerView
     lateinit var searchEditText: EditText
     lateinit var trendingLayout: LinearLayout
@@ -271,6 +273,7 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback,Cust
             viewLifecycleOwner,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
+
                     showExitConfirmationDialog()
                 }
             })
@@ -293,6 +296,7 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback,Cust
 
                     // Process the product and image endpoint as needed
                     if (productResponse != null) {
+
                         val imageEndpoint = productResponse.image_endpoint ?: ""
                         /*if (status.equals("true")) {
                             categoryProduct = productResponse.categories
@@ -311,6 +315,9 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback,Cust
 //                             imageEndpoint = productResponse?.image_endpoint ?: ""
 
                             try {
+
+                                //Toast.makeText(requireContext(),categoryProduct.size.toString(),Toast.LENGTH_SHORT).show()
+
                                 customerallItemsRecycler.layoutManager = LinearLayoutManager(requireContext())
                                 customerallItemsRecycler.adapter = CustomerAllItemAdapter(categoryProduct, imageEndpoint,this@CustomerHomeFrag)
                                 Log.d("successItem", status.toString() + "   " + categoryProduct.toString())
