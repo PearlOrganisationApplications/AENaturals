@@ -46,13 +46,14 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback,Cust
     lateinit var customerallItemsRecycler: RecyclerView
     lateinit var itemList: java.util.ArrayList<RetailerDataModel>
 
-    //    lateinit var skincare: LinearLayout
+//    lateinit var skincare: LinearLayout
 //    lateinit var haircare: LinearLayout
 //    lateinit var herbalPowder: LinearLayout
 //    lateinit var nutritional: LinearLayout
 //    lateinit var personalCare: LinearLayout
-    //private lateinit var aromaPowders: LinearLayout
-    //lateinit var essentialOils: LinearLayout
+//    private lateinit var aromaPowders: LinearLayout
+//    lateinit var essentialOils: LinearLayout
+
     lateinit var customerSkincareRV: RecyclerView
     lateinit var customerHaircareRV: RecyclerView
     lateinit var customerHerbalPowderRV: RecyclerView
@@ -60,6 +61,7 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback,Cust
     lateinit var customerPersonalCareRV: RecyclerView
     lateinit var customerAromaPowdersRV: RecyclerView
     lateinit var customerEssentialOilsRV: RecyclerView
+
     lateinit var product_category_recycler_view: RecyclerView
     lateinit var searchEditText: EditText
     lateinit var trendingLayout: LinearLayout
@@ -271,6 +273,7 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback,Cust
             viewLifecycleOwner,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
+
                     showExitConfirmationDialog()
                 }
             })

@@ -48,7 +48,11 @@ class ProductCategoryAdapter(val context: Context,var data: List<Category>,var i
 //            Toast.makeText(context, category.cat_id, Toast.LENGTH_SHORT).show()
             session.setcategoryId(catID)
             adapterCallback?.onItemClicked(catID)
-
+        }
+        if (position == 0 || session.getcategoryId() == null) {
+            val firstCatID = category.cat_id
+            session.setcategoryId(firstCatID)
+            adapterCallback?.onItemClicked(firstCatID)
         }
         holder.cat_name.text =   category.cat_name
     }
@@ -62,13 +66,6 @@ class ProductCategoryAdapter(val context: Context,var data: List<Category>,var i
         var cat_name = itemView.findViewById<TextView>(R.id.cat_name)
         var skincare = itemView.findViewById<LinearLayout>(R.id.skincare)
 
-//        init {
-//            skincare.setOnClickListener {
-//                var category = data[position]
-//                val categoryId = category.cat_id
-//
-//            }
-//        }
     }
 
 }

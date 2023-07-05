@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:fontFamily="@font/bangers"
-        android:text="MY PARLOR"
+        android:text="Sell Items"
         android:textColor="@color/darkgreen"
         android:textSize="@dimen/sd26"
         android:textStyle="bold" />
