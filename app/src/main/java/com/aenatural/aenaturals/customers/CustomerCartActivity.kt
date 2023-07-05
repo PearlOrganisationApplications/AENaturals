@@ -54,9 +54,9 @@ class CustomerCartActivity : BaseClass() {
     }
 
     override fun initializeLabels() {
-        customer_cart_recyclerview.adapter = CustomerCartListAdapter(retailerList,"")
+        /*customer_cart_recyclerview.adapter = CustomerCartListAdapter(retailerList,"")
 
-        customer_cart_recyclerview.layoutManager= LinearLayoutManager(this)
+        customer_cart_recyclerview.layoutManager= LinearLayoutManager(this)*/
     }
 
     /*private fun initData(){
@@ -66,6 +66,7 @@ class CustomerCartActivity : BaseClass() {
     }*/
 
     private fun loadCartList() {
+//        loadingDialog.startLoadingDialog()
         val apiService = retrofit.create(CartItemApiService::class.java)
 
         val tkn = session.token
@@ -84,17 +85,35 @@ class CustomerCartActivity : BaseClass() {
                         val imageEndpoint = viewCartItemResponse.image_endpoint
                         printLogs("loadCartList","isSuccessful",status +"  "+ viewCartItemResponse.message)
                         // Process the cart items
-                        for (cartItem in carts) {
+             /*           for (cartItem in carts) {
                             val prodId = cartItem.prod_id
                             val prodName = cartItem.prod_name
+                            val prodPrice = cartItem.pro_price
+                            val prodDescription = cartItem.prod_description
                             // ... and so on for other properties
-                        }
+                        }*/
+                            if (status.equals("true")) {
+                                retailerList = carts
+                                try {
+                                    customer_cart_recyclerview.adapter = CustomerCartListAdapter(
+                                        retailerList, imageEndpoint
+                                    )
+
+                                    customer_cart_recyclerview.layoutManager =
+                                        LinearLayoutManager(this@CustomerCartActivity)
+                                } catch (_: Exception) {
+
+                                }
+                            }
+
+
                     }
                 } else {
                     // Handle error case
                     val errorBody = response.errorBody().toString()
+                    val error = response.body()?.message
                     // Handle the error body if needed
-                    printLogs("loadCartList","error",errorBody)
+                    printLogs("loadCartList","error",errorBody + "__" + response.message() + "__" + response.body()?.status + "__" + error)
                 }
             } catch (e: Exception) {
                 // Handle exception

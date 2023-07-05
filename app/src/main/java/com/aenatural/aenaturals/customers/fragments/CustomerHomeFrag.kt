@@ -310,7 +310,7 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback {
                         if (status.equals("true")) {
                             categoryProduct = productResponse?.categories!!
 //                             imageEndpoint = productResponse?.image_endpoint ?: ""
-Log.d("Category Product ",categoryProduct.toString())
+                           Log.d("Category Product ",categoryProduct.toString())
                             try {
                                 var adapter = CustomerAllItemAdapter(categoryProduct, imageEndpoint)
 
