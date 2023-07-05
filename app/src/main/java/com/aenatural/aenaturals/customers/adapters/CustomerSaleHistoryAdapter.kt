@@ -7,9 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.common.Models.SellerDataModel
 
-class CustomerSaleHistoryAdapter (var data:ArrayList<SellerDataModel>):RecyclerView.Adapter<CustomerHistoryViewHolder>(){
+class CustomerSaleHistoryAdapter(var data: ArrayList<SellerDataModel>) :
+    RecyclerView.Adapter<CustomerHistoryViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomerHistoryViewHolder {
-        return CustomerHistoryViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.adapter_pending_payments,parent,false))
+        return CustomerHistoryViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.adapter_pending_payments, parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: CustomerHistoryViewHolder, position: Int) {
@@ -20,6 +24,6 @@ class CustomerSaleHistoryAdapter (var data:ArrayList<SellerDataModel>):RecyclerV
     }
 }
 
-class CustomerHistoryViewHolder (itemView: View):RecyclerView.ViewHolder(itemView){
+class CustomerHistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 }
