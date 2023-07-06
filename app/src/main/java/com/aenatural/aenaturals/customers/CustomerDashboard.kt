@@ -1,6 +1,7 @@
 package com.aenatural.aenaturals.customers
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -16,6 +17,8 @@ import com.aenatural.aenaturals.common.Models.SliderModel
 import com.aenatural.aenaturals.customers.adapters.SliderAdapter
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.baseframework.BaseClass
+import com.aenatural.aenaturals.baseframework.Session
+import com.aenatural.aenaturals.common.Login
 import com.aenatural.aenaturals.common.Models.RetailerDataModel
 import com.aenatural.aenaturals.common.Models.SellerDataModel
 import com.aenatural.aenaturals.customers.fragments.Cust_performance_frag
@@ -40,6 +43,9 @@ class CustomerDashboard : BaseClass() {
     lateinit var custBottomNav: BottomNavigationView
     lateinit var custProfileIcon: ImageView
     lateinit var customer_cart_icon:LinearLayout
+    lateinit var alertDialog:AlertDialog.Builder
+    var pref: Session? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,11 +69,30 @@ class CustomerDashboard : BaseClass() {
         custBottomNav = findViewById(R.id.custBottomNav)
         custProfileIcon = findViewById(R.id.cust_profileicon)
         customer_cart_icon = findViewById(R.id.customer_cart_icon)
+
+        pref= Session(this);
+        alertDialog = AlertDialog.Builder(this)
+        alertDialog.setTitle("Alert")
+        alertDialog.setMessage("Do you want to Logout?")
+        alertDialog.setPositiveButton("Yes"){dialogInterface,_ ->
+            run{
+                pref?.clearSession();
+                startActivity(Intent(this, Login::class.java))
+                dialogInterface.dismiss()
+            }
+        }
+        alertDialog.setNegativeButton("No"){dialogInterface,_ ->
+            run{
+                //startActivity(Intent(this, SalesmanDashboard::class.java))
+                dialogInterface.dismiss()
+            }
+        }
     }
 
     override fun initializeClickListners() {
         custProfileIcon.setOnClickListener {
-            startActivity(Intent(this, CustomerProfileActivity::class.java))
+          //  startActivity(Intent(this, CustomerProfileActivity::class.java))
+            alertDialog.show()
         }
         customer_cart_icon.setOnClickListener {
             startActivity(Intent(this,CustomerCartActivity::class.java))
