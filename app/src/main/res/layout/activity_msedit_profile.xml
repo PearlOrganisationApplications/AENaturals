@@ -48,7 +48,7 @@
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_circleImageView2"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -56,11 +56,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_appBarLayout"
-        app:tint="@color/birdcolor" />
+        android:layout_marginTop="@dimen/sd10"
+     />
 
 <ImageView
+    android:id="@+id/clickPicture"
     android:layout_width="30dp"
     android:layout_height="30dp"
+    android:visibility="visible"
     android:src="@drawable/ic_baseline_camera_alt_24"
     app:layout_constraintBottom_toBottomOf="@+id/profile_circleImageView2"
     app:layout_constraintEnd_toEndOf="@+id/profile_circleImageView2"
