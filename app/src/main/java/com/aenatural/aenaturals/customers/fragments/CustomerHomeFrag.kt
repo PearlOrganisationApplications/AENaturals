@@ -46,6 +46,9 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback,Cust
     lateinit var customerallItemsRecycler: RecyclerView
     lateinit var itemList: java.util.ArrayList<RetailerDataModel>
 
+    private val job = Job()
+    private val coroutineScope = CoroutineScope(Dispatchers.Main + job)
+
 //    lateinit var skincare: LinearLayout
 //    lateinit var haircare: LinearLayout
 //    lateinit var herbalPowder: LinearLayout
@@ -279,10 +282,11 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback,Cust
             })
     }
 
-    private fun getProductCategory() {
+   /* private fun getProductCategory() {
         val apiService = retrofit.create(ProductApiService::class.java)
         val tkn = session.token
         val categoryId = session.getcategoryId()
+
             try {
                 val call = apiService.getProduct("Bearer $tkn", categoryId)
                 call.enqueue(object :Callback<CategoriesProductResponse>{
@@ -297,6 +301,7 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback,Cust
                             // Process the product and image endpoint as needed
                             if (productResponse != null) {
                                 val imageEndpoint = productResponse.image_endpoint ?: ""
+                                Log.d("imageEndpoint",imageEndpoint)
                                 if (status.equals("true")) {
                                     categoryProduct = productResponse.categories ?: emptyList()
                                     try {
@@ -325,6 +330,55 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback,Cust
             } catch (e: Exception) {
                 e.printStackTrace()
             }
+    }*/
+
+    private fun getProductCategory() {
+        val apiService = retrofit.create(ProductApiService::class.java)
+        val tkn = session.token
+        val categoryId = session.getcategoryId()
+
+        coroutineScope.launch {
+            try {
+                val response = withContext(Dispatchers.IO) {
+                    apiService.getProduct("Bearer $tkn", categoryId)
+                }
+
+                if (response.isSuccessful) {
+                    val productResponse = response.body()
+                    val status = productResponse?.status
+
+                    // Process the product and image endpoint as needed
+                    if (productResponse != null) {
+                        val imageEndpoint = productResponse.image_endpoint ?: ""
+                        Log.d("imageEndpoint", imageEndpoint)
+
+                        if (status.equals("true")) {
+                            categoryProduct = productResponse.categories ?: emptyList()
+                            try {
+                                customerallItemsRecycler.layoutManager = LinearLayoutManager(requireContext())
+                                customerallItemsRecycler.adapter = CustomerAllItemAdapter(categoryProduct, imageEndpoint,this@CustomerHomeFrag)
+                                Log.d("successItem", status.toString() + "   " + categoryProduct.toString())
+                            } catch (e: Exception) {
+                                logHandler("catchContext", e.message + "   " + e.stackTraceToString())
+                            }
+                        } else {
+                            customerallItemsRecycler.adapter = null // Clear the adapter
+                            Log.d("successItem2", status.toString() + "     "+ productResponse)
+                        }
+                    }
+                } else {
+                    val errorMessage = response.message()
+                    logHandler("elseBlock", errorMessage)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        job.cancel()
     }
 
     private fun showExitConfirmationDialog() {
@@ -475,10 +529,6 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback,Cust
         getProductCategory()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        mainScope.cancel()
-    }
 
     override fun onCartIconClicked(categoryID: String) {
         loadingDialog.startLoadingDialog()
@@ -524,8 +574,4 @@ class CustomerHomeFrag : Fragment(), ProductCategoryAdapter.AdapterCallback,Cust
         }
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        mainScope.cancel()
-    }
 }

@@ -1,5 +1,6 @@
 package com.aenatural.aenaturals.customers.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +29,9 @@ class CustomerAllItemAdapter(var data:List<CategoriesProduct>, var imageEndpoint
         val product = data[position]
 
 if(!(product.cat_image==null||product.cat_image=="null")){
+
     val imageUrl = "$imageEndpoint${product.cat_image}"
+    Log.d("imahe",imageUrl)
 
     Glide.with(holder.itemView.context)
         .load(imageUrl)

@@ -24,7 +24,7 @@ class CustomerOrderHistoryAdapter(var data: ArrayList<Order>, var imageEndpoint:
         var order = data[position]
         val imageUrl = "$imageEndpoint${order.product_details.image}"
         holder.orderName.text = order.product_details.prod_name
-        holder.orderQuantity.text = "Quantity ${order.quantity}"
+        holder.orderQuantity.text = "Quantity:- ${order.quantity}"
         holder.orderPrice.text = order.product_details.pro_price
         holder.purchaseDate.text = order.product_details.prod_description
         if (!(order.product_details.image == null)) {

@@ -1,5 +1,9 @@
 package com.aenatural.aenaturals.myspalon
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -13,10 +17,15 @@ import com.aenatural.aenaturals.baseframework.BaseClass
 import com.aenatural.aenaturals.baseframework.Session
 import com.aenatural.aenaturals.common.DialogPB
 import com.aenatural.aenaturals.common.RetrofitClient.retrofit
+import com.aenatural.aenaturals.databinding.ActivityMseditProfileBinding
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.yalantis.ucrop.UCrop
 import retrofit2.*
 
 class MSEditProfileActivit : BaseClass() {
     lateinit var profile_backIB: ImageButton
+//    lateinit var profile_circleImageView2: ImageView
     lateinit var ms_profile_pb:LinearLayout
     lateinit var session: Session
     private lateinit var input_salutationET: Spinner
@@ -43,6 +52,8 @@ class MSEditProfileActivit : BaseClass() {
 
     private lateinit var adapterSpinner: ArrayAdapter<String>
     private lateinit var dataList: List<String>
+
+    private lateinit var binding: ActivityMseditProfileBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -176,7 +187,9 @@ class MSEditProfileActivit : BaseClass() {
     }
 
     override fun setLayoutXml() {
-        setContentView(R.layout.activity_msedit_profile)
+        binding = ActivityMseditProfileBinding.inflate(layoutInflater)
+//        setContentView(R.layout.activity_msedit_profile)
+        setContentView(binding.root)
         birdTheme()
         session = Session(this)
         loadingDialog = DialogPB(this)
@@ -185,6 +198,8 @@ class MSEditProfileActivit : BaseClass() {
     override fun initializeViews() {
         profile_backIB = findViewById(R.id.profile_profile_backIB)
         ms_profile_pb = findViewById(R.id.profile_ms_profile_pb)
+
+//        profile_circleImageView2 = findViewById(R.id.profile_circleImageView2)
         // edit text
         input_salutationET = findViewById(R.id.profile_input_medicineET)
         input_fullname = findViewById(R.id.profile_input_fullname)
@@ -244,6 +259,14 @@ class MSEditProfileActivit : BaseClass() {
                 Toast.makeText(this,"please fill all the details ",Toast.LENGTH_SHORT).show()
             }
         }
+        binding.clickPicture.setOnClickListener {
+            imageType = 1
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestCameraPermission()
+            } else {
+                openCameraOrGallery()
+            }
+        }
     }
 
 
@@ -251,5 +274,53 @@ class MSEditProfileActivit : BaseClass() {
     }
 
     override fun initializeLabels() {
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK) {
+
+            when (requestCode) {
+                REQUEST_IMAGE_CAPTURE -> {
+                    val imageBitmap = data?.extras?.get("data") as Bitmap
+                    val imageUri = saveImageToFile(imageBitmap)
+                    if (imageUri != null) {
+                        cropImage(imageUri)
+                    }
+                }
+                REQUEST_IMAGE_GALLERY -> {
+                    val imageUri = data?.data
+                    if (imageUri != null) {
+                        cropImage(imageUri)
+                    }
+                }
+                UCrop.REQUEST_CROP -> {
+                    val resultUri = UCrop.getOutput(data!!)
+                    if (resultUri != null) {
+                        when (imageType) {
+                            1 -> {
+                                Glide.with(this)
+                                    .load(resultUri)
+                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                    .skipMemoryCache(true)
+                                    .into(binding.profileCircleImageView2)
+
+                                Glide.with(this)
+                                    .load(resultUri)
+                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                    .skipMemoryCache(true)
+                                    .into(binding.profileCircleImageView2)
+                            }
+                        }
+                    }
+                }
+            }
+
+        } else if (resultCode == UCrop.RESULT_ERROR) {
+            val error = UCrop.getError(data!!)
+            // Handle the cropping error
+            Log.e("Error", "Crop error: $error")
+        }
     }
 }

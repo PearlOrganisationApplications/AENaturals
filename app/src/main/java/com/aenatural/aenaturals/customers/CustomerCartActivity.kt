@@ -88,7 +88,13 @@ class CustomerCartActivity : BaseClass() {
                     loadingDialogPB.dismissDialog()
                     val data = response.body()
                     logHandler("CheckoutRes",data.toString())
-                    loadingDialogPB.startSucessDialog("Sucessfully Added",this@CustomerCartActivity,CustomerDashboard::class.java)
+                    if (selectedItemsList.isNotEmpty()) {
+                        loadingDialogPB.startSucessDialog(
+                            "Sucessfully Added",
+                            this@CustomerCartActivity,
+                            CustomerDashboard::class.java
+                        )
+                    }
 
                 }else{
                     loadingDialogPB.dismissDialog()
