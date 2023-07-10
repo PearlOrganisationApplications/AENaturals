@@ -79,6 +79,7 @@
             android:inputType="textPassword" />
 
         <EditText
+            android:id="@+id/ms_register_parlor_confirmpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/sd4"
