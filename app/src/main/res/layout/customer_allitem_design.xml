@@ -51,18 +51,49 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/sd6"
-                android:text="Item Description"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:text="Item Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sd10" />
+            <TextView
+                android:id="@+id/moreDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/sd6"
+                android:visibility="gone"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="@dimen/sd10" />
+            <TextView
+                android:id="@+id/more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/sd6"
+                android:layout_gravity="end"
+                android:text="more"
+                android:textSize="@dimen/sd10" />
+            <TextView
+                android:id="@+id/less"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/sd6"
+                android:layout_gravity="end"
+                android:visibility="gone"
+                android:text="less"
+                android:textSize="@dimen/sd10" />
+
+
 
             <TextView
                 android:id="@+id/item_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/sd6"
+                android:textStyle="bold"
                 android:text="Price Rs 100"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sd10" />
+                android:textColor="@color/darkgreen"
+                android:textSize="@dimen/sd14" />
 
 
         </LinearLayout>

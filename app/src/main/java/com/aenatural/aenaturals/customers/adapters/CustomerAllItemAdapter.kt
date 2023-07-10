@@ -1,5 +1,6 @@
 package com.aenatural.aenaturals.customers.adapters
 
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,10 +37,25 @@ if(!(product.cat_image==null||product.cat_image=="null")){
 }
         holder.item_name.text = product.prod_name
         holder.item_description.text = product.prod_description
+        holder.more_description.text = product.prod_description
         holder.item_price.text = product.prodPrice
 
         holder.imageView_addtocart.setOnClickListener {
             callBack.onCartIconClicked(product.prod_id)
+        }
+        holder.more.setOnClickListener {
+          holder.item_description.visibility=View.GONE
+          holder.more.visibility=View.GONE
+          holder.less.visibility=View.VISIBLE
+          holder.more_description.visibility=View.VISIBLE
+        }
+        holder.less.setOnClickListener {
+
+            holder.less.visibility=View.GONE
+            holder.more_description.visibility=View.GONE
+            holder.item_description.visibility=View.VISIBLE
+            holder.more.visibility=View.VISIBLE
+
         }
     }
 
@@ -51,8 +67,11 @@ if(!(product.cat_image==null||product.cat_image=="null")){
         var item_image = itemView.findViewById<ImageView>(R.id.item_image)
         var item_name = itemView.findViewById<TextView>(R.id.item_name)
         var item_description = itemView.findViewById<TextView>(R.id.item_description)
+        var more_description = itemView.findViewById<TextView>(R.id.moreDescription)
         var item_price = itemView.findViewById<TextView>(R.id.item_price)
         var imageView_addtocart = itemView.findViewById<ImageView>(R.id.imageView_addtocart)
+        var more = itemView.findViewById<TextView>(R.id.more)
+        var less = itemView.findViewById<TextView>(R.id.less)
     }
 
     interface CustomerAdapterCallBack {
