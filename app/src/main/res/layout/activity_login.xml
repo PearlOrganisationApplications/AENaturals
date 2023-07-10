@@ -72,7 +72,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical"
-android:background="@color/white"
+            android:background="@color/white"
             android:paddingHorizontal="@dimen/sd20"
             android:paddingVertical="@dimen/sd12">
 
@@ -103,7 +103,7 @@ android:background="@color/white"
                         android:gravity="center"
                         android:text="Login"
                         android:textColor="@color/darkgreen"
-                        android:textSize="@dimen/sd30"
+                        android:textSize="@dimen/sd20"
                         android:textStyle="bold" />
 
 
@@ -122,10 +122,39 @@ android:background="@color/white"
                 android:textColor="#109770"
                 android:textSize="@dimen/sd12"
                 android:textStyle="bold" />-->
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:text="UserType"
+                    android:visibility="gone"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/sd10" />
+
+                <EditText
+                    android:id="@+id/userEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sd4"
+                    android:background="@drawable/loginedittextbg"
+                    android:hint="UserType"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:editable="false"
+                    android:visibility="gone"
+                    android:imeOptions="actionNext"
+                    android:textSize="14sp"
+                    android:drawablePadding="@dimen/sd12"
+                    android:drawableEnd="@drawable/baseline_expand_circle_down_24"
+                    android:inputType="textEmailAddress"
+                    android:padding="@dimen/sd12"
+                    android:paddingVertical="@dimen/sd4" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
                     android:text="Email"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/sd10" />
@@ -138,6 +167,7 @@ android:background="@color/white"
                     android:background="@drawable/loginedittextbg"
                     android:drawableEnd="@drawable/ic_mail"
                     android:hint="abc@gmail.com"
+                    android:textSize="14sp"
                     android:imeOptions="actionNext"
                     android:inputType="textEmailAddress"
                     android:padding="@dimen/sd12"
@@ -146,7 +176,7 @@ android:background="@color/white"
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/sd20"
+                    android:layout_marginTop="@dimen/sd12"
                     android:text="Password"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/sd10" />
@@ -161,6 +191,7 @@ android:background="@color/white"
                     android:hint="***********"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
+                    android:textSize="14sp"
                     android:maxLines="1"
                     android:padding="@dimen/sd12" />
 
@@ -179,7 +210,7 @@ android:background="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="30dp"
                     android:background="@drawable/button_round_bg_darkgreen"
                     android:drawableRight="@drawable/ic_arrow_forward_white"
                     android:gravity="center"
@@ -223,8 +254,7 @@ android:background="@color/white"
                         android:layout_gravity="center"
                         android:layout_marginBottom="@dimen/sd10"
                         android:gravity="center"
-
-                        android:text="Signup for My Parlour"
+                        android:text="@string/sign_up_here"
                         android:textColor="@color/darkgreen"
                         android:textSize="@dimen/sd14"
                         android:textStyle="bold" />
