@@ -9,10 +9,7 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.cardview.widget.CardView
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.apiservices.LoginApiService
@@ -24,6 +21,7 @@ import com.aenatural.aenaturals.distributors.DistributorDashboard
 import com.aenatural.aenaturals.myspalon.MSHomeScreenActivity
 import com.aenatural.aenaturals.myspalon.MSRegisterActivity
 import com.aenatural.aenaturals.salesmans.SalesmanDashboard
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,6 +38,8 @@ class Login : BaseClass() {
     lateinit var loginll: LinearLayout
     lateinit var signupforparlorll: LinearLayout
     lateinit var login_pb: LinearLayout
+    lateinit var userType: EditText
+
 
     lateinit var session: Session
     val rect = Rect()
@@ -71,6 +71,7 @@ class Login : BaseClass() {
         loginll = findViewById(R.id.loginll)
         signupforparlorll = findViewById(R.id.signupforparlorll)
         login_pb = findViewById(R.id.login_pb)
+        userType = findViewById(R.id.userEditText)
         login_pb.visibility = View.GONE
         /*   salesmanButton = findViewById(R.id.salesmanButton)
            retailerButton = findViewById(R.id.retailerButton)
@@ -133,6 +134,30 @@ class Login : BaseClass() {
 
             startActivity(Intent(this, MSRegisterActivity::class.java))
         }
+
+        userType.setOnClickListener{
+            val bottomSheetDialog = BottomSheetDialog(this@Login)
+            bottomSheetDialog.setContentView(R.layout.bottomsheet_usertype)
+            val salesman = bottomSheetDialog.findViewById<RadioButton>(R.id.Salesman)
+            val distributor = bottomSheetDialog.findViewById<RadioButton>(R.id.Distributor)
+            val customer = bottomSheetDialog.findViewById<RadioButton>(R.id.customer)
+            bottomSheetDialog.show()
+
+
+            salesman?.setOnClickListener {
+                userType.setText("Salesman")
+                bottomSheetDialog.dismiss()
+            }
+            distributor?.setOnClickListener {
+                userType.setText("Distributor")
+                bottomSheetDialog.dismiss()
+            }
+            customer?.setOnClickListener {
+                userType.setText("Customer")
+                bottomSheetDialog.dismiss()
+            }
+        }
+
 //        setupKeyboardVisibilityListener()
     }
 
@@ -154,8 +179,22 @@ class Login : BaseClass() {
                             errorHandler(responseData.message, loginerrorTV, true)
                         } else {
                             session.token = tokn
-                            startActivity(Intent(this@Login, CustomerDashboard::class.java))
-                            session.setLogin(emailEditText.text.toString(), 4)                        }
+                            when(responseData.usertype){
+                                "parlour"->{
+                                    startActivity(Intent(this@Login, CustomerDashboard::class.java))
+                                    session.setLogin(emailEditText.text.toString(), 4)
+                                }
+                                "salesman"->{
+                                    startActivity(Intent(this@Login, SalesmanDashboard::class.java))
+                                    session.setLogin(emailEditText.text.toString(), 2)
+                                }
+                                "distributor"->{
+                                    startActivity(Intent(this@Login, DistributorDashboard::class.java))
+                                    session.setLogin(emailEditText.text.toString(), 1)
+                                }
+                            }
+
+                        }
                     } else {
                         errorHandler("No response from server", loginerrorTV, true)
                     }

@@ -80,7 +80,9 @@ class MSRegisterActivity : BaseClass() {
             registerApi()
         }
         else{
-            loadingDialog.showErrorBottomSheetDialog("Password must be identical")
+            ms_register_pb.visibility = View.GONE
+                     loadingDialog.showErrorBottomSheetDialog("Password must be identical")
+
         }
     }
 
