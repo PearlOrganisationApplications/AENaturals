@@ -128,7 +128,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="UserType"
-                    android:visibility="gone"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/sd10" />
 
@@ -142,7 +141,6 @@
                     android:clickable="false"
                     android:focusable="false"
                     android:editable="false"
-                    android:visibility="gone"
                     android:imeOptions="actionNext"
                     android:textSize="14sp"
                     android:drawablePadding="@dimen/sd12"
@@ -210,7 +208,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="14dp"
                     android:background="@drawable/button_round_bg_darkgreen"
                     android:drawableRight="@drawable/ic_arrow_forward_white"
                     android:gravity="center"
