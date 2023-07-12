@@ -11,18 +11,30 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.aenatural.aenaturals.R
+import com.aenatural.aenaturals.apiservices.AddSalemanApiService
+import com.aenatural.aenaturals.apiservices.CheckoutApiService
+import com.aenatural.aenaturals.apiservices.datamodels.AddSalemanModel
+import com.aenatural.aenaturals.apiservices.datamodels.NormalDataModel
 import com.aenatural.aenaturals.baseframework.BaseFragment
+import com.aenatural.aenaturals.baseframework.Session
+import com.aenatural.aenaturals.common.RetrofitClient
 import com.aenatural.aenaturals.distributors.DistributorDashboard
 import com.aenatural.aenaturals.salesmans.fragments.ProductsFragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.yalantis.ucrop.UCrop
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class AddSalesman : BaseFragment() {
 
@@ -30,6 +42,8 @@ class AddSalesman : BaseFragment() {
     private lateinit var aadhaarback: LinearLayout
     private lateinit var aadhaarbackPic: ImageView
     private lateinit var aadhaarfrontPic: ImageView
+    private lateinit var Submit: TextView
+    lateinit var session: Session
     private lateinit var distributorFormSubmit: CardView
     companion object {
 
@@ -52,6 +66,7 @@ class AddSalesman : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         backPress()
+        session = Session(requireContext())
         requireActivity().findViewById<LinearLayout>(R.id.headerdistributor).visibility =View.GONE
         initViews(view)
         initClickListener(view)
@@ -84,12 +99,15 @@ class AddSalesman : BaseFragment() {
 
 
         aadhaarfrontPic.setOnClickListener {
-        imageType=1
+            imageType=1
             requestCameraPermission()
         }
         aadhaarback.setOnClickListener{
             imageType=2
             requestCameraPermission()
+        }
+        Submit.setOnClickListener {
+            callApi()
         }
        /* var m = 0
         var f = 0
@@ -115,6 +133,30 @@ class AddSalesman : BaseFragment() {
         distributorFormSubmit.setOnClickListener {
             startActivity(Intent(requireContext(), DistributorDashboard::class.java))
         }*/
+
+    }
+
+    private fun callApi() {
+        val apiService = RetrofitClient.retrofit.create(AddSalemanApiService::class.java)
+        val dataModal: AddSalemanModel = AddSalemanModel(name, job)
+        val call: Call<NormalDataModel> = apiService.addSaleman("Bearer "+session.token.toString(),dataModal)
+
+        call.enqueue(object : Callback<NormalDataModel?> {
+            override fun onResponse(
+                call: Call<NormalDataModel?>,
+                response: Response<NormalDataModel?>
+            ) {
+
+            }
+
+            override fun onFailure(call: Call<NormalDataModel?>, t: Throwable) {
+
+            }
+
+        })
+
+
+
 
     }
 
@@ -228,6 +270,8 @@ class AddSalesman : BaseFragment() {
         aadhaarback = view.findViewById(R.id.dist_adharRearLL)
         aadhaarbackPic = view.findViewById(R.id.dist_adharRearIV)
         aadhaarfrontPic = view.findViewById(R.id.dist_adharFrontIV)
+        aadhaarfrontPic = view.findViewById(R.id.dist_adharFrontIV)
+        Submit = view.findViewById(R.id.distributor_submitBT)
     }
 
 

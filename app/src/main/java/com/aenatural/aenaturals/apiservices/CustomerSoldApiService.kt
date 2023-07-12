@@ -9,7 +9,6 @@ import retrofit2.http.Headers
 import retrofit2.http.POST
 
 interface CustomerSoldApiService {
-
         @POST("sold/add")
         @Headers("Content-Type: application/json")
         public fun checkout(
