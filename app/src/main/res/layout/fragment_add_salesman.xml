@@ -105,6 +105,7 @@
                     </LinearLayout>
 
                     <EditText
+                        android:id="@+id/contact"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/sd10"
@@ -116,6 +117,7 @@
                         android:padding="@dimen/sd8" />
 
                     <EditText
+                        android:id="@+id/address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/sd10"
@@ -128,6 +130,7 @@
                         android:padding="@dimen/sd8" />
 
                     <EditText
+                        android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/sd10"
@@ -140,6 +143,7 @@
                         android:padding="@dimen/sd8" />
 
                     <EditText
+                        android:id="@+id/pan_no"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/sd10"
@@ -181,18 +185,21 @@
                         android:orientation="horizontal">
 
                         <RadioButton
+                            android:id="@+id/rbMale"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Male" />
 
                         <RadioButton
+                            android:id="@+id/rbFemale"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Female" />
 
                         <RadioButton
+                            android:id="@+id/rbOthers"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
