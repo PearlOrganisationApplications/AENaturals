@@ -88,13 +88,14 @@
                             android:layout_weight="1"
                             android:inputType="text"
                             android:background="@drawable/loginedittextbg"
-                            android:hint="First Name"
+                            android:hint="Full Name"
                             android:padding="@dimen/sd10" />
 
                         <EditText
                             android:id="@+id/sm_et2_lastname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:visibility="gone"
                             android:layout_marginHorizontal="@dimen/sd10"
                             android:layout_marginVertical="5dp"
                             android:layout_weight="1"
