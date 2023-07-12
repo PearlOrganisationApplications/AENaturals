@@ -3,6 +3,7 @@ package com.aenatural.aenaturals.customers
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aenatural.aenaturals.R
@@ -87,6 +88,13 @@ class CustomerCartActivity : BaseClass() {
                     loadingDialogPB.dismissDialog()
                     val data = response.body()
                     logHandler("CheckoutRes",data.toString())
+                    if (selectedItemsList.isNotEmpty()) {
+                        loadingDialogPB.startSucessDialog(
+                            "Sucessfully Added",
+                            this@CustomerCartActivity,
+                            CustomerDashboard::class.java
+                        )
+                    }
 
                 }else{
                     loadingDialogPB.dismissDialog()
@@ -154,6 +162,7 @@ class CustomerCartActivity : BaseClass() {
                                         LinearLayoutManager(this@CustomerCartActivity)
                                 } catch (_: Exception) {
                                 }
+
                             }
                     }
                 } else {

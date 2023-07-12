@@ -100,7 +100,7 @@
                     android:gravity="center"
                     android:paddingHorizontal="@dimen/sd14"
                     android:paddingVertical="@dimen/sd10"
-                    android:text="quantity:0"
+                    android:text="quantity:1"
                     android:textColor="@color/darkgreen"
                     android:textStyle="bold" />
 

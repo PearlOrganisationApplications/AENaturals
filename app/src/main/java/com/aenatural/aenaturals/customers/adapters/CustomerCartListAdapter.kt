@@ -27,7 +27,7 @@ class CustomerCartListAdapter(var data:ArrayList<CartItem>, var imageEndpoint: S
         var quantity:Int = 1
         val productId =item.prod_id
         holder.minusitemcart.setOnClickListener {
-            if (quantity > 0) {
+            if (quantity > 1) {
                 quantity -= 1
             }
             holder.itemquantityTV.text = "Quantity: $quantity"
