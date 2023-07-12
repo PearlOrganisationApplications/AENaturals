@@ -38,7 +38,8 @@ if(!(product.cat_image==null||product.cat_image=="null")){
         holder.item_name.text = product.prod_name
         holder.item_description.text = product.prod_description
         holder.more_description.text = product.prod_description
-        holder.item_price.text = product.prodPrice
+        holder.item_price.text ="Price  ₹${product.prodPrice}"
+
 
         holder.imageView_addtocart.setOnClickListener {
             callBack.onCartIconClicked(product.prod_id)

@@ -18,11 +18,10 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.aenatural.aenaturals.R
 import com.aenatural.aenaturals.baseframework.BaseFragment
-import com.aenatural.aenaturals.distributors.DistributorDashboard
-import com.aenatural.aenaturals.salesmans.fragments.ProductsFragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.yalantis.ucrop.UCrop
+
 
 class AddSalesman : BaseFragment() {
 
@@ -85,11 +84,19 @@ class AddSalesman : BaseFragment() {
 
         aadhaarfrontPic.setOnClickListener {
         imageType=1
-            requestCameraPermission()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestCameraPermission()
+            }else{
+                openCameraOrGallery()
+            }
         }
         aadhaarback.setOnClickListener{
             imageType=2
-            requestCameraPermission()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestCameraPermission()
+            }else{
+                openCameraOrGallery()
+            }
         }
        /* var m = 0
         var f = 0
@@ -118,65 +125,12 @@ class AddSalesman : BaseFragment() {
 
     }
 
-    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (resultCode == Activity.RESULT_OK) {
-            when (requestCode) {
-                REQUEST_IMAGE_CAPTURE -> {
-                    val imageBitmap = data?.extras?.get("data") as Bitmap
-                    val imageUri = saveImageToFile(imageBitmap)
-                    if (imageUri != null) {
-                        cropImage(imageUri)
-                    }
-                }
-                REQUEST_IMAGE_GALLERY -> {
-                    val imageUri = data?.data
-                    if (imageUri != null) {
-                        cropImage(imageUri)
-                    }
-                }
-                UCrop.REQUEST_CROP -> {
-                    val resultUri = UCrop.getOutput(data!!)
-                    if (resultUri != null) {
-                        when (imageType) {
-                            1  -> {
-                                Glide.with(this)
-                                    .load(resultUri)
-                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                                    .skipMemoryCache(true)
-                                    .into(aadhaarfrontPic)
-
-                                Log.d("image111",resultUri.toString())
-
-                            }
-                            2 -> {
-                                Glide.with(this)
-                                    .load(resultUri)
-                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                                    .skipMemoryCache(true)
-                                    .into(aadhaarbackPic)
-
-                            }
-                        }
-                    }
-                }
-
-
-            }
-        } else if (resultCode == UCrop.RESULT_ERROR) {
-            val error = UCrop.getError(data!!)
-            // Handle the cropping error
-            Log.e("Error", "Crop error: $error")
-        }
-    }*/
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (resultCode == Activity.RESULT_OK) {
 
+        if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 REQUEST_IMAGE_CAPTURE -> {
                     val imageBitmap = data?.extras?.get("data") as Bitmap
@@ -196,13 +150,13 @@ class AddSalesman : BaseFragment() {
                     if (resultUri != null) {
                         when (imageType) {
                             1 -> {
-                                Glide.with(this)
+                                Glide.with(requireContext())
                                     .load(resultUri)
                                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                                     .skipMemoryCache(true)
                                     .into(aadhaarfrontPic)
 
-                                Glide.with(this)
+                                Glide.with(requireContext())
                                     .load(resultUri)
                                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                                     .skipMemoryCache(true)
@@ -212,13 +166,17 @@ class AddSalesman : BaseFragment() {
                     }
                 }
             }
-
         } else if (resultCode == UCrop.RESULT_ERROR) {
             val error = UCrop.getError(data!!)
             // Handle the cropping error
             Log.e("Error", "Crop error: $error")
         }
     }
+
+
+
+
+
 
     private fun initViews(view: View) {
         /*distributor_profile_pic = view.findViewById(R.id.distributor_profile_pic)

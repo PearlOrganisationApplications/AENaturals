@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
 
@@ -198,5 +199,29 @@ public class BaseFragment extends Fragment{
 
         return null;
     }
+
+    /*public Uri saveImageToFile(Bitmap bitmap) throws IOException {
+        File imagesDir = new  File(requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "my_images");
+        if (!imagesDir.exists()) {
+            imagesDir.mkdirs();
+        }
+        File imageFile = new  File(imagesDir, "image.jpg");
+
+        try {
+            FileOutputStream outputStream = new FileOutputStream(imageFile);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 70, outputStream);
+            outputStream.flush();
+            outputStream.close();
+
+            if (imageFile.exists()) {
+                return FileProvider.getUriForFile(requireContext(), "com.aenatural.aenaturals.salesmans.fileprovider", imageFile);
+            }
+        } catch (Throwable e:  ) {
+
+            e.printStackTrace();
+        }
+
+        return null;
+    }*/
 
 }
