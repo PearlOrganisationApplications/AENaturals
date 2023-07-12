@@ -89,29 +89,67 @@
                 android:gravity="center"
 
                 android:orientation="vertical">
-
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginVertical="15dp"
-                    android:orientation="vertical">
-
-                    <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_marginVertical="@dimen/sd6"
+                    android:gravity="center"
+                    android:padding="@dimen/sd4"
+                    android:orientation="horizontal"
+                    >
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:paddingBottom="@dimen/sd2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Login"
+                            android:textColor="@color/darkgreen"
+                            android:textSize="@dimen/sd20"
+                            android:textStyle="bold" />
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="@color/darkgreen" />
+                    </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:gravity="right"
+                   >
+
+                    <EditText
+                        android:id="@+id/userEditText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/loginedittextbg"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:hint="user type"
+                        android:textColorHint="@color/darkgreen"
                         android:gravity="center"
-                        android:text="Login"
-                        android:textColor="@color/darkgreen"
-                        android:textSize="@dimen/sd20"
-                        android:textStyle="bold" />
-
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/darkgreen" />
+                        android:editable="false"
+                        android:paddingVertical="@dimen/sd2"
+                        android:paddingHorizontal="@dimen/sd6"
+                        android:imeOptions="actionNext"
+                        android:textSize="14sp"
+                        android:drawablePadding="@dimen/sd12"
+                        android:drawableEnd="@drawable/baseline_expand_circle_down_24"
+                        android:inputType="textEmailAddress"
+                        />
+               </LinearLayout>
                 </LinearLayout>
+
 
                 <!-- <TextView
                 android:id="@+id/textView"
@@ -122,32 +160,6 @@
                 android:textColor="#109770"
                 android:textSize="@dimen/sd12"
                 android:textStyle="bold" />-->
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="UserType"
-                    android:textColor="@color/gray"
-                    android:textSize="@dimen/sd10" />
-
-                <EditText
-                    android:id="@+id/userEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/sd4"
-                    android:background="@drawable/loginedittextbg"
-                    android:hint="UserType"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:editable="false"
-                    android:imeOptions="actionNext"
-                    android:textSize="14sp"
-                    android:drawablePadding="@dimen/sd12"
-                    android:drawableEnd="@drawable/baseline_expand_circle_down_24"
-                    android:inputType="textEmailAddress"
-                    android:padding="@dimen/sd12"
-                    android:paddingVertical="@dimen/sd4" />
 
                 <TextView
                     android:layout_width="match_parent"
