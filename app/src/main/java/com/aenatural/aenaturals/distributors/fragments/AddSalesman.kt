@@ -16,8 +16,8 @@ import com.aenatural.aenaturals.salesmans.fragments.ProductsFragment
 
 class AddSalesman : Fragment() {
 
-    private lateinit var distributor_profile_pic: LinearLayout
-    private lateinit var distributor_parlorpic: LinearLayout
+    private lateinit var aadhaarfront: LinearLayout
+    private lateinit var aadhaarback: LinearLayout
     private lateinit var distributorFormSubmit: CardView
     companion object {
 
@@ -67,6 +67,9 @@ class AddSalesman : Fragment() {
 
 
     private fun initClickListener(view: View) {
+        aadhaarfront = view.findViewById(R.id.dist_adharFrontLL)
+        aadhaarback = view.findViewById(R.id.dist_adharRearLL)
+        aadhaarfront.setOnClickListener {  }
        /* var m = 0
         var f = 0
         distributor_profile_pic.setOnClickListener {
