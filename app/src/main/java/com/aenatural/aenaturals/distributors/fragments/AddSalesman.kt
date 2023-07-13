@@ -22,6 +22,7 @@ import com.aenatural.aenaturals.apiservices.datamodels.AddSalemanModel
 import com.aenatural.aenaturals.apiservices.datamodels.NormalDataModel
 import com.aenatural.aenaturals.baseframework.BaseFragment
 import com.aenatural.aenaturals.baseframework.Session
+import com.aenatural.aenaturals.common.DialogPB
 import com.aenatural.aenaturals.common.RetrofitClient
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -30,6 +31,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
+import java.io.IOException
+import java.net.SocketTimeoutException
 
 class AddSalesman : BaseFragment() {
 
@@ -57,6 +60,7 @@ class AddSalesman : BaseFragment() {
     private lateinit var Submit: TextView
     lateinit var session: Session
     private lateinit var distributorFormSubmit: CardView
+    lateinit var loadingDialogPB: DialogPB
 
     companion object {
 
@@ -80,6 +84,7 @@ class AddSalesman : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         backPress()
         session = Session(requireContext())
+        loadingDialogPB = DialogPB(requireActivity())
         requireActivity().findViewById<LinearLayout>(R.id.headerdistributor).visibility = View.GONE
         initViews(view)
         initClickListener(view)
@@ -168,6 +173,7 @@ class AddSalesman : BaseFragment() {
 
     private fun callApi() {
 
+        loadingDialogPB.startLoadingDialog()
         val apiService = RetrofitClient.retrofit.create(AddSalemanApiService::class.java)
         val dataModal =
             AddSalemanModel(
@@ -176,22 +182,51 @@ class AddSalesman : BaseFragment() {
                         image_base64_result)
 
 
-        apiService.addSaleman("Bearer ${session.token}", dataModal)
-            .enqueue(object : Callback<NormalDataModel> {
+       val call = apiService.addSaleman("Bearer ${session.token}", dataModal)
+            call.enqueue(object : Callback<NormalDataModel> {
                 override fun onResponse(
                     call: Call<NormalDataModel>,
                     response: Response<NormalDataModel>
                 ) {
-
-                    Log.d("addsaleman", response.body()!!.message.toString())
+                    if (response.isSuccessful) {
+                        val resData = response.body()
+                        val data = resData?.status
+                        Log.d("data",data.toString())
+                        Log.d("addsaleman", response.body()!!.message.toString())
+                        loadingDialogPB.dismissDialog()
+                        loadingDialogPB.showErrorBottomSheetDialog("hello")
+                    }else{
+                        Log.d("ElseSignup ", "t.toString()")
+                        val errorResponseCode = response.code()
+                        val errorResponseBody = response.errorBody()?.string()
+                        // Handle the error response code and body
+                        Log.e(
+                            "API Error",
+                            "Response Code: $errorResponseCode, Body: $errorResponseBody"
+                        )
+                    }
                 }
 
                 override fun onFailure(call: Call<NormalDataModel>, t: Throwable) {
-                    Toast.makeText(requireContext(), t.stackTraceToString(), Toast.LENGTH_SHORT)
-                        .show()
-                    Log.d("addsaleman1221",t.localizedMessage.toString() )
-                }
+                    when (t) {
+                        is SocketTimeoutException -> {
+                            // Handle SocketTimeoutException
+                            Log.d("fail1", "Socket Timeout: ${t.message}")
+                            val errorMessage = "Socket Timeout: ${t.message}"
 
+                        }
+                        is IOException -> {
+                            // Handle IOException
+                            Log.d("fail", "IO Exception: ${t.message}")
+                            val errorMessage = "IO Exception: ${t.message}"
+                        }
+                        else -> {
+                            // Handle other types of exceptions or generic error
+                            val errorMessage = "Error: ${t.message}"
+                            Log.d("fail3", "Error: ${t.message}")
+                        }
+                    }
+                }
 
             })
 

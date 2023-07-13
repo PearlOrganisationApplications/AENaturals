@@ -11,6 +11,6 @@ interface AddSalemanApiService {
     @Headers("Content-Type: application/json")
     public fun addSaleman(
         @Header("Authorization") bearerToken: String,
-        @Body dataModal: AddSalemanModel?
+        @Body dataModal: AddSalemanModel
     ): Call<NormalDataModel>
 }
