@@ -17,13 +17,11 @@ object RetrofitClient {
     var gson = GsonBuilder()
         .setLenient()
         .create()
-    private val client = OkHttpClient.Builder().build()
 
     val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .client(client)
             .build()
     }
 

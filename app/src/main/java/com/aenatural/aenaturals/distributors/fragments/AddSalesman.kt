@@ -22,7 +22,10 @@ import com.aenatural.aenaturals.apiservices.datamodels.AddSalemanModel
 import com.aenatural.aenaturals.apiservices.datamodels.NormalDataModel
 import com.aenatural.aenaturals.baseframework.BaseFragment
 import com.aenatural.aenaturals.baseframework.Session
+import com.aenatural.aenaturals.common.DialogPB
 import com.aenatural.aenaturals.common.RetrofitClient
+import com.aenatural.aenaturals.myspalon.MSCustomersActivity
+import com.aenatural.aenaturals.salesmans.SalesmanDashboard
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.yalantis.ucrop.UCrop
@@ -57,6 +60,7 @@ class AddSalesman : BaseFragment() {
     private lateinit var Submit: TextView
     lateinit var session: Session
     private lateinit var distributorFormSubmit: CardView
+    private lateinit var loadingDialogPB: DialogPB
 
     companion object {
 
@@ -80,6 +84,7 @@ class AddSalesman : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         backPress()
         session = Session(requireContext())
+        loadingDialogPB = DialogPB(requireActivity())
         requireActivity().findViewById<LinearLayout>(R.id.headerdistributor).visibility = View.GONE
         initViews(view)
         initClickListener(view)
@@ -137,6 +142,7 @@ class AddSalesman : BaseFragment() {
                 gender = "other"
             }
 
+            loadingDialogPB.startLoadingDialog()
             callApi()
         }
         /* var m = 0
@@ -182,14 +188,15 @@ class AddSalesman : BaseFragment() {
                     call: Call<NormalDataModel>,
                     response: Response<NormalDataModel>
                 ) {
-
-                    Log.d("addsaleman", response.body()!!.message.toString())
+                    loadingDialogPB.startSucessDialog("Successful! We will send you an email",requireContext(),
+                        SalesmanDashboard::class.java)
                 }
 
                 override fun onFailure(call: Call<NormalDataModel>, t: Throwable) {
+                    loadingDialogPB.dismissDialog()
                     Toast.makeText(requireContext(), t.stackTraceToString(), Toast.LENGTH_SHORT)
                         .show()
-                    Log.d("addsaleman1221",t.localizedMessage.toString() )
+                    Log.d("addsaleman1221",t.message.toString() )
                 }
 
 
